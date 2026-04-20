@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Benefits &amp; Membership | MEOs Furniture Industry Association</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#e10080",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#3e001f",
+                        "secondary-fixed": "#dde4e6",
+                        "surface-bright": "#f8f9fa",
+                        "background": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary": "#b40065",
+                        "outline": "#6d7a71",
+                        "surface-container-highest": "#e1e3e4",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#7bfabb",
+                        "on-secondary-fixed": "#161d1f",
+                        "primary": "#006a44",
+                        "on-primary-container": "#f6fff6",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#5ddda1",
+                        "tertiary-fixed": "#ffd9e3",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005234",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb0ca",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-container": "#5d6466",
+                        "primary-container": "#008558",
+                        "on-surface-variant": "#3d4a41",
+                        "inverse-primary": "#5ddda1",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bccabf",
+                        "on-primary-fixed": "#002112",
+                        "inverse-surface": "#2e3132",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#8d004e",
+                        "on-secondary-fixed-variant": "#41484a",
+                        "secondary": "#586062",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed-dim": "#c1c8ca",
+                        "on-background": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-container": "#dae1e3",
+                        "surface-container": "#edeeef",
+                        "surface-dim": "#d9dadb",
+                        "surface-tint": "#006c46"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #006a44 0%, #008558 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-sm dark:shadow-none transition-colors duration-300">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+<div class="text-2xl font-bold tracking-tighter text-emerald-900 dark:text-emerald-50">MEYOS</div>
+<div class="hidden md:flex items-center space-x-8 font-manrope font-semibold tracking-tight text-sm">
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200" href="#">About</a>
+<a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 dark:border-emerald-400 pb-1" href="#">Benefits</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200" href="#">Programs</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200" href="#">News</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200" href="#">FAQ</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:bg-slate-50/50 scale-95 active:opacity-80 text-emerald-900">Contacts</button>
+<button class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-semibold text-sm transition-all hover:bg-primary-container scale-95 active:opacity-80 shadow-md">Join Now</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-16 pb-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-6">Membership 2024</span>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-tight mb-6">Elevate Your <span class="text-gradient">Furniture Craft</span> through MEYOS.</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-10 max-w-xl">Join the elite network of furniture manufacturers and designers. MEYOS provides the structural support, technical resources, and tax advantages required for modern industry excellence.</p>
+<div class="flex flex-wrap gap-4">
+<a class="px-8 py-4 bg-tertiary text-on-tertiary rounded-full font-bold text-base shadow-lg transition-transform hover:-translate-y-1 active:scale-95" href="#join-form">Apply for Membership</a>
+<a class="px-8 py-4 border border-outline-variant text-primary font-bold text-base rounded-full hover:bg-surface-container-low transition-colors" href="#perks">Explore Benefits</a>
+</div>
+</div>
+<div class="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Modern high-tech furniture manufacturing facility with precision laser cutting machines and warm industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZYlqh7PwRim0c_HBeP4m7noqJE8fShCXF54J4Xp-0ekdBiSj8n_vuhu2DNeBzrp-g5YyBxMCDY-p09wr16Cu2Zc5YcM8DKP4-TAP7hASoirNU0X1GhpKy7KXnkEN5Zvkx3Pg09SEc5WrRzx7N8929CtxaQ4SmRMBbg6LzayY8VPhAiTGEtHWakrsRqNl0rpj4bEXHLNcThNZkuNet1s-eZjIt-W8bZ8OZA-8JKzAi_41x39N4iAlMnWy92-F2CaKN4EDakwVgRKE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- Perks Section (Bento Grid) -->
+<section class="py-24 bg-surface-container-low" id="perks">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16">
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-4">Exclusive Member Perks</h2>
+<p class="text-on-surface-variant max-w-2xl">Strategic advantages designed to scale your business and foster innovation within the global furniture ecosystem.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Perk Card 1: Tax -->
+<div class="md:col-span-2 p-8 rounded-2xl bg-surface-container-lowest border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container mb-6">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Optimized Tax Frameworks</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">Be the first to bid on large-scale government contracts and international hospitality projects curated exclusively for MEYOS members.</p>
+</div>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span> R&amp;D Tax Credit Advisory</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span> Export Duty Reduction</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span> VAT Recovery Services</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span> Green Tech Subsidies</li>
+</ul>
+</div>
+<!-- Perk Card 2: Database -->
+<div class="p-8 rounded-2xl bg-primary text-on-primary shadow-lg transition-transform hover:-translate-y-1">
+<div class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white" data-icon="database">database</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Partner Database</h3>
+<p class="text-on-primary-container/80 leading-relaxed text-sm">Instant access to 500+ verified raw material suppliers, logistics experts, and high-end retailers globally.</p>
+<div class="mt-8 pt-8 border-t border-white/10">
+<span class="text-xs font-bold uppercase tracking-widest opacity-60">Search filters include:</span>
+<div class="flex flex-wrap gap-2 mt-4">
+<span class="px-3 py-1 bg-white/10 rounded-full text-[10px]">Sustainability Rating</span>
+<span class="px-3 py-1 bg-white/10 rounded-full text-[10px]">ISO Certified</span>
+</div>
+</div>
+</div>
+<!-- Perk Card 3: Training -->
+<div class="p-8 rounded-2xl bg-surface-container-highest border border-outline-variant/10 shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary flex items-center justify-center text-on-tertiary mb-6">
+<span class="material-symbols-outlined" data-icon="model_training">model_training</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Advanced Training</h3>
+<p class="text-on-surface-variant leading-relaxed text-sm mb-6">Bi-monthly workshops on CAD/CAM optimization, sustainable timber sourcing, and digital marketing for luxury furniture brands.</p>
+<button class="text-primary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                            View Curriculum <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Perk Card 4: Projects -->
+<div class="md:col-span-2 p-8 rounded-2xl bg-surface-container-lowest border border-outline-variant/10 shadow-sm flex flex-col md:flex-row gap-8">
+<div class="flex-1">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Key Projects Participation</h3>
+<p class="text-on-surface-variant leading-relaxed text-sm">Be the first to bid on large-scale government contracts and international hospitality projects curated exclusively for MEYOS members.</p>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="rounded-xl overflow-hidden h-32">
+<img class="w-full h-full object-cover" data-alt="Minimalist corporate office lobby with bespoke wooden designer furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1XIOLVtE-ftKsOiodCxEwTPbIBsssOXFpFHG2WPLtr32FxBX-wq1nE0foZ8YqMpTsmcbCTgHb80yF3JPCjQaPpvyAHO6t7gz5tN22INnZtteWqri-arp2lsbs1q0RGafQhd3MIe_VUrEWaQXKo2yldM6Z0VcVjKZJMRoe23kS13DZJHLbzQLV2A-WXldKU8WYSuZ_vw2D_15g-iEFTP0EBHj9OpM2mvwQxmtAM-143uiUbv3ulsp0gA3vD93l8_rq1ncydqEyZFw"/>
+</div>
+<div class="rounded-xl overflow-hidden h-32">
+<img class="w-full h-full object-cover" data-alt="Luxury hotel bedroom suite featuring high-end artisanal furniture pieces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZu49v5z5Vv8DmCwGHAAs27JwWMgTSRcVOkP3zjo_Pw1TbCQymDekwXcSclarovHRxBlTu0VH-vBxtbFXeKj5txvD9gZJ-pC7WoTiQyJz_bPFjRaoeYKZpowtweRBxxWrluPUOHjXQWlosXINgWeVEakJcgLTYrzM4javA7Pieq5sBera3oRoa-V5l48ehFPW-B_WY97gHtsSMtLUt9KyqDmjoFOjbh88RNMOn_zWUEpV0amB621Lc4aBL-NhldDzPk1OolZmgnz0"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="text-4xl font-extrabold tracking-tight mb-4">How to Join MEYOS</h2>
+<p class="text-on-surface-variant">A streamlined process to integrate you into the atelier network.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+<!-- Connector Line (Desktop) -->
+<div class="hidden md:block absolute top-10 left-[10%] right-[10%] h-[2px] bg-outline-variant/30 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-4 border-surface flex items-center justify-center shadow-md mb-6 transition-all group-hover:bg-primary group-hover:text-on-primary">
+<span class="text-xl font-black">01</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Apply</h4>
+<p class="text-sm text-on-surface-variant">Submit your corporate profile and design portfolio via our portal.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-4 border-surface flex items-center justify-center shadow-md mb-6 transition-all group-hover:bg-primary group-hover:text-on-primary">
+<span class="text-xl font-black">02</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Review</h4>
+<p class="text-sm text-on-surface-variant">Our board evaluates compliance with industry quality standards.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-4 border-surface flex items-center justify-center shadow-md mb-6 transition-all group-hover:bg-primary group-hover:text-on-primary">
+<span class="text-xl font-black">03</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Membership Fee</h4>
+<p class="text-sm text-on-surface-variant">Secure your placement through our transparent tiered contribution system.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-primary text-on-primary border-4 border-surface-container flex items-center justify-center shadow-xl mb-6">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Get Access</h4>
+<p class="text-sm text-on-surface-variant">Immediate activation of all digital tools and perk databases.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Card Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-4xl mx-auto px-6">
+<div class="bg-surface-container-lowest rounded-3xl p-8 md:p-16 shadow-xl border border-outline-variant/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="material-symbols-outlined text-primary/10 text-9xl leading-none select-none">verified</span>
+</div>
+<div class="relative z-10">
+<h2 class="text-3xl font-extrabold mb-8">Annual Contribution</h2>
+<div class="flex items-baseline gap-2 mb-8">
+<span class="text-6xl font-black tracking-tighter">$2,450</span>
+<span class="text-on-surface-variant font-medium">/ per year</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<div>
+<h5 class="text-sm font-bold uppercase tracking-widest text-primary mb-4">Includes</h5>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check" data-weight="fill">check</span>
+                                        Full Digital Portal Access
+                                    </li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check" data-weight="fill">check</span>
+                                        Annual Audit &amp; Tax Filing Support
+                                    </li>
+<li class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check" data-weight="fill">check</span>
+                                        Lobbying Representation
+                                    </li>
+</ul>
+</div>
+<div>
+<h5 class="text-sm font-bold uppercase tracking-widest text-primary mb-4">Terms</h5>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                                    Contributions are billed annually. A 15% discount applies to organizations with less than 10 employees. Fees are non-refundable after the first 30 days of active membership.
+                                </p>
+</div>
+</div>
+<div class="p-6 bg-surface-container rounded-2xl flex items-center gap-6">
+<span class="material-symbols-outlined text-tertiary" data-icon="info">info</span>
+<p class="text-sm text-on-surface-variant">Looking for enterprise or government-level association? <a class="text-primary font-bold underline" href="#">Contact our liaison officer</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Application Form Section -->
+<section class="py-24 bg-surface" id="join-form">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight mb-6">Begin Your Journey</h2>
+<p class="text-on-surface-variant mb-10 leading-relaxed">Ready to join MEYOS? Fill out the preliminary application form below. Our membership committee reviews applications on the 1st and 15th of every month.</p>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h4 class="font-bold">Concierge Support</h4>
+<p class="text-sm text-on-surface-variant">Receive one-on-one assistance during the onboarding phase.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div>
+<h4 class="font-bold">Secure Verification</h4>
+<p class="text-sm text-on-surface-variant">All submitted data is encrypted and handled with maximum privacy.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 md:p-12 rounded-3xl">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Company Name</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="e.g. Nordic Atelier Ltd." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Industry Sector</label>
+<select class="w-full px-5 py-4 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-primary transition-all">
+<option>Residential Furniture</option>
+<option>Office &amp; Commercial</option>
+<option>Material Supplier</option>
+<option>Design Studio</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Business Email</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="contact@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Company Profile / Website</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="https://www.yourcompany.com" type="url"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Brief Statement of Intent</label>
+<textarea class="w-full px-5 py-4 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="Tell us why you want to join the MEYOS network..." rows="4"></textarea>
+</div>
+<button class="w-full py-5 bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-3" type="submit">
+                            Submit Application
+                            <span class="material-symbols-outlined">send</span>
+</button>
+<p class="text-center text-[10px] text-on-surface-variant uppercase tracking-widest leading-relaxed">
+                            By submitting, you agree to our Terms of Membership and Privacy Policy.
+                        </p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-16 pb-8 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6 font-inter text-sm leading-relaxed">
+<div class="md:col-span-1">
+<div class="text-xl font-black text-emerald-900 dark:text-emerald-50 mb-6">MEYOS</div>
+<p class="text-slate-500 dark:text-slate-400 mb-6">Setting the standard for excellence in the furniture manufacturing industry since 1994.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-emerald-700 cursor-pointer transition-colors" data-icon="public">public</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-emerald-700 cursor-pointer transition-colors" data-icon="share">share</span>
+</div>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-emerald-900 dark:text-emerald-50 mb-6">Association</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">About Us</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Programs</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">News &amp; Media</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Annual Report</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-emerald-900 dark:text-emerald-50 mb-6">Resources</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">FAQ</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Sitemap</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Newsletter Signup</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Partner Login</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-emerald-900 dark:text-emerald-50 mb-6">Legal</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Terms of Service</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 hover:translate-x-1 transition-transform duration-200 block" href="#">Cookie Settings</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-100 dark:border-slate-900 text-center text-xs text-slate-400">© 2024 MEYOS Furniture Industry Association. All rights reserved.</div>
+</footer>
+</body></html>

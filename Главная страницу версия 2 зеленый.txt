@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ассоциация мебельщиков Узбекистана — MEOs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006a44",
+                    "primary-container": "#f0fdf4",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#b40065",
+                    "tertiary-container": "#fff1f2",
+                    "on-surface": "#191c1d",
+                    "on-surface-variant": "#4b5563",
+                    "outline": "#d1d5db",
+                    "surface": "#ffffff",
+                    "background": "#ffffff",
+                    "surface-container": "#f9fafb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "2xl": "2rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-bg {
+            background-color: #ffffff;
+            background-image: radial-gradient(at 0% 0%, hsla(158,100%,94%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(334,100%,96%,1) 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-white text-on-surface font-body selection:bg-primary/10 selection:text-primary">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="text-white font-bold text-xl font-headline">M</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 font-headline">MEOs</span>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-semibold text-sm text-primary" href="#">Об ассоциации</a>
+<a class="font-semibold text-sm text-slate-600 hover:text-primary transition-colors" href="#">Резидентство</a>
+<a class="font-semibold text-sm text-slate-600 hover:text-primary transition-colors" href="#">Программы</a>
+<a class="font-semibold text-sm text-slate-600 hover:text-primary transition-colors" href="#">Мероприятия</a>
+<a class="font-semibold text-sm text-slate-600 hover:text-primary transition-colors" href="#">FAQ</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="hidden lg:block font-bold text-sm text-slate-700">Войти</button>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-bold text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">Вступить</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="hero-bg pt-20 pb-24 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container text-primary text-xs font-bold uppercase tracking-wider mb-8">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        Официальная ассоциация
+                    </div>
+<h1 class="font-headline text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-8">
+                        Ассоциация мебельщиков Узбекистана — <span class="text-primary">драйвер роста</span> отрасли
+                    </h1>
+<p class="text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
+                        Мы создаем экосистему для цифровой трансформации и масштабирования мебельного бизнеса в Узбекистане через IT-решения, налоговые льготы и GR-поддержку.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-10 py-5 rounded-full bg-primary text-on-primary font-bold text-lg hover:translate-y-[-2px] transition-all shadow-xl shadow-primary/20">Вступить в ассоциацию</button>
+<button class="px-10 py-5 rounded-full bg-white text-slate-900 font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-all">Получить консультацию</button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl">
+<img alt="Modern Design" class="w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC4ZYeSjb7HhTjtvDuFtchmL-yFUJFSG9JQXRPWdT0pg2nH1vJ-6DTiTORre-jvV2ZdZIe25v9doTa-MzlRkuTLpf-mmydh7t3C2CxQBCywqfG0qViO3zCZdkJ0HiWyPAQ-eGwreDgSxFcTyg6RNrrTgyKJTqxkkZK8Bg7Wt-f0eQ53MQ4MzGiIoal1iC9GtsE93d9Bh20txSf1TLFkBq4t2n5RbLcLGm8uWIMMbZKtzvbh9OpnPXyV0ONCL930OAhFAYf2yLInP8"/>
+</div>
+<!-- Decorative accents -->
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-tertiary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-16 border-y border-slate-100 bg-slate-50/50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="text-5xl font-black font-headline text-slate-900 mb-2">500+</div>
+<div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Резидентов</div>
+</div>
+<div>
+<div class="text-5xl font-black font-headline text-primary mb-2">40%</div>
+<div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Рост прибыли</div>
+</div>
+<div>
+<div class="text-5xl font-black font-headline text-slate-900 mb-2">15k+</div>
+<div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Рабочих мест</div>
+</div>
+<div>
+<div class="text-5xl font-black font-headline text-tertiary mb-2">24/7</div>
+<div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">GR Поддержка</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Residency Benefits Grid -->
+<section class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">Преимущества резидентства</h2>
+<p class="text-slate-500 max-w-2xl mx-auto text-lg">Полный спектр инструментов для развития вашего производства до международного уровня.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-10 rounded-3xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group">
+<div class="w-14 h-14 rounded-2xl bg-primary-container flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-slate-900 mb-4">Налоговые преференции</h3>
+<p class="text-slate-600 leading-relaxed">Помощь в получении статуса IT-компании и снижение налоговой нагрузки до 7.5%.</p>
+</div>
+<div class="p-10 rounded-3xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-3xl">gavel</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-slate-900 mb-4">Государственная поддержка</h3>
+<p class="text-slate-600 leading-relaxed">Прямой диалог с министерствами и участие в формировании отраслевых законов.</p>
+</div>
+<div class="p-10 rounded-3xl border border-slate-100 bg-white hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all group">
+<div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-blue-600 text-3xl">hub</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-slate-900 mb-4">Единая B2B Платформа</h3>
+<p class="text-slate-600 leading-relaxed">Доступ к закрытой базе проверенных поставщиков и системе автоматизированных закупок.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem & Solution Block (Structured Table style) -->
+<section class="py-32 bg-slate-50">
+<div class="max-w-5xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="font-headline text-4xl font-extrabold text-slate-900 mb-6">Трансформируем вызовы в возможности</h2>
+</div>
+<div class="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-200">
+<div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+<div class="p-12">
+<h3 class="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-xs mb-8">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span> Текущие барьеры
+                        </h3>
+<div class="space-y-10">
+<div class="flex gap-5">
+<span class="text-tertiary font-bold font-headline text-lg italic">01.</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">Высокая налоговая нагрузка</h4>
+<p class="text-sm text-slate-500">Отсутствие льгот мешает реинвестировать в оборудование и новые технологии.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="text-tertiary font-bold font-headline text-lg italic">02.</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">Кадровый дефицит</h4>
+<p class="text-sm text-slate-500">Сложность поиска квалифицированных технологов и мастеров ЧПУ.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="text-tertiary font-bold font-headline text-lg italic">03.</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">Слабая цифровизация</h4>
+<p class="text-sm text-slate-500">Устаревшие методы управления ведут к потере 15-20% маржинальности.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-12 bg-primary/[0.02]">
+<h3 class="flex items-center gap-3 text-primary font-bold uppercase tracking-widest text-xs mb-8">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Решение MEOs
+                        </h3>
+<div class="space-y-10">
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">Оптимизация 2.0</h4>
+<p class="text-sm text-slate-600">Юридическое оформление под льготные режимы и полное сопровождение отчетности.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary">school</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">Программа EduJob</h4>
+<p class="text-sm text-slate-600">Система подготовки и переподготовки кадров под нужды вашего производства.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+<div>
+<h4 class="font-bold text-slate-900 mb-2">IT-акселератор</h4>
+<p class="text-sm text-slate-600">Внедрение ERP/CRM систем, адаптированных под мебельный бизнес Узбекистана.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ecosystem Section: EduJob -->
+<section class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<span class="text-tertiary font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Экосистема MEOs</span>
+<h2 class="font-headline text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8">EduJob: Кадровый фундамент отрасли</h2>
+<p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                        Мы создали платформу, которая соединяет образовательные стандарты с практическими нуждами мебельных фабрик. Это не просто курсы, а гарантия компетенций.
+                    </p>
+<div class="grid grid-cols-2 gap-6 mb-12">
+<div class="bg-slate-50 p-6 rounded-2xl">
+<div class="font-bold text-slate-900 mb-1">Academy</div>
+<div class="text-sm text-slate-500">Подготовка мастеров ЧПУ и дизайнеров-конструкторов.</div>
+</div>
+<div class="bg-slate-50 p-6 rounded-2xl">
+<div class="font-bold text-slate-900 mb-1">Career Hub</div>
+<div class="text-sm text-slate-500">Автоматический подбор кадров для резидентов.</div>
+</div>
+</div>
+<button class="px-8 py-4 rounded-full border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all">Узнать больше об EduJob</button>
+</div>
+<div class="order-1 lg:order-2">
+<div class="rounded-3xl overflow-hidden shadow-3xl bg-slate-900">
+<img alt="Training center" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS3BCe-GTwXr55pjLI1dg1FeDprm7ou5_r4ScSxFRmGSsPQdxwnhr0Iu6fwaK4IKyazCStP0PlNsqzGowDTXCypx2zUp-HHE1PLJk2t2vmmYPyV_JBFEDOjmVfJkA-JA4Gr3YSqu2KhYF1FJ3nT0Ehk0G4hspp7Xk9l0mTJl9HsQe5oE-fUS7_hUSUOxU-olDg2MPa_pZfo7Wr92ZIxUBd0WSPLJB_hk9SBkFAlp-3JD_PJF7dRlg8rXJqTQKfKjjS3ftI3icFqS0"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Become a Resident Flow -->
+<section class="py-32 bg-slate-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="font-headline text-4xl font-extrabold text-slate-900">Как стать резидентом</h2>
+</div>
+<div class="grid md:grid-cols-4 gap-4 relative">
+<!-- Connectors for desktop -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
+<div class="relative z-10 group">
+<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center hover:shadow-xl transition-all">
+<div class="w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center mx-auto mb-6">1</div>
+<h4 class="font-bold text-slate-900 mb-2">Заявка</h4>
+<p class="text-xs text-slate-500">Заполните анкету на сайте или в офисе MEOs.</p>
+</div>
+</div>
+<div class="relative z-10 group">
+<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center hover:shadow-xl transition-all">
+<div class="w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center mx-auto mb-6">2</div>
+<h4 class="font-bold text-slate-900 mb-2">Аудит</h4>
+<p class="text-xs text-slate-500">Проверка соответствия стандартам ассоциации.</p>
+</div>
+</div>
+<div class="relative z-10 group">
+<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center hover:shadow-xl transition-all">
+<div class="w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center mx-auto mb-6">3</div>
+<h4 class="font-bold text-slate-900 mb-2">Договор</h4>
+<p class="text-xs text-slate-500">Подписание соглашения и оплата членского взноса.</p>
+</div>
+</div>
+<div class="relative z-10 group">
+<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center hover:shadow-xl transition-all">
+<div class="w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center mx-auto mb-6">4</div>
+<h4 class="font-bold text-slate-900 mb-2">Старт</h4>
+<p class="text-xs text-slate-500">Доступ ко всем льготам и сервисам экосистемы.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partner Logos -->
+<section class="py-24 bg-white border-t border-slate-100">
+<div class="max-w-7xl mx-auto px-6">
+<p class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mb-12">Наши ключевые партнеры</p>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale">
+<div class="text-xl font-black font-headline text-slate-900">FURNITECH</div>
+<div class="text-xl font-black font-headline text-slate-900">WOODMASTERS</div>
+<div class="text-xl font-black font-headline text-slate-900">DESIGN.CO</div>
+<div class="text-xl font-black font-headline text-slate-900">SOFTLINE</div>
+<div class="text-xl font-black font-headline text-slate-900">LIGNUM</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="bg-slate-900 rounded-[3rem] p-12 lg:p-24 text-center text-white relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="text-4xl md:text-6xl font-headline font-extrabold mb-8 leading-tight">Готовы к цифровой<br/>трансформации?</h2>
+<p class="text-xl mb-12 text-slate-400 max-w-2xl mx-auto">Станьте частью сообщества, которое определяет будущее мебельной индустрии в Центральной Азии.</p>
+<button class="px-12 py-6 rounded-full bg-primary text-white font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/20">Вступить в MEOs</button>
+</div>
+<!-- Abstract Pattern -->
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<circle cx="400" cy="0" fill="url(#grad)" r="400"></circle>
+<defs>
+<radialgradient id="grad">
+<stop offset="0%" stop-color="#006a44"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</radialgradient>
+</defs>
+</svg>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-100 pt-24 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+<div class="md:col-span-1">
+<div class="flex items-center gap-2 mb-8">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="text-white font-bold text-base font-headline">M</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 font-headline">MEOs</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                    Ассоциация предприятий мебельной индустрии Узбекистана. Стратегия, IT и инновации.
+                </p>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-6">Ассоциация</h4>
+<ul class="space-y-4">
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">О нас</a></li>
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Программы</a></li>
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Резиденты</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-6">Поддержка</h4>
+<ul class="space-y-4">
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">База знаний</a></li>
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Правовая база</a></li>
+<li><a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Контакты</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-6">Дайджест</h4>
+<div class="flex">
+<input class="flex-1 bg-slate-50 border-slate-200 rounded-l-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Email" type="email"/>
+<button class="bg-primary text-white px-4 rounded-r-xl material-symbols-outlined">send</button>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-xs text-slate-400">© 2024 MEOs Uzbekistan Furniture Association. Все права защищены.</p>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Telegram</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Facebook</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru" data-color="green" data-concept="flow">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Партнёры и резиденты — MEYOS | База мебельных компаний Узбекистана</title>
+<meta name="description" content="Полный список партнёров и резидентов ассоциации MEYOS: производители, дизайн-студии, поставщики материалов, логистика и государственные партнёры." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/themes.css" />
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }
+  .filter-bar { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2.5rem; }
+  .filter-chip { padding:.5rem 1.1rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:9999px; font-family:var(--font-head); font-weight:600; font-size:.85rem; color:rgb(var(--on-surface-mut)); cursor:pointer; transition:all .2s; }
+  .filter-chip.is-active, .filter-chip:hover { background:rgb(var(--primary)); color:#fff; border-color:rgb(var(--primary)); }
+  .partner-card { padding:1.5rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); transition:all .3s; }
+  .partner-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:rgb(var(--primary) / .3); }
+  .partner-logo-box { height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem; letter-spacing:-.02em; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <nav class="nav">
+      <a href="about.html" data-i18n="nav.about">О компании</a>
+      <a href="residency.html" data-i18n="nav.residency">Резидентство</a>
+      <a href="programs.html" data-i18n="nav.programs">Программы</a>
+      <a href="partners.html" class="is-active" data-i18n="nav.partners">Партнёры</a>
+      <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+      <a href="news.html" data-i18n="nav.news">Новости</a>
+      <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:.75rem;">
+      <div class="lang"><button class="is-active">RU</button><button>UZ</button><button>EN</button></div>
+      <a href="residency.html#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;" data-i18n="cta.join">Вступить</a>
+      <button class="burger" data-burger><span class="material-symbols-outlined">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__head">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <button class="burger" data-mobile-close><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <a href="about.html" data-i18n="nav.about">О компании</a>
+  <a href="residency.html" data-i18n="nav.residency">Резидентство и льготы</a>
+  <a href="programs.html" data-i18n="nav.programs">Программы</a>
+  <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+  <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+  <a href="news.html" data-i18n="nav.news">Новости</a>
+  <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+</div>
+
+<main>
+
+<section class="hero" style="padding:5rem 1.5rem;">
+  <div class="hero__inner" style="grid-template-columns:1fr;">
+    <div style="max-width:50rem;">
+      <span class="tag tag-on-dark"><span class="tag-dot"></span><span data-i18n="pt.hero.tag">Экосистема MEYOS</span></span>
+      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;" data-i18n="pt.hero.h1">Партнёры и резиденты ассоциации</h1>
+      <p class="lead" data-i18n="pt.hero.lead">Более 500 компаний — от семейных мастерских до крупных фабрик, от дизайн-студий до государственных институтов развития. Единая B2B-сеть мебельной отрасли Узбекистана.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="filter-bar" data-partners-filter>
+      <button class="filter-chip is-active" data-filter="all" data-i18n="pt.f.all">Все</button>
+      <button class="filter-chip" data-filter="production" data-i18n="pt.f.prod">Производители</button>
+      <button class="filter-chip" data-filter="design" data-i18n="pt.f.des">Дизайн-студии</button>
+      <button class="filter-chip" data-filter="materials" data-i18n="pt.f.mat">Поставщики материалов</button>
+      <button class="filter-chip" data-filter="logistics" data-i18n="pt.f.log">Логистика</button>
+      <button class="filter-chip" data-filter="gov" data-i18n="pt.f.gov">Государственные</button>
+      <button class="filter-chip" data-filter="finance" data-i18n="pt.f.fin">Финансы</button>
+    </div>
+    <div class="grid grid-4">
+      <div class="partner-card" data-partner-card data-category="production"><div class="partner-logo-box">WOODLINE</div><span class="chip">Производство</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Woodline Furniture</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Корпусная мебель, объёмы до 40 000 изделий в год.</p></div>
+      <div class="partner-card" data-partner-card data-category="design"><div class="partner-logo-box">ATELIER</div><span class="chip">Дизайн</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Atelier Mesa</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Авторская мебель и интерьерный дизайн премиум-сегмента.</p></div>
+      <div class="partner-card" data-partner-card data-category="design"><div class="partner-logo-box">TASHKENT</div><span class="chip">Дизайн</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Tashkent Design</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Проектирование офисных и HoReCa-пространств «под ключ».</p></div>
+      <div class="partner-card" data-partner-card data-category="production"><div class="partner-logo-box">FURSONI</div><span class="chip">Производство</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Fursoni Furniture</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Мягкая мебель и корпусные решения для ритейл-сегмента.</p></div>
+      <div class="partner-card" data-partner-card data-category="materials"><div class="partner-logo-box">SAMARKAND</div><span class="chip">Материалы</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Samarkand Wood</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Массив ореха, ясеня и карагача — сертификация FSC.</p></div>
+      <div class="partner-card" data-partner-card data-category="production"><div class="partner-logo-box">MEBEL PRO</div><span class="chip">Производство</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Mebel Pro</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">OEM-производство для международных брендов.</p></div>
+      <div class="partner-card" data-partner-card data-category="materials"><div class="partner-logo-box">CHINOR</div><span class="chip">Материалы</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Chinor Timber</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Пиломатериалы и шпон, прямой импорт и собственное производство.</p></div>
+      <div class="partner-card" data-partner-card data-category="logistics"><div class="partner-logo-box">KARAVAN</div><span class="chip">Логистика</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Karavan Logistics</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Грузоперевозки по СНГ, ЕС и MENA — специализация на мебели.</p></div>
+      <div class="partner-card" data-partner-card data-category="gov"><div class="partner-logo-box">UZEXPORT</div><span class="chip">Государственный</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">UzExport Agency</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Агентство продвижения экспорта — софинансирование выставок.</p></div>
+      <div class="partner-card" data-partner-card data-category="design"><div class="partner-logo-box">RODNIK</div><span class="chip">Дизайн</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Studio Rodnik</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Студия промышленного и мебельного дизайна.</p></div>
+      <div class="partner-card" data-partner-card data-category="materials"><div class="partner-logo-box">NORDLINE</div><span class="chip">Материалы</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">NordLine Hardware</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Фурнитура премиум-сегмента — эксклюзивный импорт в регионе.</p></div>
+      <div class="partner-card" data-partner-card data-category="production"><div class="partner-logo-box">NOBLE</div><span class="chip">Производство</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Noble House</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Мебель из массива для частных резиденций и HoReCa.</p></div>
+      <div class="partner-card" data-partner-card data-category="finance"><div class="partner-logo-box">UZ BANK</div><span class="chip">Финансы</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">UzFurniture Bank</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Льготное финансирование и лизинг оборудования для резидентов.</p></div>
+      <div class="partner-card" data-partner-card data-category="gov"><div class="partner-logo-box">MINECO</div><span class="chip">Государственный</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Министерство экономики</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Регуляторный партнёр в вопросах льгот и отраслевых программ.</p></div>
+      <div class="partner-card" data-partner-card data-category="production"><div class="partner-logo-box">FARGONA</div><span class="chip">Производство</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Fargona Mebel</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Кухни и гардеробные, семейное производство в Фергане.</p></div>
+      <div class="partner-card" data-partner-card data-category="logistics"><div class="partner-logo-box">ORIENT</div><span class="chip">Логистика</span><h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">Orient Cargo</h3><p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">Мультимодальная логистика и таможенное оформление.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="cta-bar">
+      <h2>Хотите присоединиться к сети MEYOS?</h2>
+      <p>Станьте резидентом — и ваша компания получит доступ к B2B-базе, льготам и всем программам ассоциации.</p>
+      <div class="flex gap-4" style="justify-content:center; flex-wrap:wrap;">
+        <a href="residency.html#join" class="btn btn-white btn-lg">Стать резидентом</a>
+        <a href="contacts.html" class="btn btn-outline-white btn-lg">Связаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div><a href="index.html" class="logo" style="color:#fff;"><span class="logo__mark">M</span> MEYOS</a><p style="opacity:.7; font-size:.9rem; line-height:1.6; margin-top:1rem; max-width:22rem;" data-i18n="footer.tagline">Ассоциация мебельщиков Узбекистана.</p></div>
+    <div><h4 data-i18n="footer.sections">Разделы</h4><a href="about.html" data-i18n="nav.about">О компании</a><a href="residency.html" data-i18n="nav.residency">Резидентство</a><a href="programs.html" data-i18n="nav.programs">Программы</a><a href="partners.html" data-i18n="nav.partners">Партнёры</a></div>
+    <div><h4 data-i18n="footer.activities">Активности</h4><a href="events.html" data-i18n="nav.events">Мероприятия</a><a href="news.html" data-i18n="nav.news">Новости</a><a href="programs.html#edujob">EduJob</a><a href="residency.html#join" data-i18n="cta.become">Стать резидентом</a></div>
+    <div><h4 data-i18n="footer.contacts">Контакты</h4><a href="tel:+998781500000">+998 78 150 00 00</a><a href="mailto:hello@meyos.uz">hello@meyos.uz</a><p style="opacity:.7; font-size:.85rem; margin:.8rem 0 0;" data-i18n="footer.address">Ташкент, ул. Буюк Ипак Йули, 12</p></div>
+  </div>
+  <div class="footer__bottom"><span data-i18n="footer.rights">© 2026 MEYOS</span><span data-i18n="footer.policy">Политика конфиденциальности</span></div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/i18n-auto.js"></script>
+<script src="assets/js/theme-switcher.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

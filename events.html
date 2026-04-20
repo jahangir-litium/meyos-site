@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru" data-color="green" data-concept="flow">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Мероприятия — MEYOS | Форумы, выставки, экспортные миссии мебельной отрасли</title>
+<meta name="description" content="Мероприятия ассоциации MEYOS: отраслевой форум, экспортные миссии, выставки, деловые встречи и образовательные дни EduJob." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/themes.css" />
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }
+  .event-row { display:grid; gap:1.5rem; padding:2rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); transition:all .3s; }
+  .event-row:hover { box-shadow:var(--shadow-md); border-color:rgb(var(--primary) / .3); }
+  @media (min-width:768px) { .event-row { grid-template-columns:140px 1fr auto; align-items:center; } }
+  .event-date { text-align:center; padding:1.25rem; background:rgb(var(--primary-soft)); border-radius:var(--radius-md); }
+  .event-date__day { font-family:var(--font-head); font-size:2.5rem; font-weight:800; color:rgb(var(--primary-dark)); line-height:1; }
+  .event-date__month { font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.15em; text-transform:uppercase; margin-top:.35rem; }
+  .event-date__year { font-size:.75rem; color:rgb(var(--on-surface-mut)); margin-top:.2rem; }
+  .event-meta { display:flex; gap:1rem; flex-wrap:wrap; font-size:.85rem; color:rgb(var(--on-surface-mut)); margin-top:.75rem; }
+  .event-meta > span { display:inline-flex; align-items:center; gap:.35rem; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <nav class="nav">
+      <a href="about.html" data-i18n="nav.about">О компании</a>
+      <a href="residency.html" data-i18n="nav.residency">Резидентство</a>
+      <a href="programs.html" data-i18n="nav.programs">Программы</a>
+      <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+      <a href="events.html" class="is-active" data-i18n="nav.events">Мероприятия</a>
+      <a href="news.html" data-i18n="nav.news">Новости</a>
+      <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:.75rem;">
+      <div class="lang"><button class="is-active">RU</button><button>UZ</button><button>EN</button></div>
+      <a href="residency.html#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;" data-i18n="cta.join">Вступить</a>
+      <button class="burger" data-burger><span class="material-symbols-outlined">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__head">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <button class="burger" data-mobile-close><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <a href="about.html" data-i18n="nav.about">О компании</a>
+  <a href="residency.html" data-i18n="nav.residency">Резидентство и льготы</a>
+  <a href="programs.html" data-i18n="nav.programs">Программы</a>
+  <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+  <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+  <a href="news.html" data-i18n="nav.news">Новости</a>
+  <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+</div>
+
+<main>
+
+<section class="hero" style="padding:5rem 1.5rem;">
+  <div class="hero__inner" style="grid-template-columns:1fr;">
+    <div style="max-width:50rem;">
+      <span class="tag tag-on-dark"><span class="tag-dot"></span><span data-i18n="ev.hero.tag">Афиша MEYOS</span></span>
+      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;" data-i18n="ev.hero.h1">Форумы, выставки и деловые встречи</h1>
+      <p class="lead" data-i18n="ev.hero.lead">Площадки, где резиденты MEYOS встречаются с закупщиками, дизайнерами, инвесторами и государственными партнёрами. Регистрация открыта.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Главное событие года</span>
+      <h2>MEYOS Forum 2026</h2>
+    </div>
+    <article class="case">
+      <div class="case__img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&auto=format&fit=crop&q=80" alt="Зал отраслевого форума" /></div>
+      <div>
+        <span class="case__num">12 мая 2026 · Hyatt Regency Tashkent</span>
+        <h3 class="case__title">Стратегия мебельной отрасли 2026–2030</h3>
+        <p class="text-mut" style="line-height:1.65;">Ежегодный форум ассоциации: встреча резидентов с регуляторами, презентация программы на год, круглые столы по экспорту, кадрам и цифровизации. Ожидаем 450+ участников, 30 спикеров, 12 тематических сессий.</p>
+        <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">schedule</span>09:00 – 18:00</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Ташкент</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">groups</span>450 участников</span></div>
+        <div class="mt-6" style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;"><a href="#" class="btn btn-primary">Зарегистрироваться</a><a href="#" class="btn btn-ghost">Программа форума</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- UPCOMING LIST -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Ближайшие мероприятия</span>
+      <h2>Афиша на ближайшие месяцы</h2>
+      <p>Регистрация резидентов открывается за 30 дней, для остальных участников — за 14 дней до начала.</p>
+    </div>
+    <div style="display:grid; gap:1rem;">
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">03</div><div class="event-date__month">июн</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">Экспортная миссия</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">Index Dubai 2026 — коллективный стенд MEYOS</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">Крупнейшая интерьерная выставка региона. 15 резидентов MEYOS — встречи с закупщиками HoReCa и застройщиками ОАЭ.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>03–07 июня</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Дубай, ОАЭ</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Подать заявку</a>
+      </div>
+
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">20</div><div class="event-date__month">июн</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">EduJob</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">EduJob Open Day — Самарканд</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">Открытый день образовательной программы: демо-курсы для мастеров, технологов и руководителей производств.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>20 июня</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Самарканд</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Записаться</a>
+      </div>
+
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">08</div><div class="event-date__month">июл</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">Круглый стол</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">Цифровизация мебельного производства: Lean + ЧПУ</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">Практический разбор внедрения цифровых инструментов. Кейсы 3 резидентов MEYOS.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>08 июля</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Ташкент</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Записаться</a>
+      </div>
+
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">14</div><div class="event-date__month">сен</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">Выставка</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">Tashkent Furniture Expo 2026</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">Национальная мебельная выставка. Коллективный зал MEYOS, B2B-зона, конкурс дизайна.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>14–17 сентября</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Ташкент, Uzexpocentre</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Купить билет</a>
+      </div>
+
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">02</div><div class="event-date__month">окт</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">Экспортная миссия</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">Миссия в Казахстан — Алматы и Астана</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">B2B-встречи с сетевым ритейлом, HoReCa и застройщиками. Делегация MEYOS — 20 компаний.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>02–06 октября</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Казахстан</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Подать заявку</a>
+      </div>
+
+      <div class="event-row">
+        <div class="event-date"><div class="event-date__day">18</div><div class="event-date__month">ноя</div><div class="event-date__year">2026</div></div>
+        <div>
+          <span class="chip">Деловой завтрак</span>
+          <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">Встреча с банками: лизинг и факторинг для мебельщиков</h3>
+          <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">Банки-партнёры MEYOS представят обновлённые условия финансирования для резидентов.</p>
+          <div class="event-meta"><span><span class="material-symbols-outlined" style="font-size:1.1rem;">calendar_today</span>18 ноября</span><span><span class="material-symbols-outlined" style="font-size:1.1rem;">location_on</span>Ташкент</span></div>
+        </div>
+        <a href="#" class="btn btn-primary">Записаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT REGISTRATION FORM -->
+<section>
+  <div class="container" style="max-width:720px;">
+    <div class="section-head">
+      <span class="tag">Регистрация</span>
+      <h2>Подать заявку на участие</h2>
+      <p>Выберите мероприятие и оставьте контакты — координатор ассоциации свяжется с вами для подтверждения участия.</p>
+    </div>
+    <form class="form" data-join-form>
+      <div style="display:grid; gap:1rem; grid-template-columns:1fr 1fr;">
+        <label style="grid-column:1/-1;">Мероприятие
+          <select name="event">
+            <option>MEYOS Forum 2026 (12 мая, Ташкент)</option>
+            <option>Index Dubai 2026 (03–07 июня, Дубай)</option>
+            <option>EduJob Open Day (20 июня, Самарканд)</option>
+            <option>Круглый стол «Цифровизация» (08 июля)</option>
+            <option>Tashkent Furniture Expo (14–17 сентября)</option>
+            <option>Миссия в Казахстан (02–06 октября)</option>
+          </select>
+        </label>
+        <label>Название компании <input type="text" name="company" required placeholder="ООО «Ваша компания»" /></label>
+        <label>Контактное лицо <input type="text" name="name" required placeholder="Имя и фамилия" /></label>
+        <label>Email <input type="email" name="email" required placeholder="email@company.uz" /></label>
+        <label>Телефон <input type="tel" name="phone" required placeholder="+998 __ ___ __ __" /></label>
+        <label style="grid-column:1/-1;">Количество участников <input type="number" name="count" min="1" max="20" value="1" /></label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg mt-4">Подать заявку</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div><a href="index.html" class="logo" style="color:#fff;"><span class="logo__mark">M</span> MEYOS</a><p style="opacity:.7; font-size:.9rem; line-height:1.6; margin-top:1rem; max-width:22rem;" data-i18n="footer.tagline">Ассоциация мебельщиков Узбекистана.</p></div>
+    <div><h4 data-i18n="footer.sections">Разделы</h4><a href="about.html" data-i18n="nav.about">О компании</a><a href="residency.html" data-i18n="nav.residency">Резидентство</a><a href="programs.html" data-i18n="nav.programs">Программы</a><a href="partners.html" data-i18n="nav.partners">Партнёры</a></div>
+    <div><h4 data-i18n="footer.activities">Активности</h4><a href="events.html" data-i18n="nav.events">Мероприятия</a><a href="news.html" data-i18n="nav.news">Новости</a><a href="programs.html#edujob">EduJob</a><a href="residency.html#join" data-i18n="cta.become">Стать резидентом</a></div>
+    <div><h4 data-i18n="footer.contacts">Контакты</h4><a href="tel:+998781500000">+998 78 150 00 00</a><a href="mailto:hello@meyos.uz">hello@meyos.uz</a><p style="opacity:.7; font-size:.85rem; margin:.8rem 0 0;" data-i18n="footer.address">Ташкент, ул. Буюк Ипак Йули, 12</p></div>
+  </div>
+  <div class="footer__bottom"><span data-i18n="footer.rights">© 2026 MEYOS</span><span data-i18n="footer.policy">Политика конфиденциальности</span></div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/i18n-auto.js"></script>
+<script src="assets/js/theme-switcher.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

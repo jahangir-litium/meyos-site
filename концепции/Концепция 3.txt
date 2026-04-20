@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#11131c",
+                        "secondary-fixed": "#ffdbd1",
+                        "on-primary-fixed": "#000767",
+                        "on-primary": "#1b247f",
+                        "surface": "#11131c",
+                        "surface-container-high": "#282933",
+                        "surface-bright": "#373943",
+                        "inverse-primary": "#4c56af",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "on-primary-container": "#8690ee",
+                        "tertiary-container": "#5c1800",
+                        "on-background": "#e1e1ef",
+                        "on-surface-variant": "#c6c5d4",
+                        "secondary-container": "#b22c01",
+                        "error-container": "#93000a",
+                        "outline-variant": "#454652",
+                        "secondary": "#ffb5a1",
+                        "tertiary": "#ffb59d",
+                        "primary": "#bdc2ff",
+                        "on-secondary": "#611300",
+                        "on-secondary-fixed-variant": "#881f00",
+                        "on-tertiary-fixed-variant": "#7b2e12",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "inverse-surface": "#e1e1ef",
+                        "on-primary-fixed-variant": "#343d96",
+                        "on-secondary-container": "#ffcdc1",
+                        "outline": "#908f9d",
+                        "on-tertiary-fixed": "#390c00",
+                        "on-tertiary-container": "#e17c5a",
+                        "on-secondary-fixed": "#3c0800",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb5a1",
+                        "surface-container-highest": "#32343e",
+                        "surface-container-low": "#191b24",
+                        "tertiary-fixed": "#ffdbd0",
+                        "surface-container": "#1d1f29",
+                        "background": "#11131c",
+                        "surface-tint": "#bdc2ff",
+                        "surface-container-lowest": "#0c0e17",
+                        "inverse-on-surface": "#2e303a",
+                        "error": "#ffb4ab",
+                        "primary-container": "#1a237e",
+                        "primary-fixed": "#e0e0ff",
+                        "on-error": "#690005",
+                        "on-surface": "#e1e1ef",
+                        "on-tertiary": "#5d1900",
+                        "surface-variant": "#32343e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-header { background: rgba(17, 19, 28, 0.6); backdrop-filter: blur(24px); }
+        .hero-gradient { background: linear-gradient(135deg, #1a237e 0%, #11131c 100%); }
+        .copper-glow:hover { box-shadow: 0 -0.5px 0 0 #B22C01; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#11131c]/60 backdrop-blur-2xl shadow-2xl shadow-black/20">
+<nav class="flex justify-between items-center px-12 py-5 w-full mx-auto max-w-[1920px]">
+<div class="text-2xl font-black tracking-tighter text-white">MEYOS</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-white border-b-2 border-[#B22C01] pb-1" href="#">Association</a>
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-colors" href="#">Residency</a>
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-colors" href="#">Programs</a>
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-colors" href="#">Events</a>
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-colors" href="#">Partners</a>
+<a class="font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-colors" href="#">News</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 font-manrope font-bold tracking-tight uppercase text-[12px] text-slate-400 hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="language">language</span>
+                    RU/UZ/EN
+                </button>
+<button class="bg-secondary-container text-on-secondary-container px-6 py-2.5 rounded-lg font-bold text-[12px] uppercase tracking-widest hover:bg-[#B22C01] hover:text-white transition-all duration-300 scale-95 active:scale-90">
+                    Join
+                </button>
+</div>
+</nav>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-dim via-surface-dim/80 to-transparent z-10"></div>
+<img alt="Technology background" class="w-full h-full object-cover opacity-40" data-alt="Abstract deep blue digital network grid with glowing data connections and sleek industrial aesthetic against a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpwuwNV7U2wpS8sLKFrLordnNlFNYMdJp9HAP8wrHY6jFffUSjCo7w6tlu9b-o28PdmRyLZqfh6tdT7btuTlPnsRgtpfv0XiNvbd0PCoqbHXb9xnNIwgeBVsigcyMgpi1bNqh-1FIdLVksTjU1k5vIz3PkkxJ51aWQue93vd_q0RrrUFojL6OY-tTIQ7d3sBTdWZymeW7v1J--od2sUG65MxfYs0EUf2u60w-zGdGYSt6CXd14A_a3WAiKnHWohHuyJtNj4Rm5Z6Y"/>
+</div>
+<div class="relative z-20 max-w-screen-2xl mx-auto px-12 grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-8 space-y-8">
+<div class="inline-flex items-center gap-3 px-4 py-2 bg-primary-container/30 border border-primary/20 rounded-full backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="text-primary text-[10px] uppercase font-bold tracking-[0.2em]">The Sovereign Forge</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface leading-[0.95]">
+                        ЭКОСИСТЕМА <br/> <span class="text-primary">МЕБЕЛЬНОЙ</span> <br/> ИНДУСТРИИ.
+                    </h1>
+<p class="text-xl text-on-surface-variant max-w-xl leading-relaxed font-light">
+                        MEYOS — это государственная платформа для масштабирования мебельного бизнеса, интеграции технологий IT Park и выхода на глобальные рынки.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-secondary-container text-on-secondary-container px-10 py-5 rounded-lg font-bold text-sm uppercase tracking-[0.1em] hover:bg-[#d83501] transition-all duration-300 flex items-center gap-3 group">
+                            Стать Резидентом
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-surface-container-highest/50 backdrop-blur-md text-on-surface px-10 py-5 rounded-lg font-bold text-sm uppercase tracking-[0.1em] border border-outline-variant/30 hover:bg-surface-container-highest transition-all">
+                            О Программах
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Block -->
+<section class="bg-surface-container-low relative z-30 -mt-12 py-20">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="space-y-2">
+<div class="text-5xl font-black text-secondary tracking-tighter">120+</div>
+<div class="text-xs uppercase tracking-widest text-outline font-bold">Компаний-членов</div>
+</div>
+<div class="space-y-2">
+<div class="text-5xl font-black text-primary tracking-tighter">14</div>
+<div class="text-xs uppercase tracking-widest text-outline font-bold">Регионов охвата</div>
+</div>
+<div class="space-y-2">
+<div class="text-5xl font-black text-secondary tracking-tighter">$45M</div>
+<div class="text-xs uppercase tracking-widest text-outline font-bold">Объем экспорта</div>
+</div>
+<div class="space-y-2">
+<div class="text-5xl font-black text-primary tracking-tighter">24/7</div>
+<div class="text-xs uppercase tracking-widest text-outline font-bold">Юридическая поддержка</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pain-Solution Section -->
+<section class="py-32 bg-surface">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="mb-20">
+<span class="text-secondary text-sm font-bold uppercase tracking-[0.3em]">Вызовы рынка</span>
+<h2 class="text-4xl md:text-5xl font-bold tracking-tighter mt-4 text-on-surface">ТРАНСФОРМИРУЕМ <span class="text-outline">БАРЬЕРЫ</span> В ВОЗМОЖНОСТИ</h2>
+</div>
+<div class="flex flex-col gap-12">
+<!-- Row 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-surface-container-low rounded-xl p-8 hover:bg-surface-container transition-all group copper-glow">
+<div class="md:col-span-5 flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="block">block</span>
+<div>
+<h3 class="text-xl font-bold text-outline-variant uppercase tracking-tight">Проблема</h3>
+<p class="text-on-surface-variant">Сложность выхода на зарубежные рынки и сертификация продукции.</p>
+</div>
+</div>
+<div class="md:col-span-2 flex justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl group-hover:scale-125 transition-transform" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="md:col-span-5 flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="public">public</span>
+<div>
+<h3 class="text-xl font-bold text-secondary uppercase tracking-tight">Решение MEYOS</h3>
+<p class="text-on-surface">Централизованный экспортный хаб и сопровождение в получении ISO/EAC.</p>
+</div>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-surface-container-low rounded-xl p-8 hover:bg-surface-container transition-all group copper-glow">
+<div class="md:col-span-5 flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="group_off">group_off</span>
+<div>
+<h3 class="text-xl font-bold text-outline-variant uppercase tracking-tight">Проблема</h3>
+<p class="text-on-surface-variant">Дефицит квалифицированных кадров и дизайнеров.</p>
+</div>
+</div>
+<div class="md:col-span-2 flex justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl group-hover:scale-125 transition-transform" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="md:col-span-5 flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="school">school</span>
+<div>
+<h3 class="text-xl font-bold text-secondary uppercase tracking-tight">Решение MEYOS</h3>
+<p class="text-on-surface">MEYOS Academy: подготовка специалистов по мировым стандартам EduJob.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ecosystem Grid (Bento Style) -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="mb-20 text-center">
+<h2 class="text-5xl md:text-7xl font-black tracking-tighter text-on-surface mb-6 uppercase">ЭКОСИСТЕМА РОСТА</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Единая технологическая среда для производства, образования и инноваций.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
+<!-- EduJob Card -->
+<div class="md:col-span-7 bg-primary-container/20 rounded-xl p-10 flex flex-col justify-between relative overflow-hidden border border-white/5 copper-glow">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-5xl mb-6" data-icon="school">school</span>
+<h3 class="text-3xl font-bold mb-4">EduJob Академия</h3>
+<p class="text-on-surface-variant max-w-md leading-relaxed">Программа переподготовки кадров с гарантированным трудоустройством внутри ассоциации. Курсы по CAD/CAM моделированию и мебельному дизайну.</p>
+</div>
+<div class="relative z-10 mt-8">
+<button class="text-primary font-bold uppercase text-xs tracking-widest flex items-center gap-2 hover:gap-4 transition-all">
+                                Подробнее <span class="material-symbols-outlined" data-icon="arrow_right_alt">arrow_right_alt</span>
+</button>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-20 pointer-events-none">
+<img alt="Tech training" class="w-full h-full object-cover" data-alt="High-tech engineering classroom with robotic arms and digital design monitors in a clean industrial laboratory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwjfQvCozhR6cafxLUh6fjGGSaJvZTmK8HfATdUcZFI_T3Di_TnkdIC8BVMB1IZiYyjXJ6Fhp8xJKoHfLD-Wejm2c4_umZQLeoLchbKY_pNywJ3TbL7f2kFNeDtnftRfepKw1P0nf4N0oIw1eRwDy0dqFxImPR0wxGocASvUiiYvKnshqzrttd8MjxmTCQvVCt9aXN71AyCcV8dpnPBj61Hy7RgspxIqDrqCfVsDUkXxHztm8bm4fQe9rbarDmiGavXnD7cXrKmTk"/>
+</div>
+</div>
+<!-- Export Support -->
+<div class="md:col-span-5 bg-surface-container-highest rounded-xl p-10 flex flex-col justify-between border border-white/5 copper-glow">
+<div>
+<span class="material-symbols-outlined text-secondary text-5xl mb-6" data-icon="local_shipping">local_shipping</span>
+<h3 class="text-3xl font-bold mb-4">Export Support</h3>
+<p class="text-on-surface-variant leading-relaxed">Прямой доступ к логистическим коридорам и субсидирование участия в международных выставках.</p>
+</div>
+<div class="mt-8">
+<div class="flex -space-x-4 mb-4">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-800 flex items-center justify-center text-[10px] font-bold">EU</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-800 flex items-center justify-center text-[10px] font-bold">CIS</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-800 flex items-center justify-center text-[10px] font-bold">MENA</div>
+</div>
+</div>
+</div>
+<!-- Innovation Programs -->
+<div class="md:col-span-5 bg-surface-container rounded-xl p-10 border border-white/5 copper-glow">
+<span class="material-symbols-outlined text-primary text-5xl mb-6" data-icon="biotech" style="font-variation-settings: 'FILL' 1;">biotech</span>
+<h3 class="text-3xl font-bold mb-4">Innovation Lab</h3>
+<p class="text-on-surface-variant leading-relaxed">Интеграция IoT в мебельное производство. Разработка "умной" фурнитуры и внедрение AI-дизайна.</p>
+</div>
+<!-- Market Insights -->
+<div class="md:col-span-7 bg-surface-container-lowest rounded-xl p-10 border border-white/5 flex items-center justify-between copper-glow">
+<div class="max-w-md">
+<span class="material-symbols-outlined text-secondary text-5xl mb-6" data-icon="monitoring">monitoring</span>
+<h3 class="text-3xl font-bold mb-4">Market Insights</h3>
+<p class="text-on-surface-variant leading-relaxed">Доступ к закрытой аналитике рынка, ценовым индексам и прогнозам потребительского спроса.</p>
+</div>
+<div class="hidden md:block w-32 h-32 bg-secondary-container/10 rounded-full border border-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="insights">insights</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Onboarding Steps -->
+<section class="py-32 bg-surface">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
+<div class="max-w-xl">
+<span class="text-secondary text-sm font-bold uppercase tracking-[0.3em]">Процесс вступления</span>
+<h2 class="text-4xl md:text-6xl font-bold tracking-tighter mt-4 text-on-surface">ПУТЬ К <span class="text-primary">РЕЗИДЕНТСТВУ</span></h2>
+</div>
+<p class="text-on-surface-variant text-lg">Всего 3 шага до получения статуса участника MEYOS.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1px bg-outline-variant/20 rounded-xl overflow-hidden border border-outline-variant/20">
+<!-- Step 1 -->
+<div class="bg-surface p-12 space-y-6">
+<div class="w-12 h-12 rounded-lg bg-primary-container/40 flex items-center justify-center text-primary font-black text-xl">01</div>
+<h3 class="text-2xl font-bold uppercase tracking-tight">Подача заявки</h3>
+<p class="text-on-surface-variant leading-relaxed">Заполните онлайн-форму с данными о вашей компании, текущих мощностях и целях вступления.</p>
+<div class="pt-4">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="description">description</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface p-12 space-y-6">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary font-black text-xl">02</div>
+<h3 class="text-2xl font-bold uppercase tracking-tight">Экспертная оценка</h3>
+<p class="text-on-surface-variant leading-relaxed">Комиссия MEYOS проводит аудит производства и соответствия экологическим стандартам.</p>
+<div class="pt-4">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface p-12 space-y-6">
+<div class="w-12 h-12 rounded-lg bg-primary-container/40 flex items-center justify-center text-primary font-black text-xl">03</div>
+<h3 class="text-2xl font-bold uppercase tracking-tight">Статус Резидента</h3>
+<p class="text-on-surface-variant leading-relaxed">Подписание хартии, получение сертификата и полный доступ ко всем льготам и программам.</p>
+<div class="pt-4">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="military_tech">military_tech</span>
+</div>
+</div>
+</div>
+<div class="mt-20 text-center">
+<button class="bg-primary text-primary-container px-12 py-6 rounded-lg font-black text-lg uppercase tracking-wider hover:scale-105 active:scale-95 transition-all">
+                        Начать оформление
+                    </button>
+</div>
+</div>
+</section>
+<!-- Partners / News Sneak Peek (Industrial Style) -->
+<section class="py-32 border-t border-white/5">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="flex justify-between items-center mb-12">
+<h3 class="text-xs font-bold uppercase tracking-[0.4em] text-outline">Наши партнеры</h3>
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:text-white transition-colors" href="#">Смотреть всех</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-6 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all">
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 1</div>
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 2</div>
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 3</div>
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 4</div>
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 5</div>
+<div class="flex items-center justify-center h-20 bg-surface-container rounded-lg">LOGO 6</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-20 pb-10 bg-[#11131c] border-t border-white/5">
+<div class="max-w-screen-2xl mx-auto px-12 flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="max-w-sm">
+<span class="text-xl font-bold text-white mb-4 block">MEYOS</span>
+<p class="font-manrope text-sm leading-relaxed text-slate-400 mb-8">
+                    Ассоциация предприятий мебельной и деревообрабатывающей промышленности. Мы формируем будущее индустрии через инновации и сотрудничество.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer transition-colors" data-icon="share">share</span>
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer transition-colors" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-2 gap-16">
+<div class="space-y-4">
+<h4 class="text-white font-bold uppercase text-[10px] tracking-[0.2em]">Навигация</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Ассоциация</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Резидентство</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Программы</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Новости</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-bold uppercase text-[10px] tracking-[0.2em]">Документы</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Terms of Service</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Press Kit</a></li>
+<li><a class="text-slate-500 hover:text-white text-sm hover:translate-x-1 transition-transform duration-200 block" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-12 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-manrope text-sm leading-relaxed text-slate-400">© 2024 MEYOS Furniture Association. The Sovereign Forge.</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">System Active</span>
+</div>
+</div>
+</footer>
+</body></html>

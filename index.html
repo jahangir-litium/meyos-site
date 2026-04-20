@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ru" data-color="green" data-concept="flow">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MEYOS — Ассоциация мебельщиков Узбекистана | Льготы, проекты, экспорт</title>
+<meta name="description" content="MEYOS — ассоциация мебельщиков Узбекистана. Налоговые льготы для мебельного бизнеса, поддержка государства, партнёрская сеть, программа EduJob, экспорт и национальные проекты." />
+<meta name="keywords" content="мебельная ассоциация, ассоциация мебельщиков Узбекистана, льготы мебельному бизнесу, поддержка мебельного бизнеса, резидентство MEYOS, EduJob" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/themes.css" />
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }
+</style>
+</head>
+<body>
+
+<!-- ====================== HEADER ====================== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo" aria-label="MEYOS — главная">
+      <span class="logo__mark">M</span>
+      MEYOS
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="about.html" data-i18n="nav.about">О компании</a>
+      <a href="residency.html" data-i18n="nav.residency">Резидентство</a>
+      <a href="programs.html" data-i18n="nav.programs">Программы</a>
+      <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+      <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+      <a href="news.html" data-i18n="nav.news">Новости</a>
+      <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:.75rem;">
+      <div class="lang" role="group" aria-label="Язык">
+        <button class="is-active">RU</button>
+        <button>UZ</button>
+        <button>EN</button>
+      </div>
+      <a href="residency.html#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;" data-i18n="cta.join">Вступить</a>
+      <button class="burger" data-burger aria-label="Меню">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== MOBILE MENU ====================== -->
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__head">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <button class="burger" data-mobile-close aria-label="Закрыть">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <a href="about.html" data-i18n="nav.about">О компании</a>
+  <a href="residency.html" data-i18n="nav.residency">Резидентство и льготы</a>
+  <a href="programs.html" data-i18n="nav.programs">Программы</a>
+  <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+  <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+  <a href="news.html" data-i18n="nav.news">Новости</a>
+  <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+  <div class="mobile-lang lang" style="display:inline-flex; margin-top:2rem;">
+    <button class="is-active">RU</button>
+    <button>UZ</button>
+    <button>EN</button>
+  </div>
+  <a href="residency.html#join" class="btn btn-primary mt-8" style="width:100%;" data-i18n="cta.join-full">Вступить в ассоциацию</a>
+</div>
+
+<main>
+
+<!-- ====================== HERO ====================== -->
+<section class="hero" data-hero-root>
+  <div class="hero__inner">
+    <div>
+      <span class="tag tag-on-dark">
+        <span class="tag-dot"></span>
+        <span data-hero-tag>Цифровая экосистема</span>
+      </span>
+      <h1 data-hero-h1>MEYOS — драйвер роста мебельной отрасли Узбекистана</h1>
+      <p class="lead" data-hero-lead>
+        Объединяем производителей, дизайнеров и поставщиков в единую цифровую экосистему. Льготы, партнёрства, экспорт и цифровые инструменты — для роста вашего бизнеса.
+      </p>
+      <div class="hero__actions">
+        <a href="residency.html#join" class="btn btn-white btn-lg" data-i18n="cta.become">Стать резидентом</a>
+        <a href="#benefits" class="btn btn-outline-white btn-lg" data-i18n="cta.learn">Узнать преимущества</a>
+      </div>
+      <div class="hero__stats">
+        <div>
+          <div class="hero__stat-num">500+</div>
+          <div class="hero__stat-lbl" data-i18n="stat.companies">Компаний-резидентов</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">38%</div>
+          <div class="hero__stat-lbl" data-i18n="stat.growth">Средний рост выручки</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">12</div>
+          <div class="hero__stat-lbl" data-i18n="stat.countries">Стран экспорта</div>
+        </div>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="hero__media">
+        <img data-hero-img
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80"
+          alt="Современный офис с дизайнерской мебелью" />
+      </div>
+      <div class="hero__floater">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="icon-box"><span class="material-symbols-outlined" data-hero-floater-icon>trending_up</span></span>
+          <strong style="font-family:var(--font-head); font-size:1rem;" data-hero-floater-title>Цифровой рост</strong>
+        </div>
+        <p style="margin:0; font-size:.9rem; color:rgb(var(--on-surface-mut)); line-height:1.55;" data-hero-floater-text>
+          Члены ассоциации растут в среднем на 38% в год благодаря экосистеме партнёрств.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ====== БЛОКИ КОНЦЕПЦИИ FORGE (Dark industrial, BENTO) ======== -->
+<!-- ================================================================ -->
+
+<!-- Forge: Stats grid -->
+<section data-for-concept="forge">
+  <div class="container">
+    <div class="grid grid-4" style="gap:1px; background:rgb(var(--outline)); border:1px solid rgb(var(--outline));">
+      <div style="background:rgb(var(--surface-alt)); padding:2.5rem;">
+        <div style="font-family:var(--font-head); font-size:3.5rem; font-weight:900; color:rgb(var(--primary)); line-height:1;">500+</div>
+        <div class="mt-3" style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgb(var(--on-surface-mut));" data-i18n="fg.stats.t1">Резидентов</div>
+      </div>
+      <div style="background:rgb(var(--surface-alt)); padding:2.5rem;">
+        <div style="font-family:var(--font-head); font-size:3.5rem; font-weight:900; color:rgb(var(--accent)); line-height:1;">$14.6M</div>
+        <div class="mt-3" style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgb(var(--on-surface-mut));" data-i18n="fg.stats.t2">Контрактов за квартал</div>
+      </div>
+      <div style="background:rgb(var(--surface-alt)); padding:2.5rem;">
+        <div style="font-family:var(--font-head); font-size:3.5rem; font-weight:900; color:rgb(var(--primary)); line-height:1;">12</div>
+        <div class="mt-3" style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgb(var(--on-surface-mut));" data-i18n="fg.stats.t3">Стран экспорта</div>
+      </div>
+      <div style="background:rgb(var(--surface-alt)); padding:2.5rem;">
+        <div style="font-family:var(--font-head); font-size:3.5rem; font-weight:900; color:rgb(var(--accent)); line-height:1;">22%</div>
+        <div class="mt-3" style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgb(var(--on-surface-mut));" data-i18n="fg.stats.t4">Доля рынка страны</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forge: Pain → Solution rows -->
+<section data-for-concept="forge">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="fg.pain.tag">Индустриальные решения</span>
+      <h2 data-i18n="fg.pain.title">От проблемы — к результату</h2>
+      <p data-i18n="fg.pain.lead">Каждая боль мебельного бизнеса перекрыта инструментом ассоциации.</p>
+    </div>
+    <div class="pain-rows">
+      <div class="pain-row">
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.problem">Проблема</h4>
+          <p class="pain-row__title" data-i18n="fg.pain1.p">Переплата налогов и отсутствие понятной льготной схемы</p>
+        </div>
+        <div class="pain-row__arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.solution">Решение MEYOS</h4>
+          <p class="pain-row__title" data-i18n="fg.pain1.s">CIT 7,5%, SSC 12%, 0% импорт — закреплены законодательно до 2030 года</p>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.problem">Проблема</h4>
+          <p class="pain-row__title" data-i18n="fg.pain2.p">Нет выхода на международные рынки и сертификацию</p>
+        </div>
+        <div class="pain-row__arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.solution">Решение MEYOS</h4>
+          <p class="pain-row__title" data-i18n="fg.pain2.s">Коллективные экспортные миссии, сертификация по целевым рынкам, 70% возврата госсредствами</p>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.problem">Проблема</h4>
+          <p class="pain-row__title" data-i18n="fg.pain3.p">Кадровый голод и отсутствие отраслевых стандартов обучения</p>
+        </div>
+        <div class="pain-row__arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.solution">Решение MEYOS</h4>
+          <p class="pain-row__title" data-i18n="fg.pain3.s">Программа EduJob — сертификация мастеров, технологов и управленцев</p>
+        </div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.problem">Проблема</h4>
+          <p class="pain-row__title" data-i18n="fg.pain4.p">Высокая себестоимость закупок фурнитуры и материалов</p>
+        </div>
+        <div class="pain-row__arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="pain-row__side">
+          <h4 data-i18n="fg.pain.solution">Решение MEYOS</h4>
+          <p class="pain-row__title" data-i18n="fg.pain4.s">Коллективный прямой импорт — экономия 18–24% на сырье</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forge: BENTO ecosystem -->
+<section data-for-concept="forge">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none;">
+      <span class="tag" data-i18n="fg.eco.tag">Экосистема роста</span>
+      <h2 data-i18n="fg.eco.title">Единая технологическая среда</h2>
+      <p data-i18n="fg.eco.lead">Четыре направления, в которых MEYOS строит инфраструктуру для резидентов.</p>
+    </div>
+    <div class="bento-ecosystem">
+      <div class="bento-cell be-1 bento-cell--primary">
+        <span class="material-symbols-outlined bento-cell__icon">school</span>
+        <h3 data-i18n="fg.eco1.t">EduJob Академия</h3>
+        <p data-i18n="fg.eco1.d">Программа переподготовки кадров с гарантированным трудоустройством у резидентов. CAD/CAM, мебельный дизайн, Lean-производство, управление. 540 сертифицированных специалистов за 2 года.</p>
+        <div class="bento-cell__watermark">01</div>
+      </div>
+      <div class="bento-cell be-2">
+        <span class="material-symbols-outlined bento-cell__icon">local_shipping</span>
+        <h3 data-i18n="fg.eco2.t">Export Support</h3>
+        <p data-i18n="fg.eco2.d">Прямой доступ к логистическим коридорам и субсидирование участия в международных выставках. 12 стран, $14,6 млн контрактов за квартал.</p>
+        <div class="flex gap-2 mt-6" style="display:flex; gap:.5rem; margin-top:1.5rem;">
+          <span class="chip">EU</span><span class="chip">CIS</span><span class="chip">MENA</span><span class="chip">APAC</span>
+        </div>
+        <div class="bento-cell__watermark">02</div>
+      </div>
+      <div class="bento-cell be-3">
+        <span class="material-symbols-outlined bento-cell__icon">biotech</span>
+        <h3 data-i18n="fg.eco3.t">Innovation Lab</h3>
+        <p data-i18n="fg.eco3.d">Интеграция IoT в мебельное производство, «умная» фурнитура, внедрение AI-дизайна. Совместные R&amp;D-проекты резидентов.</p>
+        <div class="bento-cell__watermark">03</div>
+      </div>
+      <div class="bento-cell be-4 bento-cell--primary">
+        <span class="material-symbols-outlined bento-cell__icon">monitoring</span>
+        <h3 data-i18n="fg.eco4.t">Market Insights</h3>
+        <p data-i18n="fg.eco4.d">Закрытая аналитика рынка, ценовые индексы и прогнозы потребительского спроса. B2B-матчинг — 87 сделок между резидентами за квартал.</p>
+        <div class="bento-cell__watermark">04</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forge: 3 steps onboarding -->
+<section data-for-concept="forge">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap; margin-bottom:3rem;">
+      <div>
+        <span class="tag" data-i18n="fg.onb.tag">Процесс вступления</span>
+        <h2 style="margin:.75rem 0 0; font-size:clamp(2rem, 4vw, 3rem);"><span data-i18n="fg.onb.title1">Путь к</span> <span style="color:rgb(var(--accent));" data-i18n="fg.onb.title2">резидентству</span></h2>
+      </div>
+      <p class="text-mut" style="max-width:22rem;" data-i18n="fg.onb.lead">Всего 3 шага до получения статуса участника MEYOS и доступа к льготам.</p>
+    </div>
+    <div class="grid grid-3" style="gap:1px; background:rgb(var(--outline)); border:1px solid rgb(var(--outline));">
+      <div style="background:rgb(var(--surface-alt)); padding:3rem 2.5rem;">
+        <div style="width:3rem; height:3rem; background:rgb(var(--primary-soft)); color:rgb(var(--primary)); display:inline-flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:900; font-size:1.25rem; border-radius:.5rem;">01</div>
+        <h3 class="mt-4" style="font-size:1.4rem; text-transform:uppercase; margin-top:1.25rem;" data-i18n="fg.onb1.t">Подача заявки</h3>
+        <p class="text-mut mt-3" style="line-height:1.6;" data-i18n="fg.onb1.d">Заполнение формы за 5 минут. Ответ менеджера — в течение 24 часов.</p>
+      </div>
+      <div style="background:rgb(var(--surface-alt)); padding:3rem 2.5rem;">
+        <div style="width:3rem; height:3rem; background:rgb(var(--primary-soft)); color:rgb(var(--primary)); display:inline-flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:900; font-size:1.25rem; border-radius:.5rem;">02</div>
+        <h3 class="mt-4" style="font-size:1.4rem; text-transform:uppercase; margin-top:1.25rem;" data-i18n="fg.onb2.t">Техническая проверка</h3>
+        <p class="text-mut mt-3" style="line-height:1.6;" data-i18n="fg.onb2.d">Комиссия MEYOS проверяет соответствие стандартам качества, налоговой дисциплине и профилю отрасли.</p>
+      </div>
+      <div style="background:rgb(var(--surface-alt)); padding:3rem 2.5rem;">
+        <div style="width:3rem; height:3rem; background:rgb(var(--accent) / .15); color:rgb(var(--accent)); display:inline-flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:900; font-size:1.25rem; border-radius:.5rem;">03</div>
+        <h3 class="mt-4" style="font-size:1.4rem; text-transform:uppercase; margin-top:1.25rem;" data-i18n="fg.onb3.t">Активация статуса</h3>
+        <p class="text-mut mt-3" style="line-height:1.6;" data-i18n="fg.onb3.d">Подписание соглашения, получение реестрового номера, подключение к льготам и B2B-базе.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ====== БЛОКИ КОНЦЕПЦИИ SOVEREIGN (Earth, Institutional) ======= -->
+<!-- ================================================================ -->
+
+<!-- Sovereign: Mission numbered 01/02/03 -->
+<section data-for-concept="sovereign">
+  <div class="container">
+    <div class="grid grid-2" style="gap:4rem; align-items:start;">
+      <div>
+        <span class="tag" data-i18n="sv.mission.tag">Миссия</span>
+        <h2 style="font-size:clamp(2rem, 4vw, 3.25rem); margin:1rem 0 0; line-height:1.1;" data-i18n="sv.mission.title">Укрепление промышленного суверенитета отрасли</h2>
+      </div>
+      <div class="mission-numbered">
+        <div class="mission-item">
+          <span class="mission-item__num">01</span>
+          <div>
+            <h4 data-i18n="sv.m1.t">Стандартизация</h4>
+            <p data-i18n="sv.m1.d">Внедрение единых государственных эталонов качества и безопасности для всех производителей отрасли. MEYOS Certified — знак подтверждённого стандарта.</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <span class="mission-item__num">02</span>
+          <div>
+            <h4 data-i18n="sv.m2.t">Инновации</h4>
+            <p data-i18n="sv.m2.d">Поддержка R&amp;D-центров и технологическое перевооружение мебельных кластеров. Программы софинансирования нового оборудования.</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <span class="mission-item__num">03</span>
+          <div>
+            <h4 data-i18n="sv.m3.t">Экспорт</h4>
+            <p data-i18n="sv.m3.d">Продвижение национального мебельного бренда на глобальных рынках. Коллективные стенды MEYOS на выставках ЕС, ОАЭ, MENA и Восточной Азии.</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <span class="mission-item__num">04</span>
+          <div>
+            <h4 data-i18n="sv.m4.t">Кадры</h4>
+            <p data-i18n="sv.m4.d">Программа EduJob как национальная инфраструктура подготовки мастеров, технологов и управленцев мебельной отрасли.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sovereign: BENTO Strategic Initiatives -->
+<section class="section-alt" data-for-concept="sovereign">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sv.strat.tag">Стратегия 2030</span>
+      <h2 data-i18n="sv.strat.title">Приоритетные направления</h2>
+      <p data-i18n="sv.strat.lead">Пять программ государственного масштаба, через которые MEYOS развивает отрасль до 2030 года.</p>
+    </div>
+    <div class="bento-strategic">
+      <div class="bs-cell bs-cell--primary bs-1">
+        <h3 data-i18n="sv.s1.t">Цифровой двойник отрасли</h3>
+        <p data-i18n="sv.s1.d">Единая информационная система мониторинга, планирования и распределения государственных заказов среди резидентов ассоциации.</p>
+        <div class="bs-cell__watermark"><span class="material-symbols-outlined" style="font-size:10rem;">hub</span></div>
+      </div>
+      <div class="bs-cell bs-cell--accent">
+        <h3 data-i18n="sv.s2.t">Лесной попечитель</h3>
+        <p data-i18n="sv.s2.d">Программа ответственного лесопользования, FSC-сертификация и восстановление лесных ресурсов на территории производств.</p>
+      </div>
+      <div class="bs-cell bs-cell--light">
+        <h3 data-i18n="sv.s3.t">Академия MEYOS</h3>
+        <p data-i18n="sv.s3.d">Подготовка кадров нового поколения для высокотехнологичных мебельных производств.</p>
+      </div>
+      <div class="bs-cell bs-cell--soft bs-4">
+        <h3 data-i18n="sv.s4.t">СЭЗ «Мебельград»</h3>
+        <p data-i18n="sv.s4.d">Льготное налогообложение, инфраструктура и совместный логистический кластер для резидентов ассоциации.</p>
+        <div class="bs-cell__watermark"><span class="material-symbols-outlined" style="font-size:10rem;">factory</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sovereign: Registry of Participants -->
+<section data-for-concept="sovereign">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap; margin-bottom:3rem;">
+      <div>
+        <span class="tag" data-i18n="sv.reg.tag">Реестр участников</span>
+        <h2 style="margin:.75rem 0 0; font-size:clamp(2rem, 4vw, 3rem);" data-i18n="sv.reg.title">Элита мебельной индустрии</h2>
+      </div>
+      <a href="partners.html" class="btn btn-primary" data-i18n="sv.reg.cta">Весь список</a>
+    </div>
+    <div class="registry-grid">
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">factory</span></div>
+        <h5>Woodline Furniture</h5>
+        <div class="registry-cell__id">ID: 00482-A</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+        <h5>Samarkand Wood</h5>
+        <div class="registry-cell__id">ID: 00512-B</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">architecture</span></div>
+        <h5>Atelier Mesa</h5>
+        <div class="registry-cell__id">ID: 00399-A</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">weekend</span></div>
+        <h5>Fursoni Furniture</h5>
+        <div class="registry-cell__id">ID: 00621-C</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">chair</span></div>
+        <h5>Noble House</h5>
+        <div class="registry-cell__id">ID: 00701-A</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">inventory_2</span></div>
+        <h5>Chinor Timber</h5>
+        <div class="registry-cell__id">ID: 00534-B</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">construction</span></div>
+        <h5>Mebel Pro</h5>
+        <div class="registry-cell__id">ID: 00588-C</div>
+      </div>
+      <div class="registry-cell">
+        <div class="registry-cell__icon"><span class="material-symbols-outlined">local_shipping</span></div>
+        <h5>Karavan Logistics</h5>
+        <div class="registry-cell__id">ID: 00412-L</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sovereign: Legal documents + stats -->
+<section data-for-concept="sovereign" style="background:rgb(var(--accent)); color:#fff; padding:5rem 1.5rem;">
+  <div class="container" style="display:grid; gap:4rem; grid-template-columns:1fr;">
+    <div class="grid grid-2" style="gap:4rem;">
+      <div>
+        <span class="tag" style="background:transparent; border:1px solid rgb(255 255 255 / .3); color:#fff;" data-i18n="sv.legal.tag">Правовая база</span>
+        <h2 style="font-size:clamp(2rem, 4vw, 3rem); margin:1rem 0 1.5rem; color:#fff;" data-i18n="sv.legal.title">Официальные документы ассоциации</h2>
+        <p style="opacity:.85; line-height:1.65; margin:0 0 2rem;" data-i18n="sv.legal.lead">Документы, регламентирующие деятельность MEYOS и стандарты аккредитации резидентов. Доступны для скачивания всем участникам.</p>
+        <div class="legal-list">
+          <a href="#" class="legal-doc"><span data-i18n="sv.doc1">Устав Ассоциации MEYOS</span><span class="material-symbols-outlined">download</span></a>
+          <a href="#" class="legal-doc"><span data-i18n="sv.doc2">Стандарт резидентства MEYOS-2026</span><span class="material-symbols-outlined">download</span></a>
+          <a href="#" class="legal-doc"><span data-i18n="sv.doc3">Этический кодекс участников</span><span class="material-symbols-outlined">download</span></a>
+          <a href="#" class="legal-doc"><span data-i18n="sv.doc4">Регламент сертификации «MEYOS Certified»</span><span class="material-symbols-outlined">download</span></a>
+          <a href="#" class="legal-doc"><span data-i18n="sv.doc5">Меморандум с Министерством инвестиций</span><span class="material-symbols-outlined">download</span></a>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="padding:2rem; background:rgb(255 255 255 / .06); border-left:4px solid #fff;">
+          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:900; color:#fff; line-height:1;">2018</div>
+          <div style="font-size:.75rem; text-transform:uppercase; letter-spacing:.15em; opacity:.7; margin-top:.5rem;" data-i18n="sv.stat1">Год основания</div>
+        </div>
+        <div style="padding:2rem; background:rgb(255 255 255 / .06); border-left:4px solid #fff;">
+          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:900; color:#fff; line-height:1;">500+</div>
+          <div style="font-size:.75rem; text-transform:uppercase; letter-spacing:.15em; opacity:.7; margin-top:.5rem;" data-i18n="sv.stat2">Резидентов</div>
+        </div>
+        <div style="padding:2rem; background:rgb(255 255 255 / .06); border-left:4px solid #fff;">
+          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:900; color:#fff; line-height:1;">12</div>
+          <div style="font-size:.75rem; text-transform:uppercase; letter-spacing:.15em; opacity:.7; margin-top:.5rem;" data-i18n="sv.stat3">Соглашений с ведомствами</div>
+        </div>
+        <div style="padding:2rem; background:rgb(255 255 255 / .06); border-left:4px solid #fff;">
+          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:900; color:#fff; line-height:1;">7</div>
+          <div style="font-size:.75rem; text-transform:uppercase; letter-spacing:.15em; opacity:.7; margin-top:.5rem;" data-i18n="sv.stat4">Национальных программ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ====== БЛОК КОНЦЕПЦИИ CORPORATE (Numbered Process) ============ -->
+<!-- ================================================================ -->
+
+<section data-for-concept="corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="cp.proc.tag">Как это работает</span>
+      <h2 data-i18n="cp.proc.title">От заявки до роста за 4 этапа</h2>
+      <p data-i18n="cp.proc.lead">Структурированный процесс вступления в ассоциацию — без бюрократии и скрытых условий.</p>
+    </div>
+    <div class="numbered-process">
+      <div class="np-step">
+        <div class="np-step__num"></div>
+        <h4 data-i18n="cp.proc1.t">Заявка</h4>
+        <p data-i18n="cp.proc1.d">Заполните форму на сайте — менеджер свяжется в течение 24 часов.</p>
+      </div>
+      <div class="np-step">
+        <div class="np-step__num"></div>
+        <h4 data-i18n="cp.proc2.t">Документы</h4>
+        <p data-i18n="cp.proc2.d">Подготовка учредительных документов и анкеты резидента.</p>
+      </div>
+      <div class="np-step">
+        <div class="np-step__num"></div>
+        <h4 data-i18n="cp.proc3.t">Активация</h4>
+        <p data-i18n="cp.proc3.d">Комиссия принимает решение, подписывается соглашение о резидентстве.</p>
+      </div>
+      <div class="np-step">
+        <div class="np-step__num"></div>
+        <h4 data-i18n="cp.proc4.t">Рост</h4>
+        <p data-i18n="cp.proc4.d">Доступ к льготам, B2B-базе, EduJob и всем программам ассоциации.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 3 КЛЮЧЕВЫХ ДЕЙСТВИЯ ====================== -->
+<section data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.3steps.tag">Три шага к росту</span>
+      <h2 data-i18n="sec.3steps.title">Что вы получите в ассоциации MEYOS</h2>
+      <p data-i18n="sec.3steps.lead">Три ключевых действия, которые открывают перед вашей компанией весь потенциал мебельной экосистемы.</p>
+    </div>
+    <div class="bento">
+      <div class="card card-filled">
+        <span class="icon-box"><span class="material-symbols-outlined">group_add</span></span>
+        <h3 style="color:#fff; font-size:1.4rem; margin:1.25rem 0 .75rem;" data-i18n="sec.3steps.a1">Вступить в ассоциацию</h3>
+        <p style="color:rgb(255 255 255 / .85); margin:0 0 1.5rem; line-height:1.55;" data-i18n="sec.3steps.a1t">
+          Получите статус резидента, доступ к сообществу и защиту интересов перед государственными структурами.
+        </p>
+        <a href="residency.html#join" class="btn btn-white" data-i18n="cta.leave">Оставить заявку</a>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">savings</span></span>
+        <h3 style="font-size:1.4rem; margin:1.25rem 0 .75rem;" data-i18n="sec.3steps.a2">Получить льготы</h3>
+        <p class="text-mut" style="margin:0 0 1.5rem; line-height:1.55;" data-i18n="sec.3steps.a2t">
+          Налог на прибыль 7,5%, социальные отчисления 12%, нулевые таможенные ставки и государственное софинансирование.
+        </p>
+        <a href="residency.html" class="btn btn-ghost" data-i18n="cta.details">Изучить льготы</a>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">rocket_launch</span></span>
+        <h3 style="font-size:1.4rem; margin:1.25rem 0 .75rem;" data-i18n="sec.3steps.a3">Принять участие в проектах</h3>
+        <p class="text-mut" style="margin:0 0 1.5rem; line-height:1.55;" data-i18n="sec.3steps.a3t">
+          EduJob, экспортные миссии, отраслевые выставки, совместные закупки и национальные тендеры.
+        </p>
+        <a href="programs.html" class="btn btn-ghost" data-i18n="cta.all-programs">Все программы</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ПРЕИМУЩЕСТВА (детально) ====================== -->
+<section id="benefits" class="section-alt" data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.benefits.tag">Преимущества резидентства</span>
+      <h2 data-i18n="sec.benefits.title">Пять измеримых причин вступить в MEYOS</h2>
+      <p data-i18n="sec.benefits.lead">Льготы, партнёрства и инструменты, которые напрямую влияют на операционную и финансовую эффективность мебельного бизнеса.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">request_quote</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.tax.t">Налоговые преференции</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.tax.d">Пониженные ставки по налогу на прибыль и социальным отчислениям, 0% таможенный тариф на сырьё и фурнитуру, право на ускоренную амортизацию.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">hub</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.base.t">Доступ к базе компаний</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.base.d">Закрытый каталог производителей, дизайнеров, логистов и поставщиков — с верифицированными контактами и рейтингом надёжности.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">shield</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.gov.t">Поддержка государства</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.gov.d">Представление интересов в министерствах, участие в законотворчестве, доступ к субсидиям, грантам и льготному финансированию.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">handshake</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.orders.t">Новые заказы и партнёрства</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.orders.d">Доступ к B2B-сделкам, госзакупкам, тендерам застройщиков и экспортным контрактам через партнёрскую сеть ассоциации.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">school</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.edu.t">Обучение и кадры</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.edu.d">Программа EduJob: подготовка мастеров, курсы для руководителей, международные стажировки и отраслевые сертификации.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">language</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="b.export.t">Экспорт и рынки</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="b.export.d">Помощь в сертификации по международным стандартам, логистика, участие в выставках ЕС, СНГ, MENA и ЮВА под единым брендом MEYOS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ПРОБЛЕМА → РЕШЕНИЕ ====================== -->
+<section data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.ps.tag">Барьеры отрасли</span>
+      <h2 data-i18n="sec.ps.title">Проблемы мебельного бизнеса и их решения</h2>
+      <p data-i18n="sec.ps.lead">MEYOS системно закрывает боли, с которыми сталкивается каждая мебельная компания на этапе масштабирования.</p>
+    </div>
+    <div class="ps-grid">
+      <div class="ps-col ps-col--pain">
+        <h3><span class="material-symbols-outlined" style="color:#c43c3c;">warning</span> <span data-i18n="sec.ps.left">Без ассоциации</span></h3>
+        <ul>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.p1.t">Переплата налогов</h4><p data-i18n="ps.p1.d">Мебельный бизнес не использует доступные льготы, теряя до 15% прибыли ежегодно.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.p2.t">Отсутствие новых заказов</h4><p data-i18n="ps.p2.d">Нет выхода на застройщиков, HoReCa и экспортные рынки — конкуренция только на низких ценах.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.p3.t">Разрыв с государством</h4><p data-i18n="ps.p3.d">Невозможно донести позицию отрасли до регуляторов; законы принимаются без учёта специфики мебельного рынка.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.p4.t">Кадровый голод</h4><p data-i18n="ps.p4.d">Нет квалифицированных мастеров, технологов и дизайнеров — обучение ложится на бизнес в одиночку.</p></div></li>
+        </ul>
+      </div>
+      <div class="ps-col ps-col--gain">
+        <h3><span class="material-symbols-outlined text-primary">check_circle</span> <span data-i18n="sec.ps.right">С MEYOS</span></h3>
+        <ul>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.s1.t">Налоговые льготы по статусу</h4><p data-i18n="ps.s1.d">CIT 7,5%, SSC 12%, нулевой импортный тариф — экономия до 22% от фонда оплаты и себестоимости.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.s2.t">Поток B2B-заказов</h4><p data-i18n="ps.s2.d">База партнёров, тендеры, госзакупки, экспорт под единым брендом MEYOS.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.s3.t">Голос индустрии</h4><p data-i18n="ps.s3.d">Прямой диалог с министерствами, участие в законотворчестве, лоббирование интересов отрасли.</p></div></li>
+          <li><span class="bullet"></span><div><h4 data-i18n="ps.s4.t">Кадры через EduJob</h4><p data-i18n="ps.s4.d">Подготовка мастеров и управленцев, сертификация, стажировки у партнёров в ЕС и ОАЭ.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ИНДУСТРИАЛЬНЫЙ РОСТ + БИЗНЕС-КЕЙСЫ ====================== -->
+<section class="section-alt" data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.cases.tag">Индустриальный рост · кейсы</span>
+      <h2 data-i18n="sec.cases.title">Как резиденты MEYOS развивают свой бизнес</h2>
+      <p data-i18n="sec.cases.lead">Реальные истории мебельных компаний, которые получили льготы, партнёрства и новые рынки через ассоциацию.</p>
+    </div>
+    <div style="display:grid; gap:1.5rem;">
+      <article class="case">
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80" alt="Производственный цех современной мебельной фабрики" />
+        </div>
+        <div>
+          <span class="case__num" data-i18n="case1.tag">Кейс 01 · Производство</span>
+          <h3 class="case__title" data-i18n="case1.t">Фабрика корпусной мебели: выход на экспорт в Казахстан и ОАЭ</h3>
+          <p class="text-mut" style="line-height:1.6;" data-i18n="case1.d">После вступления в ассоциацию компания получила статус резидента, сертификацию по международным стандартам и участие в двух коллективных экспортных миссиях MEYOS. За 14 месяцев доля экспорта в выручке выросла с 4% до 31%.</p>
+          <div class="case__metrics">
+            <div><div class="case__metric-num">+31%</div><div class="case__metric-lbl" data-i18n="case1.m1">Доля экспорта</div></div>
+            <div><div class="case__metric-num">×2,4</div><div class="case__metric-lbl" data-i18n="case1.m2">Рост выручки</div></div>
+            <div><div class="case__metric-num">−18%</div><div class="case__metric-lbl" data-i18n="case1.m3">Налоговая нагрузка</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&auto=format&fit=crop&q=80" alt="Дизайнерская мягкая мебель в салоне" />
+        </div>
+        <div>
+          <span class="case__num" data-i18n="case2.tag">Кейс 02 · Дизайн и бренд</span>
+          <h3 class="case__title" data-i18n="case2.t">Студия авторской мебели: контракт с национальным застройщиком</h3>
+          <p class="text-mut" style="line-height:1.6;" data-i18n="case2.d">Через B2B-базу MEYOS студия вышла на подрядчика крупного жилого комплекса в Ташкенте. Ассоциация сопроводила сделку, согласовала технические условия и помогла с сертификатом качества. Итог — долгосрочный контракт на 18 месяцев.</p>
+          <div class="case__metrics">
+            <div><div class="case__metric-num">₽1,2 млрд</div><div class="case__metric-lbl" data-i18n="case2.m1">Объём контракта</div></div>
+            <div><div class="case__metric-num">+26</div><div class="case__metric-lbl" data-i18n="case2.m2">Новых сотрудников</div></div>
+            <div><div class="case__metric-num">3</div><div class="case__metric-lbl" data-i18n="case2.m3">Новых линий мебели</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&auto=format&fit=crop&q=80" alt="Мастер-класс по мебельному ремеслу" />
+        </div>
+        <div>
+          <span class="case__num" data-i18n="case3.tag">Кейс 03 · Кадры через EduJob</span>
+          <h3 class="case__title" data-i18n="case3.t">Семейная мастерская: из цеха в сеть из 4 производств</h3>
+          <p class="text-mut" style="line-height:1.6;" data-i18n="case3.d">Участие в программе EduJob позволило обучить 14 мастеров и 3 технологов. Ассоциация подключила мастерскую к партнёрской логистике и оптовой закупке фурнитуры. За два года бизнес вырос до сети из 4 производств.</p>
+          <div class="case__metrics">
+            <div><div class="case__metric-num">×4</div><div class="case__metric-lbl" data-i18n="case3.m1">Масштаб производства</div></div>
+            <div><div class="case__metric-num">17</div><div class="case__metric-lbl" data-i18n="case3.m2">Обученных мастеров</div></div>
+            <div><div class="case__metric-num">−22%</div><div class="case__metric-lbl" data-i18n="case3.m3">Себестоимость</div></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== МИССИЯ + НАЦИОНАЛЬНОЕ ЗНАЧЕНИЕ (только institutional) ====================== -->
+<section class="section-alt" data-for-concept="sovereign">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Миссия и мандат</span>
+      <h2>Национальная инициатива развития мебельной индустрии</h2>
+      <p>MEYOS действует как институт развития отрасли в рамках программы поддержки несырьевого экспорта и индустриализации Республики Узбекистан.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">account_balance</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;">Связь с государством</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;">
+          Регулярные рабочие группы с Министерством экономики, Министерством инвестиций и Агентством поддержки экспорта.
+        </p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">policy</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;">Формирование регуляторики</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;">
+          Экспертиза проектов законов и техрегламентов, предложения по стандартизации отрасли, общественный контроль.
+        </p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">public</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;">Национальный бренд</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;">
+          Продвижение бренда «Made in Uzbekistan Furniture» на международных выставках и торговых миссиях.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ПРОГРАММЫ ====================== -->
+<section data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.programs.tag">Программы ассоциации</span>
+      <h2 data-i18n="sec.programs.title">Проекты, которые запускает MEYOS</h2>
+      <p data-i18n="sec.programs.lead">Собственные инициативы ассоциации — от обучения мастеров до координации национальных проектов.</p>
+    </div>
+    <div class="bento">
+      <div class="card span-2" style="background: linear-gradient(135deg, rgb(var(--primary-soft)), rgb(var(--accent-soft))); border:none;">
+        <span class="chip" data-i18n="pg.edujob.chip">EduJob · Флагман</span>
+        <h3 class="mt-4" style="font-size:1.6rem;" data-i18n="pg.edujob.t">EduJob — кадровая программа мебельной отрасли</h3>
+        <p class="text-mut mt-3" style="line-height:1.6;" data-i18n="pg.edujob.d">Единая платформа обучения мастеров, технологов и управленцев. Курсы «Как начать мебельный бизнес», международные стажировки у партнёров в ЕС и ОАЭ, сертификация компетенций.</p>
+        <div class="flex gap-4 mt-6">
+          <a href="programs.html" class="btn btn-primary" data-i18n="pg.edujob.cta1">Подробнее</a>
+          <a href="programs.html#edujob" class="btn btn-ghost" data-i18n="pg.edujob.cta2">Записаться на курс</a>
+        </div>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">flight_takeoff</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="pg.export.t">Экспортные миссии</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="pg.export.d">Коллективные стенды на выставках, поиск дистрибьюторов, сертификация по целевым рынкам.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">inventory_2</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="pg.bulk.t">Оптовые закупки</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="pg.bulk.d">Коллективный прямой импорт фурнитуры, ЛДСП и комплектующих — экономия 18–24% на сырье.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">groups</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="pg.forum.t">Отраслевые форумы</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="pg.forum.d">MEYOS Forum, Design Week, Furniture Expo — площадки встречи производителей, дизайнеров, закупщиков.</p>
+      </div>
+      <div class="card">
+        <span class="icon-box"><span class="material-symbols-outlined">engineering</span></span>
+        <h3 class="mt-4" style="font-size:1.2rem;" data-i18n="pg.center.t">Центр компетенций</h3>
+        <p class="text-mut" style="font-size:.95rem; line-height:1.55;" data-i18n="pg.center.d">Консалтинг по Lean-производству, автоматизации цеха, выбору оборудования и сертификации.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ЛЬГОТЫ — ТАБЛИЦА ====================== -->
+<section class="section-deep" data-for-concept="all">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.tax.tag">Финансовые преференции</span>
+      <h2 data-i18n="sec.tax.title">Налоговые и таможенные льготы резидента</h2>
+      <p data-i18n="sec.tax.lead">Особый индустриальный статус даёт количественно измеримую выгоду с первого года резидентства.</p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="tax-table">
+        <thead>
+          <tr>
+            <th data-i18n="tax.h1">Параметр</th>
+            <th data-i18n="tax.h2">Стандартная ставка</th>
+            <th data-i18n="tax.h3">Для резидента MEYOS</th>
+            <th data-i18n="tax.h4">Экономия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="tax.r1">Налог на прибыль (CIT)</td>
+            <td>15%</td>
+            <td><span class="big">7,5%</span></td>
+            <td class="text-primary" style="font-weight:700;">−50%</td>
+          </tr>
+          <tr>
+            <td data-i18n="tax.r2">Социальные отчисления</td>
+            <td>25%</td>
+            <td><span class="big">12%</span></td>
+            <td class="text-primary" style="font-weight:700;">−52%</td>
+          </tr>
+          <tr>
+            <td data-i18n="tax.r3">Таможенная пошлина на сырьё</td>
+            <td>10–15%</td>
+            <td><span class="big">0%</span></td>
+            <td class="text-primary" style="font-weight:700;">−100%</td>
+          </tr>
+          <tr>
+            <td data-i18n="tax.r4">Государственное софинансирование выставок</td>
+            <td>—</td>
+            <td><span class="big">до 70%</span></td>
+            <td class="text-primary" style="font-weight:700;" data-i18n="tax.refund">возврат</td>
+          </tr>
+          <tr>
+            <td data-i18n="tax.r5">Ускоренная амортизация оборудования</td>
+            <td data-i18n="tax.standard">стандартно</td>
+            <td><span class="big">×2</span></td>
+            <td class="text-primary" style="font-weight:700;" data-i18n="tax.faster">быстрее</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-8" style="text-align:center; margin-top:2rem;">
+      <a href="residency.html" class="btn btn-primary" data-i18n="cta.all-terms">Все условия резидентства</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== КАК ВСТУПИТЬ ====================== -->
+<section data-for-concept="flow corporate">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.join.tag">Путь резидента</span>
+      <h2 data-i18n="sec.join.title">Как вступить в ассоциацию за 4 шага</h2>
+      <p data-i18n="sec.join.lead">Процесс прозрачен и занимает в среднем 10–14 рабочих дней от подачи заявки до получения статуса резидента.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h4 data-i18n="step1.t">Заявка</h4>
+        <p data-i18n="step1.d">Заполните форму на сайте или оставьте контакты — менеджер свяжется в течение 24 часов.</p>
+      </div>
+      <div class="step">
+        <h4 data-i18n="step2.t">Рассмотрение</h4>
+        <p data-i18n="step2.d">Комиссия проверяет соответствие критериям: профиль деятельности, юрстатус, объёмы производства.</p>
+      </div>
+      <div class="step">
+        <h4 data-i18n="step3.t">Статус</h4>
+        <p data-i18n="step3.d">При положительном решении подписывается соглашение, присваивается статус резидента и реестровый номер.</p>
+      </div>
+      <div class="step">
+        <h4 data-i18n="step4.t">Рост</h4>
+        <p data-i18n="step4.d">Подключение к льготам, B2B-базе, программе EduJob и всем проектам ассоциации.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ПАРТНЁРЫ ====================== -->
+<section class="section-alt" data-for-concept="all">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.partners.tag">Партнёры</span>
+      <h2 data-i18n="sec.partners.title">Компании и институты, с которыми мы работаем</h2>
+      <p data-i18n="sec.partners.lead">Производители, дизайн-студии, поставщики материалов, банки, логистические операторы и государственные партнёры.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-logo">WOODLINE</div>
+      <div class="partner-logo">Atelier Mesa</div>
+      <div class="partner-logo">Tashkent Design</div>
+      <div class="partner-logo">Fursoni Furniture</div>
+      <div class="partner-logo">Samarkand Wood</div>
+      <div class="partner-logo">MEBEL PRO</div>
+      <div class="partner-logo">Chinor Timber</div>
+      <div class="partner-logo">Karavan Logistics</div>
+      <div class="partner-logo">UzFurniture Bank</div>
+      <div class="partner-logo">Studio Rodnik</div>
+      <div class="partner-logo">NordLine</div>
+      <div class="partner-logo">Noble House</div>
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="partners.html" class="btn btn-ghost" data-i18n="cta.all-partners">Смотреть всех партнёров</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== МЕРОПРИЯТИЯ ====================== -->
+<section data-for-concept="all">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.events.tag">Ближайшие мероприятия</span>
+      <h2 data-i18n="sec.events.title">Форумы, выставки и деловые встречи</h2>
+      <p data-i18n="sec.events.lead">Площадки, где резиденты MEYOS встречаются с закупщиками, дизайнерами и государственными партнёрами.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div style="height:180px; border-radius:var(--radius-md); overflow:hidden; margin-bottom:1.25rem;">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="Зал отраслевого форума" style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <span class="chip" data-i18n="ev1.date">12 мая 2026 · Ташкент</span>
+        <h3 class="mt-3" style="font-size:1.2rem;" data-i18n="ev1.t">MEYOS Forum 2026</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="ev1.d">Ежегодный отраслевой форум: стратегия развития, встречи с регуляторами, презентация программы на год.</p>
+        <a href="events.html" class="btn btn-ghost mt-4" style="margin-top:1rem;" data-i18n="cta.register">Зарегистрироваться</a>
+      </div>
+      <div class="card">
+        <div style="height:180px; border-radius:var(--radius-md); overflow:hidden; margin-bottom:1.25rem;">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80" alt="Выставочный стенд с мебелью" style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <span class="chip" data-i18n="ev2.date">03–07 июня 2026 · Дубай</span>
+        <h3 class="mt-3" style="font-size:1.2rem;" data-i18n="ev2.t">Экспортная миссия в ОАЭ</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="ev2.d">Коллективный стенд MEYOS на Index Dubai — прямые встречи с закупщиками HoReCa и застройщиками.</p>
+        <a href="events.html" class="btn btn-ghost mt-4" style="margin-top:1rem;" data-i18n="cta.apply">Подать заявку</a>
+      </div>
+      <div class="card">
+        <div style="height:180px; border-radius:var(--radius-md); overflow:hidden; margin-bottom:1.25rem;">
+          <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&auto=format&fit=crop&q=80" alt="Мастер-класс по столярному делу" style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <span class="chip" data-i18n="ev3.date">20 июня 2026 · Самарканд</span>
+        <h3 class="mt-3" style="font-size:1.2rem;" data-i18n="ev3.t">EduJob Open Day</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="ev3.d">Открытый день образовательной программы: демо-курсы для мастеров, технологов и руководителей производств.</p>
+        <a href="events.html" class="btn btn-ghost mt-4" style="margin-top:1rem;" data-i18n="cta.signup">Записаться</a>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="events.html" class="btn btn-ghost" data-i18n="cta.all-events">Все мероприятия</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== НОВОСТИ ====================== -->
+<section class="section-alt" data-for-concept="all">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.news.tag">Новости ассоциации</span>
+      <h2 data-i18n="sec.news.title">Последние события MEYOS</h2>
+      <p data-i18n="sec.news.lead">Новости отрасли, отчёты по проектам, изменения в регулировании и анонсы программ.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <span class="chip" data-i18n="n1.chip">Резидентство</span>
+        <h3 class="mt-4" style="font-size:1.15rem;" data-i18n="n1.t">MEYOS подписала соглашение с Министерством инвестиций о едином окне для мебельных производителей</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="n1.d">Соглашение упрощает доступ к 12 мерам господдержки через личный кабинет резидента.</p>
+        <a href="#" data-news-id="news-1" class="text-primary mt-4" style="display:inline-block; margin-top:1rem; font-weight:700; text-decoration:none;" data-i18n="cta.read">Читать →</a>
+      </article>
+      <article class="card">
+        <span class="chip" data-i18n="n2.chip">Экспорт</span>
+        <h3 class="mt-4" style="font-size:1.15rem;" data-i18n="n2.t">Резиденты MEYOS заключили контрактов на $14,6 млн по итогам миссии в Алматы</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="n2.d">12 компаний приняли участие в коллективной экспортной миссии, проведено 87 B2B-встреч.</p>
+        <a href="#" data-news-id="news-2" class="text-primary mt-4" style="display:inline-block; margin-top:1rem; font-weight:700; text-decoration:none;" data-i18n="cta.read">Читать →</a>
+      </article>
+      <article class="card">
+        <span class="chip" data-i18n="n3.chip">EduJob</span>
+        <h3 class="mt-4" style="font-size:1.15rem;" data-i18n="n3.t">Запущен третий поток программы EduJob: 180 мест на курсах мастеров и технологов</h3>
+        <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;" data-i18n="n3.d">Набор открыт до 15 мая. Обучение совмещает теорию, стажировку и сертификацию.</p>
+        <a href="#" data-news-id="news-3" class="text-primary mt-4" style="display:inline-block; margin-top:1rem; font-weight:700; text-decoration:none;" data-i18n="cta.read">Читать →</a>
+      </article>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="news.html" class="btn btn-ghost" data-i18n="cta.all-news">Все новости</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section data-for-concept="all">
+  <div class="container" style="max-width:880px;">
+    <div class="section-head">
+      <span class="tag" data-i18n="sec.faq.tag">FAQ</span>
+      <h2 data-i18n="sec.faq.title">Часто задаваемые вопросы</h2>
+      <p data-i18n="sec.faq.lead">Собрали ответы на вопросы, которые чаще всего задают компании перед вступлением в MEYOS.</p>
+    </div>
+    <div>
+      <details class="faq-item" open>
+        <summary class="faq-q" data-i18n="faq.q1">Кто может стать резидентом MEYOS?</summary>
+        <div class="faq-a" data-i18n="faq.a1">Компании, работающие в мебельной отрасли Узбекистана: производители корпусной и мягкой мебели, фабрики OEM, дизайн-студии, поставщики фурнитуры и материалов, а также логистические операторы, обслуживающие отрасль.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q2">Какой размер членского взноса?</summary>
+        <div class="faq-a" data-i18n="faq.a2">Взнос рассчитывается индивидуально в зависимости от категории компании (микро / МСБ / крупный бизнес) и выбранного уровня участия. Базовая ставка для МСБ сопоставима со стоимостью одного участия в отраслевой выставке.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q3">Как быстро начинают действовать льготы?</summary>
+        <div class="faq-a" data-i18n="faq.a3">Налоговые преференции применяются с первого числа месяца, следующего за датой получения статуса резидента. Доступ к B2B-базе, программам и мероприятиям открывается сразу после подписания соглашения.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q4">Помогает ли MEYOS с экспортом?</summary>
+        <div class="faq-a" data-i18n="faq.a4">Да. Ассоциация организует коллективные стенды на международных выставках, берёт на себя сертификацию по целевым рынкам, помогает с логистикой и поиском дистрибьюторов. Государство субсидирует до 70% расходов на участие в зарубежных выставках.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q5">Что такое EduJob?</summary>
+        <div class="faq-a" data-i18n="faq.a5">EduJob — кадровая программа ассоциации. Включает базовый курс «Как начать мебельный бизнес», специализации для мастеров и технологов, курсы для руководителей, а также международные стажировки и отраслевую сертификацию.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q6">Можно ли выйти из ассоциации?</summary>
+        <div class="faq-a" data-i18n="faq.a6">Да, в любой момент на основании письменного уведомления. Обязательства по уплате взносов прекращаются с квартала, следующего за датой выхода. Льготы резидентства сохраняются до конца финансового периода.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ФИНАЛЬНЫЙ CTA + ФОРМА ====================== -->
+<section id="join" class="section-alt" data-for-concept="all">
+  <div class="container" style="display:grid; gap:3rem; align-items:center;">
+    <div class="cta-bar">
+      <span class="tag tag-on-dark" data-i18n="sec.final.tag">Присоединяйтесь к сообществу</span>
+      <h2 class="mt-4" data-i18n="sec.final.title">Если вы в мебельном бизнесе — ваше место в MEYOS</h2>
+      <p data-i18n="sec.final.lead">Оставьте заявку, и менеджер ассоциации свяжется с вами в течение одного рабочего дня для консультации и подготовки документов.</p>
+      <div class="flex gap-4" style="justify-content:center; flex-wrap:wrap;">
+        <a href="#join-form" class="btn btn-white btn-lg" data-i18n="cta.leave">Оставить заявку</a>
+        <a href="contacts.html" class="btn btn-outline-white btn-lg" data-i18n="cta.contact">Связаться с нами</a>
+      </div>
+    </div>
+
+    <div style="display:grid; gap:2rem; grid-template-columns:1fr;" class="container">
+      <form id="join-form" class="form" data-join-form>
+        <h3 style="margin:0 0 .5rem; font-size:1.4rem;" data-i18n="form.title">Заявка на вступление в ассоциацию</h3>
+        <p class="text-mut" style="margin:0 0 1rem; font-size:.95rem;" data-i18n="form.lead">Заполните поля — и менеджер MEYOS свяжется с вами в течение 24 часов.</p>
+        <div style="display:grid; gap:1rem; grid-template-columns:1fr 1fr;">
+          <label><span data-i18n="form.company">Название компании</span> <input type="text" name="company" required placeholder="ООО «Ваша компания»" /></label>
+          <label><span data-i18n="form.name">Контактное лицо</span> <input type="text" name="name" required placeholder="Имя и фамилия" /></label>
+          <label><span data-i18n="form.email">Email</span> <input type="email" name="email" required placeholder="email@company.uz" /></label>
+          <label><span data-i18n="form.phone">Телефон</span> <input type="tel" name="phone" required placeholder="+998 __ ___ __ __" /></label>
+          <label style="grid-column:1/-1;"><span data-i18n="form.category">Категория бизнеса</span>
+            <select name="category">
+              <option data-i18n="form.cat1">Производство мебели</option>
+              <option data-i18n="form.cat2">Дизайн-студия</option>
+              <option data-i18n="form.cat3">Поставщик материалов и фурнитуры</option>
+              <option data-i18n="form.cat4">Логистика и розница</option>
+              <option data-i18n="form.cat5">Другое</option>
+            </select>
+          </label>
+          <label style="grid-column:1/-1;"><span data-i18n="form.comment">Комментарий</span> <textarea name="message" rows="3" placeholder="Коротко расскажите о компании и целях вступления"></textarea></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg mt-4" style="margin-top:.5rem;" data-i18n="cta.send">Отправить заявку</button>
+        <p class="text-mut" style="font-size:.8rem; margin:0;" data-i18n="form.disclaimer">Отправляя форму, вы соглашаетесь с политикой обработки персональных данных.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <a href="index.html" class="logo" style="color:#fff; margin-bottom:1rem;">
+        <span class="logo__mark">M</span> MEYOS
+      </a>
+      <p style="opacity:.7; font-size:.9rem; line-height:1.6; margin-top:1rem; max-width:22rem;" data-i18n="footer.tagline">
+        Ассоциация мебельщиков Узбекистана. IT и стратегический партнёр мебельного бизнеса: льготы, экспорт, кадры, цифровизация.
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.sections">Разделы</h4>
+      <a href="about.html" data-i18n="nav.about">О компании</a>
+      <a href="residency.html" data-i18n="nav.residency">Резидентство</a>
+      <a href="programs.html" data-i18n="nav.programs">Программы</a>
+      <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+    </div>
+    <div>
+      <h4 data-i18n="footer.activities">Активности</h4>
+      <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+      <a href="news.html" data-i18n="nav.news">Новости</a>
+      <a href="programs.html#edujob">EduJob</a>
+      <a href="residency.html#join" data-i18n="cta.become">Стать резидентом</a>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contacts">Контакты</h4>
+      <a href="tel:+998781500000">+998 78 150 00 00</a>
+      <a href="mailto:hello@meyos.uz">hello@meyos.uz</a>
+      <p style="opacity:.7; font-size:.85rem; margin:.8rem 0 0;" data-i18n="footer.address">Ташкент, Мирзо-Улугбекский район, ул. Буюк Ипак Йули, 12</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span data-i18n="footer.rights">© 2026 MEYOS · Ассоциация мебельщиков Узбекистана</span>
+    <span data-i18n="footer.policy">Политика конфиденциальности · Публичная оферта</span>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/i18n-auto.js"></script>
+<script src="assets/js/theme-switcher.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MEYOS — Государственный партнер мебельной отрасли</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#1c3433",
+                    "on-primary-container": "#d4ada1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#334b49",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#ffdbce",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f1f1",
+                    "secondary": "#75584d",
+                    "primary": "#442a22",
+                    "tertiary-container": "#334b49",
+                    "primary-container": "#5d4037",
+                    "on-secondary-container": "#795c51",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#2b160f",
+                    "on-background": "#1a1c1c",
+                    "on-primary-fixed-variant": "#5d4037",
+                    "on-surface": "#1a1c1c",
+                    "surface": "#f9f9f9",
+                    "surface-dim": "#dadada",
+                    "secondary-container": "#fed7ca",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "inverse-surface": "#2f3131",
+                    "tertiary-fixed": "#cde8e5",
+                    "on-primary-fixed": "#2c160e",
+                    "on-tertiary-container": "#a0bab7",
+                    "primary-fixed": "#ffdbd0",
+                    "background": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#d4c3be",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline": "#827470",
+                    "primary-fixed-dim": "#e7bdb1",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b1ccc9",
+                    "on-tertiary-fixed": "#061f1e",
+                    "on-surface-variant": "#504441",
+                    "on-secondary-fixed-variant": "#5b4137",
+                    "surface-tint": "#77574d",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#e4beb2",
+                    "inverse-primary": "#e7bdb1",
+                    "surface-container": "#eeeeee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #FAFAFA; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(250, 250, 250, 0.8); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAFAFA]/80 dark:bg-stone-900/80 backdrop-blur-xl border-b border-stone-200/20 dark:border-stone-800/20 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-10 py-6 max-w-[1920px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#442a22] dark:text-stone-50">MEYOS</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-[#442a22] dark:text-white border-b-2 border-[#442a22] dark:border-[#fed7ca] pb-1" href="#">Association</a>
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-stone-500 dark:text-stone-400 hover:text-[#442a22] dark:hover:text-[#fed7ca] transition-colors duration-300" href="#">Residency</a>
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-stone-500 dark:text-stone-400 hover:text-[#442a22] dark:hover:text-[#fed7ca] transition-colors duration-300" href="#">Programs</a>
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-stone-500 dark:text-stone-400 hover:text-[#442a22] dark:hover:text-[#fed7ca] transition-colors duration-300" href="#">Events</a>
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-stone-500 dark:text-stone-400 hover:text-[#442a22] dark:hover:text-[#fed7ca] transition-colors duration-300" href="#">Partners</a>
+<a class="font-manrope tracking-tight font-medium uppercase text-[12px] text-stone-500 dark:text-stone-400 hover:text-[#442a22] dark:hover:text-[#fed7ca] transition-colors duration-300" href="#">News</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-stone-800 cursor-pointer" data-icon="language">language</span>
+<button class="bg-primary text-on-primary px-6 py-2 text-[12px] uppercase tracking-widest font-bold rounded-sm transition-all active:opacity-70 active:scale-95">Join</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Section 1: Hero - Sovereign Forge -->
+<section class="relative h-[921px] flex items-center px-10 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Sovereign Forge Impact" class="w-full h-full object-cover brightness-[0.4]" data-alt="Monolithic architectural concrete building with minimalist wooden structures inside under dramatic high-contrast lighting, symbolising industrial power and stability" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJpqgRsY683MmLynmOutsuHUcmJ1GjL3aOLb_Wjql0md2mLhvbFlG8ZxfjD0XQanU3VbiEQO0Mro0iXjUv0ziruuTT0YUjKoauYI8p4fIgjrcV3AHeepGu0xCEEbnuQcdavKH3LjZ9Z1vnw4Ilu0jvHyhxcaX3ORldDJZFs7lbinbpff2e1FJG7QocOD8Vuf5C_sZMiIVGlNH_YbPPR1vwOsCTwi9d0QHlwdY6wJ6U3PPMry8scSfy9EQEyL3enZdsadqOtraDoSE"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-5xl">
+<span class="label-md uppercase tracking-[0.3em] text-secondary-container mb-6 block">Национальный проект</span>
+<h1 class="text-7xl md:text-9xl font-black text-white leading-[0.9] tracking-tighter mb-8">
+                    СУВЕРЕННАЯ <br/> <span class="text-secondary-container">КУЗНИЦА</span>
+</h1>
+<p class="text-xl md:text-2xl text-stone-300 max-w-2xl font-light leading-relaxed mb-10">
+                    MEYOS — стратегический институт развития мебельной промышленности, формирующий индустриальный фундамент государства.
+                </p>
+<div class="flex gap-4">
+<button class="bg-secondary-container text-primary px-10 py-5 font-bold uppercase tracking-widest text-sm rounded-sm">Госпрограммы 2024</button>
+<button class="border border-white/30 text-white backdrop-blur-md px-10 py-5 font-bold uppercase tracking-widest text-sm rounded-sm hover:bg-white/10 transition-all">Меморандум</button>
+</div>
+</div>
+</section>
+<!-- Section 2: Mission & Values -->
+<section class="py-32 px-10 bg-surface">
+<div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-20 items-start">
+<div>
+<h2 class="text-5xl font-extrabold text-primary tracking-tighter leading-tight mb-12">
+                        Миссия: Укрепление промышленного суверенитета
+                    </h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<span class="text-4xl font-black text-outline-variant/30">01</span>
+<div>
+<h4 class="text-xl font-bold mb-2 uppercase tracking-wide">Стандартизация</h4>
+<p class="text-on-surface-variant leading-relaxed">Внедрение высших государственных эталонов качества и безопасности для отечественного производства.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="text-4xl font-black text-outline-variant/30">02</span>
+<div>
+<h4 class="text-xl font-bold mb-2 uppercase tracking-wide">Инновации</h4>
+<p class="text-on-surface-variant leading-relaxed">Поддержка R&amp;D центров и технологическое перевооружение мебельных кластеров.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="text-4xl font-black text-outline-variant/30">03</span>
+<div>
+<h4 class="text-xl font-bold mb-2 uppercase tracking-wide">Экспорт</h4>
+<p class="text-on-surface-variant leading-relaxed">Продвижение российского мебельного дизайна и продукции на глобальных рынках.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<img alt="Industrial Mission" class="w-full h-[600px] object-cover grayscale brightness-90 shadow-2xl" data-alt="Macro close-up of high-precision woodworking machinery in a clean, modern factory setting with warm cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxmBHljhbL5h1nim0PWj67ZuqdL45J0j_icXO9h5iBtTSX8nyG297H5UpLqY-JqjyHBaVLtZVADr7VlvNzACG-31IbpFUzDyzKi8u7JZKSwyNuyPNdvOa182CyNgkxBI5Du7JxLamyL86LRET814h7ulbcX4sIVB2GSA8fkMbMr6KnossfVIWm4HjQVluHpEGeYbQmCthv4WRNvv0UpSMsW-Zom934h-Y8wZ47VU58pRQh0iz9vWkAkQSQYl9_D9enOp1nIvVyBfc"/>
+<div class="absolute -bottom-10 -left-10 bg-tertiary p-12 text-white max-w-sm hidden lg:block">
+<p class="text-3xl font-black italic mb-4">«Качество как государственная ценность»</p>
+<p class="text-sm uppercase tracking-widest opacity-60">Совет директоров MEYOS</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Strategic Initiatives (Bento Grid) -->
+<section class="py-32 px-10 bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-20 text-center">
+<span class="label-md text-secondary tracking-[0.4em] font-bold block mb-4">СТРАТЕГИЯ 2030</span>
+<h2 class="text-6xl font-black text-primary tracking-tighter uppercase">Приоритетные направления</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[800px]">
+<div class="md:col-span-2 bg-primary p-12 flex flex-col justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="text-4xl font-bold text-secondary-container mb-6">Цифровой двойник отрасли</h3>
+<p class="text-on-primary-container text-lg max-w-md">Единая информационная система мониторинга и распределения государственных заказов для членов ассоциации.</p>
+</div>
+<span class="material-symbols-outlined text-[120px] absolute -bottom-10 -right-10 text-white/5 group-hover:scale-110 transition-transform" data-icon="hub">hub</span>
+</div>
+<div class="bg-tertiary p-12 flex flex-col justify-between relative overflow-hidden">
+<div>
+<h3 class="text-3xl font-bold text-white mb-6 uppercase leading-none">Лесной <br/> попечитель</h3>
+<p class="text-on-tertiary-container">Программа ответственного лесопользования и восстановления ресурсов.</p>
+</div>
+<button class="text-white border-b border-white/30 self-start pb-2 uppercase tracking-widest text-xs hover:border-white transition-all">Подробнее</button>
+</div>
+<div class="bg-white p-12 flex flex-col justify-between border border-outline-variant/10">
+<div>
+<span class="material-symbols-outlined text-primary mb-6" data-icon="school">school</span>
+<h3 class="text-2xl font-bold text-primary mb-4">Академия MEYOS</h3>
+<p class="text-on-surface-variant">Подготовка кадров нового поколения для высокотехнологичных производств.</p>
+</div>
+</div>
+<div class="md:col-span-2 bg-[#F0EBE6] p-12 flex items-center gap-12 overflow-hidden relative">
+<div class="flex-1">
+<h3 class="text-4xl font-black text-primary mb-4 uppercase tracking-tighter">СЭЗ «Мебельград»</h3>
+<p class="text-secondary font-medium">Льготное налогообложение и инфраструктура для резидентов ассоциации.</p>
+</div>
+<img alt="Special Economic Zone" class="w-1/3 h-full object-cover grayscale opacity-80" data-alt="Stylized architectural model of an industrial furniture park with clean geometric lines and wooden accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS694YL0uC3yB9XcVXWzlQnjREAa4Wf7bTrjJpZNnXmlgijy74e_tIjSkMOjKfOgmh0sp2h2ZGFzG-LJhhOYrtTTKu0-RItm-kvYm0W2BOU26YV_-xuyRuUTP-qhRmtWK3mUR2YMR4CCW0xCluK-pt1Rsrdj5zdy9vC_0D4zKKAvHfMRBxeGWwTtpIxQ2VW486yXmBe0e6MTecfRooxrv66oR86XmeFO3YDyWuAbuSn8HoUonpoZeUXQGO21KxSlIb5b4Hbv9OAsM"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Registry of Participants -->
+<section class="py-32 px-10 bg-surface">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex justify-between items-end mb-20">
+<div>
+<h2 class="text-5xl font-black text-primary tracking-tighter uppercase">Реестр участников</h2>
+<p class="text-on-surface-variant mt-4 text-xl">Элита мебельного производства России</p>
+</div>
+<button class="bg-primary text-white px-8 py-4 uppercase font-bold text-xs tracking-widest">Весь список</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-outline-variant/20">
+<div class="bg-white p-10 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="h-12 w-12 bg-primary/5 mb-8 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="factory">factory</span>
+</div>
+<h5 class="font-bold text-lg mb-2">ГрандДекор МСК</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">ID: 00482-A</p>
+</div>
+<div class="bg-white p-10 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="h-12 w-12 bg-primary/5 mb-8 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<h5 class="font-bold text-lg mb-2">Сибирский Кедр</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">ID: 00512-B</p>
+</div>
+<div class="bg-white p-10 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="h-12 w-12 bg-primary/5 mb-8 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+</div>
+<h5 class="font-bold text-lg mb-2">Уральский Массив</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">ID: 00399-A</p>
+</div>
+<div class="bg-white p-10 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="h-12 w-12 bg-primary/5 mb-8 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="weekend">weekend</span>
+</div>
+<h5 class="font-bold text-lg mb-2">МебельПроект</h5>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">ID: 00621-C</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Official Documents/Accreditations -->
+<section class="py-32 px-10 bg-tertiary text-white">
+<div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-24">
+<div>
+<h2 class="text-5xl font-black tracking-tighter uppercase mb-8">Правовая <br/> база</h2>
+<p class="text-on-tertiary-container text-xl leading-relaxed mb-12">
+                        Официальные документы, регламентирующие деятельность ассоциации и стандарты аккредитации для новых участников.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 transition-all border-l-4 border-secondary-container cursor-pointer">
+<span class="font-bold uppercase tracking-widest text-sm">Устав Ассоциации MEYOS</span>
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</div>
+<div class="flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 transition-all border-l-4 border-secondary-container cursor-pointer">
+<span class="font-bold uppercase tracking-widest text-sm">ГОСТ Р 2024: Мебельная оснастка</span>
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</div>
+<div class="flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 transition-all border-l-4 border-secondary-container cursor-pointer">
+<span class="font-bold uppercase tracking-widest text-sm">Положение о реестре</span>
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="bg-secondary-container p-8 text-primary flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<p class="text-3xl font-black mb-2">142</p>
+<p class="text-xs uppercase font-bold tracking-widest">Аккредитованных эксперта</p>
+</div>
+</div>
+<div class="bg-white/10 p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl" data-icon="gavel">gavel</span>
+<div>
+<p class="text-3xl font-black mb-2">18</p>
+<p class="text-xs uppercase font-bold tracking-widest">Государственных грантов</p>
+</div>
+</div>
+<div class="bg-white/10 p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl" data-icon="license">license</span>
+<div>
+<p class="text-3xl font-black mb-2">ISO</p>
+<p class="text-xs uppercase font-bold tracking-widest">Международная сертификация</p>
+</div>
+</div>
+<div class="bg-secondary-container p-8 text-primary flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl" data-icon="security">security</span>
+<div>
+<p class="text-3xl font-black mb-2">100%</p>
+<p class="text-xs uppercase font-bold tracking-widest">Правовая защита</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Government Support Programs -->
+<section class="py-32 px-10 bg-white relative overflow-hidden">
+<div class="max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center gap-20">
+<div class="lg:w-1/2">
+<span class="inline-block px-4 py-1 bg-secondary-container text-primary font-bold text-[10px] uppercase tracking-widest mb-6">Инструменты роста</span>
+<h2 class="text-6xl font-black text-primary tracking-tighter uppercase mb-8 leading-none">Государственная поддержка</h2>
+<p class="text-on-surface-variant text-xl leading-relaxed mb-12">
+                        Мы являемся мостом между вашим бизнесом и государственными механизмами финансирования. Станьте резидентом и получите доступ к льготному лизингу, субсидиям и экспортным кредитам.
+                    </p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-wide">Льготный лизинг 3%</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-wide">Субсидии на НИОКР</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-wide">Компенсация выставок</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-wide">Таможенные льготы</span>
+</li>
+</ul>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="aspect-square bg-surface-container-low rounded-sm relative overflow-hidden">
+<img alt="Modern Office" class="w-full h-full object-cover" data-alt="Sleek modern government office interior with light wood panelling, minimalist furniture and large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbWiZIR97-oSErS_8Jyi7FP_YTzKL53L2i6sT0dyWc_VpbdXOW71Dtr6ynI63701IHvwQD3JkJrZ2urXtUIes772QmmoO6C8rDu3U69GLMbvLBMHOrTEi39JKXJq_LwxKHfVXiY6F3gfvGNQL33mm65s8ipv5711Jdwsu-A7E2iKW4S-9-3DdgV0AIydCOTGd37fLLvW1hhK9w2-QCQjK-IQFh5PLmWphVcNPTayMIJPFB-AcCuLDw10zYGF8Ku2CLOgeo4zxxTP8"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1c3433] dark:bg-stone-950 text-[#fed7ca] dark:text-stone-300 w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 w-full max-w-[1920px] mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-black text-white tracking-widest uppercase">MEYOS</div>
+<p class="font-manrope text-sm leading-relaxed opacity-80">Государственный партнер в развитии мебельной и деревообрабатывающей промышленности.</p>
+</div>
+<div class="space-y-6">
+<h6 class="text-white font-bold uppercase text-xs tracking-widest">Навигация</h6>
+<ul class="space-y-4 font-manrope text-sm">
+<li><a class="text-stone-400 hover:text-white underline underline-offset-4 decoration-1 transition-all" href="#">Architecture</a></li>
+<li><a class="text-stone-400 hover:text-white underline underline-offset-4 decoration-1 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-stone-400 hover:text-white underline underline-offset-4 decoration-1 transition-all" href="#">Contact Us</a></li>
+<li><a class="text-stone-400 hover:text-white underline underline-offset-4 decoration-1 transition-all" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h6 class="text-white font-bold uppercase text-xs tracking-widest">Контакты</h6>
+<p class="font-manrope text-sm leading-relaxed text-stone-400">
+                    Москва, Пресненская наб., 12<br/>
+                    Башня Федерация, 44 этаж<br/>
+                    info@meyos.ru
+                </p>
+</div>
+<div class="space-y-6">
+<h6 class="text-white font-bold uppercase text-xs tracking-widest">Подписка на бюллетень</h6>
+<div class="relative">
+<input class="w-full bg-white/5 border-b border-white/20 py-2 focus:outline-none focus:border-white text-white placeholder:text-stone-600" placeholder="Email" type="email"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-white" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 px-12 py-10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-stone-500">
+<div>© 2024 MEYOS Furniture Association. Crafted for The Tactile Atelier.</div>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="hover:text-white transition-colors" href="#">Telegram</a>
+<a class="hover:text-white transition-colors" href="#">VK Business</a>
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</body></html>

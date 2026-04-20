@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru" data-color="green" data-concept="flow">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Контакты — MEYOS | Связаться с ассоциацией мебельщиков Узбекистана</title>
+<meta name="description" content="Контактные данные ассоциации MEYOS: телефон, email, адрес офиса в Ташкенте, форма обратной связи и карта." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/themes.css" />
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }
+  .contact-card { display:flex; gap:1rem; align-items:flex-start; padding:1.5rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); transition:all .3s; }
+  .contact-card:hover { box-shadow:var(--shadow-md); border-color:rgb(var(--primary) / .3); }
+  .contact-card h3 { margin:0 0 .25rem; font-size:1.05rem; font-family:var(--font-head); }
+  .contact-card a, .contact-card p { color:rgb(var(--primary)); font-weight:600; text-decoration:none; }
+  .contact-card p { color:rgb(var(--on-surface-mut)); font-weight:400; margin:0; font-size:.9rem; line-height:1.55; }
+  .map-wrap { height:480px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid rgb(var(--outline)); position:relative; background:rgb(var(--surface-deep)); }
+  .map-wrap iframe { width:100%; height:100%; border:0; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <nav class="nav">
+      <a href="about.html" data-i18n="nav.about">О компании</a>
+      <a href="residency.html" data-i18n="nav.residency">Резидентство</a>
+      <a href="programs.html" data-i18n="nav.programs">Программы</a>
+      <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+      <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+      <a href="news.html" data-i18n="nav.news">Новости</a>
+      <a href="contacts.html" class="is-active" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:.75rem;">
+      <div class="lang"><button class="is-active">RU</button><button>UZ</button><button>EN</button></div>
+      <a href="residency.html#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;" data-i18n="cta.join">Вступить</a>
+      <button class="burger" data-burger><span class="material-symbols-outlined">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__head">
+    <a href="index.html" class="logo"><span class="logo__mark">M</span>MEYOS</a>
+    <button class="burger" data-mobile-close><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <a href="about.html" data-i18n="nav.about">О компании</a>
+  <a href="residency.html" data-i18n="nav.residency">Резидентство и льготы</a>
+  <a href="programs.html" data-i18n="nav.programs">Программы</a>
+  <a href="partners.html" data-i18n="nav.partners">Партнёры</a>
+  <a href="events.html" data-i18n="nav.events">Мероприятия</a>
+  <a href="news.html" data-i18n="nav.news">Новости</a>
+  <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+</div>
+
+<main>
+
+<section class="hero" style="padding:5rem 1.5rem;">
+  <div class="hero__inner" style="grid-template-columns:1fr;">
+    <div style="max-width:50rem;">
+      <span class="tag tag-on-dark"><span class="tag-dot"></span><span data-i18n="ct.hero.tag">Контакты</span></span>
+      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;" data-i18n="ct.hero.h1">Свяжитесь с ассоциацией MEYOS</h1>
+      <p class="lead" data-i18n="ct.hero.lead">Менеджеры ассоциации отвечают на вопросы о резидентстве, льготах, программах и партнёрствах. Среднее время ответа — 4 рабочих часа.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="grid grid-2">
+      <div style="display:grid; gap:1rem;">
+        <div class="contact-card">
+          <span class="icon-box"><span class="material-symbols-outlined">call</span></span>
+          <div>
+            <h3 data-i18n="ct.phone">Телефон</h3>
+            <a href="tel:+998781500000">+998 78 150 00 00</a>
+            <p style="margin-top:.35rem;" data-i18n="ct.hours">Пн–Пт, 09:00 – 18:00</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="icon-box"><span class="material-symbols-outlined">mail</span></span>
+          <div>
+            <h3 data-i18n="ct.email">Email</h3>
+            <a href="mailto:hello@meyos.uz">hello@meyos.uz</a><br />
+            <a href="mailto:residency@meyos.uz">residency@meyos.uz</a>
+            <p style="margin-top:.35rem;">Заявки на вступление — на residency@meyos.uz</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="icon-box"><span class="material-symbols-outlined">location_on</span></span>
+          <div>
+            <h3 data-i18n="ct.office">Офис</h3>
+            <p style="color:rgb(var(--on-surface)); font-weight:600;">г. Ташкент, Мирзо-Улугбекский район,<br />ул. Буюк Ипак Йули, 12, 4 этаж</p>
+            <p style="margin-top:.35rem;">Пн–Пт, 09:00 – 18:00. Встречи — по предварительной записи.</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="icon-box"><span class="material-symbols-outlined">description</span></span>
+          <div>
+            <h3 data-i18n="ct.requisites">Реквизиты</h3>
+            <p style="color:rgb(var(--on-surface)); font-weight:600;">ННО «MEYOS Association»</p>
+            <p style="margin-top:.35rem;">ИНН 304567890 · ОКЭД 94.11.0 · р/с 20208000000123456789</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="icon-box"><span class="material-symbols-outlined">forum</span></span>
+          <div>
+            <h3 data-i18n="ct.messengers">Мессенджеры</h3>
+            <p><a href="#">Telegram</a> · <a href="#">WhatsApp Business</a></p>
+            <p style="margin-top:.35rem;">Для оперативной связи с отделом резидентства.</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" data-join-form>
+        <h3 style="margin:0 0 .5rem; font-size:1.3rem; font-family:var(--font-head);">Задать вопрос</h3>
+        <p class="text-mut" style="margin:0 0 1rem; font-size:.9rem;">Оставьте сообщение — мы ответим в течение одного рабочего дня.</p>
+        <label>Имя <input type="text" name="name" required placeholder="Ваше имя" /></label>
+        <label>Компания <input type="text" name="company" placeholder="Название компании (необязательно)" /></label>
+        <label>Email <input type="email" name="email" required placeholder="email@company.uz" /></label>
+        <label>Телефон <input type="tel" name="phone" placeholder="+998 __ ___ __ __" /></label>
+        <label>Тема обращения
+          <select name="topic">
+            <option>Вступление в ассоциацию</option>
+            <option>Льготы и преференции</option>
+            <option>Программа EduJob</option>
+            <option>Мероприятия</option>
+            <option>Партнёрство / медиа</option>
+            <option>Другое</option>
+          </select>
+        </label>
+        <label>Сообщение <textarea name="message" rows="4" required placeholder="Коротко опишите ваш вопрос"></textarea></label>
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Отправить</button>
+        <p class="text-mut" style="font-size:.8rem; margin:0;">Отправляя форму, вы соглашаетесь с политикой обработки персональных данных.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Как нас найти</span>
+      <h2>Офис MEYOS в Ташкенте</h2>
+      <p>Метро «Мирзо Улугбек», 5 минут пешком. Парковка для автомобилей и зарядные станции во дворе здания.</p>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=69.2100,41.3210,69.3500,41.3500&amp;layer=mapnik&amp;marker=41.3355,69.2812" loading="lazy" title="Карта офиса MEYOS"></iframe>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-bar">
+      <h2>Готовы стать частью мебельной экосистемы?</h2>
+      <p>Если вы хотите вступить в ассоциацию — оставьте заявку, и менеджер свяжется с вами в течение рабочего дня.</p>
+      <div class="flex gap-4" style="justify-content:center; flex-wrap:wrap;">
+        <a href="residency.html#join" class="btn btn-white btn-lg">Стать резидентом</a>
+        <a href="programs.html" class="btn btn-outline-white btn-lg">Программы</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div><a href="index.html" class="logo" style="color:#fff;"><span class="logo__mark">M</span> MEYOS</a><p style="opacity:.7; font-size:.9rem; line-height:1.6; margin-top:1rem; max-width:22rem;" data-i18n="footer.tagline">Ассоциация мебельщиков Узбекистана.</p></div>
+    <div><h4 data-i18n="footer.sections">Разделы</h4><a href="about.html" data-i18n="nav.about">О компании</a><a href="residency.html" data-i18n="nav.residency">Резидентство</a><a href="programs.html" data-i18n="nav.programs">Программы</a><a href="partners.html" data-i18n="nav.partners">Партнёры</a></div>
+    <div><h4 data-i18n="footer.activities">Активности</h4><a href="events.html" data-i18n="nav.events">Мероприятия</a><a href="news.html" data-i18n="nav.news">Новости</a><a href="programs.html#edujob">EduJob</a><a href="residency.html#join" data-i18n="cta.become">Стать резидентом</a></div>
+    <div><h4 data-i18n="footer.contacts">Контакты</h4><a href="tel:+998781500000">+998 78 150 00 00</a><a href="mailto:hello@meyos.uz">hello@meyos.uz</a><p style="opacity:.7; font-size:.85rem; margin:.8rem 0 0;" data-i18n="footer.address">Ташкент, ул. Буюк Ипак Йули, 12</p></div>
+  </div>
+  <div class="footer__bottom"><span data-i18n="footer.rights">© 2026 MEYOS</span><span data-i18n="footer.policy">Политика конфиденциальности</span></div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/i18n-auto.js"></script>
+<script src="assets/js/theme-switcher.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

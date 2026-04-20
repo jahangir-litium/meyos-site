@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Программа резидентства | MEYOS Ассоциация мебельной промышленности</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#d7e3f8",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#001d35",
+                        "secondary-fixed": "#e0e2ec",
+                        "surface-bright": "#f9f9fb",
+                        "background": "#f9f9fb",
+                        "on-surface": "#1a1c1e",
+                        "surface-container-low": "#f1f3f7",
+                        "tertiary": "#3a608f",
+                        "outline": "#73777f",
+                        "surface-container-highest": "#e2e2e6",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#191c1e",
+                        "primary": "#334155",
+                        "on-primary-container": "#f8fafc",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed": "#d7e3f8",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#2b3648",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#a2c9f4",
+                        "on-tertiary-container": "#001d35",
+                        "on-secondary-container": "#43474e",
+                        "primary-container": "#475569",
+                        "on-surface-variant": "#43474e",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c3c7cf",
+                        "on-primary-fixed": "#001b3d",
+                        "inverse-surface": "#2f3033",
+                        "surface": "#f9f9fb",
+                        "on-tertiary-fixed-variant": "#214876",
+                        "on-secondary-fixed-variant": "#43474e",
+                        "secondary": "#565f71",
+                        "surface-container-high": "#e8eaed",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "on-background": "#1a1c1e",
+                        "surface-variant": "#dee2eb",
+                        "secondary-container": "#dae2f9",
+                        "surface-container": "#eeeeef",
+                        "surface-dim": "#dadbdd",
+                        "surface-tint": "#334155"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .financial-table td, .financial-table th {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e2e6;
+        }
+        .financial-table th {
+            text-align: left;
+            font-weight: 700;
+            color: #43474e;
+            background-color: #f1f3f7;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm transition-colors duration-300">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+<div class="text-2xl font-bold tracking-tighter text-slate-900">MEYOS</div>
+<div class="hidden md:flex items-center space-x-8 font-manrope font-semibold tracking-tight text-sm text-slate-600">
+<a class="hover:text-slate-900" href="#">Ассоциация</a>
+<a class="text-slate-900 border-b-2 border-slate-900 pb-1" href="#">Резидентство</a>
+<a class="hover:text-slate-900" href="#">Инфраструктура</a>
+<a class="hover:text-slate-900" href="#">Господдержка</a>
+<a class="hover:text-slate-900" href="#">Портал</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center bg-slate-100 rounded-full px-3 py-1 mr-2">
+<button class="text-[10px] font-bold px-2 py-1 rounded-full bg-white shadow-sm text-slate-900">RU</button>
+<button class="text-[10px] font-bold px-2 py-1 text-slate-400 hover:text-slate-600">UZ</button>
+<button class="text-[10px] font-bold px-2 py-1 text-slate-400 hover:text-slate-600">EN</button>
+</div>
+<button class="px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:bg-slate-50 text-slate-700">Вход</button>
+<a class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-bold text-sm transition-all hover:shadow-lg hover:scale-105 active:opacity-80" href="#join-form">Стать резидентом</a>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-16 pb-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-bold tracking-widest uppercase mb-6">Программа резидентства MEYOS</span>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-tight mb-6">Получите <span class="text-gradient">особый индустриальный статус</span> в MEYOS.</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-10 max-w-xl">Обретите официальный статус «Резидента» в промышленной экосистеме MEYOS. Пользуйтесь льготным налоговым режимом, поддержкой государства и эксклюзивным доступом к глобальному рынку закупок мебели.</p>
+<div class="flex flex-wrap gap-4">
+<a class="px-8 py-4 bg-primary text-on-primary rounded-full font-bold text-base shadow-xl transition-transform hover:-translate-y-1 active:scale-95" href="#join-form">Стать резидентом</a>
+<a class="px-8 py-4 border border-outline text-primary font-bold text-base rounded-full hover:bg-surface-container-low transition-colors" href="#tax-report">Льготы и преференции</a>
+</div>
+</div>
+<div class="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+<img alt="Современный мебельный индустриальный парк" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZYlqh7PwRim0c_HBeP4m7noqJE8fShCXF54J4Xp-0ekdBiSj8n_vuhu2DNeBzrp-g5YyBxMCDY-p09wr16Cu2Zc5YcM8DKP4-TAP7hASoirNU0X1GhpKy7KXnkEN5Zvkx3Pg09SEc5WrRzx7N8929CtxaQ4SmRMBbg6LzayY8VPhAiTGEtHWakrsRqNl0rpj4bEXHLNcThNZkuNet1s-eZjIt-W8bZ8OZA-8JKzAi_41x39N4iAlMnWy92-F2CaKN4EDakwVgRKE"/>
+<div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-500 flex items-center justify-center">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest font-bold opacity-80">Привилегии резидентов</p>
+<h4 class="text-xl font-bold">Приоритет в государственных закупках</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Financial Report Style Section: Tax Incentives -->
+<section class="py-24 bg-surface" id="tax-report">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 text-primary font-bold mb-2">
+<span class="material-symbols-outlined">analytics</span>
+<span class="uppercase tracking-widest text-xs">Финансовый протокол</span>
+</div>
+<h2 class="text-4xl font-extrabold text-on-surface tracking-tight mb-4">Налоговая оптимизация и господдержка</h2>
+<p class="text-on-surface-variant">Резидентство MEYOS предоставляет структурированную правовую базу, направленную на минимизацию налоговой нагрузки для мебельных производств и дизайн-студий.</p>
+</div>
+<div class="bg-surface-container-high px-6 py-4 rounded-xl border-l-4 border-primary">
+<p class="text-xs font-bold text-primary uppercase">Текущий пул резидентов</p>
+<p class="text-2xl font-black">482 Активные компании</p>
+</div>
+</div>
+<div class="overflow-hidden rounded-2xl border border-outline-variant bg-white shadow-lg">
+<table class="w-full financial-table">
+<thead>
+<tr>
+<th>Категория льгот</th>
+<th>Общая ставка по отрасли</th>
+<th>Ставка для резидентов MEYOS</th>
+<th>Срок / Условия</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr>
+<td class="font-bold">Налог на прибыль (CIT)</td>
+<td>15% - 20%</td>
+<td class="text-slate-700 font-bold">7.5%</td>
+<td>Гарантировано на 5 лет после вступления</td>
+</tr>
+<tr>
+<td class="font-bold">Социальные взносы</td>
+<td>25%</td>
+<td class="text-slate-700 font-bold">12%</td>
+<td>Для всего инженерно-технического состава</td>
+</tr>
+<tr>
+<td class="font-bold">Таможенные пошлины (оборудование)</td>
+<td>Стандартный тариф</td>
+<td class="text-slate-700 font-bold">Освобождение 0%</td>
+<td>При модернизации производственных линий</td>
+</tr>
+<tr>
+<td class="font-bold">НДС на импорт сырья</td>
+<td>12% - 18%</td>
+<td class="text-slate-700 font-bold">Отсрочка НДС</td>
+<td>До 120 дней задержки платежа</td>
+</tr>
+<tr>
+<td class="font-bold">Грантовая поддержка R&amp;D</td>
+<td>Конкурсная основа</td>
+<td class="text-slate-700 font-bold">Прямой доступ</td>
+<td>Автоматическое право на госгранты</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 bg-surface-container-low rounded-xl border-t-2 border-primary">
+<h4 class="font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">assured_workload</span>
+                        Правовая стабильность
+                    </h4>
+<p class="text-xs text-on-surface-variant">Резидентство MEYOS предлагает стабильную правовую защиту инвестиций и упрощенное взаимодействие с регуляторами.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl border-t-2 border-primary">
+<h4 class="font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">hub</span>
+                        Доступ к инфраструктуре
+                    </h4>
+<p class="text-xs text-on-surface-variant">Готовые производственные площадки с подведенными коммуникациями и логистическими хабами международного класса.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl border-t-2 border-primary">
+<h4 class="font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">language</span>
+                        Экспортная поддержка
+                    </h4>
+<p class="text-xs text-on-surface-variant">Содействие в выходе на внешние рынки, субсидирование логистики и участие в международных выставках.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Compliance / Requirements (Exclusivity Layer) -->
+<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-16">
+<div class="lg:w-1/3">
+<h2 class="text-3xl font-extrabold tracking-tight mb-6">Требования к резидентам и комплаенс</h2>
+<p class="text-on-surface-variant mb-8">Не каждый заявитель получает статус резидента. Мы поддерживаем строгие стандарты, чтобы престиж сети MEYOS оставался на мировом уровне.</p>
+<div class="p-6 bg-primary text-on-primary rounded-2xl">
+<p class="text-sm font-bold uppercase tracking-widest mb-2 opacity-80">Фактор доверия</p>
+<p class="text-lg font-bold leading-snug">Статус резидента — это «Золотой знак» для международных инвесторов и банков.</p>
+</div>
+</div>
+<div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-bold text-primary">01</div>
+<div>
+<h4 class="font-bold mb-1">Проверка деятельности</h4>
+<p class="text-sm text-on-surface-variant">Подтверждение профильной деятельности в мебельной или смежной индустрии.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-bold text-primary">02</div>
+<div>
+<h4 class="font-bold mb-1">Финансовая прозрачность</h4>
+<p class="text-sm text-on-surface-variant">Отсутствие задолженностей и прозрачная структура владения бизнесом.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-bold text-primary">03</div>
+<div>
+<h4 class="font-bold mb-1">Социальная ответственность</h4>
+<p class="text-sm text-on-surface-variant">Соблюдение трудовых норм и создание качественных рабочих мест.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="shrink-0 w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-bold text-primary">04</div>
+<div>
+<h4 class="font-bold mb-1">Технологическое развитие</h4>
+<p class="text-sm text-on-surface-variant">Готовность внедрять современные стандарты производства и дизайна.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How to Apply (Timeline) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-4xl font-extrabold tracking-tight mb-4">Процесс оформления</h2>
+<p class="text-on-surface-variant mb-16">Переход к статусу Резидента занимает примерно 21-30 рабочих дней.</p>
+<div class="relative">
+<!-- Timeline Line -->
+<div class="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-outline-variant/50"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="relative z-10">
+<div class="w-24 h-24 rounded-2xl bg-white border border-outline-variant shadow-sm flex items-center justify-center mx-auto mb-6 transition-colors hover:border-primary group">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="description">description</span>
+</div>
+<h4 class="font-bold mb-2">Этап 1: Подача</h4>
+<p class="text-xs text-on-surface-variant px-4">Электронная подача корпоративного досье через портал резидента.</p>
+</div>
+<div class="relative z-10">
+<div class="w-24 h-24 rounded-2xl bg-white border border-outline-variant shadow-sm flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="fact_check">fact_check</span>
+</div>
+<h4 class="font-bold mb-2">Этап 2: Экспертиза</h4>
+<p class="text-xs text-on-surface-variant px-4">Оценка бизнес-плана и соответствия стандартам Экспертным советом.</p>
+</div>
+<div class="relative z-10">
+<div class="w-24 h-24 rounded-2xl bg-white border border-outline-variant shadow-sm flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="contract">contract</span>
+</div>
+<h4 class="font-bold mb-2">Этап 3: Финализация</h4>
+<p class="text-xs text-on-surface-variant px-4">Подписание соглашения о резидентстве в Офисе связи с государством.</p>
+</div>
+<div class="relative z-10">
+<div class="w-24 h-24 rounded-2xl bg-primary text-on-primary shadow-xl flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="verified_user">verified_user</span>
+</div>
+<h4 class="font-bold mb-2 text-primary">Статус получен</h4>
+<p class="text-xs text-on-surface-variant px-4">Выдача свидетельства и активация всех налоговых преференций.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Application Form Section -->
+<section class="py-24 bg-surface-container-low" id="join-form">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight mb-6">Заявка на резидентство</h2>
+<p class="text-on-surface-variant mb-10 leading-relaxed text-lg">Это официальная заявка на получение статуса индустриального резидента MEYOS. Пожалуйста, убедитесь, что все данные соответствуют официальным документам компании.</p>
+<div class="space-y-6">
+<div class="p-6 bg-white rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-6">
+<div class="w-14 h-14 shrink-0 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-2xl" data-icon="gavel">gavel</span>
+</div>
+<div>
+<h4 class="font-bold">Правовое сопровождение</h4>
+<p class="text-sm text-on-surface-variant">Юридическая поддержка на всех этапах подачи и оформления документов.</p>
+</div>
+</div>
+<div class="p-6 bg-white rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-6">
+<div class="w-14 h-14 shrink-0 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-2xl" data-icon="encrypted">encrypted</span>
+</div>
+<div>
+<h4 class="font-bold">Шифрованная передача</h4>
+<p class="text-sm text-on-surface-variant">Ваши данные защищены протоколами безопасности промышленного уровня.</p>
+</div>
+</div>
+</div>
+<div class="mt-12 p-8 bg-tertiary/5 border border-tertiary/20 rounded-3xl">
+<div class="flex items-center gap-4 text-tertiary font-bold mb-2">
+<span class="material-symbols-outlined">priority_high</span>
+<span>Важное уведомление</span>
+</div>
+<p class="text-sm text-on-surface-variant">Рассмотрение заявки начинается немедленно после подтверждения полноты предоставленного пакета документов.</p>
+</div>
+</div>
+<div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-outline-variant/20">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Название компании</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="ООО «Название»" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Основная деятельность</label>
+<select class="w-full px-5 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary transition-all">
+<option>Производство (Промышленное)</option>
+<option>Дизайн и R&amp;D студия</option>
+<option>Обработка сырья</option>
+<option>Digital Retail &amp; Tech</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">E-mail руководителя</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="ceo@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">ИНН / Регистрационный номер</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="Напр. 123456789" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Ожидаемый объем экспорта</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary transition-all" placeholder="Прогноз USD в год" type="text"/>
+</div>
+<button class="w-full py-5 bg-primary text-on-primary font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-3" type="submit">
+                        Подать заявку на статус
+                        <span class="material-symbols-outlined">verified</span>
+</button>
+<p class="text-center text-[10px] text-on-surface-variant uppercase tracking-widest leading-relaxed">Нажимая кнопку, вы подтверждаете достоверность предоставленных корпоративных данных.</p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-16 pb-8 border-t border-slate-200 bg-slate-50">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6 font-inter text-sm leading-relaxed">
+<div class="md:col-span-1">
+<div class="text-xl font-black text-slate-900 mb-6">MEYOS</div>
+<p class="text-slate-500 mb-6">Специальный индустриальный хаб мебельной промышленности. Развитие через инфраструктуру и государственную поддержку.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-slate-700 cursor-pointer transition-colors" data-icon="public">public</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-slate-700 cursor-pointer transition-colors" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-slate-900 mb-6">Резидентство</h5>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Матрица льгот</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Стандарты комплаенса</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Реестр резидентов</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Правила аудита</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-slate-900 mb-6">Экосистема</h5>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Технопарки</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Госгранты</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Экспортный коридор</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Портал закупок</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-bold text-slate-900 mb-6">Правовой отдел</h5>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Условия участия</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Защита данных</a></li>
+<li><a class="hover:text-primary hover:translate-x-1 transition-transform block" href="#">Политика Cookie</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-200 text-center text-xs text-slate-400">© 2024 Ассоциация мебельной промышленности MEYOS. Портал индустриального резидентства.</div>
+</footer>
+<!-- Persistent Floating CTA for Mobile -->
+<div class="md:hidden fixed bottom-6 left-6 right-6 z-[100]">
+<a class="w-full py-4 bg-primary text-on-primary font-bold text-center block rounded-full shadow-2xl border-4 border-white" href="#join-form">Стать резидентом</a>
+</div>
+</body></html>
