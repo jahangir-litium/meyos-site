@@ -21,7 +21,7 @@ class DocumentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocument;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Каталоги';
+    protected static string|UnitEnum|null $navigationGroup = 'Настройки';
 
     protected static ?string $navigationLabel = 'Документы';
 
@@ -29,7 +29,7 @@ class DocumentResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Документы';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 20;
 
     public static function form(Schema $schema): Schema
     {

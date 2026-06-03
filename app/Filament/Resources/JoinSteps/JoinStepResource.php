@@ -21,7 +21,7 @@ class JoinStepResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedListBullet;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Главная страница';
 
     protected static ?string $navigationLabel = 'Шаги вступления';
 
@@ -29,7 +29,7 @@ class JoinStepResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Шаги вступления';
 
-    protected static ?int $navigationSort = 110;
+    protected static ?int $navigationSort = 50;
 
     public static function form(Schema $schema): Schema
     {

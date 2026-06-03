@@ -38,7 +38,7 @@ class NewsForm
                         ->label('Обложка')
                         ->collection('cover')
                         ->image()
-                        ->imageEditor()
+                        
                         ->columnSpanFull(),
                 ])
                 ->columns(2),

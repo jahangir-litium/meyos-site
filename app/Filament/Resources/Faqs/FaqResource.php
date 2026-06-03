@@ -21,7 +21,7 @@ class FaqResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedQuestionMarkCircle;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Главная страница';
 
     protected static ?string $navigationLabel = 'FAQ';
 
@@ -29,7 +29,7 @@ class FaqResource extends Resource
 
     protected static ?string $pluralModelLabel = 'FAQ';
 
-    protected static ?int $navigationSort = 90;
+    protected static ?int $navigationSort = 60;
 
     public static function form(Schema $schema): Schema
     {

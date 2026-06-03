@@ -21,7 +21,7 @@ class CertificationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Об ассоциации';
 
     protected static ?string $navigationLabel = 'Сертификаты';
 
@@ -29,7 +29,7 @@ class CertificationResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Сертификаты';
 
-    protected static ?int $navigationSort = 130;
+    protected static ?int $navigationSort = 30;
 
     public static function form(Schema $schema): Schema
     {

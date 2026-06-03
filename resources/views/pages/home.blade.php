@@ -39,7 +39,8 @@
     </div>
     <div style="position:relative;">
       <div class="hero__media">
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80" alt="MEYOS" />
+        @php $heroUrl = $page?->getFirstMediaUrl('hero'); @endphp
+        <img src="{{ $heroUrl ?: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80' }}" alt="MEYOS" />
       </div>
     </div>
   </div>

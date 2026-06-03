@@ -147,9 +147,34 @@ class SiteSettings extends Page implements HasForms
     public function save(): void
     {
         $data = $this->form->getState();
+
         foreach ($data as $key => $value) {
+            // FileUpload может вернуть массив — нормализуем в строку
+            if (is_array($value) && count($value) === 1) {
+                $value = reset($value);
+            }
             Setting::put($key, $value);
         }
+
+        // Перезаливаем форму свежими данными, чтобы Livewire понял что upload завершён
+        $this->form->fill([
+            'site_name'       => Setting::get('site_name', 'MEYOS'),
+            'logo_path'       => Setting::get('logo_path'),
+            'favicon_path'    => Setting::get('favicon_path'),
+            'phone'           => Setting::get('phone'),
+            'email'           => Setting::get('email'),
+            'residency_email' => Setting::get('residency_email'),
+            'address'         => Setting::get('address'),
+            'hours'           => Setting::get('hours'),
+            'entity_name'     => Setting::get('entity_name'),
+            'requisites'      => Setting::get('requisites'),
+            'telegram_url'    => Setting::get('telegram_url'),
+            'whatsapp_url'    => Setting::get('whatsapp_url'),
+            'tg_enabled'      => (bool) Setting::get('tg_enabled', false),
+            'tg_bot_token'    => Setting::get('tg_bot_token'),
+            'tg_chat_id'      => Setting::get('tg_chat_id'),
+        ]);
+
         Notification::make()->title('Настройки сохранены')->success()->send();
     }
 

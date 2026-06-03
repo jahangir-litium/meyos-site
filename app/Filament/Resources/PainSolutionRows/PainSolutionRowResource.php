@@ -21,7 +21,7 @@ class PainSolutionRowResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Главная страница';
 
     protected static ?string $navigationLabel = 'Проблема → Решение';
 
@@ -29,7 +29,7 @@ class PainSolutionRowResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Проблема → Решение';
 
-    protected static ?int $navigationSort = 120;
+    protected static ?int $navigationSort = 30;
 
     public static function form(Schema $schema): Schema
     {

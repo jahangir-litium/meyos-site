@@ -21,7 +21,7 @@ class TaxRowResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCalculator;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Главная страница';
 
     protected static ?string $navigationLabel = 'Льготы — таблица';
 
@@ -29,7 +29,7 @@ class TaxRowResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Льготы — таблица';
 
-    protected static ?int $navigationSort = 100;
+    protected static ?int $navigationSort = 40;
 
     public static function form(Schema $schema): Schema
     {

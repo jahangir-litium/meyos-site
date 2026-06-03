@@ -21,7 +21,7 @@ class ProgramResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Каталоги';
 
     protected static ?string $navigationLabel = 'Программы';
 
@@ -29,7 +29,7 @@ class ProgramResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Программы';
 
-    protected static ?int $navigationSort = 50;
+    protected static ?int $navigationSort = 40;
 
     public static function form(Schema $schema): Schema
     {

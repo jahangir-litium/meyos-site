@@ -34,9 +34,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
-                'Контент',
-                'Заявки',
+                'Главная страница',
                 'Каталоги',
+                'Об ассоциации',
+                'Заявки',
                 'Настройки',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

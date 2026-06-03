@@ -21,7 +21,7 @@ class PartnerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Каталоги';
 
     protected static ?string $navigationLabel = 'Партнёры';
 
@@ -29,7 +29,7 @@ class PartnerResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Партнёры';
 
-    protected static ?int $navigationSort = 40;
+    protected static ?int $navigationSort = 30;
 
     public static function form(Schema $schema): Schema
     {

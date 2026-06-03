@@ -21,7 +21,7 @@ class TimelineItemResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Об ассоциации';
 
     protected static ?string $navigationLabel = 'История ассоциации';
 
@@ -29,7 +29,7 @@ class TimelineItemResource extends Resource
 
     protected static ?string $pluralModelLabel = 'История ассоциации';
 
-    protected static ?int $navigationSort = 70;
+    protected static ?int $navigationSort = 20;
 
     public static function form(Schema $schema): Schema
     {

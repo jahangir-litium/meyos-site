@@ -18,7 +18,7 @@ class BusinessCaseForm
                 
                 Toggle::make('is_published')->label('Опубликован')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
-                SpatieMediaLibraryFileUpload::make('cover')->collection('cover')->image()->imageEditor()->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('cover')->collection('cover')->image()->columnSpanFull(),
         
             ])->columns(2),
 

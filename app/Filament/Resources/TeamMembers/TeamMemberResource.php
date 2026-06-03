@@ -21,7 +21,7 @@ class TeamMemberResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Об ассоциации';
 
     protected static ?string $navigationLabel = 'Команда';
 
@@ -29,7 +29,7 @@ class TeamMemberResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Команда';
 
-    protected static ?int $navigationSort = 80;
+    protected static ?int $navigationSort = 10;
 
     public static function form(Schema $schema): Schema
     {

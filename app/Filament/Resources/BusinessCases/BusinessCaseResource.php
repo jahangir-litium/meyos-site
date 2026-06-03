@@ -21,7 +21,7 @@ class BusinessCaseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTrophy;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Контент';
+    protected static string|UnitEnum|null $navigationGroup = 'Главная страница';
 
     protected static ?string $navigationLabel = 'Бизнес-кейсы';
 
@@ -29,7 +29,7 @@ class BusinessCaseResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Бизнес-кейсы';
 
-    protected static ?int $navigationSort = 30;
+    protected static ?int $navigationSort = 10;
 
     public static function form(Schema $schema): Schema
     {
