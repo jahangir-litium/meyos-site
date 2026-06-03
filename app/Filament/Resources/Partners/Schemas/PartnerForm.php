@@ -17,7 +17,7 @@ class PartnerForm
         return $schema->components([
             Section::make('Основное')->schema([
                 
-                TextInput::make('slug')->required()->unique(\App\Models\Partner::class, 'slug', ignoreRecord: true),
+                TextInput::make('slug')->unique(\App\Models\Partner::class, 'slug', ignoreRecord: true),
                 Select::make('category')->label('Категория')->options(\App\Models\Partner::CATEGORIES)->required(),
                 TextInput::make('logo_text')->label('Текст логотипа')->maxLength(30),
                 TextInput::make('website_url')->label('Сайт')->url(),

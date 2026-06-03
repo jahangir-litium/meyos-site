@@ -15,7 +15,7 @@ class CertificationForm
         return $schema->components([
             Section::make('Основное')->schema([
                 
-                TextInput::make('icon')->label('Material иконка'),
+                \App\Filament\Support\IconPicker::make('icon'),
                 Toggle::make('is_published')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
         

@@ -41,9 +41,7 @@ class BlocksRelationManager extends RelationManager
                         ->required()
                         ->native(false)
                         ->helperText('Карточка-фича / Учебный модуль / Метрика / Призыв'),
-                    TextInput::make('icon')
-                        ->label('Material иконка')
-                        ->helperText('Например: school, flight_takeoff, monitoring'),
+                    \App\Filament\Support\IconPicker::make('icon'),
                     Toggle::make('is_published')->label('Опубликован')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
                     FileUpload::make('image')

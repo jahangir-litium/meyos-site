@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\AutoSlug;
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Event extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, InteractsWithMedia;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia;
 
     protected $fillable = [
         'slug', 'category', 'event_date', 'end_date', 'start_time', 'end_time',

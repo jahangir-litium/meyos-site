@@ -30,9 +30,7 @@ class AdvantagesRelationManager extends RelationManager
         return $schema->components([
             Section::make('Параметры')
                 ->schema([
-                    TextInput::make('icon')
-                        ->label('Material иконка')
-                        ->helperText('Например: check_circle, verified, star'),
+                    \App\Filament\Support\IconPicker::make('icon'),
                     Toggle::make('is_published')->label('Опубликовано')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
                 ])

@@ -20,10 +20,9 @@ class NewsForm
             Section::make('Основное')
                 ->schema([
                     TextInput::make('slug')
-                        ->required()
                         ->unique(News::class, 'slug', ignoreRecord: true)
                         ->maxLength(150)
-                        ->helperText('Латиница, цифры, дефис'),
+                        ->helperText('Оставьте пустым — создастся автоматически из названия'),
                     Select::make('category')
                         ->label('Категория')
                         ->options(News::CATEGORIES)

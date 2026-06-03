@@ -3,9 +3,11 @@
 namespace App\Filament\Resources\News\Tables;
 
 use App\Models\News;
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -40,11 +42,31 @@ class NewsTable
                 TernaryFilter::make('is_featured')->label('Главная'),
             ])
             ->recordActions([
+                Action::make('view')
+                    ->label('На сайте')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn (?News $r) => $r ? url('/news/' . $r->slug) : null, shouldOpenInNewTab: true)
+                    ->visible(fn (?News $r) => $r && $r->is_published),
                 EditAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
+                    BulkAction::make('publish')
+                        ->label('Опубликовать')
+                        ->icon('heroicon-o-eye')
+                        ->color('success')
+                        ->requiresConfirmation()
+                        ->action(fn ($records) => $records->each->update(['is_published' => true]))
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('unpublish')
+                        ->label('Снять с публикации')
+                        ->icon('heroicon-o-eye-slash')
+                        ->color('warning')
+                        ->requiresConfirmation()
+                        ->action(fn ($records) => $records->each->update(['is_published' => false]))
+                        ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

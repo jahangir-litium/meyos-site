@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\AutoSlug;
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -10,7 +11,9 @@ use Spatie\Translatable\HasTranslations;
 
 class Partner extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, InteractsWithMedia;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia;
+
+    public string $autoSlugFrom = 'name';
 
     protected $fillable = [
         'slug', 'category', 'name', 'description', 'logo_text', 'logo_image', 'website_url',

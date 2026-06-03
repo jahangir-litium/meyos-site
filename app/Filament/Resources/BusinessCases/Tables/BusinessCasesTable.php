@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\BusinessCases\Tables;
 
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
@@ -28,11 +30,30 @@ class BusinessCasesTable
                 TernaryFilter::make('is_published'),
             ])
             ->recordActions([
+                Action::make('view')
+                    ->label('На сайте')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn () => url('/') . '#cases', shouldOpenInNewTab: true),
                 EditAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
+                    BulkAction::make('publish')
+                        ->label('Опубликовать')
+                        ->icon('heroicon-o-eye')
+                        ->color('success')
+                        ->requiresConfirmation()
+                        ->action(fn ($records) => $records->each->update(['is_published' => true]))
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('unpublish')
+                        ->label('Снять с публикации')
+                        ->icon('heroicon-o-eye-slash')
+                        ->color('warning')
+                        ->requiresConfirmation()
+                        ->action(fn ($records) => $records->each->update(['is_published' => false]))
+                        ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

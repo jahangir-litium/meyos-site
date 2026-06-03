@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\AutoSlug;
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Program extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, InteractsWithMedia;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia;
 
     protected $fillable = [
         'slug', 'icon', 'color', 'chip', 'title', 'description',

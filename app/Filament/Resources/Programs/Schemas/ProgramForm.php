@@ -23,10 +23,8 @@ class ProgramForm
                         ->label('URL-идентификатор')
                         ->required()
                         ->unique(Program::class, 'slug', ignoreRecord: true)
-                        ->helperText('Например: edujob, marketplace, export-hub'),
-                    TextInput::make('icon')
-                        ->label('Material иконка')
-                        ->helperText('school · flight_takeoff · storefront · monitoring'),
+                        ->helperText('Оставьте пустым — создастся из названия (edujob, marketplace, …)'),
+                    \App\Filament\Support\IconPicker::make('icon'),
                     Select::make('color')
                         ->label('Цвет акцента')
                         ->options([

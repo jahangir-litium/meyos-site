@@ -19,7 +19,7 @@ class EventForm
         return $schema->components([
             Section::make('Основное')->schema([
                 
-                TextInput::make('slug')->required()->unique(\App\Models\Event::class, 'slug', ignoreRecord: true)->maxLength(150),
+                TextInput::make('slug')->unique(\App\Models\Event::class, 'slug', ignoreRecord: true)->maxLength(150),
                 Select::make('category')->label('Категория')->options(\App\Models\Event::CATEGORIES)->required(),
                 DatePicker::make('event_date')->label('Дата начала')->required(),
                 DatePicker::make('end_date')->label('Дата окончания'),
