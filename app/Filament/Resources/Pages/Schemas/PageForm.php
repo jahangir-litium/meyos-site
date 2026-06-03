@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Filament\Support\TranslatableTabs;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -21,21 +21,16 @@ class PageForm
                     Toggle::make('is_published')->label('Опубликована')->default(true),
                 ])->columns(3),
 
-            Section::make('Картинки страницы')
-                ->description('Hero-фото показывается крупным баннером. OG-картинка — для шаринга в соцсетях.')
+            Section::make('Картинка страницы')
+                ->description('Hero-фото показывается крупным баннером в шапке страницы.')
                 ->schema([
-                    SpatieMediaLibraryFileUpload::make('hero')
-                        ->collection('hero')
+                    FileUpload::make('hero_image')
+                        ->disk('public')->directory('pages')->visibility('public')
                         ->label('Hero-фото (рекомендуется 1600×900)')
                         ->image()
-                        ->maxSize(10240),
-                    SpatieMediaLibraryFileUpload::make('og')
-                        ->collection('og')
-                        ->label('OG-картинка для соцсетей (1200×630)')
-                        ->image()
-                        ->maxSize(5120),
-                ])
-                ->columns(2),
+                        ->maxSize(10240)
+                        ->columnSpanFull(),
+                ]),
 
             Section::make('Контент (RU / UZ / EN)')
                 ->schema([

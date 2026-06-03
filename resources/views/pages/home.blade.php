@@ -39,7 +39,7 @@
     </div>
     <div style="position:relative;">
       <div class="hero__media">
-        @php $heroUrl = $page?->getFirstMediaUrl('hero'); @endphp
+        @php $heroUrl = $page?->hero_image ? asset('storage/' . $page->hero_image) : null; @endphp
         <img src="{{ $heroUrl ?: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80' }}" alt="MEYOS" />
       </div>
     </div>
@@ -105,11 +105,8 @@
       @foreach ($cases as $case)
         <article class="case">
           <div class="case__img">
-            @if($case->getFirstMediaUrl('cover'))
-              <img src="{{ $case->getFirstMediaUrl('cover') }}" alt="{{ $tr($case, 'title') }}" />
-            @else
-              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80" alt="" />
-            @endif
+            @php $coverUrl = $case->cover_image ? asset('storage/' . $case->cover_image) : null; @endphp
+            <img src="{{ $coverUrl ?: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80' }}" alt="{{ $tr($case, 'title') }}" />
           </div>
           <div>
             <span class="case__num">{{ $tr($case, 'tag') }}</span>
@@ -212,7 +209,13 @@
     </div>
     <div class="partners-grid">
       @foreach ($partners as $partner)
-        <div class="partner-logo">{{ $partner->logo_text ?: $tr($partner, 'name') }}</div>
+        <div class="partner-logo">
+          @if($partner->logo_image)
+            <img src="{{ asset('storage/' . $partner->logo_image) }}" alt="{{ $tr($partner, 'name') }}" style="max-height:60%; max-width:80%; object-fit:contain;">
+          @else
+            {{ $partner->logo_text ?: $tr($partner, 'name') }}
+          @endif
+        </div>
       @endforeach
     </div>
     <div style="text-align:center; margin-top:2rem;">

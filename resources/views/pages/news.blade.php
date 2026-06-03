@@ -28,7 +28,7 @@
     @if ($featured)
       <a href="{{ route('news.show', $featured->slug) }}" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:1fr; gap:0; border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:2rem;">
         <div style="aspect-ratio:16/9; background:rgb(var(--surface-deep));">
-          @if($featured->getFirstMediaUrl('cover'))<img src="{{ $featured->getFirstMediaUrl('cover') }}" style="width:100%; height:100%; object-fit:cover;">@endif
+          @if($featured->cover_image ? asset("storage/" . $featured->cover_image) : null)<img src="{{ $featured->cover_image ? asset("storage/" . $featured->cover_image) : null }}" style="width:100%; height:100%; object-fit:cover;">@endif
         </div>
         <div style="padding:1.5rem;">
           <span class="chip">{{ \App\Models\News::CATEGORIES[$featured->category] ?? '' }}</span>
@@ -43,7 +43,7 @@
       @foreach ($news as $item)
         <a href="{{ route('news.show', $item->slug) }}" style="text-decoration:none; color:inherit; display:block; border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); overflow:hidden;">
           <div style="aspect-ratio:16/9; background:rgb(var(--surface-deep));">
-            @if($item->getFirstMediaUrl('cover'))<img src="{{ $item->getFirstMediaUrl('cover') }}" style="width:100%; height:100%; object-fit:cover;">@endif
+            @if($item->cover_image ? asset("storage/" . $item->cover_image) : null)<img src="{{ $item->cover_image ? asset("storage/" . $item->cover_image) : null }}" style="width:100%; height:100%; object-fit:cover;">@endif
           </div>
           <div style="padding:1.5rem;">
             <span class="chip">{{ \App\Models\News::CATEGORIES[$item->category] ?? '' }}</span>

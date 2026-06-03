@@ -15,7 +15,7 @@ class Event extends Model implements HasMedia
     protected $fillable = [
         'slug', 'category', 'event_date', 'end_date', 'start_time', 'end_time',
         'city', 'location', 'is_featured', 'is_published',
-        'title', 'preview', 'description', 'image_alt', 'expected_attendees', 'sort',
+        'title', 'preview', 'description', 'image_alt', 'cover_image', 'expected_attendees', 'sort',
     ];
 
     public array $translatable = ['city', 'location', 'title', 'preview', 'description', 'image_alt'];

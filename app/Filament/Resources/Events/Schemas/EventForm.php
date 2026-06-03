@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Events\Schemas;
 use App\Filament\Support\TranslatableTabs;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
@@ -28,7 +28,7 @@ class EventForm
                 TextInput::make('expected_attendees')->label('Ожидаемое число участников')->numeric(),
                 Toggle::make('is_featured')->label('Главное событие'),
                 Toggle::make('is_published')->label('Опубликовано')->default(true),
-                SpatieMediaLibraryFileUpload::make('cover')->collection('cover')->image()->columnSpanFull(),
+                FileUpload::make('cover_image')->collection('cover')->image()->columnSpanFull(),
         
             ])->columns(2),
 

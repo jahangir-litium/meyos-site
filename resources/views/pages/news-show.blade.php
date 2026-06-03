@@ -20,9 +20,9 @@
     <h1 style="font-size:clamp(1.75rem, 4vw, 2.75rem); margin:1rem 0 1.5rem; line-height:1.2;">{{ $tr($news, 'title') }}</h1>
     <div style="font-size:.85rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase; margin-bottom:2rem;">{{ $news->published_at->format('d.m.Y') }}</div>
 
-    @if($news->getFirstMediaUrl('cover'))
+    @if($news->cover_image ? asset("storage/" . $news->cover_image) : null)
       <div style="aspect-ratio:16/9; overflow:hidden; border-radius:var(--radius-lg); margin-bottom:2rem;">
-        <img src="{{ $news->getFirstMediaUrl('cover') }}" style="width:100%; height:100%; object-fit:cover;">
+        <img src="{{ $news->cover_image ? asset("storage/" . $news->cover_image) : null }}" style="width:100%; height:100%; object-fit:cover;">
       </div>
     @endif
 

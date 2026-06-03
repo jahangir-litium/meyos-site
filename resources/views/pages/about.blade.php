@@ -50,8 +50,8 @@
     <div class="grid grid-4">
       @foreach ($team as $member)
         <div class="card" style="text-align:center;">
-          @if($member->getFirstMediaUrl('photo'))
-            <div style="width:100px; height:100px; border-radius:9999px; margin:0 auto 1rem; overflow:hidden;"><img src="{{ $member->getFirstMediaUrl('photo') }}" style="width:100%; height:100%; object-fit:cover;"></div>
+          @if($member->photo_image ? asset("storage/" . $member->photo_image) : null)
+            <div style="width:100px; height:100px; border-radius:9999px; margin:0 auto 1rem; overflow:hidden;"><img src="{{ $member->photo_image ? asset("storage/" . $member->photo_image) : null }}" style="width:100%; height:100%; object-fit:cover;"></div>
           @else
             <div style="width:100px; height:100px; border-radius:9999px; background:rgb(var(--primary-soft)); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-family:var(--font-head); font-size:2rem; font-weight:800; color:rgb(var(--primary));">{{ $member->initials }}</div>
           @endif

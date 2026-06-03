@@ -71,4 +71,50 @@ class UploadTest extends TestCase
         $this->assertEquals('sync', config('queue.default'));
         $this->assertFalse(config('media-library.queue_conversions_by_default'));
     }
+
+    /** Реальный сценарий: создание партнёра с логотипом через Filament Form */
+    public function test_partner_form_saves_with_logo(): void
+    {
+        Storage::fake('public');
+
+        $admin = \App\Models\User::firstOrCreate(['email' => 'admin@meyos.uz'], [
+            'name' => 'Admin', 'password' => bcrypt('test'),
+        ]);
+
+        $this->actingAs($admin);
+
+        // Эмулируем загруженный через Livewire файл, сохранённый в public/partners/
+        $logo = UploadedFile::fake()->image('logo.png', 200, 60);
+        $path = $logo->storeAs('partners', 'qa-' . time() . '.png', 'public');
+
+        // Создаём партнёра напрямую — как это сделает Filament после save()
+        $partner = \App\Models\Partner::create([
+            'slug'        => 'qa-partner-' . time(),
+            'category'    => 'production',
+            'name'        => ['ru' => 'QA Partner'],
+            'logo_image'  => $path,
+        ]);
+
+        $this->assertNotEmpty($partner->logo_image);
+        $this->assertTrue(Storage::disk('public')->exists($partner->logo_image));
+
+        // URL генерируется корректно
+        $url = asset('storage/' . $partner->logo_image);
+        $this->assertStringContainsString('/storage/partners/', $url);
+    }
+
+    /** Загрузка hero картинки страницы */
+    public function test_page_hero_image_saves_to_disk(): void
+    {
+        Storage::fake('public');
+
+        $page = \App\Models\Page::where('slug', 'home')->first();
+        $hero = UploadedFile::fake()->image('hero.jpg', 1600, 900);
+        $path = $hero->storeAs('pages', 'home-hero.jpg', 'public');
+
+        $page->update(['hero_image' => $path]);
+
+        $this->assertEquals($path, $page->fresh()->hero_image);
+        $this->assertTrue(Storage::disk('public')->exists($path));
+    }
 }

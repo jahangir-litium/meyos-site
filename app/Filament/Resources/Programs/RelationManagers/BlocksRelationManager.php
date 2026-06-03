@@ -10,7 +10,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -46,8 +46,8 @@ class BlocksRelationManager extends RelationManager
                         ->helperText('Например: school, flight_takeoff, monitoring'),
                     Toggle::make('is_published')->label('Опубликован')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
-                    SpatieMediaLibraryFileUpload::make('image')
-                        ->collection('image')
+                    FileUpload::make('image')
+                        ->disk('public')->directory('program-blocks')->visibility('public')
                         ->label('Картинка (опционально)')
                         ->image()
                         ->columnSpanFull(),

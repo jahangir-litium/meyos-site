@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Documents\Schemas;
 
 use App\Filament\Support\TranslatableTabs;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -18,7 +18,7 @@ class DocumentForm
                 
                 Toggle::make('is_published')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
-                SpatieMediaLibraryFileUpload::make('file')->collection('file')->label('PDF/файл')->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])->columnSpanFull(),
+                FileUpload::make('file_path')->disk('public')->directory('documents')->visibility('public')->label('PDF/файл')->maxSize(20480)->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])->columnSpanFull(),
         
             ])->columns(2),
 

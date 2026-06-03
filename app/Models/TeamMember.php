@@ -12,7 +12,7 @@ class TeamMember extends Model implements HasMedia
 {
     use HasTranslations, HasSorting, InteractsWithMedia;
 
-    protected $fillable = ['name', 'role', 'initials', 'is_published', 'sort'];
+    protected $fillable = ['name', 'role', 'initials', 'photo_image', 'is_published', 'sort'];
     public array $translatable = ['name', 'role'];
     protected $casts = ['is_published' => 'boolean'];
 

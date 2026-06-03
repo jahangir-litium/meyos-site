@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Programs\Schemas;
 use App\Filament\Support\TranslatableTabs;
 use App\Models\Program;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -39,7 +39,7 @@ class ProgramForm
                     Toggle::make('is_flagship')->label('Флагман (на видном месте)'),
                     Toggle::make('is_published')->label('Опубликована')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
-                    SpatieMediaLibraryFileUpload::make('cover')
+                    FileUpload::make('cover_image')
                         ->collection('cover')
                         ->label('Обложка / hero-картинка')
                         ->image()

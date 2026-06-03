@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\BusinessCases\Schemas;
 
 use App\Filament\Support\TranslatableTabs;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -18,7 +18,7 @@ class BusinessCaseForm
                 
                 Toggle::make('is_published')->label('Опубликован')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
-                SpatieMediaLibraryFileUpload::make('cover')->collection('cover')->image()->columnSpanFull(),
+                FileUpload::make('cover_image')->collection('cover')->image()->columnSpanFull(),
         
             ])->columns(2),
 

@@ -6,7 +6,7 @@ use App\Filament\Support\TranslatableTabs;
 use App\Models\News;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -34,7 +34,7 @@ class NewsForm
                         ->default(now()),
                     Toggle::make('is_featured')->label('Главная новость'),
                     Toggle::make('is_published')->label('Опубликована')->default(true),
-                    SpatieMediaLibraryFileUpload::make('cover')
+                    FileUpload::make('cover_image')
                         ->label('Обложка')
                         ->collection('cover')
                         ->image()

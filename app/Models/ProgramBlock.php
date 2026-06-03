@@ -14,7 +14,7 @@ class ProgramBlock extends Model implements HasMedia
     use HasTranslations, HasSorting, InteractsWithMedia;
 
     protected $fillable = [
-        'program_id', 'type', 'icon', 'title', 'description', 'meta',
+        'program_id', 'type', 'icon', 'image', 'title', 'description', 'meta',
         'is_published', 'sort',
     ];
 

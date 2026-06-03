@@ -13,7 +13,7 @@ class Partner extends Model implements HasMedia
     use HasTranslations, HasSorting, InteractsWithMedia;
 
     protected $fillable = [
-        'slug', 'category', 'name', 'description', 'logo_text', 'website_url',
+        'slug', 'category', 'name', 'description', 'logo_text', 'logo_image', 'website_url',
         'registry_id', 'is_published', 'show_on_home', 'sort',
     ];
 

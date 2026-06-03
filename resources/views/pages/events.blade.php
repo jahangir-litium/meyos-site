@@ -25,7 +25,7 @@
     </div>
     <div class="case">
       <div class="case__img">
-        @if($featured->getFirstMediaUrl('cover'))<img src="{{ $featured->getFirstMediaUrl('cover') }}" style="width:100%; height:100%; object-fit:cover;">@else<img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900" style="width:100%; height:100%; object-fit:cover;">@endif
+        @if($featured->cover_image ? asset("storage/" . $featured->cover_image) : null)<img src="{{ $featured->cover_image ? asset("storage/" . $featured->cover_image) : null }}" style="width:100%; height:100%; object-fit:cover;">@else<img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900" style="width:100%; height:100%; object-fit:cover;">@endif
       </div>
       <div>
         <span class="case__num">{{ $featured->event_date->format('d.m.Y') }} · {{ $tr($featured, 'location') }}</span>

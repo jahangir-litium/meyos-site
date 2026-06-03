@@ -18,7 +18,7 @@ class BusinessCase extends Model implements HasMedia
         'tag', 'title', 'description',
         'metric1_value', 'metric1_label',
         'metric2_value', 'metric2_label',
-        'metric3_value', 'metric3_label',
+        'metric3_value', 'metric3_label', 'cover_image',
         'is_published', 'sort',
     ];
 

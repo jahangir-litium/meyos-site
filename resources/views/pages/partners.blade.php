@@ -44,8 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="grid grid-4">
       @foreach ($partners as $partner)
         <div data-partner-card data-category="{{ $partner->category }}" class="card" style="padding:1.5rem;">
-          <div style="height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem;">
-            @if($partner->getFirstMediaUrl('logo'))<img src="{{ $partner->getFirstMediaUrl('logo') }}" style="max-height:100%;">@else{{ $partner->logo_text ?: $tr($partner, 'name') }}@endif
+          <div style="height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem; overflow:hidden;">
+            @if($partner->logo_image)
+              <img src="{{ asset('storage/' . $partner->logo_image) }}" style="max-height:90%; max-width:90%; object-fit:contain;" alt="{{ $tr($partner, 'name') }}">
+            @else
+              {{ $partner->logo_text ?: $tr($partner, 'name') }}
+            @endif
           </div>
           <span class="chip">{{ \App\Models\Partner::CATEGORIES[$partner->category] ?? $partner->category }}</span>
           <h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">{{ $tr($partner, 'name') }}</h3>

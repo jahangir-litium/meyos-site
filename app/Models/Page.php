@@ -13,7 +13,7 @@ class Page extends Model implements HasMedia
 
     protected $fillable = [
         'slug', 'view', 'title', 'seo_title', 'seo_description', 'seo_keywords',
-        'hero_tag', 'hero_h1', 'hero_lead', 'is_published',
+        'hero_tag', 'hero_h1', 'hero_lead', 'hero_image', 'is_published',
     ];
 
     public array $translatable = [

@@ -15,7 +15,7 @@ class Program extends Model implements HasMedia
 
     protected $fillable = [
         'slug', 'icon', 'color', 'chip', 'title', 'description',
-        'hero_h1', 'hero_lead', 'short_summary',
+        'hero_h1', 'hero_lead', 'short_summary', 'cover_image',
         'is_flagship', 'is_published', 'sort',
     ];
 

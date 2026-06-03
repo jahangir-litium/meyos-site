@@ -17,7 +17,7 @@ class News extends Model implements HasMedia
 
     protected $fillable = [
         'slug', 'category', 'published_at', 'is_featured', 'is_published',
-        'title', 'preview', 'content', 'image_alt', 'sort',
+        'title', 'preview', 'content', 'image_alt', 'cover_image', 'sort',
     ];
 
     public array $translatable = ['title', 'preview', 'content', 'image_alt'];
