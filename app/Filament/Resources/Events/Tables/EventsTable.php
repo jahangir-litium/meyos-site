@@ -7,7 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -19,7 +19,7 @@ class EventsTable
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('cover')->collection('cover')->label('Фото'),
+                ImageColumn::make('cover_image')->disk('public')->label('Фото'),
                 TextColumn::make('title')->label('Название')->limit(50)->searchable(query: fn ($q, $s) => $q->where('title->ru', 'like', "%$s%")),
                 TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => \App\Models\Event::CATEGORIES[$s] ?? $s),
                 TextColumn::make('event_date')->label('Дата')->date('d.m.Y')->sortable(),

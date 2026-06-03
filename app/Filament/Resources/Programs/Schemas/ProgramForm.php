@@ -40,7 +40,7 @@ class ProgramForm
                     Toggle::make('is_published')->label('Опубликована')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
                     FileUpload::make('cover_image')
-                        ->collection('cover')
+                        
                         ->label('Обложка / hero-картинка')
                         ->image()
                         ->columnSpanFull(),

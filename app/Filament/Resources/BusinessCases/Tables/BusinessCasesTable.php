@@ -7,7 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -19,7 +19,7 @@ class BusinessCasesTable
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('cover')->collection('cover')->label('Фото'),
+                ImageColumn::make('cover_image')->disk('public')->label('Фото'),
                 TextColumn::make('title')->label('Заголовок')->limit(50)->searchable(query: fn ($q, $s) => $q->where('title->ru', 'like', "%$s%")),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
                 TextColumn::make('sort')->label('Порядок')->sortable(),

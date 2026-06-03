@@ -7,7 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -19,7 +19,7 @@ class TeamMembersTable
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('photo')->collection('photo')->circular()->label('Фото'),
+                ImageColumn::make('photo_image')->disk('public')->circular()->label('Фото'),
                 TextColumn::make('name')->label('Имя'),
                 TextColumn::make('role')->label('Должность'),
                 IconColumn::make('is_published')->boolean(),

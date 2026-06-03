@@ -28,7 +28,7 @@ class EventForm
                 TextInput::make('expected_attendees')->label('Ожидаемое число участников')->numeric(),
                 Toggle::make('is_featured')->label('Главное событие'),
                 Toggle::make('is_published')->label('Опубликовано')->default(true),
-                FileUpload::make('cover_image')->collection('cover')->image()->columnSpanFull(),
+                FileUpload::make('cover_image')->image()->columnSpanFull(),
         
             ])->columns(2),
 

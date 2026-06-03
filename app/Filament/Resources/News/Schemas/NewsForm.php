@@ -36,7 +36,7 @@ class NewsForm
                     Toggle::make('is_published')->label('Опубликована')->default(true),
                     FileUpload::make('cover_image')
                         ->label('Обложка')
-                        ->collection('cover')
+                        
                         ->image()
                         
                         ->columnSpanFull(),

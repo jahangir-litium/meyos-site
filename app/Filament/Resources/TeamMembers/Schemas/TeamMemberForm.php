@@ -19,7 +19,7 @@ class TeamMemberForm
                 TextInput::make('initials')->label('Инициалы (если нет фото)')->maxLength(5),
                 Toggle::make('is_published')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
-                FileUpload::make('photo_image')->collection('photo')->image()->avatar(),
+                FileUpload::make('photo_image')->image(),
         
             ])->columns(2),
 
