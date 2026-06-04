@@ -25,9 +25,17 @@ class PageController extends Controller
     /** 5-минутный кэш, инвалидируется по тегу 'pages' при save() моделей (см. trait HasPageCache) */
     private const CACHE_TTL = 300;
 
+    /** Версия кэша. Меняйте при правках моделей чтобы инвалидировать старый cache. */
+    private const CACHE_VERSION = 'v2';
+
+    private function key(string $page): string
+    {
+        return 'page:' . self::CACHE_VERSION . ':' . $page . ':' . app()->getLocale();
+    }
+
     public function home()
     {
-        $data = Cache::remember('page:home:'.app()->getLocale(), self::CACHE_TTL, fn () => [
+        $data = $this->safeRemember($this->key('home'), fn () => [
             'page'      => Page::where('slug', 'home')->first(),
             'benefits'  => Benefit::published()->ordered()->get(),
             'painSols'  => PainSolutionRow::published()->ordered()->get(),
@@ -46,7 +54,7 @@ class PageController extends Controller
 
     public function about()
     {
-        $data = Cache::remember('page:about:'.app()->getLocale(), self::CACHE_TTL, fn () => [
+        $data = $this->safeRemember($this->key('about'), fn () => [
             'page'           => Page::where('slug', 'about')->first(),
             'timeline'       => TimelineItem::published()->ordered()->get(),
             'team'           => TeamMember::published()->ordered()->get(),
@@ -58,7 +66,7 @@ class PageController extends Controller
 
     public function residency()
     {
-        $data = Cache::remember('page:residency:'.app()->getLocale(), self::CACHE_TTL, fn () => [
+        $data = $this->safeRemember($this->key('residency'), fn () => [
             'page'      => Page::where('slug', 'residency')->first(),
             'taxRows'   => TaxRow::published()->ordered()->get(),
             'benefits'  => Benefit::published()->ordered()->get(),
@@ -74,7 +82,7 @@ class PageController extends Controller
 
     public function programs()
     {
-        $data = Cache::remember('page:programs:'.app()->getLocale(), self::CACHE_TTL, fn () => [
+        $data = $this->safeRemember($this->key('programs'), fn () => [
             'page'     => Page::where('slug', 'programs')->first(),
             'programs' => Program::published()
                 ->with(['blocks' => fn ($q) => $q->orderBy('sort'), 'advantages' => fn ($q) => $q->orderBy('sort')])
@@ -88,7 +96,7 @@ class PageController extends Controller
 
     public function partners()
     {
-        $data = Cache::remember('page:partners:'.app()->getLocale(), self::CACHE_TTL, fn () => [
+        $data = $this->safeRemember($this->key('partners'), fn () => [
             'page'     => Page::where('slug', 'partners')->first(),
             'partners' => Partner::published()->ordered()->get(),
         ]);
@@ -102,6 +110,35 @@ class PageController extends Controller
             'page'     => Page::where('slug', 'contacts')->first(),
             'settings' => $this->settings(),
         ]);
+    }
+
+    /**
+     * Cache::remember с автовосстановлением: если сериализованный объект сломался
+     * (incomplete-object после правок моделей), мы forget'аем ключ и пересчитываем.
+     */
+    private function safeRemember(string $key, \Closure $callback): array
+    {
+        try {
+            $cached = Cache::get($key);
+            if ($cached !== null) {
+                // Триггерим обращение к одному полю чтобы убедиться что объект целый
+                foreach ($cached as $val) {
+                    if (is_object($val) && method_exists($val, 'getKey')) $val->getKey();
+                }
+                return $cached;
+            }
+        } catch (\Throwable $e) {
+            Cache::forget($key);
+            report($e);
+        }
+
+        $fresh = $callback();
+        try {
+            Cache::put($key, $fresh, self::CACHE_TTL);
+        } catch (\Throwable $e) {
+            report($e); // если сериализация падает — отдаём без кэша
+        }
+        return $fresh;
     }
 
     private function settings(): array

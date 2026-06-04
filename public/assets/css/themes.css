@@ -693,8 +693,18 @@ section { padding: 5rem 1.5rem; }
 .grid-2 { grid-template-columns: 1fr; }
 .grid-3 { grid-template-columns: 1fr; }
 .grid-4 { grid-template-columns: 1fr; }
-@media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* На mobile все inline 2-column grid в формах схлопываем в 1 колонку. */
+@media (max-width: 639px) {
+  .form > div[style*="grid-template-columns:1fr 1fr"],
+  .form > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* mobile → tablet → desktop ступенчато */
+@media (min-width: 640px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(2, 1fr); } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1200px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
 
 .bento { display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 768px) { .bento { grid-template-columns: repeat(2, 1fr); } }
@@ -1038,6 +1048,8 @@ section { padding: 5rem 1.5rem; }
 
 /* Filter chips (партнёры, новости) */
 .filter-chip {
+  display: inline-flex;
+  align-items: center;
   padding: .5rem 1.1rem;
   background: rgb(var(--surface));
   border: 1px solid rgb(var(--outline));
@@ -1046,14 +1058,18 @@ section { padding: 5rem 1.5rem; }
   font-weight: 600;
   font-size: .85rem;
   color: rgb(var(--on-surface-mut));
+  text-decoration: none;            /* убрать подчёркивание для <a> */
   cursor: pointer;
   transition: all .2s ease;
 }
-.filter-chip:hover { color: rgb(var(--primary)); border-color: rgb(var(--primary)); }
+.filter-chip:hover  { color: rgb(var(--primary)); border-color: rgb(var(--primary)); text-decoration: none; }
+.filter-chip:focus,
+.filter-chip:active { text-decoration: none; outline: none; }
 .filter-chip.is-active {
   background: rgb(var(--primary));
   color: #fff;
   border-color: rgb(var(--primary));
+  text-decoration: none;
 }
 .partner-card.is-hidden, .news-card.is-hidden, [data-news-card].is-hidden { display: none !important; }
 
