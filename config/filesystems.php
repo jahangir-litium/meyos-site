@@ -41,7 +41,11 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            // ВАЖНО: относительный URL «/storage» вместо абсолютного через APP_URL.
+            // Так FilePond и любые <img src> не зависят от точного hostname:port,
+            // что было причиной бага «Загрузка файла…» в Filament (CORS-блокировка
+            // когда APP_URL=http://localhost:8000, а реально открыто 127.0.0.1:8000).
+            'url' => '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
