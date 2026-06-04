@@ -24,6 +24,7 @@ class TeamMembersTable
                 TextColumn::make('role')->label('Должность'),
                 IconColumn::make('is_published')->boolean(),
             ])
+            ->reorderable('sort')
             ->filters([
                 //,
             ])

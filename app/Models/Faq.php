@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Faq extends Model
 {
-    use HasTranslations, HasSorting;
+    use HasTranslations, HasSorting, SoftDeletes;
 
     protected $fillable = ['question', 'answer', 'page_slug', 'is_published', 'sort'];
     public array $translatable = ['question', 'answer'];

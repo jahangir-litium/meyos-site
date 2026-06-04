@@ -26,6 +26,7 @@ class BusinessCasesTable
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
                 TextColumn::make('sort')->label('Порядок')->sortable(),
             ])
+            ->reorderable('sort')
             ->filters([
                 TernaryFilter::make('is_published'),
             ])

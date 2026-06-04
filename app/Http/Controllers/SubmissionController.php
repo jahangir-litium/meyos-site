@@ -24,6 +24,12 @@ class SubmissionController extends Controller
 
         $data['source_page'] = substr((string) $request->headers->get('referer', ''), 0, 100);
 
+        // UTM из сессии (запомнил TrackPageView)
+        $utm = session('utm', []);
+        $data['utm_source']   = $utm['utm_source']   ?? null;
+        $data['utm_medium']   = $utm['utm_medium']   ?? null;
+        $data['utm_campaign'] = $utm['utm_campaign'] ?? null;
+
         MembershipApplication::create($data);
 
         return back()->with('success', 'Заявка отправлена! Менеджер свяжется в течение рабочего дня.');

@@ -3,8 +3,19 @@
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
+
+/* ============ SEO ============ */
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', function () {
+    $path = public_path('robots.txt');
+    if (file_exists($path)) {
+        return response(file_get_contents($path), 200, ['Content-Type' => 'text/plain']);
+    }
+    return response("User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: ".url('/sitemap.xml'), 200, ['Content-Type' => 'text/plain']);
+})->name('robots');
 
 /* ============ Главная и статичные страницы ============ */
 Route::get('/',           [PageController::class, 'home'])->name('home');

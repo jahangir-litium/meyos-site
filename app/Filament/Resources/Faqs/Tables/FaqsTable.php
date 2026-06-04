@@ -24,6 +24,7 @@ class FaqsTable
                 IconColumn::make('is_published')->boolean(),
                 TextColumn::make('sort')->sortable(),
             ])
+            ->reorderable('sort')
             ->filters([
                 SelectFilter::make('page_slug')->options(['home' => 'Главная', 'residency' => 'Резидентство', 'programs' => 'Программы']),
             ])

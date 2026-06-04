@@ -10,6 +10,7 @@ class PageView extends Model
 
     protected $fillable = [
         'path', 'page_slug', 'locale', 'referrer',
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
         'ip_hash', 'user_agent', 'device', 'is_bot', 'created_at',
     ];
 

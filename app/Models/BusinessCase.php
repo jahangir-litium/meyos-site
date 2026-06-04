@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 class BusinessCase extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, InteractsWithMedia;
+    use HasTranslations, HasSorting, InteractsWithMedia, SoftDeletes;
 
     protected $table = 'cases';
 

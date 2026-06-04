@@ -9,11 +9,17 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\ReplicateAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class NewsTable
@@ -35,11 +41,13 @@ class NewsTable
                 IconColumn::make('is_featured')->label('Главная')->boolean(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
             ])
+            ->reorderable('sort')
             ->defaultSort('published_at', 'desc')
             ->filters([
                 SelectFilter::make('category')->options(News::CATEGORIES)->label('Категория'),
                 TernaryFilter::make('is_published')->label('Опубликована'),
                 TernaryFilter::make('is_featured')->label('Главная'),
+                TrashedFilter::make()->label('Корзина'),
             ])
             ->recordActions([
                 Action::make('view')
@@ -47,9 +55,25 @@ class NewsTable
                     ->icon('heroicon-o-arrow-top-right-on-square')
                     ->color('gray')
                     ->url(fn (?News $r) => $r ? url('/news/' . $r->slug) : null, shouldOpenInNewTab: true)
-                    ->visible(fn (?News $r) => $r && $r->is_published),
+                    ->visible(fn (?News $r) => $r && $r->is_published && !$r->trashed()),
                 EditAction::make(),
+                ReplicateAction::make()
+                    ->label('Дублировать')
+                    ->icon('heroicon-o-document-duplicate')
+                    ->color('info')
+                    ->beforeReplicaSaved(function (News $replica): void {
+                        $replica->slug = $replica->slug . '-' . substr((string) microtime(true), -4);
+                        // Заголовок-копия: добавляем «(копия)» в RU
+                        $titles = $replica->getTranslations('title');
+                        $titles['ru'] = ($titles['ru'] ?? 'Без названия') . ' (копия)';
+                        $replica->setTranslations('title', $titles);
+                        $replica->is_published = false;
+                        $replica->is_featured  = false;
+                    })
+                    ->successNotificationTitle('Новость продублирована — отредактируйте и опубликуйте'),
                 DeleteAction::make(),
+                RestoreAction::make(),
+                ForceDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -68,6 +92,8 @@ class NewsTable
                         ->action(fn ($records) => $records->each->update(['is_published' => false]))
                         ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
                 ]),
             ]);
     }

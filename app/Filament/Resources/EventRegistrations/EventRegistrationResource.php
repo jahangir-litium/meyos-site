@@ -56,4 +56,11 @@ class EventRegistrationResource extends Resource
             'edit' => EditEventRegistration::route('/{record}/edit'),
         ];
     }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()->withoutGlobalScopes([
+            \Illuminate\Database\Eloquent\SoftDeletingScope::class,
+        ]);
+    }
 }

@@ -23,6 +23,7 @@ class DocumentsTable
                 IconColumn::make('is_published')->boolean(),
                 TextColumn::make('sort')->sortable(),
             ])
+            ->reorderable('sort')
             ->filters([
                 //,
             ])

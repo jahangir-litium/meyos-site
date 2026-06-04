@@ -24,6 +24,7 @@ class BenefitsTable
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
                 TextColumn::make('sort')->sortable(),
             ])
+            ->reorderable('sort')
             ->filters([
                 //,
             ])

@@ -25,6 +25,7 @@ class TaxRowsTable
                 TextColumn::make('savings')->label('Экономия'),
                 TextColumn::make('sort')->sortable(),
             ])
+            ->reorderable('sort')
             ->filters([
                 //,
             ])

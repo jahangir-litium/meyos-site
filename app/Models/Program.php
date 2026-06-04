@@ -6,13 +6,14 @@ use App\Models\Concerns\AutoSlug;
 use App\Models\Concerns\HasSorting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 class Program extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes;
 
     protected $fillable = [
         'slug', 'icon', 'color', 'chip', 'title', 'description',

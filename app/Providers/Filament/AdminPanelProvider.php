@@ -49,6 +49,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 \App\Filament\Widgets\StatsOverviewWidget::class,
+                \App\Filament\Widgets\ResidencyConversionWidget::class,
                 \App\Filament\Widgets\ApplicationsTrendChart::class,
                 \App\Filament\Widgets\CategoryBreakdownWidget::class,
                 \App\Filament\Widgets\DeviceBreakdownWidget::class,

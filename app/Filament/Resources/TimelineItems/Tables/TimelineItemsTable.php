@@ -24,6 +24,7 @@ class TimelineItemsTable
                 IconColumn::make('is_highlight')->label('Выделена')->boolean(),
                 IconColumn::make('is_published')->boolean(),
             ])
+            ->reorderable('sort')
             ->filters([
                 //,
             ])

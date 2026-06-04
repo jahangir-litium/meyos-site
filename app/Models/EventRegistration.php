@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Services\TelegramNotifier;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EventRegistration extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'event_id', 'event_name', 'company', 'name', 'email', 'phone',
         'attendees_count', 'status',

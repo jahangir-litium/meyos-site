@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
           style="padding:1.5rem; display:block; text-decoration:none; color:inherit; {{ $hasUrl ? 'cursor:pointer;' : '' }}">
           <div style="height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem; overflow:hidden;">
             @if($partner->logo_image)
-              <img src="{{ asset('storage/' . $partner->logo_image) }}" style="max-height:90%; max-width:90%; object-fit:contain;" alt="{{ $tr($partner, 'name') }}">
+              <img src="{{ asset('storage/' . $partner->logo_image) }}" loading="lazy" decoding="async" class="lazy-img" style="max-height:90%; max-width:90%; object-fit:contain;" alt="{{ $tr($partner, 'name') }}">
             @else
               {{ $partner->logo_text ?: $tr($partner, 'name') }}
             @endif

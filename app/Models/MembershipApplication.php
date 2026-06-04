@@ -4,12 +4,16 @@ namespace App\Models;
 
 use App\Services\TelegramNotifier;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MembershipApplication extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'status', 'company', 'name', 'email', 'phone',
         'category', 'volume', 'message', 'source_page',
+        'utm_source', 'utm_medium', 'utm_campaign',
     ];
 
     public const STATUSES = [
