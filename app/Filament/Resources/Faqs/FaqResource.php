@@ -56,4 +56,5 @@ class FaqResource extends Resource
             'edit' => EditFaq::route('/{record}/edit'),
         ];
     }
+
 }

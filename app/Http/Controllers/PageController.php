@@ -46,7 +46,7 @@ class PageController extends Controller
             'partners'  => Partner::published()->onHome()->ordered()->take(12)->get(),
             'events'    => Event::published()->upcoming()->ordered()->take(3)->get(),
             'news'      => News::published()->orderByDesc('published_at')->take(3)->get(),
-            'faqs'      => Faq::published()->forPage('home')->ordered()->get(),
+            'faqs'      => Faq::published()->forPageSlug('home')->ordered()->get(),
         ]);
 
         return view('pages.home', $data + ['settings' => $this->settings()]);

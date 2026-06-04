@@ -16,5 +16,11 @@ class Faq extends Model
     protected $casts = ['is_published' => 'boolean'];
 
     public function scopePublished($q) { return $q->where('is_published', true); }
-    public function scopeForPage($q, string $slug) { return $q->where('page_slug', $slug); }
+
+    /**
+     * ВАЖНО: метод НЕ называется forPage() — он бы конфликтовал с встроенным
+     * Eloquent\Builder::forPage($page, $perPage), который вызывается из paginate()
+     * → возникал бы where page_slug = '1' и таблица в админке оставалась пустой.
+     */
+    public function scopeForPageSlug($q, string $slug) { return $q->where('page_slug', $slug); }
 }
