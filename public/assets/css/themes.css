@@ -474,6 +474,65 @@ body.theme-flash::after {
 .card-filled:hover { background: rgb(var(--primary-dark)); }
 .card-soft { background: rgb(var(--primary-soft)); border-color: transparent; }
 
+/* ============ Card grid — равная высота карточек ============
+ * Любая .card внутри .grid становится flex-колонкой 100% высоты,
+ * чтобы соседи в строке выровнялись по нижнему краю.
+ * Элемент с классом .card__footer (или [data-card-footer]) прижимается к низу. */
+.grid > .card { display: flex; flex-direction: column; height: 100%; }
+.grid > .card > .card__footer,
+.grid > .card > [data-card-footer] { margin-top: auto !important; padding-top: 1rem; }
+.grid > a.card { color: inherit; text-decoration: none; }
+.grid > a.card:hover { text-decoration: none; }
+
+/* ============ PREMIUM-полировка ============ */
+
+/* Body — улучшенный рендеринг шрифта */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+/* Якорные ссылки не заезжают под фикс-шапку */
+:target { scroll-margin-top: 6rem; }
+html { scroll-behavior: smooth; }
+
+/* Карточки — тонкая тёплая тень по умолчанию (а не в hover) — премиум-ощущение */
+.card { box-shadow: 0 1px 2px rgb(var(--primary) / .04), 0 4px 12px rgb(var(--primary) / .03); }
+.card:hover { box-shadow: 0 8px 24px rgb(var(--primary) / .08), 0 2px 6px rgb(var(--primary) / .06); }
+
+/* Кнопки — более тактильные */
+.btn { will-change: transform; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { box-shadow: 0 4px 14px rgb(var(--primary) / .25); }
+.btn-primary:hover { box-shadow: 0 6px 20px rgb(var(--primary) / .35); }
+
+/* Глобальный focus-visible для клавиатурной навигации (a11y премиум-фишка) */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 3px;
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* Селекшен — фирменный цвет */
+::selection { background: rgb(var(--primary) / .25); color: rgb(var(--on-surface)); }
+
+/* Изображения — никаких артефактов при ресайзе */
+img { image-rendering: -webkit-optimize-contrast; }
+
+/* Скроллбар (Chrome/Edge) — тонкий с темой */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--outline)); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--primary) / .4); border: 2px solid transparent; background-clip: padding-box; }
+
+/* Микро-анимация появления секций — IntersectionObserver-friendly */
+.fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Уважаем prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
 .icon-box {
   width: 3rem; height: 3rem;
   border-radius: var(--radius-md);

@@ -239,7 +239,7 @@
           <span class="chip">{{ $event->event_date->format('d.m.Y') }} · {{ $tr($event, 'city') }}</span>
           <h3 class="mt-3" style="font-size:1.2rem;">{{ $tr($event, 'title') }}</h3>
           <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;">{{ $tr($event, 'preview') }}</p>
-          <a href="{{ route('events.show', $event->slug) }}" class="btn btn-ghost mt-4" style="margin-top:1rem;">@switch($cur) @case('uz') Roʻyxatdan oʻtish @break @case('en') Register @break @default Зарегистрироваться @endswitch</a>
+          <a data-card-footer href="{{ route('events.show', $event->slug) }}" class="btn btn-ghost" style="margin-top:1.25rem; align-self:flex-start;">@switch($cur) @case('uz') Roʻyxatdan oʻtish @break @case('en') Register @break @default Зарегистрироваться @endswitch</a>
         </div>
       @endforeach
     </div>
@@ -264,7 +264,7 @@
           <span class="chip">{{ \App\Models\News::allCategories()[$newsItem->category] ?? $newsItem->category }}</span>
           <h3 class="mt-4" style="font-size:1.15rem;">{{ $tr($newsItem, 'title') }}</h3>
           <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;">{{ $tr($newsItem, 'preview') }}</p>
-          <a href="{{ route('news.show', $newsItem->slug) }}" class="text-primary mt-4" style="display:inline-block; margin-top:1rem; font-weight:700; text-decoration:none;">@switch($cur) @case('uz') Oʻqish → @break @case('en') Read → @break @default Читать → @endswitch</a>
+          <a data-card-footer href="{{ route('news.show', $newsItem->slug) }}" class="text-primary" style="display:inline-block; margin-top:1.25rem; font-weight:700; text-decoration:none; align-self:flex-start;">@switch($cur) @case('uz') Oʻqish → @break @case('en') Read → @break @default Читать → @endswitch</a>
         </article>
       @endforeach
     </div>

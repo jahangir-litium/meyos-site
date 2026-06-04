@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">{{ $tr($partner, 'name') }}</h3>
           <p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">{{ $tr($partner, 'description') }}</p>
           @if($hasUrl)
-            <div style="margin-top:.75rem; font-size:.75rem; color:rgb(var(--primary)); font-weight:600;">
+            <div data-card-footer style="margin-top:1rem; font-size:.75rem; color:rgb(var(--primary)); font-weight:600;">
               @switch($cur) @case('uz') Saytga oʻtish @break @case('en') Visit website @break @default Перейти на сайт @endswitch
               <span class="material-symbols-outlined" style="font-size:.9rem; vertical-align:-2px;">arrow_forward</span>
             </div>

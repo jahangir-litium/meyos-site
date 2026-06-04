@@ -72,7 +72,8 @@
                 </p>
               @endif
               @if ($tr($block, 'meta'))
-                <div style="margin-top:1rem; padding:.5rem .85rem; background:rgb(var(--primary-soft)); color:rgb(var(--primary-dark)); border-radius:9999px; display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+                <div data-card-footer
+                     style="margin-top:1rem; padding:.5rem .85rem; background:rgb(var(--primary-soft)); color:rgb(var(--primary-dark)); border-radius:9999px; align-self:flex-start; font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
                   {{ $block->type === 'metric' ? 'background:rgb(255 255 255 / .2); color:#fff;' : '' }}">
                   {{ $tr($block, 'meta') }}
                 </div>

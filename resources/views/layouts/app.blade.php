@@ -148,6 +148,24 @@
       if (src) img.src = src;
     });
   }
+
+  // ============ Микро-анимация появления секций при скролле ============
+  // Помечает .section-head, .card и пр. классом .is-visible когда они входят в viewport.
+  // Включается только если не выставлен prefers-reduced-motion.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    document.querySelectorAll('section .section-head, .card, .timeline__item, .step').forEach(el => {
+      el.classList.add('fade-in-up');
+      observer.observe(el);
+    });
+  }
 </script>
 @stack('scripts')
 </body>

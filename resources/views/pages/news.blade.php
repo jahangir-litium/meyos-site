@@ -83,7 +83,7 @@
           <div style="padding:1.5rem;">
             <span class="chip">{{ \App\Models\News::allCategories()[$item->category] ?? '' }}</span>
             <h3 class="mt-3" style="font-size:1.15rem; line-height:1.3;">{{ $tr($item, 'title') }}</h3>
-            <div class="news-date mt-4" style="margin-top:1rem; font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $item->published_at->format('d.m.Y') }}</div>
+            <div data-card-footer class="news-date" style="margin-top:1rem; font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $item->published_at->format('d.m.Y') }}</div>
           </div>
         </a>
       @endforeach
