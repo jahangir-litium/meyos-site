@@ -24,7 +24,7 @@
       <div class="hero__stats">
         @foreach (($settings['stats'] ?? []) as $key => $value)
             <div>
-              <div class="hero__stat-num">{{ $value }}</div>
+              <div class="hero__stat-num" data-counter data-value="{{ $value }}">{{ $value }}</div>
               <div class="hero__stat-lbl">
                 @switch($key)
                   @case('companies') @switch($cur) @case('uz') Rezident kompaniyalar @break @case('en') Resident companies @break @default Компаний-резидентов @endswitch @break

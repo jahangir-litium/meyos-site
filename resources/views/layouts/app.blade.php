@@ -90,10 +90,20 @@
 
 @if ($faviconUrl)<link rel="icon" href="{{ $faviconUrl }}" />@endif
 
+{{-- DNS-prefetch + preconnect для шрифтов — ускоряет first paint --}}
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" />
+
+{{-- Preload главного CSS — браузер начнёт скачивать пока парсит HTML --}}
+<link rel="preload" href="{{ asset($cssPath) }}" as="style">
+
+{{-- Шрифты с display:swap — текст показывается сразу системным, потом подменяется --}}
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" /></noscript>
 <link rel="stylesheet" href="{{ asset($cssPath) }}" />
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }
@@ -149,21 +159,63 @@
     });
   }
 
-  // ============ Микро-анимация появления секций при скролле ============
-  // Помечает .section-head, .card и пр. классом .is-visible когда они входят в viewport.
-  // Включается только если не выставлен prefers-reduced-motion.
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  // ============ Микро-анимации (отключаются для prefers-reduced-motion) ============
+  const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) Появление секций при скролле
+  if (!noMotion && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
     document.querySelectorAll('section .section-head, .card, .timeline__item, .step').forEach(el => {
-      el.classList.add('fade-in-up');
-      observer.observe(el);
+      el.classList.add('fade-in-up'); observer.observe(el);
+    });
+  }
+
+  // 2) Number-counter в hero — крутит 0 → значение при первом появлении
+  if (!noMotion && 'IntersectionObserver' in window) {
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const raw = el.dataset.value || el.textContent;
+        // Извлекаем число + суффикс ('500+', '38%', '12', '$14.6M')
+        const match = raw.match(/(-?[\d.,]+)/);
+        if (!match) return;
+        const numStr = match[1].replace(/\s/g, '').replace(',', '.');
+        const num = parseFloat(numStr);
+        if (isNaN(num)) return;
+        const decimals = (numStr.split('.')[1] || '').length;
+        const prefix = raw.substring(0, match.index);
+        const suffix = raw.substring(match.index + match[1].length);
+
+        const duration = 1400, start = performance.now();
+        const animate = (t) => {
+          const p = Math.min((t - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+          const v = (num * eased).toFixed(decimals);
+          el.textContent = prefix + v + suffix;
+          if (p < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-counter]').forEach(el => counterObs.observe(el));
+  }
+
+  // 3) Магнитный hover для CTA — кнопка тянется к курсору (только desktop, не touch)
+  if (!noMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.btn-primary, .btn-white, .btn-lg').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
   }
 </script>

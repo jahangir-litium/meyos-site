@@ -32,8 +32,6 @@ class ImageUpload
             ->visibility('public')
             ->maxSize($maxKb)
             ->imagePreviewHeight('150')
-            ->imageResizeMode('cover')
-            ->imageEditor()
             ->openable()
             ->downloadable()
             ->helperText('Рекомендуется 1200×675 (16:9). До ' . round($maxKb / 1024) . ' МБ. Поддерживаются JPG, PNG, WebP.')
@@ -51,8 +49,6 @@ class ImageUpload
             ->visibility('public')
             ->maxSize($maxKb)
             ->imagePreviewHeight('120')
-            ->imageResizeMode('cover')
-            ->imageEditor()
             ->openable()
             ->helperText('Квадратное фото, рекомендуется 400×400. До ' . round($maxKb / 1024) . ' МБ.');
     }
@@ -88,7 +84,6 @@ class ImageUpload
             ->maxFiles($maxFiles)
             ->maxSize($maxKb)
             ->imagePreviewHeight('100')
-            ->imageEditor()
             ->openable()
             ->downloadable()
             ->panelLayout('grid')
