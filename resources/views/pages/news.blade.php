@@ -26,17 +26,25 @@
     </div>
 
     @if ($featured)
-      <a href="{{ route('news.show', $featured->slug) }}" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:1fr; gap:0; border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:2rem;">
-        <div style="aspect-ratio:16/9; background:rgb(var(--surface-deep));">
-          @if($featured->cover_image ? asset("storage/" . $featured->cover_image) : null)<img src="{{ $featured->cover_image ? asset("storage/" . $featured->cover_image) : null }}" style="width:100%; height:100%; object-fit:cover;">@endif
-        </div>
-        <div style="padding:1.5rem;">
-          <span class="chip">{{ \App\Models\News::CATEGORIES[$featured->category] ?? '' }}</span>
-          <h2 class="mt-4" style="font-size:1.6rem; line-height:1.2; margin:1rem 0 1rem;">{{ $tr($featured, 'title') }}</h2>
-          <p class="text-mut" style="line-height:1.6;">{{ $tr($featured, 'preview') }}</p>
-          <div class="news-date mt-6" style="margin-top:1.5rem; font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $featured->published_at->format('d.m.Y') }}</div>
+      <a href="{{ route('news.show', $featured->slug) }}" style="text-decoration:none; color:inherit; display:block; border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:2rem; max-width:920px; margin-left:auto; margin-right:auto;">
+        <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:0;" class="featured-grid">
+          <div style="aspect-ratio:4/3; background:rgb(var(--surface-deep));">
+            @if($featured->cover_image)<img src="{{ asset('storage/' . $featured->cover_image) }}" style="width:100%; height:100%; object-fit:cover;">@endif
+          </div>
+          <div style="padding:1.25rem 1.5rem;">
+            <span class="chip">{{ \App\Models\News::CATEGORIES[$featured->category] ?? '' }}</span>
+            <h2 style="font-size:1.15rem; line-height:1.3; margin:.75rem 0 .5rem;">{{ $tr($featured, 'title') }}</h2>
+            <p class="text-mut" style="line-height:1.55; font-size:.9rem; margin:0;">{{ Str::limit($tr($featured, 'preview'), 140) }}</p>
+            <div style="margin-top:.85rem; font-size:.7rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $featured->published_at->format('d.m.Y') }}</div>
+          </div>
         </div>
       </a>
+      <style>
+        @media (max-width: 720px) {
+          .featured-grid { grid-template-columns: 1fr !important; }
+          .featured-grid > div:first-child { aspect-ratio: 16/9 !important; }
+        }
+      </style>
     @endif
 
     <div class="grid grid-3">

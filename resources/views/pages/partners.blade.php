@@ -43,7 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <div class="grid grid-4">
       @foreach ($partners as $partner)
-        <div data-partner-card data-category="{{ $partner->category }}" class="card" style="padding:1.5rem;">
+        @php $hasUrl = !empty($partner->website_url); @endphp
+        <{{ $hasUrl ? 'a' : 'div' }}
+          @if($hasUrl) href="{{ $partner->website_url }}" target="_blank" rel="noopener" @endif
+          data-partner-card data-category="{{ $partner->category }}"
+          class="card"
+          style="padding:1.5rem; display:block; text-decoration:none; color:inherit; {{ $hasUrl ? 'cursor:pointer;' : '' }}">
           <div style="height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem; overflow:hidden;">
             @if($partner->logo_image)
               <img src="{{ asset('storage/' . $partner->logo_image) }}" style="max-height:90%; max-width:90%; object-fit:contain;" alt="{{ $tr($partner, 'name') }}">
@@ -54,7 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="chip">{{ \App\Models\Partner::CATEGORIES[$partner->category] ?? $partner->category }}</span>
           <h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">{{ $tr($partner, 'name') }}</h3>
           <p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">{{ $tr($partner, 'description') }}</p>
-        </div>
+          @if($hasUrl)
+            <div style="margin-top:.75rem; font-size:.75rem; color:rgb(var(--primary)); font-weight:600;">
+              @switch($cur) @case('uz') Saytga oʻtish @break @case('en') Visit website @break @default Перейти на сайт @endswitch
+              <span class="material-symbols-outlined" style="font-size:.9rem; vertical-align:-2px;">arrow_forward</span>
+            </div>
+          @endif
+        </{{ $hasUrl ? 'a' : 'div' }}>
       @endforeach
     </div>
   </div>

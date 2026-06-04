@@ -103,4 +103,38 @@
   </div>
 </section>
 
+{{-- ============ ДОКУМЕНТЫ ============ --}}
+@if (isset($documents) && $documents->count())
+<section class="section-deep">
+  <div class="container" style="max-width:880px;">
+    <div class="section-head">
+      <span class="tag">@switch($cur) @case('uz') Hujjatlar @break @case('en') Documents @break @default Документы @endswitch</span>
+      <h2>@switch($cur) @case('uz') Rasmiy hujjatlar va shartnomalar @break @case('en') Official documents and agreements @break @default Официальные документы и соглашения @endswitch</h2>
+      <p>@switch($cur) @case('uz') Yuklab oling: shartnomalar, uslubiy materiallar va ariza shakllari @break @case('en') Download: contracts, methodology and application forms @break @default Скачайте: типовые договоры, методические материалы и формы заявок @endswitch</p>
+    </div>
+
+    <div style="display:grid; gap:.75rem;">
+      @foreach ($documents as $doc)
+        <a href="{{ $doc->file_path ? asset('storage/' . $doc->file_path) : '#' }}"
+           target="_blank" rel="noopener"
+           style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.1rem 1.5rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:var(--radius-md); text-decoration:none; color:inherit; transition:all .2s;"
+           onmouseover="this.style.borderColor='rgb(var(--primary))';"
+           onmouseout="this.style.borderColor='rgb(var(--outline))';">
+          <div style="display:flex; align-items:center; gap:.85rem; min-width:0;">
+            <span class="material-symbols-outlined" style="color:rgb(var(--primary)); font-size:1.5rem; flex-shrink:0;">description</span>
+            <div style="min-width:0;">
+              <div style="font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ $tr($doc, 'title') }}</div>
+              @if ($doc->file_name)
+                <div class="text-mut" style="font-size:.8rem; margin-top:.15rem;">{{ $doc->file_name }}</div>
+              @endif
+            </div>
+          </div>
+          <span class="material-symbols-outlined" style="color:rgb(var(--on-surface-mut)); font-size:1.3rem;">download</span>
+        </a>
+      @endforeach
+    </div>
+  </div>
+</section>
+@endif
+
 @endsection

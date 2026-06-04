@@ -52,11 +52,15 @@ class PageController extends Controller
     public function residency()
     {
         return view('pages.residency', [
-            'page'     => Page::where('slug', 'residency')->first(),
-            'taxRows'  => TaxRow::published()->ordered()->get(),
-            'benefits' => Benefit::published()->ordered()->get(),
-            'steps'    => JoinStep::published()->ordered()->get(),
-            'settings' => $this->settings(),
+            'page'      => Page::where('slug', 'residency')->first(),
+            'taxRows'   => TaxRow::published()->ordered()->get(),
+            'benefits'  => Benefit::published()->ordered()->get(),
+            'steps'     => JoinStep::published()->ordered()->get(),
+            'documents' => \App\Models\Document::query()
+                ->where('is_published', true)
+                ->orderBy('sort')
+                ->get(),
+            'settings'  => $this->settings(),
         ]);
     }
 
