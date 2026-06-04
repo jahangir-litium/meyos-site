@@ -18,9 +18,13 @@ class Event extends Model implements HasMedia
         'slug', 'category', 'event_date', 'end_date', 'start_time', 'end_time',
         'city', 'location', 'is_featured', 'is_published',
         'title', 'preview', 'description', 'image_alt', 'cover_image', 'expected_attendees', 'sort',
+        'seo_title', 'seo_description', 'seo_image',
     ];
 
-    public array $translatable = ['city', 'location', 'title', 'preview', 'description', 'image_alt'];
+    public array $translatable = [
+        'city', 'location', 'title', 'preview', 'description', 'image_alt',
+        'seo_title', 'seo_description',
+    ];
 
     protected $casts = [
         'event_date'   => 'date',
@@ -29,14 +33,20 @@ class Event extends Model implements HasMedia
         'is_published' => 'boolean',
     ];
 
+    /** Fallback на случай пустой БД-таблицы Category. */
     public const CATEGORIES = [
-        'forum'              => 'Форум',
-        'export'             => 'Экспортная миссия',
-        'edujob'             => 'EduJob',
-        'round-table'        => 'Круглый стол',
-        'exhibition'         => 'Выставка',
-        'business-breakfast' => 'Деловой завтрак',
+        'exhibition' => 'Выставка',
+        'forum'      => 'Форум',
+        'workshop'   => 'Мастер-класс',
+        'conference' => 'Конференция',
+        'meeting'    => 'Встреча',
     ];
+
+    public static function allCategories(?string $locale = null): array
+    {
+        $fromDb = Category::map(Category::TYPE_EVENTS, $locale);
+        return !empty($fromDb) ? $fromDb : self::CATEGORIES;
+    }
 
     public function registerMediaCollections(): void
     {

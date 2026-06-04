@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="container">
     <div data-partners-filter style="display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2.5rem;">
       <button class="filter-chip is-active" data-filter="all">@switch($cur) @case('uz') Barchasi @break @case('en') All @break @default Все @endswitch</button>
-      @foreach (\App\Models\Partner::CATEGORIES as $key => $label)
+      @foreach (\App\Models\Partner::allCategories() as $key => $label)
         <button class="filter-chip" data-filter="{{ $key }}">{{ $label }}</button>
       @endforeach
     </div>
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
               {{ $partner->logo_text ?: $tr($partner, 'name') }}
             @endif
           </div>
-          <span class="chip">{{ \App\Models\Partner::CATEGORIES[$partner->category] ?? $partner->category }}</span>
+          <span class="chip">{{ \App\Models\Partner::allCategories()[$partner->category] ?? $partner->category }}</span>
           <h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">{{ $tr($partner, 'name') }}</h3>
           <p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">{{ $tr($partner, 'description') }}</p>
           @if($hasUrl)

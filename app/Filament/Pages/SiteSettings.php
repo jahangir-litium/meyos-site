@@ -99,13 +99,40 @@ class SiteSettings extends Page implements HasForms
                                 Section::make('Публичные контакты')
                                     ->description('Отображаются в шапке, футере и на странице «Контакты».')
                                     ->schema([
-                                        TextInput::make('phone')->label('Телефон')->tel(),
-                                        TextInput::make('email')->label('Email')->email(),
-                                        TextInput::make('residency_email')->label('Email для заявок резидентов')->email(),
-                                        Textarea::make('address')->label('Адрес офиса')->rows(2),
-                                        TextInput::make('hours')->label('Часы работы')->placeholder('Пн–Пт, 09:00 – 18:00'),
-                                        TextInput::make('telegram_url')->label('Telegram (публичный)')->url(),
-                                        TextInput::make('whatsapp_url')->label('WhatsApp')->url(),
+                                        TextInput::make('phone')
+                                            ->label('Телефон')
+                                            ->tel()
+                                            ->placeholder('+998 78 ___ __ __')
+                                            ->helperText('Опционально — отображается в шапке и футере'),
+                                        TextInput::make('email')
+                                            ->label('Email')
+                                            ->email()
+                                            ->placeholder('info@meyos.uz')
+                                            ->helperText('Опционально — общий контактный email'),
+                                        TextInput::make('residency_email')
+                                            ->label('Email для заявок резидентов')
+                                            ->email()
+                                            ->placeholder('residency@meyos.uz')
+                                            ->helperText('Опционально — куда дублируются заявки'),
+                                        Textarea::make('address')
+                                            ->label('Адрес офиса')
+                                            ->rows(2)
+                                            ->placeholder('Ташкент, ул. ...')
+                                            ->helperText('Опционально'),
+                                        TextInput::make('hours')
+                                            ->label('Часы работы')
+                                            ->placeholder('Пн–Пт, 09:00 – 18:00')
+                                            ->helperText('Опционально'),
+                                        TextInput::make('telegram_url')
+                                            ->label('Telegram (публичный)')
+                                            ->maxLength(255)
+                                            ->placeholder('https://t.me/meyos_uz или @meyos_uz')
+                                            ->helperText('Опционально. Можно вводить ссылку или @username — отображается в футере.'),
+                                        TextInput::make('whatsapp_url')
+                                            ->label('WhatsApp')
+                                            ->maxLength(255)
+                                            ->placeholder('https://wa.me/998xxxxxxxxx или +998xxxxxxxxx')
+                                            ->helperText('Опционально. Можно номер или wa.me-ссылку.'),
                                     ])
                                     ->columns(2),
                                 Section::make('Реквизиты')

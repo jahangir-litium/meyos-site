@@ -36,7 +36,7 @@ class NewsTable
                 TextColumn::make('category')
                     ->label('Категория')
                     ->badge()
-                    ->formatStateUsing(fn ($s) => News::CATEGORIES[$s] ?? $s),
+                    ->formatStateUsing(fn ($s) => News::allCategories()[$s] ?? $s),
                 TextColumn::make('published_at')->label('Дата')->date('d.m.Y')->sortable(),
                 IconColumn::make('is_featured')->label('Главная')->boolean(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
@@ -44,7 +44,7 @@ class NewsTable
             ->reorderable('sort')
             ->defaultSort('published_at', 'desc')
             ->filters([
-                SelectFilter::make('category')->options(News::CATEGORIES)->label('Категория'),
+                SelectFilter::make('category')->options(News::allCategories())->label('Категория'),
                 TernaryFilter::make('is_published')->label('Опубликована'),
                 TernaryFilter::make('is_featured')->label('Главная'),
                 TrashedFilter::make()->label('Корзина'),

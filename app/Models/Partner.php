@@ -28,14 +28,20 @@ class Partner extends Model implements HasMedia
         'show_on_home' => 'boolean',
     ];
 
+    /** Fallback на случай пустой БД-таблицы Category. */
     public const CATEGORIES = [
-        'production' => 'Производство',
-        'design'     => 'Дизайн',
-        'materials'  => 'Материалы',
-        'logistics'  => 'Логистика',
-        'gov'        => 'Государственный',
-        'finance'    => 'Финансы',
+        'manufacturer' => 'Производитель',
+        'designer'     => 'Дизайн-студия',
+        'supplier'     => 'Поставщик',
+        'logistics'    => 'Логистика и розница',
+        'other'        => 'Другое',
     ];
+
+    public static function allCategories(?string $locale = null): array
+    {
+        $fromDb = Category::map(Category::TYPE_PARTNERS, $locale);
+        return !empty($fromDb) ? $fromDb : self::CATEGORIES;
+    }
 
     public function registerMediaCollections(): void
     {

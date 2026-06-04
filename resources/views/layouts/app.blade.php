@@ -79,12 +79,7 @@
 @include('partials.mobile-menu')
 
 <main>
-    @if (session('success'))
-        <div class="flash-success" onclick="this.remove()">
-            <span class="material-symbols-outlined" style="vertical-align: middle;">check_circle</span>
-            {{ session('success') }}
-        </div>
-    @endif
+    @include('partials.flash')
 
     @yield('content')
 </main>

@@ -54,7 +54,7 @@
             <div style="font-size:.75rem; color:rgb(var(--on-surface-mut));">{{ $event->event_date->format('Y') }}</div>
           </div>
           <div>
-            <span class="chip">{{ \App\Models\Event::CATEGORIES[$event->category] ?? '' }}</span>
+            <span class="chip">{{ \App\Models\Event::allCategories()[$event->category] ?? '' }}</span>
             <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">{{ $tr($event, 'title') }}</h3>
             <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">{{ $tr($event, 'preview') }}</p>
             <div style="display:flex; gap:1rem; flex-wrap:wrap; font-size:.85rem; color:rgb(var(--on-surface-mut)); margin-top:.75rem;">

@@ -261,7 +261,7 @@
     <div class="grid grid-3">
       @foreach ($news as $newsItem)
         <article class="card">
-          <span class="chip">{{ \App\Models\News::CATEGORIES[$newsItem->category] ?? $newsItem->category }}</span>
+          <span class="chip">{{ \App\Models\News::allCategories()[$newsItem->category] ?? $newsItem->category }}</span>
           <h3 class="mt-4" style="font-size:1.15rem;">{{ $tr($newsItem, 'title') }}</h3>
           <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;">{{ $tr($newsItem, 'preview') }}</p>
           <a href="{{ route('news.show', $newsItem->slug) }}" class="text-primary mt-4" style="display:inline-block; margin-top:1rem; font-weight:700; text-decoration:none;">@switch($cur) @case('uz') Oʻqish → @break @case('en') Read → @break @default Читать → @endswitch</a>

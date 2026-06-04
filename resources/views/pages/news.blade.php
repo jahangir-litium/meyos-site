@@ -59,7 +59,7 @@
             @if($featured->cover_image)<img src="{{ asset('storage/' . $featured->cover_image) }}" alt="{{ $tr($featured, 'image_alt', $tr($featured, 'title')) }}" loading="lazy" decoding="async" class="lazy-img" style="width:100%; height:100%; object-fit:cover;">@endif
           </div>
           <div style="padding:1.25rem 1.5rem;">
-            <span class="chip">{{ \App\Models\News::CATEGORIES[$featured->category] ?? '' }}</span>
+            <span class="chip">{{ \App\Models\News::allCategories()[$featured->category] ?? '' }}</span>
             <h2 style="font-size:1.15rem; line-height:1.3; margin:.75rem 0 .5rem;">{{ $tr($featured, 'title') }}</h2>
             <p class="text-mut" style="line-height:1.55; font-size:.9rem; margin:0;">{{ Str::limit($tr($featured, 'preview'), 140) }}</p>
             <div style="margin-top:.85rem; font-size:.7rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $featured->published_at->format('d.m.Y') }}</div>
@@ -81,7 +81,7 @@
             @if($item->cover_image)<img src="{{ asset('storage/' . $item->cover_image) }}" alt="{{ $tr($item, 'image_alt', $tr($item, 'title')) }}" loading="lazy" decoding="async" class="lazy-img" style="width:100%; height:100%; object-fit:cover;">@endif
           </div>
           <div style="padding:1.5rem;">
-            <span class="chip">{{ \App\Models\News::CATEGORIES[$item->category] ?? '' }}</span>
+            <span class="chip">{{ \App\Models\News::allCategories()[$item->category] ?? '' }}</span>
             <h3 class="mt-3" style="font-size:1.15rem; line-height:1.3;">{{ $tr($item, 'title') }}</h3>
             <div class="news-date mt-4" style="margin-top:1rem; font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.1em; text-transform:uppercase;">{{ $item->published_at->format('d.m.Y') }}</div>
           </div>

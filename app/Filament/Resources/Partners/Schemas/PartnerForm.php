@@ -18,7 +18,12 @@ class PartnerForm
             Section::make('Основное')->schema([
                 
                 TextInput::make('slug')->unique(\App\Models\Partner::class, 'slug', ignoreRecord: true),
-                Select::make('category')->label('Категория')->options(\App\Models\Partner::CATEGORIES)->required(),
+                Select::make('category')
+                    ->label('Категория')
+                    ->options(fn () => \App\Models\Partner::allCategories('ru'))
+                    ->required()
+                    ->native(false)
+                    ->helperText('Управлять списком: Настройки → Категории'),
                 TextInput::make('logo_text')->label('Текст логотипа')->maxLength(30),
                 TextInput::make('website_url')->label('Сайт')->url(),
                 TextInput::make('registry_id')->label('Реестровый номер'),

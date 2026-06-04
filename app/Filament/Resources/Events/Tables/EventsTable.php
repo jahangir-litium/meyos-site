@@ -30,7 +30,7 @@ class EventsTable
             ->columns([
                 ImageColumn::make('cover_image')->disk('public')->label('Фото'),
                 TextColumn::make('title')->label('Название')->limit(50)->searchable(query: fn ($q, $s) => $q->where('title->ru', 'like', "%$s%")),
-                TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Event::CATEGORIES[$s] ?? $s),
+                TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Event::allCategories()[$s] ?? $s),
                 TextColumn::make('event_date')->label('Дата')->date('d.m.Y')->sortable(),
                 TextColumn::make('city')->label('Город'),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
@@ -38,7 +38,7 @@ class EventsTable
             ->reorderable('sort')
             ->defaultSort('event_date', 'desc')
             ->filters([
-                SelectFilter::make('category')->options(Event::CATEGORIES),
+                SelectFilter::make('category')->options(Event::allCategories()),
                 TernaryFilter::make('is_published')->label('Опубликовано'),
                 TrashedFilter::make()->label('Корзина'),
             ])

@@ -28,14 +28,14 @@ class PartnersTable
             ->columns([
                 ImageColumn::make('logo_image')->disk('public')->label('Лого'),
                 TextColumn::make('name')->label('Название')->searchable(query: fn ($q, $s) => $q->where('name->ru', 'like', "%$s%")),
-                TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Partner::CATEGORIES[$s] ?? $s),
+                TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Partner::allCategories()[$s] ?? $s),
                 IconColumn::make('show_on_home')->label('На главной')->boolean(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
                 TextColumn::make('sort')->label('Порядок')->sortable(),
             ])
             ->reorderable('sort')
             ->filters([
-                SelectFilter::make('category')->options(Partner::CATEGORIES),
+                SelectFilter::make('category')->options(Partner::allCategories()),
                 TrashedFilter::make()->label('Корзина'),
             ])
             ->headerActions([
