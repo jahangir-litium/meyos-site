@@ -23,13 +23,21 @@ class DocumentResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Настройки';
 
-    protected static ?string $navigationLabel = 'Документы';
+    protected static ?string $navigationLabel = 'Документы для скачивания';
 
     protected static ?string $modelLabel = 'Документ';
 
-    protected static ?string $pluralModelLabel = 'Документы';
+    protected static ?string $pluralModelLabel = 'Документы для скачивания';
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?int $navigationSort = 20;
+
+    /** Подсказка под пунктом меню для менеджеров */
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'PDF/DOC файлы (устав, договоры, методички) — отображаются на /residency';
+    }
 
     public static function form(Schema $schema): Schema
     {

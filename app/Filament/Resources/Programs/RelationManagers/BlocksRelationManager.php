@@ -9,8 +9,8 @@ use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use App\Filament\Support\ImageUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -44,11 +44,7 @@ class BlocksRelationManager extends RelationManager
                     \App\Filament\Support\IconPicker::make('icon'),
                     Toggle::make('is_published')->label('Опубликован')->default(true),
                     TextInput::make('sort')->label('Порядок')->numeric()->default(0),
-                    FileUpload::make('image')
-                        ->disk('public')->directory('program-blocks')->visibility('public')
-                        ->label('Картинка (опционально)')
-                        ->image()
-                        ->columnSpanFull(),
+                    ImageUpload::cover('image', 'Картинка (опционально)', 'program-blocks'),
                 ])
                 ->columns(2),
 

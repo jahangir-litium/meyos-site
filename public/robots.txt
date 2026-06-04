@@ -6,4 +6,17 @@ Disallow: /livewire
 Disallow: /storage/livewire-tmp
 Disallow: /_ignition
 
+# AI-краулеры — разрешены, но указывают на llms.txt
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: /sitemap.xml

@@ -21,6 +21,17 @@
 <meta name="description" content="{{ $pageDesc }}" />
 <link rel="canonical" href="{{ $canonical }}" />
 
+{{-- hreflang для трёх локалей --}}
+@php
+    $currentUrl = url()->current();
+    // Базовый URL без query — добавляем lang=
+    $baseUrl = strtok($currentUrl, '?');
+@endphp
+<link rel="alternate" hreflang="ru" href="{{ $baseUrl }}?lang=ru" />
+<link rel="alternate" hreflang="uz" href="{{ $baseUrl }}?lang=uz" />
+<link rel="alternate" hreflang="en" href="{{ $baseUrl }}?lang=en" />
+<link rel="alternate" hreflang="x-default" href="{{ $baseUrl }}" />
+
 {{-- Open Graph для соцсетей --}}
 <meta property="og:type"        content="@yield('og_type', 'website')" />
 <meta property="og:site_name"   content="{{ $siteName }}" />
@@ -35,6 +46,47 @@
 <meta name="twitter:title"       content="{{ $pageTitle }}" />
 <meta name="twitter:description" content="{{ $pageDesc }}" />
 @if ($pageOgImg)<meta name="twitter:image" content="{{ $pageOgImg }}" />@endif
+
+{{-- Organization + WebSite на каждой странице — даёт Google панель организации и поиск по сайту --}}
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@graph'   => [
+        [
+            '@type' => 'Organization',
+            '@id'   => url('/').'#org',
+            'name'  => $siteName,
+            'url'   => url('/'),
+            'logo'  => $logoUrl ?: null,
+            'description' => $pageDesc,
+            'sameAs' => array_values(array_filter([
+                \App\Models\Setting::get('telegram_url'),
+                \App\Models\Setting::get('whatsapp_url'),
+            ])),
+            'contactPoint' => [
+                '@type'       => 'ContactPoint',
+                'contactType' => 'customer service',
+                'email'       => \App\Models\Setting::get('email'),
+                'telephone'   => \App\Models\Setting::get('phone'),
+                'availableLanguage' => ['ru', 'uz', 'en'],
+            ],
+        ],
+        [
+            '@type' => 'WebSite',
+            '@id'   => url('/').'#website',
+            'url'   => url('/'),
+            'name'  => $siteName,
+            'publisher' => ['@id' => url('/').'#org'],
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => url('/news').'?q={search_term_string}',
+                'query-input' => 'required name=search_term_string',
+            ],
+            'inLanguage' => array_values(\App\Http\Middleware\SetLocale::SUPPORTED),
+        ],
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
 
 @if ($faviconUrl)<link rel="icon" href="{{ $faviconUrl }}" />@endif
 

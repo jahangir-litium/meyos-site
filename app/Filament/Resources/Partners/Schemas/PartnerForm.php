@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Partners\Schemas;
 
+use App\Filament\Support\ImageUpload;
 use App\Filament\Support\TranslatableTabs;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -29,7 +29,7 @@ class PartnerForm
                 TextInput::make('registry_id')->label('Реестровый номер'),
                 Toggle::make('show_on_home')->label('Показывать на главной')->default(true),
                 Toggle::make('is_published')->label('Опубликован')->default(true),
-                FileUpload::make('logo_image')->disk('public')->directory('partners')->visibility('public')->image()->maxSize(5120)->columnSpanFull(),
+                ImageUpload::logo('logo_image', 'Логотип партнёра', 'partners', 5120),
         
             ])->columns(2),
 

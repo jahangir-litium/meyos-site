@@ -19,11 +19,23 @@ class NewFeaturesTest extends TestCase
 
     public function test_sitemap_xml_returns_valid_xml(): void
     {
+        // Главный sitemap теперь sitemap-index, ссылающийся на под-карты
         $r = $this->get('/sitemap.xml');
         $r->assertStatus(200);
         $r->assertHeader('Content-Type', 'application/xml; charset=UTF-8');
-        $r->assertSee('<urlset', false);
-        $r->assertSee('<loc>'.url('/').'</loc>', false);
+        $r->assertSee('<sitemapindex', false);
+        $r->assertSee('sitemap-pages.xml', false);
+        $r->assertSee('sitemap-news.xml', false);
+
+        // Под-карта pages содержит реальные URL
+        $r2 = $this->get('/sitemap-pages.xml');
+        $r2->assertStatus(200);
+        $r2->assertSee('<urlset', false);
+        $r2->assertSee('<loc>'.url('/').'</loc>', false);
+        // hreflang
+        $r2->assertSee('hreflang="ru"', false);
+        $r2->assertSee('hreflang="uz"', false);
+        $r2->assertSee('hreflang="en"', false);
     }
 
     public function test_robots_txt_disallows_admin(): void

@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\News\Schemas;
 
+use App\Filament\Support\ImageUpload;
 use App\Filament\Support\TranslatableTabs;
 use App\Models\Event;
 use App\Models\News;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -52,30 +52,8 @@ class NewsForm
             Section::make('Картинки')
                 ->description('Обложка — аватарка для превью в списке. Галерея — слайдер после текста статьи.')
                 ->schema([
-                    FileUpload::make('cover_image')
-                        ->label('Обложка (аватарка превью)')
-                        ->image()
-                        ->disk('public')
-                        ->directory('news')
-                        ->visibility('public')
-                        ->maxSize(4096)
-                        ->imagePreviewHeight('150')
-                        ->helperText('Рекомендуется 1200×675 (16:9). До 4 МБ.')
-                        ->columnSpanFull(),
-
-                    FileUpload::make('gallery_images')
-                        ->label('Галерея картинок (после текста, слайдером)')
-                        ->image()
-                        ->multiple()
-                        ->reorderable()
-                        ->disk('public')
-                        ->directory('news/gallery')
-                        ->visibility('public')
-                        ->maxFiles(15)
-                        ->maxSize(4096)
-                        ->imagePreviewHeight('100')
-                        ->helperText('Перетягивайте для сортировки. До 15 фото, каждое до 4 МБ.')
-                        ->columnSpanFull(),
+                    ImageUpload::cover('cover_image', 'Обложка (аватарка превью)', 'news'),
+                    ImageUpload::gallery('gallery_images', 'Галерея картинок (после текста, слайдером)', 'news/gallery'),
                 ])
                 ->columns(1)
                 ->collapsible(),
@@ -127,15 +105,7 @@ class NewsForm
                         'seo_title'       => ['label' => 'SEO title (до 60 символов)', 'type' => 'text'],
                         'seo_description' => ['label' => 'SEO description (до 160 символов)', 'type' => 'textarea', 'rows' => 2],
                     ]),
-                    FileUpload::make('seo_image')
-                        ->label('OG-картинка для соцсетей (1200×630)')
-                        ->image()
-                        ->disk('public')
-                        ->directory('news/og')
-                        ->visibility('public')
-                        ->maxSize(2048)
-                        ->imagePreviewHeight('100')
-                        ->helperText('Используется при шере в Facebook/Telegram/WhatsApp. Если пусто — берётся обложка.'),
+                    ImageUpload::og('seo_image', 'OG-картинка для соцсетей (1200×630)', 'news/og'),
                 ])
                 ->collapsed(),
         ]);

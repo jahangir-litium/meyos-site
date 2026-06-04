@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\BusinessCases\Schemas;
 
+use App\Filament\Support\ImageUpload;
 use App\Filament\Support\TranslatableTabs;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
@@ -15,11 +15,9 @@ class BusinessCaseForm
     {
         return $schema->components([
             Section::make('Основное')->schema([
-                
                 Toggle::make('is_published')->label('Опубликован')->default(true),
                 TextInput::make('sort')->label('Порядок')->numeric(),
-                FileUpload::make('cover_image')->image()->columnSpanFull(),
-        
+                ImageUpload::cover('cover_image', 'Обложка кейса', 'cases'),
             ])->columns(2),
 
             Section::make('Содержание (RU / UZ / EN)')

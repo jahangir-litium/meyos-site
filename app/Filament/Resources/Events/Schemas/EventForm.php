@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\Events\Schemas;
 
+use App\Filament\Support\ImageUpload;
 use App\Filament\Support\TranslatableTabs;
 use App\Models\Event;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
@@ -40,16 +40,7 @@ class EventForm
             ])->columns(2),
 
             Section::make('Картинка')->schema([
-                FileUpload::make('cover_image')
-                    ->label('Обложка')
-                    ->image()
-                    ->disk('public')
-                    ->directory('events')
-                    ->visibility('public')
-                    ->maxSize(4096)
-                    ->imagePreviewHeight('150')
-                    ->helperText('Рекомендуется 1200×675 (16:9). До 4 МБ.')
-                    ->columnSpanFull(),
+                ImageUpload::cover('cover_image', 'Обложка', 'events'),
             ]),
 
             Section::make('Содержание (RU / UZ / EN)')
@@ -72,14 +63,7 @@ class EventForm
                         'seo_title'       => ['label' => 'SEO title (до 60 символов)', 'type' => 'text'],
                         'seo_description' => ['label' => 'SEO description (до 160 символов)', 'type' => 'textarea', 'rows' => 2],
                     ]),
-                    FileUpload::make('seo_image')
-                        ->label('OG-картинка для соцсетей (1200×630)')
-                        ->image()
-                        ->disk('public')
-                        ->directory('events/og')
-                        ->visibility('public')
-                        ->maxSize(2048)
-                        ->imagePreviewHeight('100')
+                    ImageUpload::og('seo_image', 'OG-картинка для соцсетей (1200×630)', 'events/og')
                         ->helperText('Используется при шере в соцсетях. Если пусто — берётся обложка.'),
                 ])
                 ->collapsed(),

@@ -13,4 +13,5 @@ Artisan::command('inspire', function () {
  *   * * * * * cd /path-to-project && php artisan schedule:run >> /dev/null 2>&1
  */
 Schedule::command('meyos:publish-scheduled')->everyMinute()->withoutOverlapping();
+Schedule::command('meyos:ping-sitemap')->dailyAt('03:00')->onOneServer();
 

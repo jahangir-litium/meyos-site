@@ -8,7 +8,17 @@ use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 /* ============ SEO ============ */
-Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/sitemap.xml',          [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/sitemap-pages.xml',    [SitemapController::class, 'pages']);
+Route::get('/sitemap-news.xml',     [SitemapController::class, 'news']);
+Route::get('/sitemap-events.xml',   [SitemapController::class, 'events']);
+Route::get('/sitemap-programs.xml', [SitemapController::class, 'programs']);
+
+/* llms.txt — стандарт для AI-краулеров (ChatGPT, Claude, Perplexity) */
+Route::get('/llms.txt', function () {
+    $content = view('seo.llms-txt')->render();
+    return response($content, 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
+})->name('llms');
 Route::get('/robots.txt', function () {
     $path = public_path('robots.txt');
     if (file_exists($path)) {
