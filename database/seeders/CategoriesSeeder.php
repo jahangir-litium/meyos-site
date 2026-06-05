@@ -18,18 +18,13 @@ class CategoriesSeeder extends Seeder
                 ['slug' => 'programs',   'ru' => 'Программы',     'uz' => 'Dasturlar',    'en' => 'Programs'],
             ],
             Category::TYPE_PARTNERS => [
-                // Новые slug-ы (для будущих записей)
-                ['slug' => 'manufacturer', 'ru' => 'Производитель',   'uz' => 'Ishlab chiqaruvchi', 'en' => 'Manufacturer'],
-                ['slug' => 'designer',     'ru' => 'Дизайн-студия',   'uz' => 'Dizayn studiyasi',  'en' => 'Design Studio'],
-                ['slug' => 'supplier',     'ru' => 'Поставщик',       'uz' => 'Yetkazib beruvchi', 'en' => 'Supplier'],
-                ['slug' => 'logistics',    'ru' => 'Логистика и розница', 'uz' => 'Logistika',  'en' => 'Logistics'],
-                ['slug' => 'other',        'ru' => 'Другое',          'uz' => 'Boshqa',           'en' => 'Other'],
-                // Legacy slug-ы (совместимость со старыми сидерами/импортами)
-                ['slug' => 'production',   'ru' => 'Производство',    'uz' => 'Ishlab chiqarish',  'en' => 'Production'],
-                ['slug' => 'design',       'ru' => 'Дизайн',          'uz' => 'Dizayn',            'en' => 'Design'],
-                ['slug' => 'materials',    'ru' => 'Материалы',       'uz' => 'Materiallar',       'en' => 'Materials'],
-                ['slug' => 'gov',          'ru' => 'Государственный', 'uz' => 'Davlat tashkiloti', 'en' => 'Government'],
-                ['slug' => 'finance',      'ru' => 'Финансы',         'uz' => 'Moliya',            'en' => 'Finance'],
+                // Используем те же slug-ы что и в MeyosContentSeeder для партнёров.
+                ['slug' => 'production',   'ru' => 'Производство',    'uz' => 'Ishlab chiqarish', 'en' => 'Production'],
+                ['slug' => 'design',       'ru' => 'Дизайн',          'uz' => 'Dizayn',           'en' => 'Design'],
+                ['slug' => 'materials',    'ru' => 'Материалы',       'uz' => 'Materiallar',      'en' => 'Materials'],
+                ['slug' => 'logistics',    'ru' => 'Логистика',       'uz' => 'Logistika',        'en' => 'Logistics'],
+                ['slug' => 'gov',          'ru' => 'Государственный', 'uz' => 'Davlat',           'en' => 'Government'],
+                ['slug' => 'finance',      'ru' => 'Финансы',         'uz' => 'Moliya',           'en' => 'Finance'],
             ],
             Category::TYPE_EVENTS => [
                 ['slug' => 'exhibition',         'ru' => 'Выставка',          'uz' => 'Koʻrgazma',     'en' => 'Exhibition'],
