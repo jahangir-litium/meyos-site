@@ -637,7 +637,7 @@ img { image-rendering: -webkit-optimize-contrast; }
 }
 .mobile-menu.is-open { transform: translateX(0); }
 .mobile-menu__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
-.mobile-menu a {
+.mobile-menu > a {
   display: block;
   padding: 1rem 0;
   font-family: var(--font-head);
@@ -646,6 +646,52 @@ img { image-rendering: -webkit-optimize-contrast; }
   color: rgb(var(--on-surface));
   text-decoration: none;
   border-bottom: 1px solid rgb(var(--outline));
+}
+/* ============ Переключатель языка в mobile-меню ============ */
+.mobile-menu__lang {
+  margin-top: 2rem;
+  padding: 1.25rem 0;
+  border-top: 2px solid rgb(var(--outline));
+}
+.mobile-menu__lang-label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgb(var(--on-surface-mut));
+  margin-bottom: .85rem;
+}
+.mobile-menu__lang-options {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.mobile-menu__lang-options a {
+  display: block;
+  padding: .85rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface-deep));
+  border: 1px solid rgb(var(--outline));
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgb(var(--on-surface));
+  text-decoration: none;
+}
+.mobile-menu__lang-options a.is-active {
+  background: rgb(var(--primary));
+  border-color: rgb(var(--primary));
+  color: #fff;
+}
+/* Кнопка вступить — не лезет за экран */
+@media (max-width: 1023px) {
+  .header__inner > div > .btn-primary { padding: .5rem .9rem !important; font-size: .75rem !important; white-space: nowrap; }
+  .header__inner > div { gap: .4rem !important; }
+}
+/* Кнопка вступить совсем скрыта на узком экране — есть в mobile-menu */
+@media (max-width: 480px) {
+  .header__inner > div > .btn-primary { display: none; }
 }
 
 /* Hero */
@@ -732,6 +778,22 @@ img { image-rendering: -webkit-optimize-contrast; }
 /* Sections */
 section { padding: 5rem 1.5rem; }
 .container { max-width: 1280px; margin: 0 auto; }
+@media (max-width: 639px) {
+  section { padding: 3rem 1rem; }
+  .container { padding: 0; }
+  .section-head { margin: 0 auto 2rem; }
+  .section-head h2 { font-size: 1.5rem; }
+  /* Hero на mobile — компактнее */
+  .hero { padding: 3rem 1rem !important; }
+  .hero h1 { font-size: clamp(1.6rem, 6vw, 2rem) !important; line-height: 1.15 !important; margin: 1rem 0 1rem !important; }
+  .hero .lead { font-size: .95rem !important; line-height: 1.5 !important; }
+  /* CTA-блок не вылезает */
+  .cta-bar { padding: 2rem 1.25rem !important; }
+  .cta-bar h2 { font-size: 1.35rem !important; }
+  /* Формы с padding 2.5rem 3.5rem становятся слишком тесными */
+  .form { padding: 0 !important; }
+  .form input, .form textarea, .form select { font-size: 16px !important; /* 16px = no iOS-zoom при focus */ }
+}
 .section-head { text-align: center; max-width: 42rem; margin: 0 auto 3.5rem; }
 .section-head h2 {
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
