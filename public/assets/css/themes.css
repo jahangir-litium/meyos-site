@@ -779,20 +779,63 @@ img { image-rendering: -webkit-optimize-contrast; }
 section { padding: 5rem 1.5rem; }
 .container { max-width: 1280px; margin: 0 auto; }
 @media (max-width: 639px) {
-  section { padding: 3rem 1rem; }
+  /* ============ Базовый каркас ============ */
+  /* Защита от любого horizontal scroll даже если внутри что-то длинное */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  * { min-width: 0; }                          /* flex/grid items могут сжиматься */
+  img, video, svg { max-width: 100%; height: auto; }
+  /* Длинные слова без пробелов разрываются вместо overflow */
+  h1, h2, h3, h4, p, span, a, li { overflow-wrap: anywhere; word-break: break-word; }
+
+  /* ============ Секции и контейнер ============ */
+  section { padding: 2.5rem 1rem; }
   .container { padding: 0; }
-  .section-head { margin: 0 auto 2rem; }
-  .section-head h2 { font-size: 1.5rem; }
-  /* Hero на mobile — компактнее */
+  .section-head { margin: 0 auto 1.75rem; }
+  .section-head h2 { font-size: 1.5rem; line-height: 1.2; }
+  .section-head p { font-size: .95rem; line-height: 1.55; }
+
+  /* ============ Hero ============ */
   .hero { padding: 3rem 1rem !important; }
   .hero h1 { font-size: clamp(1.6rem, 6vw, 2rem) !important; line-height: 1.15 !important; margin: 1rem 0 1rem !important; }
   .hero .lead { font-size: .95rem !important; line-height: 1.5 !important; }
-  /* CTA-блок не вылезает */
-  .cta-bar { padding: 2rem 1.25rem !important; }
-  .cta-bar h2 { font-size: 1.35rem !important; }
-  /* Формы с padding 2.5rem 3.5rem становятся слишком тесными */
-  .form { padding: 0 !important; }
-  .form input, .form textarea, .form select { font-size: 16px !important; /* 16px = no iOS-zoom при focus */ }
+  .hero__stats { gap: 1.25rem !important; }
+  .hero__stat-num { font-size: 1.75rem !important; }
+
+  /* ============ CTA-блок ============ */
+  .cta-bar { padding: 2.25rem 1.25rem !important; }
+  .cta-bar h2 { font-size: 1.35rem !important; line-height: 1.25; }
+  .cta-bar p { font-size: .95rem; line-height: 1.5; }
+
+  /* ============ Формы — комфортные отступы и фокус ============ */
+  .form {
+    padding: 1.5rem 1.25rem !important;       /* было 0 (голо), стало уютные отступы */
+    gap: 1.15rem !important;                  /* было 1rem, чуть больше воздуха */
+    border-radius: 1rem;
+  }
+  .form > h3 { font-size: 1.2rem !important; margin: 0 0 .25rem !important; line-height: 1.3; }
+  .form > p { font-size: .85rem !important; }
+  .form label { gap: .35rem; font-size: .8rem; }
+  .form input, .form textarea, .form select {
+    font-size: 16px !important;               /* 16px — no iOS-zoom при focus */
+    padding: .8rem .95rem !important;
+    border-radius: .75rem;
+  }
+  .form button[type="submit"] { width: 100%; padding: 1rem !important; font-size: 1rem !important; }
+
+  /* ============ Карточки .case (бизнес-кейсы) ============ */
+  .case { padding: 1.25rem !important; gap: 1rem !important; }
+  .case__img { aspect-ratio: 16/10; }          /* немного ниже на mobile, экономия высоты */
+  .case__title { font-size: 1.15rem !important; margin: .35rem 0 .75rem !important; line-height: 1.25; }
+  .case__metrics { padding: .85rem !important; gap: .5rem !important; }
+  .case__metric-num { font-size: 1.15rem !important; }
+  .case__metric-lbl { font-size: .6rem !important; }
+
+  /* ============ Карточки .card ============ */
+  .card { padding: 1.25rem !important; }
+  .card h3 { font-size: 1.05rem; line-height: 1.3; }
+
+  /* ============ Skip iOS-bounce на body ============ */
+  body { overscroll-behavior-x: none; }
 }
 .section-head { text-align: center; max-width: 42rem; margin: 0 auto 3.5rem; }
 .section-head h2 {
