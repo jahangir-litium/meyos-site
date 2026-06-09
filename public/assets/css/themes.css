@@ -651,7 +651,6 @@ img { image-rendering: -webkit-optimize-contrast; }
 .mobile-menu__lang {
   margin-top: 1.25rem;
   padding: 1rem 0 .25rem;
-  border-top: 1px solid rgb(var(--outline));
 }
 .mobile-menu__lang-label {
   display: block;
