@@ -639,43 +639,45 @@ img { image-rendering: -webkit-optimize-contrast; }
 .mobile-menu__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
 .mobile-menu > a {
   display: block;
-  padding: 1rem 0;
+  padding: .7rem 0;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.05rem;
   color: rgb(var(--on-surface));
   text-decoration: none;
   border-bottom: 1px solid rgb(var(--outline));
 }
 /* ============ Переключатель языка в mobile-меню ============ */
 .mobile-menu__lang {
-  margin-top: 2rem;
-  padding: 1.25rem 0;
-  border-top: 2px solid rgb(var(--outline));
+  margin-top: 1.25rem;
+  padding: 1rem 0 .25rem;
+  border-top: 1px solid rgb(var(--outline));
 }
 .mobile-menu__lang-label {
   display: block;
-  font-size: .7rem;
+  font-size: .65rem;
   font-weight: 700;
   letter-spacing: .15em;
   text-transform: uppercase;
   color: rgb(var(--on-surface-mut));
-  margin-bottom: .85rem;
+  margin-bottom: .65rem;
 }
 .mobile-menu__lang-options {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .4rem;
 }
 .mobile-menu__lang-options a {
   display: block;
-  padding: .85rem 1rem;
-  border-radius: var(--radius-md);
+  text-align: center;
+  padding: .6rem .25rem;
+  border-radius: .65rem;
   background: rgb(var(--surface-deep));
   border: 1px solid rgb(var(--outline));
   font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .05em;
   color: rgb(var(--on-surface));
   text-decoration: none;
 }
@@ -684,6 +686,28 @@ img { image-rendering: -webkit-optimize-contrast; }
   border-color: rgb(var(--primary));
   color: #fff;
 }
+
+/* ============ Mobile CTA — акцентная кнопка в меню ============ */
+/* `.mobile-menu > a.mobile-menu__cta` — повышаем specificity чтобы перебить
+ * правило `.mobile-menu > a` (которое задаёт padding/font для пунктов навигации). */
+.mobile-menu > a.mobile-menu__cta,
+.mobile-menu__cta {
+  display: block;
+  text-align: center;
+  margin-top: 1.25rem;
+  padding: .95rem 1.25rem !important;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem !important;
+  letter-spacing: .02em;
+  text-decoration: none;
+  background: rgb(var(--accent));
+  color: #fff;
+  border-radius: 9999px !important;
+  border: none !important;
+  box-shadow: 0 8px 22px -8px rgb(var(--accent) / .65);
+}
+.mobile-menu__cta:active { transform: translateY(1px); }
 /* Кнопка вступить — не лезет за экран */
 @media (max-width: 1023px) {
   .header__inner > div > .btn-primary { padding: .5rem .9rem !important; font-size: .75rem !important; white-space: nowrap; }
@@ -780,8 +804,9 @@ section { padding: 5rem 1.5rem; }
 .container { max-width: 1280px; margin: 0 auto; }
 @media (max-width: 639px) {
   /* ============ Базовый каркас ============ */
-  /* Защита от любого horizontal scroll даже если внутри что-то длинное */
-  html, body { overflow-x: hidden; max-width: 100%; }
+  /* Защита от любого horizontal scroll даже если внутри что-то длинное.
+   * ВАЖНО: overflow-x:clip (не hidden!) — hidden ломает position:sticky шапки. */
+  html, body { overflow-x: clip; max-width: 100%; }
   * { min-width: 0; }                          /* flex/grid items могут сжиматься */
   img, video, svg { max-width: 100%; height: auto; }
   /* Длинные слова без пробелов разрываются вместо overflow */
@@ -836,6 +861,14 @@ section { padding: 5rem 1.5rem; }
 
   /* ============ Skip iOS-bounce на body ============ */
   body { overscroll-behavior-x: none; }
+
+  /* ============ Sticky header — должен быть полностью непрозрачным на mobile ============ */
+  .header {
+    background: rgb(var(--surface)) !important;     /* убираем .88 прозрачность */
+    box-shadow: 0 1px 0 rgb(var(--outline) / .6);
+  }
+  .header__inner { height: 3.75rem; padding: 0 1rem; }  /* немного ниже шапка на mobile */
+  .logo img { height: 28px !important; }                 /* лого чуть меньше */
 }
 .section-head { text-align: center; max-width: 42rem; margin: 0 auto 3.5rem; }
 .section-head h2 {

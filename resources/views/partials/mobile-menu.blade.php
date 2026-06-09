@@ -17,14 +17,14 @@
   <div class="mobile-menu__lang">
     <span class="mobile-menu__lang-label">@switch($cur) @case('uz') Til @break @case('en') Language @break @default Язык @endswitch</span>
     <div class="mobile-menu__lang-options">
-      <a href="?lang=ru" class="{{ $cur === 'ru' ? 'is-active' : '' }}">RU · Русский</a>
-      <a href="?lang=uz" class="{{ $cur === 'uz' ? 'is-active' : '' }}">UZ · Oʻzbekcha</a>
-      <a href="?lang=en" class="{{ $cur === 'en' ? 'is-active' : '' }}">EN · English</a>
+      <a href="?lang=ru" class="{{ $cur === 'ru' ? 'is-active' : '' }}">RU</a>
+      <a href="?lang=uz" class="{{ $cur === 'uz' ? 'is-active' : '' }}">UZ</a>
+      <a href="?lang=en" class="{{ $cur === 'en' ? 'is-active' : '' }}">EN</a>
     </div>
   </div>
 
   {{-- ============ CTA в меню ============ --}}
-  <a href="{{ route('residency') }}#join" class="btn btn-primary btn-lg" style="display:block; text-align:center; margin-top:1.5rem;">
+  <a href="{{ route('residency') }}#join" class="mobile-menu__cta">
     @switch($cur) @case('uz') Aʼzo boʻlish @break @case('en') Join MEYOS @break @default Вступить в MEYOS @endswitch
   </a>
 </div>
