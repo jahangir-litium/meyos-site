@@ -90,6 +90,22 @@ class PartnerForm
                     ]),
                 ]),
 
+            Section::make('SEO (для поисковиков + соцсетей)')
+                ->description('Если не заполнены — берутся название и короткое описание. Оптимально: title 55-60 симв., description 140-155 симв.')
+                ->schema([
+                    TranslatableTabs::make([
+                        'seo_title' => [
+                            'label' => 'Title (в результатах поиска Google)',
+                            'type' => 'text',
+                        ],
+                        'seo_description' => [
+                            'label' => 'Meta description (в результатах поиска)',
+                            'type' => 'textarea',
+                        ],
+                    ]),
+                    ImageUpload::logo('seo_image', 'OG-картинка (для Facebook/Telegram/WhatsApp предпросмотра)', 'partners/seo', 5120),
+                ])->collapsible()->collapsed(),
+
             Section::make('Аналитика (только для чтения)')->schema([
                 TextInput::make('views_count_total')->label('Всего просмотров')->disabled(),
                 TextInput::make('views_count_30d')->label('За 30 дней')->disabled(),

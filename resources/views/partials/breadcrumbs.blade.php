@@ -22,16 +22,19 @@
 </nav>
 
 @push('head')
+@php
+    $__crumbs = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'BreadcrumbList',
+        'itemListElement' => collect($all)->values()->map(fn ($it, $idx) => [
+            '@type'    => 'ListItem',
+            'position' => $idx + 1,
+            'name'     => $it['label'],
+            'item'     => $it['url'] ?? url()->current(),
+        ])->all(),
+    ];
+@endphp
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type'    => 'BreadcrumbList',
-    'itemListElement' => collect($all)->values()->map(fn ($it, $idx) => [
-        '@type'    => 'ListItem',
-        'position' => $idx + 1,
-        'name'     => $it['label'],
-        'item'     => $it['url'] ?? url()->current(),
-    ])->all(),
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__crumbs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush

@@ -27,39 +27,43 @@
 @if($ogImage)@section('og_image', $ogImage)@endif
 
 @push('head')
+@php
+    $__article = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'NewsArticle',
+        'headline' => $newsTitle,
+        'description' => $seoDesc,
+        'image'    => $ogImage ? [$ogImage] : [],
+        'datePublished' => $news->published_at?->toIso8601String(),
+        'dateModified'  => $news->updated_at?->toIso8601String(),
+        'author'   => ['@type' => 'Organization', 'name' => \App\Models\Setting::get('site_name', 'MEYOS')],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name'  => \App\Models\Setting::get('site_name', 'MEYOS'),
+            'logo'  => ['@type' => 'ImageObject', 'url' => \App\Models\Setting::logoUrl() ?: url('/favicon.ico')],
+        ],
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url()->current()],
+        'articleSection' => \App\Models\News::allCategories()[$news->category] ?? null,
+        'inLanguage' => $cur,
+    ];
+    $__crumbs = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type'=>'ListItem','position'=>1,'name'=>'Главная','item'=>url('/')],
+            ['@type'=>'ListItem','position'=>2,'name'=>'Новости','item'=>route('news')],
+            ['@type'=>'ListItem','position'=>3,'name'=>$newsTitle,'item'=>url()->current()],
+        ],
+    ];
+@endphp
 {{-- Schema.org Article --}}
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type'    => 'NewsArticle',
-    'headline' => $newsTitle,
-    'description' => $seoDesc,
-    'image'    => $ogImage ? [$ogImage] : [],
-    'datePublished' => $news->published_at?->toIso8601String(),
-    'dateModified'  => $news->updated_at?->toIso8601String(),
-    'author'   => ['@type' => 'Organization', 'name' => \App\Models\Setting::get('site_name', 'MEYOS')],
-    'publisher' => [
-        '@type' => 'Organization',
-        'name'  => \App\Models\Setting::get('site_name', 'MEYOS'),
-        'logo'  => ['@type' => 'ImageObject', 'url' => \App\Models\Setting::logoUrl() ?: url('/favicon.ico')],
-    ],
-    'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url()->current()],
-    'articleSection' => \App\Models\News::allCategories()[$news->category] ?? null,
-    'inLanguage' => $cur,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__article, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 
 {{-- Schema.org Breadcrumbs --}}
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type'    => 'BreadcrumbList',
-    'itemListElement' => [
-        ['@type'=>'ListItem','position'=>1,'name'=>'Главная','item'=>url('/')],
-        ['@type'=>'ListItem','position'=>2,'name'=>'Новости','item'=>route('news')],
-        ['@type'=>'ListItem','position'=>3,'name'=>$newsTitle,'item'=>url()->current()],
-    ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__crumbs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 
 {{-- Стили слайдера галереи --}}

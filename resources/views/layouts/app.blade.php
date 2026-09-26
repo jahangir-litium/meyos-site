@@ -48,44 +48,48 @@
 @if ($pageOgImg)<meta name="twitter:image" content="{{ $pageOgImg }}" />@endif
 
 {{-- Organization + WebSite на каждой странице — даёт Google панель организации и поиск по сайту --}}
+@php
+    // Собираем массив в PHP-блоке чтобы обойти конфликт Blade-директивы @context (Laravel 11)
+    $__schemaOrg = [
+        '@context' => 'https://schema.org',
+        '@graph'   => [
+            [
+                '@type' => 'Organization',
+                '@id'   => url('/').'#org',
+                'name'  => $siteName,
+                'url'   => url('/'),
+                'logo'  => $logoUrl ?: null,
+                'description' => $pageDesc,
+                'sameAs' => array_values(array_filter([
+                    \App\Models\Setting::get('telegram_url'),
+                    \App\Models\Setting::get('whatsapp_url'),
+                ])),
+                'contactPoint' => [
+                    '@type'       => 'ContactPoint',
+                    'contactType' => 'customer service',
+                    'email'       => \App\Models\Setting::get('email'),
+                    'telephone'   => \App\Models\Setting::get('phone'),
+                    'availableLanguage' => ['ru', 'uz', 'en'],
+                ],
+            ],
+            [
+                '@type' => 'WebSite',
+                '@id'   => url('/').'#website',
+                'url'   => url('/'),
+                'name'  => $siteName,
+                'publisher' => ['@id' => url('/').'#org'],
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => url('/news').'?q={search_term_string}',
+                    'query-input' => 'required name=search_term_string',
+                ],
+                'inLanguage' => array_values(\App\Http\Middleware\SetLocale::SUPPORTED),
+            ],
+        ],
+    ];
+@endphp
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@graph'   => [
-        [
-            '@type' => 'Organization',
-            '@id'   => url('/').'#org',
-            'name'  => $siteName,
-            'url'   => url('/'),
-            'logo'  => $logoUrl ?: null,
-            'description' => $pageDesc,
-            'sameAs' => array_values(array_filter([
-                \App\Models\Setting::get('telegram_url'),
-                \App\Models\Setting::get('whatsapp_url'),
-            ])),
-            'contactPoint' => [
-                '@type'       => 'ContactPoint',
-                'contactType' => 'customer service',
-                'email'       => \App\Models\Setting::get('email'),
-                'telephone'   => \App\Models\Setting::get('phone'),
-                'availableLanguage' => ['ru', 'uz', 'en'],
-            ],
-        ],
-        [
-            '@type' => 'WebSite',
-            '@id'   => url('/').'#website',
-            'url'   => url('/'),
-            'name'  => $siteName,
-            'publisher' => ['@id' => url('/').'#org'],
-            'potentialAction' => [
-                '@type' => 'SearchAction',
-                'target' => url('/news').'?q={search_term_string}',
-                'query-input' => 'required name=search_term_string',
-            ],
-            'inLanguage' => array_values(\App\Http\Middleware\SetLocale::SUPPORTED),
-        ],
-    ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__schemaOrg, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 
 @if ($faviconUrl)<link rel="icon" href="{{ $faviconUrl }}" />@endif

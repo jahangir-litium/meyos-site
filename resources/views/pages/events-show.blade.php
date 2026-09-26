@@ -19,41 +19,45 @@
 @if($ogImage)@section('og_image', $ogImage)@endif
 
 @push('head')
+@php
+    $__eventSchema = [
+        '@context'    => 'https://schema.org',
+        '@type'       => 'Event',
+        'name'        => $title,
+        'description' => $seoDesc,
+        'image'       => $ogImage ? [$ogImage] : [],
+        'startDate'   => $event->event_date?->toIso8601String(),
+        'endDate'     => $event->end_date?->toIso8601String() ?: $event->event_date?->toIso8601String(),
+        'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+        'eventStatus' => 'https://schema.org/EventScheduled',
+        'location' => $tr($event, 'location') ? [
+            '@type' => 'Place',
+            'name'  => $tr($event, 'location'),
+            'address' => $tr($event, 'city') ?: null,
+        ] : null,
+        'organizer'   => [
+            '@type' => 'Organization',
+            'name'  => \App\Models\Setting::get('site_name', 'MEYOS'),
+            'url'   => url('/'),
+        ],
+        'inLanguage' => $cur,
+    ];
+    $__crumbs = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type'=>'ListItem','position'=>1,'name'=>'Главная','item'=>url('/')],
+            ['@type'=>'ListItem','position'=>2,'name'=>'Мероприятия','item'=>route('events')],
+            ['@type'=>'ListItem','position'=>3,'name'=>$title,'item'=>url()->current()],
+        ],
+    ];
+@endphp
 {{-- Schema.org Event --}}
 <script type="application/ld+json">
-{!! json_encode([
-    '@context'    => 'https://schema.org',
-    '@type'       => 'Event',
-    'name'        => $title,
-    'description' => $seoDesc,
-    'image'       => $ogImage ? [$ogImage] : [],
-    'startDate'   => $event->event_date?->toIso8601String(),
-    'endDate'     => $event->end_date?->toIso8601String() ?: $event->event_date?->toIso8601String(),
-    'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
-    'eventStatus' => 'https://schema.org/EventScheduled',
-    'location' => $tr($event, 'location') ? [
-        '@type' => 'Place',
-        'name'  => $tr($event, 'location'),
-        'address' => $tr($event, 'city') ?: null,
-    ] : null,
-    'organizer'   => [
-        '@type' => 'Organization',
-        'name'  => \App\Models\Setting::get('site_name', 'MEYOS'),
-        'url'   => url('/'),
-    ],
-    'inLanguage' => $cur,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__eventSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type'    => 'BreadcrumbList',
-    'itemListElement' => [
-        ['@type'=>'ListItem','position'=>1,'name'=>'Главная','item'=>url('/')],
-        ['@type'=>'ListItem','position'=>2,'name'=>'Мероприятия','item'=>route('events')],
-        ['@type'=>'ListItem','position'=>3,'name'=>$title,'item'=>url()->current()],
-    ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__crumbs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
 

@@ -21,11 +21,12 @@ class Partner extends Model implements HasMedia
         'name', 'description', 'about',
         'logo_text', 'logo_image', 'website_url',
         'gallery_images', 'socials', 'contact_email', 'contact_phone',
+        'seo_title', 'seo_description', 'seo_image',
         'registry_id', 'is_published', 'show_on_home', 'sort',
         'views_count_total', 'views_count_30d', 'last_viewed_at',
     ];
 
-    public array $translatable = ['name', 'description', 'about'];
+    public array $translatable = ['name', 'description', 'about', 'seo_title', 'seo_description'];
 
     protected $casts = [
         'is_published'      => 'boolean',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\News;
+use App\Models\Partner;
 use App\Models\Program;
 use Illuminate\Support\Facades\Cache;
 
@@ -22,6 +23,7 @@ class SitemapController extends Controller
                 ['loc' => url('/sitemap-news.xml'),     'lastmod' => $now],
                 ['loc' => url('/sitemap-events.xml'),   'lastmod' => $now],
                 ['loc' => url('/sitemap-programs.xml'), 'lastmod' => $now],
+                ['loc' => url('/sitemap-partners.xml'), 'lastmod' => $now],
             ];
 
             $xml  = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -136,6 +138,42 @@ class SitemapController extends Controller
                     'lastmod' => $p->updated_at?->toIso8601String(),
                     'change'  => 'monthly',
                     'prio'    => '0.6',
+                    'images'  => $images,
+                ];
+            });
+            return $this->buildUrlset($urls);
+        });
+        return $this->xmlResponse($xml);
+    }
+
+    /** Партнёры — карточка каждого партнёра с логотипом + галереей в image-sitemap. */
+    public function partners()
+    {
+        $xml = Cache::remember('sitemap-partners.xml', 3600, function () {
+            $urls = [];
+            Partner::published()->get()->each(function ($p) use (&$urls) {
+                $images = [];
+                if ($p->logo_image) {
+                    $images[] = [
+                        'loc'   => asset('storage/'.$p->logo_image),
+                        'title' => $p->getTranslation('name', 'ru', false),
+                    ];
+                }
+                if (is_array($p->gallery_images)) {
+                    foreach ($p->gallery_images as $img) {
+                        $images[] = ['loc' => asset('storage/'.$img), 'title' => $p->getTranslation('name', 'ru', false)];
+                    }
+                }
+                $urls[] = [
+                    'loc'     => route('partners.show', $p->slug),
+                    'lastmod' => $p->updated_at?->toIso8601String(),
+                    'change'  => 'monthly',
+                    'prio'    => '0.6',
+                    'alt'     => [
+                        'ru' => route('partners.show', $p->slug).'?lang=ru',
+                        'uz' => route('partners.show', $p->slug).'?lang=uz',
+                        'en' => route('partners.show', $p->slug).'?lang=en',
+                    ],
                     'images'  => $images,
                 ];
             });

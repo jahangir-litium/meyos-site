@@ -10,9 +10,14 @@
     $categoryLabel = \App\Models\Partner::allCategories()[$partner->category] ?? $partner->category;
     $regionLabel   = $partner->region ? (\App\Models\Partner::REGIONS[$partner->region] ?? null) : null;
 
-    $seoTitle = $name . ' — ' . \App\Models\Setting::get('site_name', 'MEYOS');
-    $seoDesc  = mb_substr($description ?: 'Партнёр ассоциации MEYOS', 0, 200);
-    $logoUrl  = $partner->logo_image ? asset('storage/' . $partner->logo_image) : null;
+    // SEO: сначала per-record поля, потом fallback на name/description
+    $siteName    = \App\Models\Setting::get('site_name', 'MEYOS');
+    $customTitle = $tr($partner, 'seo_title');
+    $seoTitle    = $customTitle ?: ($name . ' — ' . $siteName);
+    $customDesc  = $tr($partner, 'seo_description');
+    $seoDesc     = mb_substr(trim($customDesc ?: ($description ?: 'Партнёр ассоциации мебельщиков Узбекистана')), 0, 200);
+    $logoUrl     = $partner->logo_image ? asset('storage/' . $partner->logo_image) : null;
+    $ogImage     = $partner->seo_image ? asset('storage/' . $partner->seo_image) : $logoUrl;
 
     $showViews = ($partner->views_count_total ?? 0) >= 100;
     $gallery   = collect($partner->gallery_images ?? [])->filter()->values();
@@ -24,27 +29,32 @@
 @section('title', $seoTitle)
 @section('description', $seoDesc)
 @section('og_type', 'profile')
-@if($logoUrl)@section('og_image', $logoUrl)@endif
+@if($ogImage)@section('og_image', $ogImage)@endif
 
 @push('head')
+@php
+    $__partnerSchema = array_filter([
+        '@context'    => 'https://schema.org',
+        '@type'       => 'Organization',
+        'name'        => $name,
+        'url'         => $partner->website_url ?: url()->current(),
+        'logo'        => $logoUrl,
+        'image'       => $ogImage,
+        'description' => $description,
+        'foundingDate' => $partner->founded_year ? (string) $partner->founded_year : null,
+        'email'       => $partner->contact_email,
+        'telephone'   => $partner->contact_phone,
+        'address'     => $regionLabel ? ['@type' => 'PostalAddress', 'addressLocality' => $regionLabel, 'addressCountry' => 'UZ'] : null,
+        'sameAs'      => array_values(array_filter([
+            !empty($socials['telegram']) ? 'https://t.me/'.ltrim($socials['telegram'], '@') : null,
+            !empty($socials['instagram']) ? 'https://instagram.com/'.ltrim($socials['instagram'], '@') : null,
+            $socials['facebook'] ?? null,
+        ])),
+        'memberOf'    => ['@type' => 'Organization', 'name' => 'MEYOS', '@id' => url('/').'#org'],
+    ], fn ($v) => $v !== null && $v !== '' && $v !== []);
+@endphp
 <script type="application/ld+json">
-{!! json_encode(array_filter([
-    '@context'    => 'https://schema.org',
-    '@type'       => 'Organization',
-    'name'        => $name,
-    'url'         => $partner->website_url ?: url()->current(),
-    'logo'        => $logoUrl,
-    'description' => $description,
-    'foundingDate' => $partner->founded_year ? (string) $partner->founded_year : null,
-    'email'       => $partner->contact_email,
-    'telephone'   => $partner->contact_phone,
-    'sameAs'      => array_values(array_filter([
-        !empty($socials['telegram']) ? 'https://t.me/'.ltrim($socials['telegram'], '@') : null,
-        !empty($socials['instagram']) ? 'https://instagram.com/'.ltrim($socials['instagram'], '@') : null,
-        $socials['facebook'] ?? null,
-    ])),
-    'memberOf'    => ['@type' => 'Organization', 'name' => 'MEYOS', '@id' => url('/').'#org'],
-], fn ($v) => $v !== null && $v !== ''), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+{!! json_encode($__partnerSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
 
