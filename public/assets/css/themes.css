@@ -954,9 +954,10 @@ section { padding: 5rem 1.5rem; }
 .step p { margin: 0; color: rgb(var(--on-surface-mut)); font-size: .9rem; line-height: 1.55; }
 
 /* Partners logos */
-.partners-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-@media (min-width: 640px) { .partners-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .partners-grid { grid-template-columns: repeat(6, 1fr); } }
+.partners-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 560px)  { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .partners-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+@media (min-width: 1280px) { .partners-grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; } }
 .partner-logo {
   aspect-ratio: 3/2;
   display: flex; align-items: center; justify-content: center;
@@ -1662,8 +1663,9 @@ section { padding: 5rem 1.5rem; }
 :root { --radius-pill: 9999px; }
 
 .partner-card {
-  display: block;
-  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
   background: rgb(var(--surface));
   border: 1px solid rgb(var(--outline));
   border-radius: var(--radius-md);
@@ -1674,6 +1676,7 @@ section { padding: 5rem 1.5rem; }
               border-color .2s;
   position: relative;
   overflow: hidden;
+  min-height: 320px;
 }
 .partner-card:hover {
   transform: translateY(-3px);
@@ -1686,14 +1689,14 @@ section { padding: 5rem 1.5rem; }
 /* --- Логотип: одинаковая обёртка для всех логотипов --- */
 .partner-card__logo {
   position: relative;
-  height: 88px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgb(var(--surface-deep));
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  margin-bottom: .9rem;
+  margin-bottom: 1.15rem;
   transition: transform .25s ease;
 }
 .partner-card:hover .partner-card__logo { transform: scale(1.02); }
@@ -1706,7 +1709,7 @@ section { padding: 5rem 1.5rem; }
 .partner-card__logo-fallback {
   font-family: var(--font-head, inherit);
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   color: rgb(var(--primary));
   letter-spacing: -.02em;
 }
@@ -1750,22 +1753,24 @@ section { padding: 5rem 1.5rem; }
 }
 
 .partner-card__title {
-  font-size: 1.05rem;
-  margin: .35rem 0 .5rem;
-  line-height: 1.3;
+  font-size: 1.2rem;
+  margin: .5rem 0 .6rem;
+  line-height: 1.25;
   color: rgb(var(--on-surface));
+  font-weight: 700;
 }
 .partner-card__desc {
   color: rgb(var(--on-surface-mut));
-  font-size: .85rem;
-  line-height: 1.55;
+  font-size: .9rem;
+  line-height: 1.6;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  flex-grow: 1;
 }
-.partner-card__footer { margin-top: .9rem; }
+.partner-card__footer { margin-top: 1.15rem; }
 .partner-card__cta {
   display: inline-flex;
   align-items: center;
