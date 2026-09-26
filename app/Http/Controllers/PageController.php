@@ -26,7 +26,7 @@ class PageController extends Controller
     private const CACHE_TTL = 300;
 
     /** Версия кэша. Меняйте при правках моделей чтобы инвалидировать старый cache. */
-    private const CACHE_VERSION = 'v2';
+    private const CACHE_VERSION = 'v3';
 
     private function key(string $page): string
     {
@@ -147,8 +147,8 @@ class PageController extends Controller
                 return $cached;
             }
         } catch (\Throwable $e) {
+            // Incomplete-object после правок моделей — ожидаемо, просто пересчитаем без спама в лог
             Cache::forget($key);
-            report($e);
         }
 
         $fresh = $callback();

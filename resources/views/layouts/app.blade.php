@@ -168,8 +168,8 @@
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    document.querySelectorAll('section .section-head, .card, .timeline__item, .step, .partner-card, .partner-stat, .partner-section').forEach(el => {
+    }, { rootMargin: '0px 0px 50px 0px', threshold: 0 });
+    document.querySelectorAll('section .section-head, .card, .timeline__item, .step, .partner-card, .partner-section').forEach(el => {
       el.classList.add('fade-in-up'); observer.observe(el);
     });
   }

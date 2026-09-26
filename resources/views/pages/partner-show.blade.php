@@ -50,7 +50,7 @@
 
 @section('content')
 
-<section style="padding:4rem 1.5rem 2rem;">
+<section style="padding:2rem 1.5rem 1.5rem;">
   <div class="container" style="max-width:1080px;">
 
     @include('partials.breadcrumbs', ['items' => [

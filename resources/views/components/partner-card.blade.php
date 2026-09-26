@@ -16,7 +16,7 @@
    data-partner-card
    data-category="{{ $partner->category }}"
    data-region="{{ $partner->region }}"
-   class="partner-card">
+   class="partner-card {{ $compact ? 'partner-card--compact' : '' }}">
 
   {{-- Логотип с одинаковой рамкой --}}
   <div class="partner-card__logo">
