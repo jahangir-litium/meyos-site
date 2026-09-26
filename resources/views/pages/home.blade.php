@@ -207,15 +207,16 @@
       <span class="tag">@switch($cur) @case('uz') Hamkorlar @break @case('en') Partners @break @default Партнёры @endswitch</span>
       <h2>@switch($cur) @case('uz') Biz hamkorlik qiladigan kompaniyalar @break @case('en') Companies we work with @break @default Компании и институты, с которыми мы работаем @endswitch</h2>
     </div>
-    <div class="partners-grid">
+    <div class="partner-logos-grid">
       @foreach ($partners as $partner)
-        <div class="partner-logo">
+        <a class="partner-logo" href="{{ route('partners.show', $partner->slug) }}"
+           title="{{ $tr($partner, 'name') }}">
           @if($partner->logo_image)
-            <img src="{{ asset('storage/' . $partner->logo_image) }}" alt="{{ $tr($partner, 'name') }}" style="max-height:60%; max-width:80%; object-fit:contain;">
+            <img src="{{ asset('storage/' . $partner->logo_image) }}" alt="{{ $tr($partner, 'name') }}" loading="lazy" decoding="async" style="max-height:60%; max-width:80%; object-fit:contain;">
           @else
             {{ $partner->logo_text ?: $tr($partner, 'name') }}
           @endif
-        </div>
+        </a>
       @endforeach
     </div>
     <div style="text-align:center; margin-top:2rem;">

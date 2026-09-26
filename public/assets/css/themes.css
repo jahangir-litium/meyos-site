@@ -958,6 +958,12 @@ section { padding: 5rem 1.5rem; }
 @media (min-width: 560px)  { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px)  { .partners-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
 @media (min-width: 1280px) { .partners-grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; } }
+/* Сетка логотипов на главной (компактная, 6 в ряд на десктопе) */
+.partner-logos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 640px)  { .partner-logos-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px)  { .partner-logos-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .partner-logos-grid { grid-template-columns: repeat(6, 1fr); } }
+
 .partner-logo {
   aspect-ratio: 3/2;
   display: flex; align-items: center; justify-content: center;
@@ -969,9 +975,14 @@ section { padding: 5rem 1.5rem; }
   font-size: 1rem;
   letter-spacing: -.02em;
   color: rgb(var(--on-surface-mut));
+  text-decoration: none;
+  padding: .75rem;
+  text-align: center;
   transition: all .25s ease;
 }
-.partner-logo:hover { color: rgb(var(--primary)); border-color: rgb(var(--primary)); transform: translateY(-2px); }
+.partner-logo:hover { color: rgb(var(--primary)); border-color: rgb(var(--primary)); transform: translateY(-2px); box-shadow: 0 8px 20px -12px rgb(0 0 0 / .18); }
+.partner-logo img { transition: transform .25s ease; }
+.partner-logo:hover img { transform: scale(1.05); }
 
 /* FAQ */
 .faq-item { border-bottom: 1px solid rgb(var(--outline)); padding: 1.25rem 0; }
