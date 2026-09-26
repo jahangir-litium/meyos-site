@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SetLocale::class,
             \App\Http\Middleware\TrackPageView::class,
             \App\Http\Middleware\StaticCacheHeaders::class,
+            \App\Http\Middleware\SecurityHeaders::class,
         ]);
 
         // Именованный alias для точечного применения к маршруту partners.show

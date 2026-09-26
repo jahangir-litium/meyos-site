@@ -278,6 +278,25 @@
 
 <!-- FAQ -->
 @if ($faqs->count())
+@push('head')
+@php
+    $__faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'FAQPage',
+        'mainEntity' => $faqs->map(fn ($faq) => [
+            '@type' => 'Question',
+            'name'  => $tr($faq, 'question'),
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => $tr($faq, 'answer'),
+            ],
+        ])->all(),
+    ];
+@endphp
+<script type="application/ld+json">
+{!! json_encode($__faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
 <section>
   <div class="container" style="max-width:880px;">
     <div class="section-head">

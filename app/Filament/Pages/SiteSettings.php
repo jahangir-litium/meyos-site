@@ -35,9 +35,9 @@ class SiteSettings extends Page implements HasForms
 
     public ?array $data = [];
 
-    public function mount(): void
+    private function loadSettings(): array
     {
-        $this->form->fill([
+        return [
             'site_name'       => Setting::get('site_name', 'MEYOS'),
             'logo_path'       => Setting::get('logo_path'),
             'favicon_path'    => Setting::get('favicon_path'),
@@ -53,7 +53,16 @@ class SiteSettings extends Page implements HasForms
             'tg_enabled'      => (bool) Setting::get('tg_enabled', false),
             'tg_bot_token'    => Setting::get('tg_bot_token'),
             'tg_chat_id'      => Setting::get('tg_chat_id'),
-        ]);
+            'yandex_metrika_id'        => Setting::get('yandex_metrika_id'),
+            'google_analytics_id'      => Setting::get('google_analytics_id'),
+            'yandex_verification'      => Setting::get('yandex_verification'),
+            'google_site_verification' => Setting::get('google_site_verification'),
+        ];
+    }
+
+    public function mount(): void
+    {
+        $this->form->fill($this->loadSettings());
     }
 
     public function form(Schema $schema): Schema
@@ -143,6 +152,39 @@ class SiteSettings extends Page implements HasForms
                                     ->columns(2),
                             ]),
 
+                        Tab::make('Аналитика и SEO')
+                            ->icon('heroicon-o-chart-bar')
+                            ->schema([
+                                Section::make('Счётчики трафика')
+                                    ->description('Вставьте ID счётчиков — они автоматически подгрузятся на все страницы фронта. Не подключайте если не готовы к сбору данных (влияет на PageSpeed).')
+                                    ->schema([
+                                        TextInput::make('yandex_metrika_id')
+                                            ->label('Yandex Metrika ID')
+                                            ->numeric()
+                                            ->placeholder('12345678')
+                                            ->helperText('Получить: metrika.yandex.ru → создать счётчик'),
+                                        TextInput::make('google_analytics_id')
+                                            ->label('Google Analytics 4 ID')
+                                            ->placeholder('G-XXXXXXXXXX')
+                                            ->helperText('Получить: analytics.google.com → Admin → Data Streams'),
+                                    ])
+                                    ->columns(2),
+
+                                Section::make('Верификация в поисковиках')
+                                    ->description('Одноразовые токены для подтверждения владения сайтом в Search Console / Webmaster.')
+                                    ->schema([
+                                        TextInput::make('yandex_verification')
+                                            ->label('Yandex Webmaster — код подтверждения')
+                                            ->placeholder('abc123def456')
+                                            ->helperText('Из webmaster.yandex.ru → добавить сайт → HTML-мета'),
+                                        TextInput::make('google_site_verification')
+                                            ->label('Google Search Console — код подтверждения')
+                                            ->placeholder('abc123def456')
+                                            ->helperText('Из search.google.com/search-console → добавить ресурс → HTML-тег'),
+                                    ])
+                                    ->columns(2),
+                            ]),
+
                         Tab::make('Telegram-бот')
                             ->icon('heroicon-o-paper-airplane')
                             ->schema([
@@ -184,23 +226,7 @@ class SiteSettings extends Page implements HasForms
         }
 
         // Перезаливаем форму свежими данными, чтобы Livewire понял что upload завершён
-        $this->form->fill([
-            'site_name'       => Setting::get('site_name', 'MEYOS'),
-            'logo_path'       => Setting::get('logo_path'),
-            'favicon_path'    => Setting::get('favicon_path'),
-            'phone'           => Setting::get('phone'),
-            'email'           => Setting::get('email'),
-            'residency_email' => Setting::get('residency_email'),
-            'address'         => Setting::get('address'),
-            'hours'           => Setting::get('hours'),
-            'entity_name'     => Setting::get('entity_name'),
-            'requisites'      => Setting::get('requisites'),
-            'telegram_url'    => Setting::get('telegram_url'),
-            'whatsapp_url'    => Setting::get('whatsapp_url'),
-            'tg_enabled'      => (bool) Setting::get('tg_enabled', false),
-            'tg_bot_token'    => Setting::get('tg_bot_token'),
-            'tg_chat_id'      => Setting::get('tg_chat_id'),
-        ]);
+        $this->form->fill($this->loadSettings());
 
         Notification::make()->title('Настройки сохранены')->success()->send();
     }

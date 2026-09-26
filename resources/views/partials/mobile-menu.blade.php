@@ -1,5 +1,5 @@
 @php $cur = app()->getLocale(); @endphp
-<div class="mobile-menu" data-mobile-menu>
+<div class="mobile-menu" data-mobile-menu id="mobile-menu" role="dialog" aria-modal="true" aria-label="@switch($cur) @case('uz') Navigatsiya @break @case('en') Navigation @break @default Навигация @endswitch">
   <div class="mobile-menu__head">
     <a href="{{ route('home') }}" class="logo"><span class="logo__mark">M</span>MEYOS</a>
     <button class="burger" data-mobile-close aria-label="Закрыть"><span class="material-symbols-outlined">close</span></button>

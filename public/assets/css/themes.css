@@ -2147,3 +2147,68 @@ section { padding: 5rem 1.5rem; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in-up { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
+
+
+/* ============================================================
+   A11Y — доступность
+   ============================================================ */
+
+/* Skip-link — визуально скрыт, появляется при Tab (первый focusable) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+  padding: .75rem 1.25rem;
+  background: rgb(var(--primary));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-md) 0;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Focus-visible — заметный ободок для клавиатурных пользователей,
+   не мешает мышке (только при клавиатурной навигации) */
+:focus-visible {
+  outline: 3px solid rgb(var(--primary));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgb(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Убираем outline у main когда фокусируется программно от skip-link */
+main:focus { outline: none; }
+
+/* Reduced motion — расширение существующей поддержки */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen-reader only — визуально скрыт, но озвучивается */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
