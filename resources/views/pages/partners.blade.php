@@ -3,22 +3,25 @@
 @php
     $cur = app()->getLocale();
     $tr = fn ($m, $f, $d = '') => $m?->getTranslation($f, $cur, false) ?: ($m?->getTranslation($f, 'ru', false) ?: $d);
-@endphp
 
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const chips = document.querySelectorAll('[data-partners-filter] .filter-chip');
-  const cards = document.querySelectorAll('[data-partner-card]');
-  chips.forEach(c => c.addEventListener('click', () => {
-    chips.forEach(x => x.classList.remove('is-active'));
-    c.classList.add('is-active');
-    const cat = c.dataset.filter;
-    cards.forEach(card => card.classList.toggle('is-hidden', cat !== 'all' && card.dataset.category !== cat));
-  }));
-});
-</script>
-@endpush
+    $categories = \App\Models\Partner::allCategories();
+    // Счётчики по каждой категории
+    $counts = $partners->groupBy('category')->map->count();
+    $totalCount = $partners->count();
+
+    // Список регионов, которые реально встречаются у партнёров
+    $usedRegions = $partners->pluck('region')->filter()->unique()->values();
+    $regionsMap  = \App\Models\Partner::REGIONS;
+
+    $labels = [
+        'all'     => ['ru' => 'Все', 'uz' => 'Barchasi', 'en' => 'All'][$cur],
+        'shown'   => ['ru' => 'Показано', 'uz' => 'Koʻrsatildi', 'en' => 'Showing'][$cur],
+        'of'      => ['ru' => 'из', 'uz' => 'jami', 'en' => 'of'][$cur],
+        'empty'   => ['ru' => 'По этим фильтрам ничего не найдено', 'uz' => 'Bu filtrlarga mos hech narsa yoʻq', 'en' => 'Nothing matches these filters'][$cur],
+        'reset'   => ['ru' => 'Сбросить фильтры', 'uz' => 'Filtrlarni tozalash', 'en' => 'Reset filters'][$cur],
+        'region'  => ['ru' => 'Все регионы', 'uz' => 'Barcha hududlar', 'en' => 'All regions'][$cur],
+    ];
+@endphp
 
 @section('content')
 
@@ -34,41 +37,155 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <section>
   <div class="container">
-    <div data-partners-filter style="display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2.5rem;">
-      <button class="filter-chip is-active" data-filter="all">@switch($cur) @case('uz') Barchasi @break @case('en') All @break @default Все @endswitch</button>
-      @foreach (\App\Models\Partner::allCategories() as $key => $label)
-        <button class="filter-chip" data-filter="{{ $key }}">{{ $label }}</button>
+    @include('partials.breadcrumbs', ['items' => [
+      ['label' => (['ru' => 'Партнёры', 'uz' => 'Hamkorlar', 'en' => 'Partners'])[$cur] ?? 'Партнёры', 'url' => null],
+    ]])
+
+    {{-- ============ Sticky-фильтр ============ --}}
+    <div class="partners-toolbar" data-partners-toolbar>
+      <div class="partners-toolbar__row" data-partners-filter>
+        <button class="filter-chip is-active" data-filter="all">
+          {{ $labels['all'] }}<span class="filter-chip__count">{{ $totalCount }}</span>
+        </button>
+        @foreach ($categories as $key => $label)
+          @php $count = $counts->get($key, 0); @endphp
+          @if ($count > 0)
+            <button class="filter-chip" data-filter="{{ $key }}">
+              {{ $label }}<span class="filter-chip__count">{{ $count }}</span>
+            </button>
+          @endif
+        @endforeach
+      </div>
+
+      @if($usedRegions->count() > 1)
+        <div class="partners-toolbar__row" style="margin-top:.6rem;">
+          <select data-region-filter class="filter-select" style="padding:.5rem 1rem; border-radius:var(--radius-pill); border:1px solid rgb(var(--outline)); background:rgb(var(--surface)); font-size:.85rem;">
+            <option value="all">{{ $labels['region'] }}</option>
+            @foreach($usedRegions as $slug)
+              <option value="{{ $slug }}">{{ $regionsMap[$slug] ?? $slug }}</option>
+            @endforeach
+          </select>
+        </div>
+      @endif
+    </div>
+
+    <div class="grid grid-4 partners-grid" data-partners-grid>
+      @foreach ($partners as $partner)
+        <x-partner-card :partner="$partner" />
       @endforeach
     </div>
 
-    <div class="grid grid-4">
-      @foreach ($partners as $partner)
-        @php $hasUrl = !empty($partner->website_url); @endphp
-        <{{ $hasUrl ? 'a' : 'div' }}
-          @if($hasUrl) href="{{ $partner->website_url }}" target="_blank" rel="noopener" @endif
-          data-partner-card data-category="{{ $partner->category }}"
-          class="card"
-          style="padding:1.5rem; display:block; text-decoration:none; color:inherit; {{ $hasUrl ? 'cursor:pointer;' : '' }}">
-          <div style="height:72px; display:flex; align-items:center; justify-content:center; background:rgb(var(--surface-deep)); border-radius:var(--radius-md); font-family:var(--font-head); font-weight:800; font-size:1.1rem; color:rgb(var(--primary)); margin-bottom:1rem; overflow:hidden;">
-            @if($partner->logo_image)
-              <img src="{{ asset('storage/' . $partner->logo_image) }}" loading="lazy" decoding="async" class="lazy-img" style="max-height:90%; max-width:90%; object-fit:contain;" alt="{{ $tr($partner, 'name') }}">
-            @else
-              {{ $partner->logo_text ?: $tr($partner, 'name') }}
-            @endif
-          </div>
-          <span class="chip">{{ \App\Models\Partner::allCategories()[$partner->category] ?? $partner->category }}</span>
-          <h3 style="font-size:1.05rem; margin:.75rem 0 .5rem;">{{ $tr($partner, 'name') }}</h3>
-          <p class="text-mut" style="font-size:.85rem; margin:0; line-height:1.5;">{{ $tr($partner, 'description') }}</p>
-          @if($hasUrl)
-            <div data-card-footer style="margin-top:1rem; font-size:.75rem; color:rgb(var(--primary)); font-weight:600;">
-              @switch($cur) @case('uz') Saytga oʻtish @break @case('en') Visit website @break @default Перейти на сайт @endswitch
-              <span class="material-symbols-outlined" style="font-size:.9rem; vertical-align:-2px;">arrow_forward</span>
-            </div>
-          @endif
-        </{{ $hasUrl ? 'a' : 'div' }}>
-      @endforeach
+    {{-- ============ Empty-state ============ --}}
+    <div class="partners-empty" data-partners-empty>
+      <div class="partners-empty__icon"><span class="material-symbols-outlined">search_off</span></div>
+      <h3 class="partners-empty__title">{{ $labels['empty'] }}</h3>
+      <button type="button" class="btn btn-outline" data-partners-reset>{{ $labels['reset'] }}</button>
+    </div>
+
+    {{-- ============ X из Y ============ --}}
+    <div class="partners-status" data-partners-status>
+      {{ $labels['shown'] }} <strong data-shown-count>{{ $totalCount }}</strong> {{ $labels['of'] }} <strong>{{ $totalCount }}</strong>
     </div>
   </div>
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toolbar   = document.querySelector('[data-partners-toolbar]');
+  const grid      = document.querySelector('[data-partners-grid]');
+  const emptyBox  = document.querySelector('[data-partners-empty]');
+  const shownEl   = document.querySelector('[data-shown-count]');
+  const statusBox = document.querySelector('[data-partners-status]');
+  const resetBtn  = document.querySelector('[data-partners-reset]');
+  const chips     = document.querySelectorAll('[data-partners-filter] .filter-chip');
+  const regionSel = document.querySelector('[data-region-filter]');
+  const cards     = Array.from(document.querySelectorAll('[data-partner-card]'));
+  if (!grid) return;
+
+  // ---------- Sticky-detection ----------
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute; top:0; height:1px; width:1px;';
+  toolbar.before(sentinel);
+  const stickyObs = new IntersectionObserver(([e]) => {
+    toolbar.classList.toggle('is-stuck', !e.isIntersecting);
+  }, { threshold: [0] });
+  stickyObs.observe(sentinel);
+
+  // ---------- Фильтрация ----------
+  let currentCat = 'all';
+  let currentReg = 'all';
+
+  const apply = (writeUrl = true) => {
+    // Skeleton-эффект на 200ms
+    grid.classList.add('is-filtering');
+    setTimeout(() => grid.classList.remove('is-filtering'), 200);
+
+    let shown = 0;
+    cards.forEach(card => {
+      const catOk = currentCat === 'all' || card.dataset.category === currentCat;
+      const regOk = currentReg === 'all' || card.dataset.region   === currentReg;
+      const visible = catOk && regOk;
+      card.classList.toggle('is-hidden', !visible);
+      if (visible) shown++;
+    });
+
+    // X из Y
+    if (shownEl) shownEl.textContent = shown;
+    statusBox.style.display = (shown === cards.length && currentCat === 'all' && currentReg === 'all') ? 'none' : 'block';
+
+    // Empty state
+    emptyBox.classList.toggle('is-visible', shown === 0);
+
+    // ---------- Deep-linking: пишем URL ----------
+    if (writeUrl && history.replaceState) {
+      const params = new URLSearchParams(window.location.search);
+      currentCat === 'all' ? params.delete('category') : params.set('category', currentCat);
+      currentReg === 'all' ? params.delete('region')   : params.set('region',   currentReg);
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    }
+  };
+
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    currentCat = chip.dataset.filter;
+    apply();
+  }));
+
+  regionSel?.addEventListener('change', () => {
+    currentReg = regionSel.value;
+    apply();
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    currentCat = 'all';
+    currentReg = 'all';
+    chips.forEach(c => c.classList.toggle('is-active', c.dataset.filter === 'all'));
+    if (regionSel) regionSel.value = 'all';
+    apply();
+  });
+
+  // ---------- Deep-linking: читаем URL при загрузке ----------
+  const params = new URLSearchParams(window.location.search);
+  const initCat = params.get('category');
+  const initReg = params.get('region');
+  if (initCat) {
+    const target = document.querySelector(`[data-partners-filter] .filter-chip[data-filter="${initCat}"]`);
+    if (target) {
+      chips.forEach(c => c.classList.remove('is-active'));
+      target.classList.add('is-active');
+      currentCat = initCat;
+    }
+  }
+  if (initReg && regionSel) {
+    regionSel.value = initReg;
+    currentReg = initReg;
+  }
+  if (initCat || initReg) apply(false);
+});
+</script>
+@endpush

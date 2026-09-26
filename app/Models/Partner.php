@@ -17,15 +17,22 @@ class Partner extends Model implements HasMedia
     public string $autoSlugFrom = 'name';
 
     protected $fillable = [
-        'slug', 'category', 'name', 'description', 'logo_text', 'logo_image', 'website_url',
+        'slug', 'category', 'region', 'founded_year',
+        'name', 'description', 'about',
+        'logo_text', 'logo_image', 'website_url',
+        'gallery_images', 'socials', 'contact_email', 'contact_phone',
         'registry_id', 'is_published', 'show_on_home', 'sort',
+        'views_count_total', 'views_count_30d', 'last_viewed_at',
     ];
 
-    public array $translatable = ['name', 'description'];
+    public array $translatable = ['name', 'description', 'about'];
 
     protected $casts = [
-        'is_published' => 'boolean',
-        'show_on_home' => 'boolean',
+        'is_published'      => 'boolean',
+        'show_on_home'      => 'boolean',
+        'gallery_images'    => 'array',
+        'socials'           => 'array',
+        'last_viewed_at'    => 'datetime',
     ];
 
     /** Fallback на случай пустой БД-таблицы Category. */
@@ -37,6 +44,24 @@ class Partner extends Model implements HasMedia
         'other'        => 'Другое',
     ];
 
+    /** Регионы Узбекистана — 12 областей + Ташкент. */
+    public const REGIONS = [
+        'tashkent_city'   => 'Ташкент',
+        'tashkent_region' => 'Ташкентская обл.',
+        'andijan'         => 'Андижанская обл.',
+        'bukhara'         => 'Бухарская обл.',
+        'fergana'         => 'Ферганская обл.',
+        'jizzakh'         => 'Джизакская обл.',
+        'kashkadarya'     => 'Кашкадарьинская обл.',
+        'khorezm'         => 'Хорезмская обл.',
+        'namangan'        => 'Наманганская обл.',
+        'navoi'           => 'Навоийская обл.',
+        'samarkand'       => 'Самаркандская обл.',
+        'sirdarya'        => 'Сырдарьинская обл.',
+        'surkhandarya'    => 'Сурхандарьинская обл.',
+        'karakalpakstan'  => 'Каракалпакстан',
+    ];
+
     public static function allCategories(?string $locale = null): array
     {
         $fromDb = Category::map(Category::TYPE_PARTNERS, $locale);
@@ -46,8 +71,20 @@ class Partner extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('logo')->singleFile();
+        $this->addMediaCollection('gallery');
+    }
+
+    public function views()
+    {
+        return $this->hasMany(PartnerView::class);
     }
 
     public function scopePublished($q) { return $q->where('is_published', true); }
     public function scopeOnHome($q)    { return $q->where('show_on_home', true); }
+
+    /** Топ-N партнёров за последние N дней. */
+    public function scopePopular($q, int $limit = 10)
+    {
+        return $q->where('views_count_30d', '>', 0)->orderByDesc('views_count_30d')->limit($limit);
+    }
 }

@@ -7,6 +7,12 @@
 
 @section('content')
 
+<div class="container" style="padding-top:1.25rem;">
+  @include('partials.breadcrumbs', ['items' => [
+    ['label' => ['ru' => 'Контакты', 'uz' => 'Kontaktlar', 'en' => 'Contacts'][$cur], 'url' => null],
+  ]])
+</div>
+
 <section class="hero" style="padding:5rem 1.5rem;">
   <div class="hero__inner" style="grid-template-columns:1fr;">
     <div style="max-width:50rem;">
@@ -55,6 +61,7 @@
 
       <form action="{{ route('submit.contact') }}" method="POST" class="form">
         @csrf
+        @include('partials.honeypot')
         <h3 style="margin:0 0 .5rem; font-size:1.3rem;">@switch($cur) @case('uz') Savol berish @break @case('en') Ask a question @break @default Задать вопрос @endswitch</h3>
         <label>@switch($cur) @case('uz') Ism @break @case('en') Name @break @default Имя @endswitch <input type="text" name="name" required value="{{ old('name') }}"></label>
         <label>@switch($cur) @case('uz') Kompaniya @break @case('en') Company @break @default Компания @endswitch <input type="text" name="company" value="{{ old('company') }}"></label>

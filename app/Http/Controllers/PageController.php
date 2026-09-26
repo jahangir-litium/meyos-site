@@ -49,7 +49,7 @@ class PageController extends Controller
             'faqs'      => Faq::published()->forPageSlug('home')->ordered()->get(),
         ]);
 
-        return view('pages.home', $data + ['settings' => $this->settings()]);
+        return view('pages.home', $data + ['settings' => $this->settings(withLiveStats: true)]);
     }
 
     public function about()
@@ -104,6 +104,25 @@ class PageController extends Controller
         return view('pages.partners', $data + ['settings' => $this->settings()]);
     }
 
+    public function partnerShow(Partner $partner)
+    {
+        abort_unless($partner->is_published, 404);
+
+        // Похожие партнёры (та же категория, исключая себя, до 3 шт)
+        $related = Partner::published()
+            ->where('category', $partner->category)
+            ->where('id', '!=', $partner->id)
+            ->ordered()
+            ->take(3)
+            ->get();
+
+        return view('pages.partner-show', [
+            'partner'  => $partner,
+            'related'  => $related,
+            'settings' => $this->settings(),
+        ]);
+    }
+
     public function contacts()
     {
         return view('pages.contacts', [
@@ -141,8 +160,25 @@ class PageController extends Controller
         return $fresh;
     }
 
-    private function settings(): array
+    private function settings(bool $withLiveStats = false): array
     {
+        $stats = Setting::get('stats', []);
+
+        if ($withLiveStats) {
+            // Live-подмена: реальные цифры из БД поверх настроек, только если ключ задан
+            $live = Cache::remember('stats:live:v1', 300, function () {
+                return [
+                    'companies' => (string) Partner::published()->count(),
+                    'events'    => (string) Event::published()->count(),
+                    'news'      => (string) News::published()->count(),
+                ];
+            });
+            // Если stats имеет ключ companies — обновляем реальным значением
+            if (isset($stats['companies'])) {
+                $stats['companies'] = $live['companies'];
+            }
+        }
+
         return [
             'phone'      => Setting::get('phone'),
             'email'      => Setting::get('email'),
@@ -150,7 +186,7 @@ class PageController extends Controller
             'hours'      => Setting::get('hours'),
             'requisites' => Setting::get('requisites'),
             'entity'     => Setting::get('entity_name'),
-            'stats'      => Setting::get('stats', []),
+            'stats'      => $stats,
         ];
     }
 }

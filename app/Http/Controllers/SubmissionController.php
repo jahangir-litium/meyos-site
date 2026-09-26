@@ -11,6 +11,56 @@ use Illuminate\Support\Facades\Lang;
 
 class SubmissionController extends Controller
 {
+    /**
+     * Проверка на бота:
+     *  1) Honeypot — поле `website` должно быть пустым (люди не видят, боты заполняют)
+     *  2) Time-trap — форма отправляется не быстрее 3 сек после загрузки
+     * При срабатывании — тихо редиректим с фейковым success (бот не должен понять что попался).
+     */
+    private function looksLikeBot(Request $request): bool
+    {
+        // 1) Honeypot
+        if (filled($request->input('website'))) {
+            return true;
+        }
+        // 2) Time-trap: скрытое поле form_ts несёт timestamp загрузки формы
+        $ts = (int) $request->input('form_ts', 0);
+        if ($ts > 0) {
+            $ageSec = time() - $ts;
+            // < 3 сек = бот, > 6 часов = устаревшая форма (тоже подозрительно)
+            if ($ageSec < 3 || $ageSec > 21600) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Тихий отказ — бот получает такой же успешный ответ как человек, но данные не сохраняем. */
+    private function silentDrop(Request $request, string $successKey)
+    {
+        return $this->successResponse($request, $successKey);
+    }
+
+    /** Универсальный успешный ответ: JSON для AJAX, redirect для классического сабмита. */
+    private function successResponse(Request $request, string $key)
+    {
+        $msg = $this->successMsg($key);
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json(['ok' => true, 'message' => $msg]);
+        }
+        return back()->with('success', $msg);
+    }
+
+    /** Универсальный ответ об ошибке. */
+    private function errorResponse(Request $request)
+    {
+        $msg = $this->errorMsg();
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json(['ok' => false, 'message' => $msg], 500);
+        }
+        return back()->withInput()->with('error', $msg);
+    }
+
     /** Локализованное сообщение успеха для текущей локали. */
     private function successMsg(string $key): string
     {
@@ -48,6 +98,10 @@ class SubmissionController extends Controller
 
     public function membership(Request $request)
     {
+        if ($this->looksLikeBot($request)) {
+            return $this->silentDrop($request, 'membership');
+        }
+
         $data = $request->validate([
             'company'  => 'required|string|max:255',
             'name'     => 'required|string|max:255',
@@ -70,14 +124,18 @@ class SubmissionController extends Controller
             MembershipApplication::create($data);
         } catch (\Throwable $e) {
             report($e);
-            return back()->withInput()->with('error', $this->errorMsg());
+            return $this->errorResponse($request);
         }
 
-        return back()->with('success', $this->successMsg('membership'));
+        return $this->successResponse($request, 'membership');
     }
 
     public function eventRegister(Request $request, ?string $slug = null)
     {
+        if ($this->looksLikeBot($request)) {
+            return $this->silentDrop($request, 'event');
+        }
+
         $data = $request->validate([
             'event_id'        => 'nullable|integer|exists:events,id',
             'company'         => 'required|string|max:255',
@@ -99,14 +157,18 @@ class SubmissionController extends Controller
             EventRegistration::create($data);
         } catch (\Throwable $e) {
             report($e);
-            return back()->withInput()->with('error', $this->errorMsg());
+            return $this->errorResponse($request);
         }
 
-        return back()->with('success', $this->successMsg('event'));
+        return $this->successResponse($request, 'event');
     }
 
     public function contact(Request $request)
     {
+        if ($this->looksLikeBot($request)) {
+            return $this->silentDrop($request, 'contact');
+        }
+
         $data = $request->validate([
             'name'    => 'required|string|max:255',
             'company' => 'nullable|string|max:255',
@@ -120,10 +182,10 @@ class SubmissionController extends Controller
             ContactMessage::create($data);
         } catch (\Throwable $e) {
             report($e);
-            return back()->withInput()->with('error', $this->errorMsg());
+            return $this->errorResponse($request);
         }
 
-        return back()->with('success', $this->successMsg('contact'));
+        return $this->successResponse($request, 'contact');
     }
 
     /** Локализованные тексты валидационных ошибок (заменяют стандартный «field is required»). */

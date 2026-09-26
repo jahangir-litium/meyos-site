@@ -29,9 +29,21 @@ class PartnersTable
                 ImageColumn::make('logo_image')->disk('public')->label('Лого'),
                 TextColumn::make('name')->label('Название')->searchable(query: fn ($q, $s) => $q->where('name->ru', 'like', "%$s%")),
                 TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Partner::allCategories()[$s] ?? $s),
-                IconColumn::make('show_on_home')->label('На главной')->boolean(),
+                TextColumn::make('region')->label('Регион')->formatStateUsing(fn ($s) => $s ? (Partner::REGIONS[$s] ?? $s) : '—')->toggleable(),
+                TextColumn::make('views_count_total')
+                    ->label('👁 Всего')
+                    ->sortable()
+                    ->numeric()
+                    ->alignRight(),
+                TextColumn::make('views_count_30d')
+                    ->label('👁 30д')
+                    ->sortable()
+                    ->numeric()
+                    ->alignRight()
+                    ->color(fn ($state) => $state > 100 ? 'success' : ($state > 20 ? 'warning' : 'gray')),
+                IconColumn::make('show_on_home')->label('На главной')->boolean()->toggleable(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
-                TextColumn::make('sort')->label('Порядок')->sortable(),
+                TextColumn::make('sort')->label('Порядок')->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->reorderable('sort')
             ->filters([

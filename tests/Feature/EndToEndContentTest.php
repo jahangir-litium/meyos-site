@@ -25,28 +25,30 @@ class EndToEndContentTest extends TestCase
         $this->seed();
     }
 
-    public function test_partner_with_website_url_renders_as_link(): void
+    public function test_partner_with_website_url_shows_on_profile_page(): void
     {
         // Менеджер вводит ссылку в админке
         $p = Partner::first();
-        $p->update(['website_url' => 'https://example.com']);
+        $p->update(['website_url' => 'https://example.com', 'is_published' => true]);
 
-        $r = $this->get('/partners');
+        // На странице-профиле есть внешняя ссылка на сайт партнёра с target="_blank"
+        $r = $this->get('/partners/' . $p->slug);
         $r->assertStatus(200);
         $r->assertSee('href="https://example.com"', false);
         $r->assertSee('target="_blank"', false);
     }
 
-    public function test_partner_without_url_is_not_link(): void
+    public function test_partners_index_cards_link_to_profile(): void
     {
-        // Гарантируем что партнёр без URL не превращается в <a>
-        Partner::query()->update(['website_url' => null]);
+        // Карточка на /partners всегда ведёт на страницу-профиль (а не наружу)
+        $p = Partner::first();
+        $p->update(['website_url' => 'https://example.com', 'is_published' => true]);
 
         $r = $this->get('/partners');
         $r->assertStatus(200);
-        // Карточка существует, но не как <a>
         $r->assertSee('data-partner-card', false);
-        $r->assertDontSee('target="_blank"', false);
+        // Ссылка карточки ведёт на /partners/{slug} — внутренний профиль
+        $r->assertSee('href="' . route('partners.show', $p->slug) . '"', false);
     }
 
     public function test_partner_logo_uploaded_renders_image(): void

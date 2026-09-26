@@ -14,4 +14,5 @@ Artisan::command('inspire', function () {
  */
 Schedule::command('meyos:publish-scheduled')->everyMinute()->withoutOverlapping();
 Schedule::command('meyos:ping-sitemap')->dailyAt('03:00')->onOneServer();
+Schedule::command('meyos:recalc-partner-stats')->hourly()->onOneServer();
 

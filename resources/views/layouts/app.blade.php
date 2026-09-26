@@ -169,7 +169,7 @@
         if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    document.querySelectorAll('section .section-head, .card, .timeline__item, .step').forEach(el => {
+    document.querySelectorAll('section .section-head, .card, .timeline__item, .step, .partner-card, .partner-stat, .partner-section').forEach(el => {
       el.classList.add('fade-in-up'); observer.observe(el);
     });
   }
@@ -206,7 +206,70 @@
     document.querySelectorAll('[data-counter]').forEach(el => counterObs.observe(el));
   }
 
-  // 3) Магнитный hover для CTA — кнопка тянется к курсору (только desktop, не touch)
+  // 3) AJAX-отправка форм с toast (перехват .form, POST) + fallback на классический сабмит
+  (function () {
+    // Контейнер toast'ов
+    let stack = document.querySelector('.toast-stack');
+    if (!stack) {
+      stack = document.createElement('div');
+      stack.className = 'toast-stack';
+      document.body.appendChild(stack);
+    }
+
+    const showToast = (type, message) => {
+      const t = document.createElement('div');
+      t.className = 'toast toast--' + type;
+      t.textContent = message;
+      stack.appendChild(t);
+      setTimeout(() => { t.classList.add('is-leaving'); setTimeout(() => t.remove(), 250); }, 5000);
+    };
+
+    document.querySelectorAll('form.form').forEach(form => {
+      if (form.dataset.noAjax !== undefined) return;
+      if ((form.method || 'get').toLowerCase() !== 'post') return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn?.classList.add('is-loading');
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+            credentials: 'same-origin',
+          });
+
+          let data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          if (res.ok) {
+            showToast('success', data?.message || 'Готово');
+            form.reset();
+            // Закрыть модалку fab-ask если это форма из неё
+            document.getElementById('fab-modal')?.classList.remove('is-open');
+          } else if (res.status === 429) {
+            showToast('error', 'Слишком много попыток. Подождите и попробуйте позже.');
+          } else if (res.status === 422 && data?.errors) {
+            const firstErr = Object.values(data.errors)[0]?.[0] || 'Проверьте поля';
+            showToast('error', firstErr);
+          } else {
+            showToast('error', data?.message || 'Что-то пошло не так. Попробуйте ещё раз.');
+          }
+        } catch (err) {
+          showToast('error', 'Ошибка сети. Проверьте соединение.');
+        } finally {
+          btn?.classList.remove('is-loading');
+        }
+      });
+    });
+  })();
+
+  // 4) Магнитный hover для CTA — кнопка тянется к курсору (только desktop, не touch)
   if (!noMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('.btn-primary, .btn-white, .btn-lg').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {

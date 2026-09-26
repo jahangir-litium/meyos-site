@@ -7,6 +7,12 @@
 
 @section('content')
 
+<div class="container" style="padding-top:1.25rem;">
+  @include('partials.breadcrumbs', ['items' => [
+    ['label' => ['ru' => 'Мероприятия', 'uz' => 'Tadbirlar', 'en' => 'Events'][$cur], 'url' => null],
+  ]])
+</div>
+
 <section class="hero" style="padding:5rem 1.5rem;">
   <div class="hero__inner" style="grid-template-columns:1fr;">
     <div style="max-width:50rem;">

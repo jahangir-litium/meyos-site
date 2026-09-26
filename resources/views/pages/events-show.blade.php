@@ -93,6 +93,7 @@
 
     <form action="{{ route('submit.event', $event->slug) }}" method="POST" class="form" style="margin-top:3rem;">
       @csrf
+      @include('partials.honeypot')
       <h3 style="margin:0 0 .5rem;">@switch($cur) @case('uz') Roʻyxatdan oʻtish @break @case('en') Registration @break @default Регистрация на мероприятие @endswitch</h3>
       <p class="text-mut" style="margin:0 0 1.25rem; font-size:.9rem;">
         @switch($cur)

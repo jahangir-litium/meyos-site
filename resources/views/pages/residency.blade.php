@@ -7,6 +7,12 @@
 
 @section('content')
 
+<div class="container" style="padding-top:1.25rem;">
+  @include('partials.breadcrumbs', ['items' => [
+    ['label' => ['ru' => 'Резидентство', 'uz' => 'Rezidentlik', 'en' => 'Residency'][$cur], 'url' => null],
+  ]])
+</div>
+
 <section class="hero" style="padding:5rem 1.5rem;">
   <div class="hero__inner" style="grid-template-columns:1fr;">
     <div style="max-width:50rem;">
@@ -85,6 +91,7 @@
     </div>
     <form action="{{ route('submit.membership') }}" method="POST" class="form">
       @csrf
+      @include('partials.honeypot')
       <div style="display:grid; gap:1rem; grid-template-columns:1fr 1fr;">
         <label>@switch($cur) @case('uz') Kompaniya @break @case('en') Company @break @default Название компании @endswitch <input type="text" name="company" required value="{{ old('company') }}" /></label>
         <label>@switch($cur) @case('uz') Kontakt @break @case('en') Contact @break @default Контактное лицо @endswitch <input type="text" name="name" required value="{{ old('name') }}" /></label>

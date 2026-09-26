@@ -20,6 +20,7 @@
 
     <form action="{{ route('submit.contact') }}" method="POST" class="form" style="display:grid; gap:.75rem;">
       @csrf
+      @include('partials.honeypot')
       <input type="text"  name="name"    required placeholder="@switch($cur) @case('uz') Ismingiz @break @case('en') Your name @break @default Ваше имя @endswitch" />
       <input type="email" name="email"   required placeholder="Email" />
       <input type="tel"   name="phone"            placeholder="@switch($cur) @case('uz') Telefon @break @case('en') Phone @break @default Телефон @endswitch" />

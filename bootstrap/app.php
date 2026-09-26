@@ -18,6 +18,11 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\StaticCacheHeaders::class,
         ]);
 
+        // Именованный alias для точечного применения к маршруту partners.show
+        $middleware->alias([
+            'track.partner' => \App\Http\Middleware\TrackPartnerView::class,
+        ]);
+
         // КРИТИЧНО для прода за nginx/cloudflare: доверять прокси,
         // иначе Laravel считает URL=http когда реально https → редирект-петля при входе в /admin
         $middleware->trustProxies(at: '*', headers:
