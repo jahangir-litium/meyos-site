@@ -74,7 +74,41 @@
         <button type="submit" class="btn btn-primary btn-lg mt-4">@switch($cur) @case('uz') Yuborish @break @case('en') Send @break @default Отправить @endswitch</button>
       </form>
     </div>
+
+    {{-- ============ Карта офиса (Яндекс.Карты) ============ --}}
+    @if(!empty($settings['address']))
+    <div style="margin-top:3rem;">
+      <h3 style="font-size:1.3rem; margin:0 0 1rem;">
+        @switch($cur) @case('uz') Xaritada @break @case('en') On the map @break @default На карте @endswitch
+      </h3>
+      <div class="map-embed">
+        {{-- Яндекс.Карты — универсальный embed по адресу (без API-ключа) --}}
+        <iframe
+          src="https://yandex.ru/map-widget/v1/?text={{ urlencode($settings['address']) }}&z=15&lang={{ $cur === 'ru' ? 'ru_RU' : ($cur === 'uz' ? 'uz_UZ' : 'en_US') }}"
+          width="100%" height="400"
+          frameborder="0" allowfullscreen
+          style="border-radius: var(--radius-lg); border: 1px solid rgb(var(--outline)); display: block;"
+          title="@switch($cur) @case('uz') MEYOS ofisi xaritada @break @case('en') MEYOS office on map @break @default Офис MEYOS на карте @endswitch"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <p style="margin-top:.75rem; font-size:.85rem; color:rgb(var(--on-surface-mut));">
+          <span class="material-symbols-outlined" style="vertical-align:-4px; font-size:1.1rem;">location_on</span>
+          {{ $settings['address'] }}
+        </p>
+      </div>
+    </div>
+    @endif
   </div>
 </section>
 
 @endsection
+
+@push('scripts')
+<style>
+.map-embed { position: relative; }
+@media (max-width: 639px) {
+  .map-embed iframe { height: 320px; border-radius: var(--radius-md); }
+}
+</style>
+@endpush
