@@ -7,6 +7,7 @@ use App\Services\TelegramNotifier;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -61,7 +62,65 @@ class SiteSettings extends Page implements HasForms
             'google_analytics_id'      => Setting::get('google_analytics_id'),
             'yandex_verification'      => Setting::get('yandex_verification'),
             'google_site_verification' => Setting::get('google_site_verification'),
+            // Опции форм (списки для select) — [{value, label:{ru,uz,en}}, …]
+            'form_categories'     => $this->flattenOptions('form.categories', 'form.categories'),
+            'form_volumes'        => $this->flattenOptions('form.volumes',    'form.volumes'),
+            'form_contact_topics' => $this->flattenOptions('form.contact_topics', 'form.contact_topics'),
         ];
+    }
+
+    /**
+     * Конвертирует Setting.<key> в плоскую форму для Repeater.
+     * Из [{value: 'x', label: {ru: 'A', uz: 'B', en: 'C'}}, …]
+     * получаем     [{value: 'x', label_ru: 'A', label_uz: 'B', label_en: 'C'}, …].
+     * Если ключа нет — берём встроенный дефолт из Cms::builtinOptions.
+     */
+    private function flattenOptions(string $settingKey, string $defaultsKey): array
+    {
+        $rows = Setting::get($settingKey);
+        if (!is_array($rows) || $rows === []) {
+            // Используем те же дефолты, что и Cms — но с сохранением всех локалей
+            $rows = $this->defaultOptionRows($defaultsKey);
+        }
+        return array_values(array_map(function ($row) {
+            $label = $row['label'] ?? [];
+            return [
+                'value'    => $row['value'] ?? '',
+                'label_ru' => $label['ru'] ?? '',
+                'label_uz' => $label['uz'] ?? '',
+                'label_en' => $label['en'] ?? '',
+            ];
+        }, $rows));
+    }
+
+    /** Встроенные дефолты списков — те же, что в Cms::builtinOptions. */
+    private function defaultOptionRows(string $key): array
+    {
+        $map = [
+            'form.categories' => [
+                ['production',  ['ru' => 'Производство мебели',             'uz' => 'Mebel ishlab chiqarish',           'en' => 'Furniture manufacturing']],
+                ['design',      ['ru' => 'Дизайн-студия',                   'uz' => 'Dizayn studiyasi',                 'en' => 'Design studio']],
+                ['materials',   ['ru' => 'Поставщик материалов и фурнитуры','uz' => 'Material va furnitura yetkazib beruvchi','en' => 'Materials and hardware supplier']],
+                ['logistics',   ['ru' => 'Логистика и розница',             'uz' => 'Logistika va chakana savdo',        'en' => 'Logistics and retail']],
+                ['other',       ['ru' => 'Другое',                          'uz' => 'Boshqa',                            'en' => 'Other']],
+            ],
+            'form.volumes' => [
+                ['up_5k',    ['ru' => 'До 5 000 изделий/год', 'uz' => '5 000 gacha mahsulot/yil',  'en' => 'Up to 5,000 items/year']],
+                ['5_20k',    ['ru' => '5 000–20 000',          'uz' => '5 000–20 000',              'en' => '5,000–20,000']],
+                ['20_50k',   ['ru' => '20 000–50 000',         'uz' => '20 000–50 000',             'en' => '20,000–50,000']],
+                ['over_50k', ['ru' => 'Более 50 000',          'uz' => '50 000 dan koʻp',           'en' => 'Over 50,000']],
+                ['unknown',  ['ru' => 'Уточнить',              'uz' => 'Aniqlashtirish kerak',      'en' => 'To be confirmed']],
+            ],
+            'form.contact_topics' => [
+                ['membership',  ['ru' => 'Вступление в ассоциацию', 'uz' => 'Assotsiatsiyaga aʼzo boʻlish', 'en' => 'Joining the association']],
+                ['edujob',      ['ru' => 'Программа EduJob',         'uz' => 'EduJob dasturi',               'en' => 'EduJob program']],
+                ['partnership', ['ru' => 'Партнёрство / медиа',      'uz' => 'Hamkorlik / media',            'en' => 'Partnership / media']],
+                ['export',      ['ru' => 'Экспорт и логистика',      'uz' => 'Eksport va logistika',         'en' => 'Export and logistics']],
+                ['benefits',    ['ru' => 'Налоговые льготы',         'uz' => 'Soliq imtiyozlari',            'en' => 'Tax benefits']],
+                ['other',       ['ru' => 'Другое',                   'uz' => 'Boshqa',                       'en' => 'Other']],
+            ],
+        ];
+        return array_map(fn ($r) => ['value' => $r[0], 'label' => $r[1]], $map[$key] ?? []);
     }
 
     public function mount(): void
@@ -227,6 +286,26 @@ class SiteSettings extends Page implements HasForms
                                     ->columns(2),
                             ]),
 
+                        Tab::make('Опции форм')
+                            ->icon('heroicon-o-list-bullet')
+                            ->schema([
+                                Section::make('Категория бизнеса — форма «Заявка на резидентство»')
+                                    ->description('Выпадающий список категорий в формах на главной, странице «Резидентство» и «Контакты». Каждый пункт — на 3 языках. Порядок отображения = порядку в этом списке.')
+                                    ->schema([
+                                        $this->optionsRepeater('form_categories'),
+                                    ]),
+                                Section::make('Объём производства — форма «Заявка на резидентство»')
+                                    ->description('Пункты в поле «Объём производства» на странице «Резидентство».')
+                                    ->schema([
+                                        $this->optionsRepeater('form_volumes'),
+                                    ]),
+                                Section::make('Тема обращения — форма «Контакты»')
+                                    ->description('Выпадающий список тем на странице «Контакты».')
+                                    ->schema([
+                                        $this->optionsRepeater('form_contact_topics'),
+                                    ]),
+                            ]),
+
                         Tab::make('Telegram-бот')
                             ->icon('heroicon-o-paper-airplane')
                             ->schema([
@@ -259,6 +338,32 @@ class SiteSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
+        // Список form_* — конвертируем плоский вид {value, label_ru, label_uz, label_en}
+        // обратно в структуру {value, label:{ru,uz,en}}, которую ждёт Cms::options()
+        $optionKeys = [
+            'form_categories'     => 'form.categories',
+            'form_volumes'        => 'form.volumes',
+            'form_contact_topics' => 'form.contact_topics',
+        ];
+        foreach ($optionKeys as $flatKey => $settingKey) {
+            if (!array_key_exists($flatKey, $data)) continue;
+            $rows = is_array($data[$flatKey]) ? $data[$flatKey] : [];
+            $normalized = [];
+            foreach ($rows as $r) {
+                if (empty($r['value'])) continue;
+                $normalized[] = [
+                    'value' => (string) $r['value'],
+                    'label' => [
+                        'ru' => (string) ($r['label_ru'] ?? ''),
+                        'uz' => (string) ($r['label_uz'] ?? ''),
+                        'en' => (string) ($r['label_en'] ?? ''),
+                    ],
+                ];
+            }
+            Setting::put($settingKey, $normalized, 'forms');
+            unset($data[$flatKey]);
+        }
+
         foreach ($data as $key => $value) {
             // FileUpload может вернуть массив — нормализуем в строку
             if (is_array($value) && count($value) === 1) {
@@ -271,6 +376,38 @@ class SiteSettings extends Page implements HasForms
         $this->form->fill($this->loadSettings());
 
         Notification::make()->title('Настройки сохранены')->success()->send();
+    }
+
+    /** Стандартный Repeater для трёх списков-опций (переиспользуется 3 раза). */
+    private function optionsRepeater(string $flatKey): Repeater
+    {
+        return Repeater::make($flatKey)
+            ->label('')
+            ->schema([
+                TextInput::make('value')
+                    ->label('Внутренний ключ (латиница, без пробелов)')
+                    ->placeholder('например, production')
+                    ->required()
+                    ->maxLength(50),
+                TextInput::make('label_ru')
+                    ->label('Русский')
+                    ->required()
+                    ->maxLength(150),
+                TextInput::make('label_uz')
+                    ->label('O‘zbekcha')
+                    ->required()
+                    ->maxLength(150),
+                TextInput::make('label_en')
+                    ->label('English')
+                    ->required()
+                    ->maxLength(150),
+            ])
+            ->columns(2)
+            ->addActionLabel('+ Добавить пункт')
+            ->reorderable()
+            ->collapsible()
+            ->itemLabel(fn (array $state): ?string => $state['label_ru'] ?? $state['value'] ?? '—')
+            ->defaultItems(0);
     }
 
     public function testTelegram(): void
