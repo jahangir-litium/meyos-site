@@ -60,9 +60,9 @@ class UpdateFromBrochureSeeder extends Seeder
                     'en' => 'Tax and financial benefits',
                 ],
                 'description' => [
-                    'ru' => 'Налог на прибыль 7,5%, социальный налог 12%, таможенный тариф на сырьё 0%. Компенсация 50% за международную сертификацию и 60% за обучение персонала.',
-                    'uz' => 'Foyda soligʻi 7,5%, ijtimoiy soliq 12%, xomashyoga bojxona tarifi 0%. Xalqaro sertifikatsiya uchun 50% va xodimlarni oʻqitish uchun 60% kompensatsiya.',
-                    'en' => 'Corporate tax 7.5%, social tax 12%, raw-material customs tariff 0%. 50% compensation for international certification and 60% for staff training.',
+                    'ru' => 'Таможенный тариф на сырьё 1% (ПП-193 до 01.01.2029). Мебельные кластеры МПЗ — освобождение от налогов на имущество, прибыль и ЕНП на 2 года (ПП-2973). Компенсация 50% за международную сертификацию и 60% за обучение персонала.',
+                    'uz' => 'Xomashyoga bojxona tarifi 1% (PQ-193, 01.01.2029 gacha). Mebel klasterlari (KSZ) — mulk, foyda va YaST soliqlaridan 2 yil ozod (PQ-2973). Xalqaro sertifikatsiya uchun 50% va xodimlarni oʻqitish uchun 60% kompensatsiya.',
+                    'en' => 'Raw-material customs duty 1% (PP-193 until 01.01.2029). Furniture cluster (SIZ) status — 2-year exemption from property, profit and turnover taxes (PP-2973). 50% compensation for international certification, 60% for staff training.',
                 ],
             ],
             [
@@ -185,45 +185,40 @@ class UpdateFromBrochureSeeder extends Seeder
             JoinStep::create(['is_published' => true] + $s);
         }
 
-        // ── TaxRow: точные данные из брошюры и ПП-193 ───────────────────
+        // ── TaxRow: только реально подтверждённые меры (ПП-193, ПП-5155,
+        //    ПП-2973). CIT 15→7,5 и соц.налог 25→12 УБРАНЫ — 7,5% CIT
+        //    относится к IT-парку и спец-статусам, а 12% соц.налога — это
+        //    стандартная ставка для не-бюджетных работодателей, поэтому
+        //    показывать их как «льготу для мебельщиков» вводит в заблуждение.
+        //    Столбец savings переименован в «Основание» (см. Setting
+        //    home.tax_th_saving).
         TaxRow::query()->forceDelete();
 
         $tax = [
             [
                 'sort' => 10,
                 'parameter' => [
-                    'ru' => 'Налог на прибыль (CIT)',
-                    'uz' => 'Foyda soligʻi (CIT)',
-                    'en' => 'Corporate income tax (CIT)',
-                ],
-                'standard_rate' => ['ru' => '15%', 'uz' => '15%', 'en' => '15%'],
-                'resident_rate' => ['ru' => '7,5%', 'uz' => '7,5%', 'en' => '7.5%'],
-                'savings' => ['ru' => '−50%', 'uz' => '−50%', 'en' => '−50%'],
-            ],
-            [
-                'sort' => 20,
-                'parameter' => [
-                    'ru' => 'Социальный налог',
-                    'uz' => 'Ijtimoiy soliq',
-                    'en' => 'Social tax',
-                ],
-                'standard_rate' => ['ru' => '25%', 'uz' => '25%', 'en' => '25%'],
-                'resident_rate' => ['ru' => '12%', 'uz' => '12%', 'en' => '12%'],
-                'savings' => ['ru' => '−52%', 'uz' => '−52%', 'en' => '−52%'],
-            ],
-            [
-                'sort' => 30,
-                'parameter' => [
                     'ru' => 'Таможенная пошлина на сырьё и фурнитуру',
                     'uz' => 'Xomashyo va furnituraga bojxona tarifi',
                     'en' => 'Customs duty on raw materials and hardware',
                 ],
                 'standard_rate' => ['ru' => '10–15%', 'uz' => '10–15%', 'en' => '10–15%'],
-                'resident_rate' => ['ru' => '1% (ПП-193 до 01.01.2029)', 'uz' => '1% (PQ-193, 01.01.2029 gacha)', 'en' => '1% (PP-193, until 01.01.2029)'],
-                'savings' => ['ru' => 'до −93%', 'uz' => '−93% gacha', 'en' => 'up to −93%'],
+                'resident_rate' => ['ru' => '1%', 'uz' => '1%', 'en' => '1%'],
+                'savings' => ['ru' => 'ПП-193 до 01.01.2029', 'uz' => 'PQ-193, 01.01.2029 gacha', 'en' => 'PP-193, until 01.01.2029'],
             ],
             [
-                'sort' => 40,
+                'sort' => 20,
+                'parameter' => [
+                    'ru' => 'Централизованный импорт древесины',
+                    'uz' => 'Yogʻoch markazlashtirilgan importi',
+                    'en' => 'Centralized wood import',
+                ],
+                'standard_rate' => ['ru' => 'нет', 'uz' => 'yoʻq', 'en' => 'no'],
+                'resident_rate' => ['ru' => 'да, для отрасли', 'uz' => 'ha, tarmoq uchun', 'en' => 'yes, industry-wide'],
+                'savings' => ['ru' => 'ПП-193', 'uz' => 'PQ-193', 'en' => 'PP-193'],
+            ],
+            [
+                'sort' => 30,
                 'parameter' => [
                     'ru' => 'Мебельный кластер (МПЗ) — налог на имущество',
                     'uz' => 'Mebel klasteri (KSZ) — mulk soligʻi',
@@ -231,18 +226,29 @@ class UpdateFromBrochureSeeder extends Seeder
                 ],
                 'standard_rate' => ['ru' => 'стандартно', 'uz' => 'standart', 'en' => 'standard'],
                 'resident_rate' => ['ru' => 'освобождение на 2 года', 'uz' => '2 yil ozod', 'en' => '2-year exemption'],
-                'savings' => ['ru' => '−100%', 'uz' => '−100%', 'en' => '−100%'],
+                'savings' => ['ru' => 'ПП-5155 + ПП-2973', 'uz' => 'PQ-5155 + PQ-2973', 'en' => 'PP-5155 + PP-2973'],
+            ],
+            [
+                'sort' => 40,
+                'parameter' => [
+                    'ru' => 'МПЗ — налог на прибыль / ЕНП',
+                    'uz' => 'KSZ — foyda soligʻi / YaST',
+                    'en' => 'SIZ — profit tax / simplified tax',
+                ],
+                'standard_rate' => ['ru' => 'стандартно', 'uz' => 'standart', 'en' => 'standard'],
+                'resident_rate' => ['ru' => 'освобождение на 2 года', 'uz' => '2 yil ozod', 'en' => '2-year exemption'],
+                'savings' => ['ru' => 'ПП-2973', 'uz' => 'PQ-2973', 'en' => 'PP-2973'],
             ],
             [
                 'sort' => 50,
                 'parameter' => [
-                    'ru' => 'Мебельный кластер (МПЗ) — при экспорте ≥ 30%',
-                    'uz' => 'Mebel klasteri (KSZ) — eksport ≥ 30% boʻlsa',
-                    'en' => 'Furniture cluster (SIZ) — with exports ≥ 30%',
+                    'ru' => 'МПЗ — при экспорте ≥ 30%',
+                    'uz' => 'KSZ — eksport ≥ 30% boʻlsa',
+                    'en' => 'SIZ — with exports ≥ 30%',
                 ],
                 'standard_rate' => ['ru' => '2 года льгот', 'uz' => '2 yil imtiyoz', 'en' => '2-year benefits'],
                 'resident_rate' => ['ru' => 'продление ещё на 2 года', 'uz' => 'yana 2 yilga uzaytirish', 'en' => 'extended by 2 more years'],
-                'savings' => ['ru' => '×2 срок', 'uz' => '×2 muddat', 'en' => '×2 duration'],
+                'savings' => ['ru' => 'ПП-2973', 'uz' => 'PQ-2973', 'en' => 'PP-2973'],
             ],
             [
                 'sort' => 60,
@@ -253,7 +259,7 @@ class UpdateFromBrochureSeeder extends Seeder
                 ],
                 'standard_rate' => ['ru' => '100% за счёт бизнеса', 'uz' => '100% biznes hisobidan', 'en' => '100% at business cost'],
                 'resident_rate' => ['ru' => '50% возврат', 'uz' => '50% qaytarish', 'en' => '50% reimbursement'],
-                'savings' => ['ru' => '−50%', 'uz' => '−50%', 'en' => '−50%'],
+                'savings' => ['ru' => 'ПП-193 (с 01.08.2025)', 'uz' => 'PQ-193 (01.08.2025 dan)', 'en' => 'PP-193 (from 01.08.2025)'],
             ],
             [
                 'sort' => 70,
@@ -264,7 +270,7 @@ class UpdateFromBrochureSeeder extends Seeder
                 ],
                 'standard_rate' => ['ru' => '100% за счёт бизнеса', 'uz' => '100% biznes hisobidan', 'en' => '100% at business cost'],
                 'resident_rate' => ['ru' => '60% возврат', 'uz' => '60% qaytarish', 'en' => '60% reimbursement'],
-                'savings' => ['ru' => '−60%', 'uz' => '−60%', 'en' => '−60%'],
+                'savings' => ['ru' => 'ПП-193 (с 2025)', 'uz' => 'PQ-193 (2025 dan)', 'en' => 'PP-193 (since 2025)'],
             ],
             [
                 'sort' => 80,
@@ -275,7 +281,7 @@ class UpdateFromBrochureSeeder extends Seeder
                 ],
                 'standard_rate' => ['ru' => '100% за счёт бизнеса', 'uz' => '100% biznes hisobidan', 'en' => '100% at business cost'],
                 'resident_rate' => ['ru' => '50%, максимум $5 000', 'uz' => '50%, maksimum $5 000', 'en' => '50%, up to $5,000'],
-                'savings' => ['ru' => '−50%', 'uz' => '−50%', 'en' => '−50%'],
+                'savings' => ['ru' => 'ПП-193 (01.07.2025–01.06.2027)', 'uz' => 'PQ-193 (01.07.2025–01.06.2027)', 'en' => 'PP-193 (01.07.2025–01.06.2027)'],
             ],
         ];
         foreach ($tax as $t) {

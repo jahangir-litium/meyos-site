@@ -96,7 +96,7 @@
       @endforeach
     </div>
 
-    <div style="margin-top:3rem;">{{ $news->links() }}</div>
+    <div style="margin-top:3rem;">{{ $news->links('vendor.pagination.meyos') }}</div>
   </div>
 </section>
 

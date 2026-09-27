@@ -2521,11 +2521,19 @@ main:focus { outline: none; }
   gap: .6rem !important;
 }
 
-/* Region-select styling */
+/* Region-select styling — своя стрелка вместо системной */
 .filter-select {
   cursor: pointer;
   min-height: 44px;
+  padding-right: 2.5rem !important;
   transition: border-color .2s, box-shadow .2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23726355'%3E%3Cpath d='M5.5 8l4.5 4.5L14.5 8H5.5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right .75rem center !important;
+  background-size: 14px 14px !important;
 }
 .filter-select:hover {
   border-color: rgb(var(--primary));
@@ -2534,6 +2542,51 @@ main:focus { outline: none; }
   border-color: rgb(var(--primary));
   box-shadow: 0 0 0 4px rgb(var(--primary) / .08);
   outline: none;
+}
+.filter-select::-ms-expand { display: none; }
+
+/* ============ PAGINATION — фирменные стили ============ */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  margin: 2rem auto;
+}
+.pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 .75rem;
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--outline));
+  color: rgb(var(--on-surface));
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .95rem;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.pagination__btn:hover {
+  border-color: rgb(var(--primary));
+  color: rgb(var(--primary));
+}
+.pagination__btn.is-active {
+  background: rgb(var(--primary));
+  border-color: rgb(var(--primary));
+  color: rgb(var(--on-primary, 255 255 255));
+}
+.pagination__btn.is-disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.pagination__gap {
+  padding: 0 .35rem;
+  color: rgb(var(--on-surface-mut));
 }
 
 /* ============ PARTNER CARD — усиление hover и типографики ============ */
