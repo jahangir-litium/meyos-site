@@ -196,6 +196,183 @@ class RealNewsSeeder extends Seeder
                 'image_alt' => ['ru' => 'Central Asia Furniture Exhibition Tashkent', 'uz' => 'Markaziy Osiyo mebel koʻrgazmasi', 'en' => 'Central Asia Furniture Exhibition'],
             ],
 
+            // === 2026-07-28 — Business mission Tajikistan ===
+            [
+                'slug' => 'business-mission-tajikistan-2026',
+                'category' => 'export',
+                'published_at' => '2026-07-28',
+                'is_published' => true,
+                'sort' => 5,
+                'title' => [
+                    'ru' => 'MEYOS проводит бизнес-миссию в Таджикистан: Худжанд и Душанбе',
+                    'uz' => 'MEYOS Tojikistonga biznes-missiyani oʻtkazadi: Xoʻjand va Dushanbe',
+                    'en' => 'MEYOS runs business mission to Tajikistan: Khujand and Dushanbe',
+                ],
+                'preview' => [
+                    'ru' => 'С 28 по 31 июля 2026 года участники бизнес-миссии MEYOS проведут B2B-встречи с крупными закупщиками мебели в Худжанде и Душанбе.',
+                    'uz' => '2026-yil 28–31-iyulda MEYOS biznes-missiya ishtirokchilari Xoʻjand va Dushanbeda yirik mebel xaridorlari bilan B2B uchrashuvlar oʻtkazadi.',
+                    'en' => 'From July 28-31, 2026, MEYOS business mission participants will hold B2B meetings with major furniture buyers in Khujand and Dushanbe.',
+                ],
+                'content' => [
+                    'ru' => "<p>MEYOS организует бизнес-миссию узбекских мебельных производителей в Таджикистан. С 28 по 31 июля 2026 года участники проведут B2B-встречи с ключевыми закупщиками в Худжанде и Душанбе.</p>"
+                        . "<p>Программа поддерживается Торгово-промышленной палатой РУз и Ассоциацией малого бизнеса. Резиденты MEYOS получают приоритетное включение и подготовку каталогов на английском/русском.</p>",
+                    'uz' => "<p>MEYOS Oʻzbekiston mebel ishlab chiqaruvchilarining Tojikistonga biznes-missiyasini tashkil qiladi. 2026-yil 28–31-iyulda ishtirokchilar Xoʻjand va Dushanbeda asosiy xaridorlar bilan B2B uchrashuvlar oʻtkazadi.</p>"
+                        . "<p>Dastur Oʻzbekiston SSP va Kichik biznes uyushmasi tomonidan qoʻllab-quvvatlanadi.</p>",
+                    'en' => "<p>MEYOS is running a business mission for Uzbek furniture manufacturers to Tajikistan. From July 28-31, 2026 participants will hold B2B meetings with key buyers in Khujand and Dushanbe.</p>"
+                        . "<p>The program is supported by the Chamber of Commerce and Industry of Uzbekistan and the Association of Small Business.</p>",
+                ],
+                'image_alt' => ['ru' => 'Бизнес-миссия в Таджикистан', 'uz' => 'Tojikistonga biznes-missiya', 'en' => 'Business mission to Tajikistan'],
+            ],
+
+            // === 2026-08-02 — Russia business delegation ===
+            [
+                'slug' => 'business-delegation-russia-2026',
+                'category' => 'export',
+                'published_at' => '2026-08-02',
+                'is_published' => true,
+                'is_featured' => true,
+                'sort' => 6,
+                'title' => [
+                    'ru' => 'Делегация MEYOS в России: Казань, Уфа, Самара — с 2 по 7 августа',
+                    'uz' => 'MEYOS delegatsiyasi Rossiyada: Qozon, Ufa, Samara — 2–7 avgust',
+                    'en' => 'MEYOS delegation in Russia: Kazan, Ufa, Samara — August 2-7',
+                ],
+                'preview' => [
+                    'ru' => '6-дневная поездка в три российских города: B2B-встречи, посещения фабрик, знакомство с сетью дистрибьюторов. Вылет 6:00 через Centrum Air.',
+                    'uz' => 'Rossiyaning uch shahriga 6 kunlik safar: B2B uchrashuvlar, fabrikalarga tashrif, distribyutorlar bilan tanishuv. 6:00 da Centrum Air orqali.',
+                    'en' => '6-day trip to three Russian cities: B2B meetings, factory tours and distributor networking. 6:00 AM departure via Centrum Air.',
+                ],
+                'content' => [
+                    'ru' => "<p>MEYOS формирует деловую делегацию в Россию с 2 по 7 августа 2026 года. Программа охватывает Казань, Уфу и Самару — три ключевых промышленных центра Приволжского федерального округа.</p>"
+                        . "<p><strong>В программе:</strong> B2B-встречи с закупщиками, посещение мебельных фабрик, знакомство с сетью дистрибьюторов, участие в отраслевых круглых столах.</p>"
+                        . "<p><strong>Стоимость участия:</strong> $344 без багажа или $364 с багажом (Centrum Air, вылет 6:00). Регистрация через ассоциацию.</p>",
+                    'uz' => "<p>MEYOS 2026-yil 2–7-avgustda Rossiyaga biznes delegatsiyasini shakllantirmoqda. Dastur Qozon, Ufa va Samarani — Volga bo'yi federal okrugining uchta asosiy sanoat markazini qamrab oladi.</p>"
+                        . "<p><strong>Dasturda:</strong> xaridorlar bilan B2B uchrashuvlar, mebel fabrikalariga tashrif, distribyutorlar bilan tanishuv, tarmoq davra suhbatlari.</p>"
+                        . "<p><strong>Ishtirok narxi:</strong> yuk bagajsiz $344 yoki bagaj bilan $364 (Centrum Air, uchish 6:00). Uyushma orqali roʻyxatga olish.</p>",
+                    'en' => "<p>MEYOS is organizing a business delegation to Russia from August 2-7, 2026. The program covers Kazan, Ufa and Samara — three key industrial centers of the Volga Federal District.</p>"
+                        . "<p><strong>On the agenda:</strong> B2B meetings with buyers, factory tours, distributor networking, industry round tables.</p>"
+                        . "<p><strong>Participation cost:</strong> $344 without checked baggage or $364 with baggage (Centrum Air, 6:00 AM departure). Registration via the association.</p>",
+                ],
+                'image_alt' => ['ru' => 'Бизнес-делегация в Россию', 'uz' => 'Rossiyaga biznes delegatsiyasi', 'en' => 'Business delegation to Russia'],
+            ],
+
+            // === 2026-08-15 — 9 пунктов в КабМин ===
+            [
+                'slug' => 'meyos-9-points-cabmin-2026',
+                'category' => 'regulation',
+                'published_at' => '2026-08-15',
+                'is_published' => true,
+                'sort' => 7,
+                'title' => [
+                    'ru' => 'MEYOS направила в Кабмин 9 предложений по поддержке отрасли',
+                    'uz' => 'MEYOS Vazirlar Mahkamasiga tarmoqni qoʻllab-quvvatlash boʻyicha 9 taklif yubordi',
+                    'en' => 'MEYOS submits 9 industry support proposals to the Cabinet of Ministers',
+                ],
+                'preview' => [
+                    'ru' => 'Освобождение экспортёров от налога на прибыль, увеличение срока дебиторки со 180 до 360 дней, субсидии на транспорт, пошлины на китайскую мебель.',
+                    'uz' => 'Eksportchilarni foyda soligʻidan ozod qilish, debitorlik muddatini 180 dan 360 kunga oshirish, transport subsidiyalari, xitoy mebeliga bojlar.',
+                    'en' => 'Profit-tax exemption for exporters, extending receivables from 180 to 360 days, transport subsidies, tariffs on Chinese furniture.',
+                ],
+                'content' => [
+                    'ru' => "<p>Ассоциация MEYOS направила в Кабинет Министров РУз документ из 9 пунктов с предложениями по стимулированию мебельной отрасли:</p>"
+                        . "<ul><li>Освобождение экспортёров мебели от налога на прибыль</li>"
+                        . "<li>Продление срока валютного контроля по дебиторской задолженности со 180 до 360 дней</li>"
+                        . "<li>Субсидии на транспортные расходы при экспорте</li>"
+                        . "<li>Повышение таможенных пошлин на импортную китайскую мебель</li>"
+                        . "<li>Расширение перечня льготируемого сырья</li>"
+                        . "<li>Оплата зарплат приглашённых экспертов</li>"
+                        . "<li>Поддержка рекламы узбекских брендов за рубежом</li>"
+                        . "<li>Финансирование систематизации производства</li>"
+                        . "<li>Ускорение процедур сертификации</li></ul>"
+                        . "<p>Ответ ведомств ожидается до конца сентября 2026 года.</p>",
+                    'uz' => "<p>MEYOS uyushmasi Oʻzbekiston Vazirlar Mahkamasiga mebel tarmog'ini rag'batlantirish bo'yicha 9 banddan iborat hujjat yubordi:</p>"
+                        . "<ul><li>Mebel eksportchilarini foyda soligʻidan ozod qilish</li>"
+                        . "<li>Debitorlik boʻyicha valyuta nazorati muddatini 180 dan 360 kunga uzaytirish</li>"
+                        . "<li>Eksportda transport xarajatlariga subsidiya</li>"
+                        . "<li>Xitoy mebeliga bojxona tariflarini oshirish</li>"
+                        . "<li>Imtiyozli xomashyo roʻyxatini kengaytirish</li>"
+                        . "<li>Taklif etilgan mutaxassislar ish haqini toʻlash</li>"
+                        . "<li>Chet elda oʻzbek brendlari reklamasini qoʻllab-quvvatlash</li>"
+                        . "<li>Ishlab chiqarish tizimlashtiruvchi moliyalash</li>"
+                        . "<li>Sertifikatsiya jarayonlarini tezlashtirish</li></ul>",
+                    'en' => "<p>The MEYOS Association has submitted a 9-point document to the Cabinet of Ministers of Uzbekistan with proposals to boost the furniture industry:</p>"
+                        . "<ul><li>Profit tax exemption for furniture exporters</li>"
+                        . "<li>Extending currency control period on receivables from 180 to 360 days</li>"
+                        . "<li>Subsidies on transport costs for exports</li>"
+                        . "<li>Higher customs duties on Chinese imported furniture</li>"
+                        . "<li>Expanded list of preferential raw materials</li>"
+                        . "<li>Salary coverage for invited experts</li>"
+                        . "<li>Support for advertising Uzbek brands abroad</li>"
+                        . "<li>Financing for production systematization</li>"
+                        . "<li>Faster certification procedures</li></ul>",
+                ],
+                'image_alt' => ['ru' => 'Предложения MEYOS в Кабмин', 'uz' => 'MEYOSning Vazirlar Mahkamasidagi takliflari', 'en' => 'MEYOS proposals to Cabinet of Ministers'],
+            ],
+
+            // === 2026-07-15 — IHLOS + Русский Лес → Yashnobod Technopark ===
+            [
+                'slug' => 'ihlos-technopark-yashnobod',
+                'category' => 'residency',
+                'published_at' => '2026-07-15',
+                'is_published' => true,
+                'sort' => 8,
+                'title' => [
+                    'ru' => 'IHLOS Furniture и «Русский Лес» стали резидентами Yashnobod Innovation Technopark',
+                    'uz' => 'IHLOS Furniture va “Rus O‘rmoni” Yashnobod Innovatsiya Texnoparkining rezidentiga aylandi',
+                    'en' => 'IHLOS Furniture and «Russian Forest» became residents of Yashnobod Innovation Technopark',
+                ],
+                'preview' => [
+                    'ru' => 'Резиденты MEYOS вошли в Yashnobod Innovation Technopark: налоговые льготы, современная инфраструктура и поддержка экспорта.',
+                    'uz' => 'MEYOS rezidentlari Yashnobod Innovatsiya Texnoparkiga kirdi: soliq imtiyozlari, zamonaviy infratuzilma va eksportni qoʻllab-quvvatlash.',
+                    'en' => 'MEYOS residents joined Yashnobod Innovation Technopark: tax benefits, modern infrastructure and export support.',
+                ],
+                'content' => [
+                    'ru' => "<p>Резиденты MEYOS — IHLOS Furniture и «Русский Лес» — получили статус резидентов Yashnobod Innovation Technopark. Партнёрство даёт компаниям доступ к налоговым льготам МПЗ, современной инфраструктуре и поддержке экспортного развития.</p>"
+                        . "<p>Соглашение выработано при участии MEYOS в рамках инициативы по поддержке производителей мебели, работающих на экспортный рынок.</p>",
+                    'uz' => "<p>MEYOS rezidentlari — IHLOS Furniture va “Rus Oʻrmoni” — Yashnobod Innovatsiya Texnoparkining rezidenti maqomini oldi. Hamkorlik kompaniyalarga KSZ soliq imtiyozlariga, zamonaviy infratuzilmaga va eksport rivojlanishini qoʻllab-quvvatlashga kirish beradi.</p>",
+                    'en' => "<p>MEYOS residents IHLOS Furniture and «Russian Forest» have obtained resident status at Yashnobod Innovation Technopark. The partnership grants access to SIZ tax benefits, modern infrastructure and export development support.</p>",
+                ],
+                'image_alt' => ['ru' => 'Yashnobod Innovation Technopark', 'uz' => 'Yashnobod Innovatsiya Texnoparki', 'en' => 'Yashnobod Innovation Technopark'],
+            ],
+
+            // === 2026-08-10 — вебинар по поддержке экспорта ===
+            [
+                'slug' => 'export-support-webinar-2026',
+                'category' => 'export',
+                'published_at' => '2026-08-10',
+                'is_published' => true,
+                'sort' => 9,
+                'title' => [
+                    'ru' => 'Открытая дискуссия по поддержке экспорта: вебинар 10 августа',
+                    'uz' => 'Eksportni qoʻllab-quvvatlash boʻyicha ochiq muhokama: 10-avgust vebinari',
+                    'en' => 'Open discussion on export support: webinar on August 10',
+                ],
+                'preview' => [
+                    'ru' => '17:00 Zoom-вебинар о новых возможностях: 50% компенсация за системy производства, зарплаты приглашённых экспертов, рекламная поддержка.',
+                    'uz' => '17:00 Zoom-vebinar yangi imkoniyatlar haqida: ishlab chiqarish tizimini 50% kompensatsiya, taklif etilgan mutaxassislarning ish haqi, reklama qoʻllovi.',
+                    'en' => '17:00 Zoom webinar on new opportunities: 50% cost coverage for production systematization, expert salary coverage, advertising support.',
+                ],
+                'content' => [
+                    'ru' => "<p>10 августа в 17:00 MEYOS проводит открытый Zoom-вебинар для мебельных производителей и поставщиков. В программе — новые меры поддержки экспорта:</p>"
+                        . "<ul><li>50% компенсация расходов на систематизацию производства от Trade Development Company</li>"
+                        . "<li>Оплата зарплаты приглашённых иностранных инженеров-технологов и дизайнеров</li>"
+                        . "<li>Реклама узбекских брендов за рубежом</li>"
+                        . "<li>Онлайн-портал для упрощения операций</li></ul>"
+                        . "<p>Участие бесплатное, необходима регистрация через сайт или Telegram-канал MEYOS.</p>",
+                    'uz' => "<p>10-avgust soat 17:00 da MEYOS mebel ishlab chiqaruvchilari va yetkazib beruvchilari uchun ochiq Zoom vebinar oʻtkazadi. Dasturda — eksportni qoʻllab-quvvatlashning yangi choralar:</p>"
+                        . "<ul><li>Trade Development Company tomonidan ishlab chiqarishni tizimlashtirish xarajatlarining 50% kompensatsiyasi</li>"
+                        . "<li>Taklif etilgan xorijiy muhandis-texnologlar va dizaynerlarning ish haqini toʻlash</li>"
+                        . "<li>Chet elda oʻzbek brendlarini reklama qilish</li>"
+                        . "<li>Operatsiyalarni soddalashtirish uchun onlayn-portal</li></ul>",
+                    'en' => "<p>On August 10 at 17:00, MEYOS holds an open Zoom webinar for furniture manufacturers and suppliers. On the agenda — new export support measures:</p>"
+                        . "<ul><li>50% cost coverage for production systematization by Trade Development Company</li>"
+                        . "<li>Salary coverage for invited foreign technologist engineers and designers</li>"
+                        . "<li>Advertising support for Uzbek brands abroad</li>"
+                        . "<li>Online portal for streamlined operations</li></ul>",
+                ],
+                'image_alt' => ['ru' => 'Вебинар поддержки экспорта', 'uz' => 'Eksport qoʻllovi vebinari', 'en' => 'Export support webinar'],
+            ],
+
             // === 2020-12-17 — конференция MEYOS в Hyatt Regency ===
             [
                 'slug' => 'meyos-conference-2020-hyatt',

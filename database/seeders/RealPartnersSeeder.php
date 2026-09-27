@@ -425,6 +425,7 @@ class RealPartnersSeeder extends Seeder
                 'sort' => 100,
                 'founded_year' => 2009,
                 'logo_text' => 'DIVAN',
+                'logo_image' => 'partners/divannovo.jpg',
                 'name' => ['ru' => 'DIVANNOVO', 'uz' => 'DIVANNOVO', 'en' => 'DIVANNOVO'],
                 'description' => [
                     'ru' => 'Мягкая мебель на заказ: диваны, кресла. Индивидуальные размеры, финансовая ответственность за сроки. 64 000+ подписчиков в Instagram. С 2009 года.',
@@ -507,6 +508,178 @@ class RealPartnersSeeder extends Seeder
                     'ru' => 'Партнёр MEYOS. Данные компании уточняются.',
                     'uz' => 'MEYOS hamkori. Kompaniya maʼlumotlari aniqlanmoqda.',
                     'en' => 'MEYOS partner. Company details being finalized.',
+                ],
+                'about' => null,
+            ],
+
+            // 13. MONDELUX (GULOBOD MEBEL) — Самарканд, крупный игрок
+            [
+                'slug' => 'mondelux',
+                'category' => 'production',
+                'region' => 'samarkand',
+                'is_published' => true,
+                'show_on_home' => true,
+                'sort' => 130,
+                'founded_year' => 2003,
+                'logo_text' => 'MONDELUX',
+                'name' => ['ru' => 'Mondelux', 'uz' => 'Mondelux', 'en' => 'Mondelux'],
+                'description' => [
+                    'ru' => 'Три собственные фабрики в Самаркандской области. С 2003 года — корпусная, мягкая, кухонная и офисная мебель. Более 24 000 изделий в год.',
+                    'uz' => 'Samarqand viloyatida uchta oʻz fabrikasi. 2003-yildan — korpus, yumshoq, oshxona va ofis mebeli. Yiliga 24 000 dan ortiq mahsulot.',
+                    'en' => 'Three own factories in Samarqand region. Since 2003 — case, upholstered, kitchen and office furniture. Over 24,000 units per year.',
+                ],
+                'about' => [
+                    'ru' => "<p><strong>Mondelux</strong> (юр. GULOBOD MEBEL) — производственная группа с 2003 года. 178 сотрудников, три собственные фабрики общей площадью 12 400 м², шоурум 5 000 м².</p>"
+                        . "<p><strong>Продукция:</strong> корпусная мебель, мягкая мебель, кухни, офисная мебель, для ресторанов и отелей. 20+ лет опыта, сертификация ISO.</p>"
+                        . "<p><strong>Мощность:</strong> 24 000+ изделий в год.</p>"
+                        . "<p><strong>Экспорт:</strong> Узбекистан, Россия, Кыргызстан, Казахстан.</p>"
+                        . "<p><strong>Гарантия:</strong> 2–5 лет. Средний срок выполнения заказа — 15–30 дней. Доставка и монтаж.</p>",
+                    'uz' => "<p><strong>Mondelux</strong> (yur. GULOBOD MEBEL MChJ) — 2003-yildan ishlab chiqarish guruhi. 178 xodim, umumiy maydoni 12 400 m² boʻlgan uchta fabrikasi, 5 000 m² shou-rum.</p>"
+                        . "<p><strong>Mahsulotlar:</strong> korpus mebellari, yumshoq mebel, oshxona, ofis mebeli, restoran va mehmonxonalar uchun. 20+ yil tajriba, ISO sertifikatlari.</p>"
+                        . "<p><strong>Quvvat:</strong> yiliga 24 000+ mahsulot.</p>"
+                        . "<p><strong>Eksport:</strong> Oʻzbekiston, Rossiya, Qirgʻiziston, Qozogʻiston.</p>"
+                        . "<p><strong>Kafolat:</strong> 2–5 yil. Oʻrtacha muddat — 15–30 kun. Yetkazib berish va montaj.</p>",
+                    'en' => "<p><strong>Mondelux</strong> (legally GULOBOD MEBEL LLC) — a manufacturing group since 2003. 178 staff, three own factories totalling 12,400 m², 5,000 m² showroom.</p>"
+                        . "<p><strong>Products:</strong> case furniture, upholstered, kitchens, office, hospitality and hotel. 20+ years of experience, ISO-certified.</p>"
+                        . "<p><strong>Capacity:</strong> 24,000+ units per year.</p>"
+                        . "<p><strong>Exports:</strong> Uzbekistan, Russia, Kyrgyzstan, Kazakhstan.</p>"
+                        . "<p><strong>Warranty:</strong> 2–5 years. Average lead time — 15–30 days. Delivery and installation available.</p>",
+                ],
+                'website_url' => 'https://mondelux.uz',
+                'contact_email' => '937202001@mail.ru',
+                'contact_phone' => '+998 93 720 20 77',
+                'socials' => ['instagram' => 'mondelux'],
+            ],
+
+            // 14. SHOSH CONCEPT — Ташкент, из брошюры MEYOS
+            [
+                'slug' => 'shosh-concept',
+                'category' => 'production',
+                'region' => 'tashkent_city',
+                'is_published' => true,
+                'show_on_home' => true,
+                'sort' => 140,
+                'founded_year' => 2010,
+                'logo_text' => 'SHOSH',
+                'name' => ['ru' => 'SHOSH CONCEPT', 'uz' => 'SHOSH CONCEPT', 'en' => 'SHOSH CONCEPT'],
+                'description' => [
+                    'ru' => 'Один из крупнейших производителей мебели в Узбекистане. Современные ЧПУ-станки, технологический контроль на каждом этапе. С 2010 года.',
+                    'uz' => 'Oʻzbekistonning eng yirik mebel ishlab chiqaruvchilaridan biri. Zamonaviy CNC uskunalari, har bir bosqichda texnologik nazorat. 2010-yildan.',
+                    'en' => 'One of Uzbekistan\'s largest furniture manufacturers. Modern CNC equipment, technological control at every stage. Since 2010.',
+                ],
+                'about' => [
+                    'ru' => "<p><strong>SHOSH CONCEPT</strong> — производство с 2010 года. Кредо: «Качество превыше прибыли». 120+ сотрудников, 1 000 комплектов в месяц, 50 000+ клиентов.</p>"
+                        . "<p><strong>Продукция:</strong> спальни, пеналы и комоды, угловая мягкая мебель, диваны и кресла, индивидуальные дизайн-проекты.</p>"
+                        . "<p><strong>Технологии:</strong> современные ЧПУ-станки, контроль качества на всех этапах, экосертификат на МДФ и краску, современные материалы и фурнитура.</p>"
+                        . "<p><strong>География:</strong> 13 областей Узбекистана + 3 страны.</p>"
+                        . "<p><strong>Гарантия:</strong> 3 года. Постгарантийный сервис. Средний срок заказа — 3–20 дней. Шоурум 600 м².</p>",
+                    'uz' => "<p><strong>SHOSH CONCEPT</strong> — 2010-yildan ishlab chiqarish. Kredo: “Sifat foydadan ustun”. 120+ xodim, oyiga 1 000 komplekt, 50 000+ mijoz.</p>"
+                        . "<p><strong>Mahsulotlar:</strong> yotoqxona mebellari, penal va komodlar, burchak yumshoq mebel, divan va kreslolar, individual dizayn loyihalari.</p>"
+                        . "<p><strong>Texnologiyalar:</strong> zamonaviy CNC uskunalari, barcha bosqichlarda sifat nazorati, MDF va boʻyoq boʻyicha ekosertifikat, zamonaviy material va furnitura.</p>"
+                        . "<p><strong>Geografiya:</strong> Oʻzbekistonning 13 viloyati + 3 davlat.</p>"
+                        . "<p><strong>Kafolat:</strong> 3 yil. Kafolatdan keyingi servis. Oʻrtacha muddat — 3–20 kun. Shou-rum 600 m².</p>",
+                    'en' => "<p><strong>SHOSH CONCEPT</strong> — production since 2010. Credo: «Quality above profit». 120+ staff, 1,000 sets/month, 50,000+ clients.</p>"
+                        . "<p><strong>Products:</strong> bedrooms, wardrobes and dressers, corner sofas, sofas and armchairs, custom design projects.</p>"
+                        . "<p><strong>Tech:</strong> modern CNC equipment, quality control at every stage, MDF and paint eco-certification.</p>"
+                        . "<p><strong>Coverage:</strong> 13 regions of Uzbekistan + 3 countries.</p>"
+                        . "<p><strong>Warranty:</strong> 3 years. Post-warranty service. Lead time 3–20 days. 600 m² showroom.</p>",
+                ],
+                'website_url' => 'https://shoshmebel.uz',
+                'contact_phone' => '+998 99 856 05 55',
+            ],
+
+            // 15. TEXNO BALANCE — стулья, Ташкент
+            [
+                'slug' => 'texno-balance',
+                'category' => 'production',
+                'region' => 'tashkent_city',
+                'is_published' => true,
+                'show_on_home' => false,
+                'sort' => 150,
+                'founded_year' => 2010,
+                'logo_text' => 'TEXNO',
+                'name' => ['ru' => 'Texno Balance', 'uz' => 'Texno Balance', 'en' => 'Texno Balance'],
+                'description' => [
+                    'ru' => 'Фабрика стульев, приоритезирует комфорт и качество. Модели в люксовом стиле для любого интерьера. С 2010 года.',
+                    'uz' => 'Stul fabrikasi, qulaylik va sifatga ustuvorlik beradi. Har qanday interyerga mos lyuks uslubdagi modellar. 2010-yildan.',
+                    'en' => 'A chair factory that prioritizes comfort and quality. Luxury-style models fitting any interior. Since 2010.',
+                ],
+                'about' => [
+                    'ru' => "<p><strong>Texno Balance</strong> (юр. OOO «TEXNO-BIO-BALLANS») — производство столов и стульев с 2010 года. 12 сотрудников, площадь 1 250 м².</p>"
+                        . "<p><strong>Продукция:</strong> мягкая мебель, кухонная и офисная мебель, изделия на заказ. Люксовый стиль под любой интерьер.</p>"
+                        . "<p><strong>Материалы:</strong> дерево бук, МДФ.</p>"
+                        . "<p><strong>Мощность:</strong> 500–1 000 комплектов.</p>"
+                        . "<p><strong>Гарантия:</strong> 3 года. Средний срок изготовления — 7 дней. Есть доставка и монтаж.</p>",
+                    'uz' => "<p><strong>Texno Balance</strong> (yur. OOO “TEXNO-BIO-BALLANS”) — 2010-yildan stol va stul ishlab chiqarish. 12 xodim, 1 250 m² maydon.</p>"
+                        . "<p><strong>Mahsulotlar:</strong> yumshoq mebel, oshxona va ofis mebeli, buyurtma asosida. Har qanday interyerga mos lyuks uslub.</p>"
+                        . "<p><strong>Materiallar:</strong> buk yogʻochi, MDF.</p>"
+                        . "<p><strong>Quvvat:</strong> 500–1 000 komplekt.</p>"
+                        . "<p><strong>Kafolat:</strong> 3 yil. Oʻrtacha muddat — 7 kun. Yetkazib berish va montaj mavjud.</p>",
+                    'en' => "<p><strong>Texno Balance</strong> (legally «TEXNO-BIO-BALLANS» LLC) — table and chair production since 2010. 12 staff, 1,250 m².</p>"
+                        . "<p><strong>Products:</strong> upholstered, kitchen and office furniture, custom orders. Luxury style for any interior.</p>"
+                        . "<p><strong>Materials:</strong> beech wood, MDF.</p>"
+                        . "<p><strong>Capacity:</strong> 500–1,000 sets.</p>"
+                        . "<p><strong>Warranty:</strong> 3 years. Lead time — 7 days. Delivery and installation available.</p>",
+                ],
+                'website_url' => 'https://techno-balance.uz',
+                'contact_email' => 'aparvazova@gmail.com',
+                'contact_phone' => '+998 90 909 05 64',
+                'socials' => ['instagram' => 'techno_balance', 'telegram' => 'technobalance'],
+            ],
+
+            // 16. WELLWOOD — Ташкент, 2001
+            [
+                'slug' => 'wellwood',
+                'category' => 'production',
+                'region' => 'tashkent_city',
+                'is_published' => true,
+                'show_on_home' => false,
+                'sort' => 160,
+                'founded_year' => 2001,
+                'logo_text' => 'WELL',
+                'name' => ['ru' => 'Wellwood', 'uz' => 'Wellwood', 'en' => 'Wellwood'],
+                'description' => [
+                    'ru' => 'Мебельный производитель с 2001 года. Резидент MEYOS. Подробные данные уточняются.',
+                    'uz' => '2001-yildan mebel ishlab chiqaruvchi. MEYOS rezidenti. Batafsil maʼlumotlar aniqlanmoqda.',
+                    'en' => 'Furniture manufacturer since 2001. MEYOS resident. Full details to be confirmed.',
+                ],
+                'about' => null,
+            ],
+
+            // 17. KASH — Ташкент, Олмазор, 2009
+            [
+                'slug' => 'kash',
+                'category' => 'production',
+                'region' => 'tashkent_city',
+                'is_published' => true,
+                'show_on_home' => false,
+                'sort' => 170,
+                'founded_year' => 2009,
+                'logo_text' => 'KASH',
+                'name' => ['ru' => 'KASH', 'uz' => 'KASH', 'en' => 'KASH'],
+                'description' => [
+                    'ru' => 'Ташкент, Олмазор. Производство мебели с 2009 года. Резидент MEYOS. Подробные данные уточняются.',
+                    'uz' => 'Toshkent, Olmazor. 2009-yildan mebel ishlab chiqarish. MEYOS rezidenti. Maʼlumotlar aniqlanmoqda.',
+                    'en' => 'Tashkent, Olmazor. Furniture production since 2009. MEYOS resident. Details to be confirmed.',
+                ],
+                'about' => null,
+            ],
+
+            // 18. UNIQUE MEBEL — Ташкент, 2024
+            [
+                'slug' => 'unique-mebel',
+                'category' => 'production',
+                'region' => 'tashkent_city',
+                'is_published' => true,
+                'show_on_home' => false,
+                'sort' => 180,
+                'founded_year' => 2024,
+                'logo_text' => 'UNIQUE',
+                'name' => ['ru' => 'Unique Mebel', 'uz' => 'Unique Mebel', 'en' => 'Unique Mebel'],
+                'description' => [
+                    'ru' => 'Молодой производитель мебели, Ташкент. С 2024 года. Резидент MEYOS.',
+                    'uz' => 'Yosh mebel ishlab chiqaruvchi, Toshkent. 2024-yildan. MEYOS rezidenti.',
+                    'en' => 'Young furniture manufacturer, Tashkent. Since 2024. MEYOS resident.',
                 ],
                 'about' => null,
             ],
