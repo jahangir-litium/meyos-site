@@ -2615,10 +2615,23 @@ main:focus { outline: none; }
 }
 .partner-related .partner-card__footer { margin-top: .75rem; padding-top: .6rem; }
 
-/* Уменьшенные отступы страницы-профиля */
+/* Уменьшенные отступы страницы-профиля.
+   NB: .partner-section = <section>, а глобальный `section {padding:5rem 1.5rem}`
+   выдаёт 80px сверху/снизу → «дырка» между блоками. Обнуляем и оставляем margin. */
 .partner-hero { margin-bottom: 1rem !important; }
 .partner-stats { margin-bottom: 1.5rem !important; }
-.partner-section { margin-bottom: 1.75rem !important; }
+.partner-section {
+  padding: 0 !important;
+  margin: 0 0 1.75rem !important;
+}
 .partner-section > h2 { margin: 0 0 .85rem !important; }
-.partner-cta { padding: 1.5rem 1.25rem !important; margin-top: .75rem !important; }
+.partner-cta {
+  padding: 1.75rem 1.25rem !important;
+  margin: .75rem 0 0 !important;
+}
 .partner-cta h2 { font-size: 1.25rem !important; }
+
+@media (max-width: 639px) {
+  .partner-section { margin-bottom: 1.25rem !important; }
+  .partner-cta { padding: 1.25rem 1rem !important; }
+}
