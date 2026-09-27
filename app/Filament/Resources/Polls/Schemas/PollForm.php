@@ -21,7 +21,10 @@ class PollForm
                     ->unique(Poll::class, 'slug', ignoreRecord: true)
                     ->maxLength(150)
                     ->helperText('Уникальный идентификатор для URL'),
-                Toggle::make('is_active')->label('Активен')->default(true),
+                Toggle::make('is_active')->label('Активен')->default(true)
+                    ->helperText('Общий выключатель — принимать голоса или нет'),
+                Toggle::make('show_on_home')->label('Показывать на главной')->default(false)
+                    ->helperText('Если несколько активных — на главной будет самый свежий с этой галкой'),
                 DateTimePicker::make('starts_at')->label('Дата начала')->helperText('Пусто — начнётся сразу'),
                 DateTimePicker::make('ends_at')->label('Дата окончания')->helperText('Пусто — без ограничений'),
                 Toggle::make('is_anonymous')->label('Анонимный')->default(true)->helperText('Голоса не привязываются к юзеру'),

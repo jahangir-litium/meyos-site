@@ -11,7 +11,7 @@ class Poll extends Model
     use HasTranslations;
 
     protected $fillable = [
-        'slug', 'question', 'options', 'is_active', 'is_anonymous',
+        'slug', 'question', 'options', 'is_active', 'show_on_home', 'is_anonymous',
         'show_results_after_vote', 'starts_at', 'ends_at', 'total_votes',
     ];
 
@@ -20,6 +20,7 @@ class Poll extends Model
     protected $casts = [
         'options'                 => 'array',
         'is_active'               => 'boolean',
+        'show_on_home'            => 'boolean',
         'is_anonymous'            => 'boolean',
         'show_results_after_vote' => 'boolean',
         'starts_at'               => 'datetime',

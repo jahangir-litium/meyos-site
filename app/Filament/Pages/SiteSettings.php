@@ -40,6 +40,7 @@ class SiteSettings extends Page implements HasForms
         return [
             'site_name'       => Setting::get('site_name', 'MEYOS'),
             'logo_path'       => Setting::get('logo_path'),
+            'logo_dark_path'  => Setting::get('logo_dark_path'),
             'favicon_path'    => Setting::get('favicon_path'),
             'phone'           => Setting::get('phone'),
             'email'           => Setting::get('email'),
@@ -83,7 +84,17 @@ class SiteSettings extends Page implements HasForms
                                             ->required()
                                             ->default('MEYOS'),
                                         FileUpload::make('logo_path')
-                                            ->label('Логотип (PNG / SVG, рекомендуется 200×60)')
+                                            ->label('Логотип (для шапки, светлый фон)')
+                                            ->helperText('PNG / SVG, рекомендуется 200×60. Показывается в шапке сайта.')
+                                            ->image()
+                                            ->disk('public')
+                                            ->directory('branding')
+                                            ->visibility('public')
+                                            ->maxSize(2048)
+                                            ->imagePreviewHeight('80'),
+                                        FileUpload::make('logo_dark_path')
+                                            ->label('Логотип для футера (тёмный фон)')
+                                            ->helperText('Загрузите белую / светлую версию логотипа для показа на тёмном футере. Если не загружен — используется обычный логотип.')
                                             ->image()
                                             ->disk('public')
                                             ->directory('branding')

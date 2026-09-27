@@ -28,6 +28,7 @@ class PollsTable
                     ->numeric()
                     ->alignRight(),
                 IconColumn::make('is_active')->label('Активен')->boolean(),
+                IconColumn::make('show_on_home')->label('На главной')->boolean(),
                 TextColumn::make('ends_at')
                     ->label('Окончание')
                     ->dateTime('d.m.Y H:i')

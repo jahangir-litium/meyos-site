@@ -112,12 +112,15 @@
 
 {{-- Preload главного CSS — браузер начнёт скачивать пока парсит HTML --}}
 <link rel="preload" href="{{ asset($cssPath) }}" as="style">
+@if($logoUrl)<link rel="preload" as="image" href="{{ $logoUrl }}" fetchpriority="high">@endif
 
-{{-- Шрифты с display:swap — текст показывается сразу системным, потом подменяется --}}
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" /></noscript>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet" /></noscript>
+{{-- Шрифты: Manrope (заголовки), Inter (текст). Оба через одну загрузку.
+     display:swap — текст сразу системным, потом подменяется. --}}
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+{{-- Material Symbols — только нужные иконки через API-ограничение --}}
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,-25..200&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet" /></noscript>
 <link rel="stylesheet" href="{{ asset($cssPath) }}" />
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500; }

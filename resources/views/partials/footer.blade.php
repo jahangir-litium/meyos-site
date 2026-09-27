@@ -12,13 +12,18 @@
 @endphp
 <footer class="footer">
   <div class="footer__grid">
-    @php $logoUrl = \App\Models\Setting::logoUrl(); $siteName = \App\Models\Setting::get('site_name', 'MEYOS'); @endphp
+    @php
+        // На тёмном фоне футера предпочитаем тёмный/светлый логотип если загружен, иначе обычный
+        $footerLogoUrl = \App\Models\Setting::logoDarkUrl();
+        $siteName = \App\Models\Setting::get('site_name', 'MEYOS');
+    @endphp
     <div>
-      <a href="{{ route('home') }}" class="logo" style="color:#fff;">
-        @if ($logoUrl)
-          <img src="{{ $logoUrl }}" alt="{{ $siteName }}" style="height:32px; width:auto; filter:brightness(0) invert(1);" />
+      <a href="{{ route('home') }}" class="logo footer__logo" style="color:#fff;">
+        @if ($footerLogoUrl)
+          <img src="{{ $footerLogoUrl }}" alt="{{ $siteName }}" style="height:36px; width:auto; display:block; max-width:180px; object-fit:contain;" />
         @else
-          <span class="logo__mark">{{ mb_substr($siteName, 0, 1) }}</span> {{ $siteName }}
+          <span class="logo__mark" style="background:rgb(var(--accent)); color:#fff;">{{ mb_substr($siteName, 0, 1) }}</span>
+          <span style="color:#fff;">{{ $siteName }}</span>
         @endif
       </a>
       <p style="opacity:.7; font-size:.9rem; line-height:1.6; margin-top:1rem; max-width:22rem;">{{ $tagline }}</p>

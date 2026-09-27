@@ -26,6 +26,13 @@ class Setting extends Model
         return $p ? asset('storage/' . ltrim($p, '/')) : null;
     }
 
+    /** URL «тёмного» логотипа (для футера с тёмным фоном). Fallback на обычный. */
+    public static function logoDarkUrl(): ?string
+    {
+        $p = static::get('logo_dark_path');
+        return $p ? asset('storage/' . ltrim($p, '/')) : static::logoUrl();
+    }
+
     /** URL favicon (если загружен) или null. */
     public static function faviconUrl(): ?string
     {
