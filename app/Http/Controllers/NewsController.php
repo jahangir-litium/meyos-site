@@ -19,14 +19,24 @@ class NewsController extends Controller
             $query->where('category', $category);
         }
 
-        // Поиск по переводам title/preview (хранятся как JSON в SQLite/MySQL)
+        // Поиск: case-insensitive через LOWER() (SQLite не умеет UTF-8 LIKE),
+        // по каждому слову отдельно (все слова должны быть найдены хотя бы в одном поле)
         if ($q !== '') {
-            $like = '%' . str_replace(['%', '_'], ['\%', '\_'], $q) . '%';
-            $query->where(function ($w) use ($like) {
-                $w->where('title', 'like', $like)
-                  ->orWhere('preview', 'like', $like)
-                  ->orWhere('content', 'like', $like);
-            });
+            // Разбиваем на слова, чистим пунктуацию, минимум 2 символа
+            $words = array_filter(
+                preg_split('/\s+/u', mb_strtolower($q)),
+                fn ($w) => mb_strlen(trim($w, " .,!?;:\"'()[]{}")) >= 2
+            );
+            $words = array_map(fn ($w) => trim($w, " .,!?;:\"'()[]{}"), $words);
+
+            foreach ($words as $word) {
+                $like = '%' . str_replace(['%', '_'], ['\%', '\_'], $word) . '%';
+                $query->where(function ($w) use ($like) {
+                    $w->whereRaw('LOWER(title) LIKE ?', [$like])
+                      ->orWhereRaw('LOWER(preview) LIKE ?', [$like])
+                      ->orWhereRaw('LOWER(content) LIKE ?', [$like]);
+                });
+            }
         }
 
         $featured = $q === '' && !$category

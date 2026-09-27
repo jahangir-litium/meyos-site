@@ -43,6 +43,14 @@
 
     {{-- ============ Sticky-фильтр ============ --}}
     <div class="partners-toolbar" data-partners-toolbar>
+      <div class="partners-toolbar__row" style="margin-bottom:.6rem;">
+        <div style="position:relative; width:100%; max-width:420px; margin:0 auto;">
+          <span class="material-symbols-outlined" style="position:absolute; left:.85rem; top:50%; transform:translateY(-50%); color:rgb(var(--on-surface-mut)); font-size:1.15rem;">search</span>
+          <input type="search" data-partners-search
+                 placeholder="@switch($cur) @case('uz') Kompaniya nomi boʻyicha qidiruv… @break @case('en') Search by company name… @break @default Поиск по названию компании… @endswitch"
+                 style="width:100%; padding:.6rem 1rem .6rem 2.5rem; border:1px solid rgb(var(--outline)); border-radius:var(--radius-pill); background:rgb(var(--surface)); font-size:.9rem;">
+        </div>
+      </div>
       <div class="partners-toolbar__row" data-partners-filter>
         <button class="filter-chip is-active" data-filter="all">
           {{ $labels['all'] }}<span class="filter-chip__count">{{ $totalCount }}</span>
@@ -102,8 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn  = document.querySelector('[data-partners-reset]');
   const chips     = document.querySelectorAll('[data-partners-filter] .filter-chip');
   const regionSel = document.querySelector('[data-region-filter]');
+  const searchIn  = document.querySelector('[data-partners-search]');
   const cards     = Array.from(document.querySelectorAll('[data-partner-card]'));
   if (!grid) return;
+
+  // Индекс поиска: собираем name+description один раз в lowercase
+  cards.forEach(card => {
+    const name = card.querySelector('.partner-card__title')?.textContent || '';
+    const desc = card.querySelector('.partner-card__desc')?.textContent || '';
+    card.dataset.searchIndex = (name + ' ' + desc).toLowerCase();
+  });
 
   // ---------- Sticky-detection ----------
   const sentinel = document.createElement('div');
@@ -117,24 +133,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- Фильтрация ----------
   let currentCat = 'all';
   let currentReg = 'all';
+  let currentQ   = '';
 
   const apply = (writeUrl = true) => {
     // Skeleton-эффект на 200ms
     grid.classList.add('is-filtering');
     setTimeout(() => grid.classList.remove('is-filtering'), 200);
 
+    // Разбиваем запрос на слова для мультисловного поиска
+    const words = currentQ.split(/\s+/).filter(w => w.length >= 2);
+
     let shown = 0;
     cards.forEach(card => {
       const catOk = currentCat === 'all' || card.dataset.category === currentCat;
       const regOk = currentReg === 'all' || card.dataset.region   === currentReg;
-      const visible = catOk && regOk;
+      const searchOk = words.length === 0 || words.every(w => card.dataset.searchIndex.includes(w));
+      const visible = catOk && regOk && searchOk;
       card.classList.toggle('is-hidden', !visible);
       if (visible) shown++;
     });
 
     // X из Y
     if (shownEl) shownEl.textContent = shown;
-    statusBox.style.display = (shown === cards.length && currentCat === 'all' && currentReg === 'all') ? 'none' : 'block';
+    statusBox.style.display = (shown === cards.length && currentCat === 'all' && currentReg === 'all' && currentQ === '') ? 'none' : 'block';
 
     // Empty state
     emptyBox.classList.toggle('is-visible', shown === 0);
@@ -144,10 +165,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       currentCat === 'all' ? params.delete('category') : params.set('category', currentCat);
       currentReg === 'all' ? params.delete('region')   : params.set('region',   currentReg);
+      currentQ === ''      ? params.delete('q')        : params.set('q',        currentQ);
       const qs = params.toString();
       history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
     }
   };
+
+  // Поиск с debounce 150ms
+  let searchTimer;
+  searchIn?.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      currentQ = searchIn.value.trim().toLowerCase();
+      apply();
+    }, 150);
+  });
 
   chips.forEach(chip => chip.addEventListener('click', () => {
     chips.forEach(c => c.classList.remove('is-active'));
@@ -164,8 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
   resetBtn?.addEventListener('click', () => {
     currentCat = 'all';
     currentReg = 'all';
+    currentQ   = '';
     chips.forEach(c => c.classList.toggle('is-active', c.dataset.filter === 'all'));
     if (regionSel) regionSel.value = 'all';
+    if (searchIn) searchIn.value = '';
     apply();
   });
 
@@ -173,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const initCat = params.get('category');
   const initReg = params.get('region');
+  const initQ   = params.get('q');
   if (initCat) {
     const target = document.querySelector(`[data-partners-filter] .filter-chip[data-filter="${initCat}"]`);
     if (target) {
@@ -185,7 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
     regionSel.value = initReg;
     currentReg = initReg;
   }
-  if (initCat || initReg) apply(false);
+  if (initQ && searchIn) {
+    searchIn.value = initQ;
+    currentQ = initQ.toLowerCase();
+  }
+  if (initCat || initReg || initQ) apply(false);
 });
 </script>
 @endpush
