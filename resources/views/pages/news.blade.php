@@ -26,20 +26,21 @@
   <div class="container">
 
     {{-- ============ Поиск ============ --}}
-    <form method="GET" action="{{ route('news') }}" style="max-width:520px; margin:0 auto 1.5rem; display:flex; gap:.5rem;">
+    <form method="GET" action="{{ route('news') }}" class="search-form">
       @if($category)<input type="hidden" name="category" value="{{ $category }}">@endif
-      <div style="position:relative; flex:1;">
-        <span class="material-symbols-outlined" style="position:absolute; left:.85rem; top:50%; transform:translateY(-50%); color:rgb(var(--on-surface-mut)); font-size:1.15rem;">search</span>
+      <div class="search-input">
+        <span class="search-input__icon material-symbols-outlined" aria-hidden="true">search</span>
         <input type="search" name="q" value="{{ $q ?? '' }}"
-               placeholder="@switch($cur) @case('uz') Yangiliklar boʻyicha qidiruv… @break @case('en') Search news… @break @default Поиск по новостям… @endswitch"
-               style="width:100%; padding:.65rem 1rem .65rem 2.5rem; border:1px solid rgb(var(--outline)); border-radius:var(--radius-md); background:rgb(var(--surface)); color:rgb(var(--on-surface)); font-size:.95rem;">
+               placeholder="@switch($cur) @case('uz') Yangiliklar boʻyicha qidiruv… @break @case('en') Search news… @break @default Поиск по новостям… @endswitch">
+        @if(!empty($q))
+          <a href="{{ route('news', $category ? ['category'=>$category] : []) }}" class="search-input__clear" aria-label="Очистить">
+            <span class="material-symbols-outlined">close</span>
+          </a>
+        @endif
       </div>
-      @if(!empty($q))
-        <a href="{{ route('news', $category ? ['category'=>$category] : []) }}" class="btn btn-ghost" style="padding:.65rem 1rem;">@switch($cur) @case('uz') Tozalash @break @case('en') Clear @break @default Очистить @endswitch</a>
-      @endif
     </form>
 
-    <div style="display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:3rem;">
+    <div class="filter-chips">
       <a href="{{ route('news') }}" class="filter-chip {{ !$category ? 'is-active' : '' }}">@switch($cur) @case('uz') Barchasi @break @case('en') All @break @default Все @endswitch</a>
       @foreach ($categories as $key => $label)
         <a href="{{ route('news', ['category' => $key]) }}" class="filter-chip {{ $category === $key ? 'is-active' : '' }}">{{ $label }}</a>

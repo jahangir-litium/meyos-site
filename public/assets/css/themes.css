@@ -2395,3 +2395,198 @@ main:focus { outline: none; }
     min-height: 44px;
   }
 }
+
+
+/* ============================================================
+   UI POLISH — раунд 3: поиск, тулбар партнёров, отступы карточек
+   ============================================================ */
+
+/* ============ SEARCH INPUT — универсальный компонент ============ */
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  max-width: 720px;
+  padding: 0 1rem;
+}
+
+.search-input {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: rgb(var(--surface));
+  border: 1.5px solid rgb(var(--outline));
+  border-radius: var(--radius-md);
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-input:focus-within {
+  border-color: rgb(var(--primary));
+  box-shadow: 0 0 0 4px rgb(var(--primary) / .08);
+}
+
+.search-input__icon {
+  position: absolute;
+  left: 1rem;
+  color: rgb(var(--on-surface-mut));
+  font-size: 1.3rem;
+  pointer-events: none;
+  transition: color .2s;
+}
+.search-input:focus-within .search-input__icon {
+  color: rgb(var(--primary));
+}
+
+.search-input input[type="search"] {
+  width: 100%;
+  padding: .9rem 1rem .9rem 3rem;
+  border: 0;
+  background: transparent;
+  color: rgb(var(--on-surface));
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+}
+.search-input input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search-input input[type="search"]::placeholder {
+  color: rgb(var(--on-surface-mut));
+  opacity: .8;
+}
+
+.search-input__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: .4rem;
+  border-radius: 50%;
+  color: rgb(var(--on-surface-mut));
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.search-input__clear:hover {
+  background: rgb(var(--surface-deep));
+  color: rgb(var(--primary));
+}
+.search-input__clear .material-symbols-outlined {
+  font-size: 1.15rem;
+}
+
+/* Rounded вариант для /partners */
+.search-input--rounded {
+  border-radius: var(--radius-pill);
+}
+.search-input--rounded input[type="search"] {
+  padding-left: 3rem;
+}
+
+/* ============ FILTER CHIPS — обёртка ============ */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  justify-content: center;
+  margin: 0 auto 3rem;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+@media (max-width: 639px) {
+  .search-form { padding: 0; margin-bottom: 1.5rem; }
+  .search-input input[type="search"] { font-size: 16px; padding: .8rem 1rem .8rem 2.75rem; }
+  .search-input__icon { left: .85rem; font-size: 1.2rem; }
+  .filter-chips { margin-bottom: 2rem; padding: 0; }
+}
+
+/* ============ PARTNERS TOOLBAR — уточнение ============ */
+.partners-toolbar__search {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(var(--outline) / .5);
+  margin-bottom: 1rem;
+}
+.partners-toolbar__search .search-input {
+  max-width: 480px;
+}
+
+.partners-toolbar {
+  padding: 1.25rem 1rem !important;
+}
+.partners-toolbar__row {
+  gap: .6rem !important;
+}
+
+/* Region-select styling */
+.filter-select {
+  cursor: pointer;
+  min-height: 44px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.filter-select:hover {
+  border-color: rgb(var(--primary));
+}
+.filter-select:focus {
+  border-color: rgb(var(--primary));
+  box-shadow: 0 0 0 4px rgb(var(--primary) / .08);
+  outline: none;
+}
+
+/* ============ PARTNER CARD — усиление hover и типографики ============ */
+.partner-card {
+  padding: 1.5rem;
+}
+.partner-card__logo {
+  height: 100px;
+  margin-bottom: 1rem;
+}
+.partner-card__title {
+  font-size: 1.1rem;
+  margin: .5rem 0 .35rem;
+  line-height: 1.3;
+}
+.partner-card__desc {
+  font-size: .875rem;
+  line-height: 1.55;
+}
+.partner-card__footer {
+  margin-top: 1rem;
+  padding-top: .85rem;
+  border-top: 1px solid rgb(var(--outline) / .5);
+}
+.partner-card__meta {
+  gap: .5rem;
+}
+.partner-card__region {
+  font-size: .78rem;
+  color: rgb(var(--on-surface-mut));
+}
+
+@media (min-width: 1280px) {
+  .partner-card { padding: 1.75rem; min-height: 340px; }
+  .partner-card__logo { height: 120px; }
+  .partner-card__title { font-size: 1.2rem; }
+}
+
+/* Улучшение отступа между toolbar и сеткой */
+.partners-grid {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .partners-grid { margin-top: 2rem; }
+}
+
+/* ============ NEWS grid — карточки красивее ============ */
+@media (min-width: 900px) {
+  section .grid-3 { gap: 2rem; }
+}
+
+/* Отступ между sticky-toolbar и hero на партнёрах */
+@media (min-width: 640px) {
+  .partners-toolbar { margin-top: 1rem; }
+}

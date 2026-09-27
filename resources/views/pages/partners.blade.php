@@ -43,12 +43,11 @@
 
     {{-- ============ Sticky-фильтр ============ --}}
     <div class="partners-toolbar" data-partners-toolbar>
-      <div class="partners-toolbar__row" style="margin-bottom:.6rem;">
-        <div style="position:relative; width:100%; max-width:420px; margin:0 auto;">
-          <span class="material-symbols-outlined" style="position:absolute; left:.85rem; top:50%; transform:translateY(-50%); color:rgb(var(--on-surface-mut)); font-size:1.15rem;">search</span>
+      <div class="partners-toolbar__search">
+        <div class="search-input search-input--rounded">
+          <span class="search-input__icon material-symbols-outlined" aria-hidden="true">search</span>
           <input type="search" data-partners-search
-                 placeholder="@switch($cur) @case('uz') Kompaniya nomi boʻyicha qidiruv… @break @case('en') Search by company name… @break @default Поиск по названию компании… @endswitch"
-                 style="width:100%; padding:.6rem 1rem .6rem 2.5rem; border:1px solid rgb(var(--outline)); border-radius:var(--radius-pill); background:rgb(var(--surface)); font-size:.9rem;">
+                 placeholder="@switch($cur) @case('uz') Kompaniya nomi boʻyicha qidiruv… @break @case('en') Search by company name… @break @default Поиск по названию компании… @endswitch">
         </div>
       </div>
       <div class="partners-toolbar__row" data-partners-filter>
