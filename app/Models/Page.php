@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Page extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia;
+    use HasTranslations, InteractsWithMedia, \App\Models\Concerns\LogsChanges;
 
     protected $fillable = [
         'slug', 'view', 'title', 'seo_title', 'seo_description', 'seo_keywords',

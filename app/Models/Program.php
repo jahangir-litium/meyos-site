@@ -13,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Program extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes, \App\Models\Concerns\LogsChanges;
 
     protected $fillable = [
         'slug', 'icon', 'color', 'chip', 'title', 'description',

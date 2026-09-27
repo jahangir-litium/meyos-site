@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\AutoSlug;
 use App\Models\Concerns\HasSorting;
+use App\Models\Concerns\LogsChanges;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -12,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 
 class News extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes, LogsChanges;
 
     protected $table = 'news';
 

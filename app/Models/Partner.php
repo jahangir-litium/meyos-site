@@ -12,7 +12,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Partner extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes;
+    use HasTranslations, HasSorting, AutoSlug, InteractsWithMedia, SoftDeletes, \App\Models\Concerns\LogsChanges;
 
     public string $autoSlugFrom = 'name';
 

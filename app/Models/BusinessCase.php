@@ -11,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class BusinessCase extends Model implements HasMedia
 {
-    use HasTranslations, HasSorting, InteractsWithMedia, SoftDeletes;
+    use HasTranslations, HasSorting, InteractsWithMedia, SoftDeletes, \App\Models\Concerns\LogsChanges;
 
     protected $table = 'cases';
 

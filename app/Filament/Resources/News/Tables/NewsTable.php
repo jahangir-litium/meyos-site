@@ -37,7 +37,16 @@ class NewsTable
                     ->label('Категория')
                     ->badge()
                     ->formatStateUsing(fn ($s) => News::allCategories()[$s] ?? $s),
-                TextColumn::make('published_at')->label('Дата')->date('d.m.Y')->sortable(),
+                TextColumn::make('published_at')
+                    ->label('Публикация')
+                    ->date('d.m.Y')
+                    ->sortable()
+                    ->description(fn (News $r) =>
+                        $r->is_published && $r->published_at && $r->published_at->isFuture()
+                            ? '⏰ Запланирована'
+                            : null
+                    )
+                    ->color(fn (News $r) => $r->is_published && $r->published_at?->isFuture() ? 'warning' : null),
                 IconColumn::make('is_featured')->label('Главная')->boolean(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),
             ])

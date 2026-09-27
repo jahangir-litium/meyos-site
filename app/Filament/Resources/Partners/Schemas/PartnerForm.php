@@ -8,6 +8,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\View as ViewField;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -104,6 +105,14 @@ class PartnerForm
                         ],
                     ]),
                     ImageUpload::logo('seo_image', 'OG-картинка (для Facebook/Telegram/WhatsApp предпросмотра)', 'partners/seo', 5120),
+                    ViewField::make('filament.forms.seo-checklist')
+                        ->viewData([
+                            'titleField' => 'seo_title.ru',
+                            'descField' => 'seo_description.ru',
+                            'fallbackTitleField' => 'name.ru',
+                            'fallbackDescField' => 'description.ru',
+                        ])
+                        ->columnSpanFull(),
                 ])->collapsible()->collapsed(),
 
             Section::make('Аналитика (только для чтения)')->schema([

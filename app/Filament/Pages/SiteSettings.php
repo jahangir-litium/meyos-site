@@ -249,9 +249,52 @@ class SiteSettings extends Page implements HasForms
             ->send();
     }
 
+    public function pingSitemap(): void
+    {
+        $sitemap = url('/sitemap.xml');
+        $results = [];
+
+        // Google Ping (deprecated с 2023, но всё ещё работает как no-op)
+        try {
+            $r = \Illuminate\Support\Facades\Http::timeout(10)->get('https://www.google.com/ping', ['sitemap' => $sitemap]);
+            $results[] = 'Google: ' . ($r->successful() ? '✓' : 'HTTP ' . $r->status());
+        } catch (\Throwable $e) {
+            $results[] = 'Google: ошибка';
+        }
+
+        // Yandex Webmaster Ping
+        try {
+            $r = \Illuminate\Support\Facades\Http::timeout(10)->get('https://webmaster.yandex.ru/ping', ['sitemap' => $sitemap]);
+            $results[] = 'Yandex: ' . ($r->successful() ? '✓' : 'HTTP ' . $r->status());
+        } catch (\Throwable $e) {
+            $results[] = 'Yandex: ошибка';
+        }
+
+        // Bing (тоже принимает)
+        try {
+            $r = \Illuminate\Support\Facades\Http::timeout(10)->get('https://www.bing.com/ping', ['sitemap' => $sitemap]);
+            $results[] = 'Bing: ' . ($r->successful() ? '✓' : 'HTTP ' . $r->status());
+        } catch (\Throwable $e) {
+            $results[] = 'Bing: ошибка';
+        }
+
+        Notification::make()
+            ->title('Sitemap отправлен поисковикам')
+            ->body(implode(' · ', $results) . '. Реальная переиндексация занимает от нескольких часов до нескольких дней.')
+            ->success()
+            ->send();
+    }
+
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('ping_sitemap')
+                ->label('Отправить sitemap поисковикам')
+                ->icon('heroicon-o-globe-alt')
+                ->color('gray')
+                ->requiresConfirmation()
+                ->modalDescription('Уведомит Google, Yandex и Bing что sitemap обновился. Реальная переиндексация занимает несколько часов.')
+                ->action('pingSitemap'),
             Action::make('test_telegram')
                 ->label('Проверить Telegram')
                 ->icon('heroicon-o-paper-airplane')
