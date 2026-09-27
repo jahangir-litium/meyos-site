@@ -188,8 +188,16 @@
         if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px 50px 0px', threshold: 0 });
+    const vh = window.innerHeight;
     document.querySelectorAll('section .section-head, .card, .timeline__item, .step, .partner-card, .partner-section').forEach(el => {
-      el.classList.add('fade-in-up'); observer.observe(el);
+      el.classList.add('fade-in-up');
+      // Первый экран (+ буфер): сразу visible, чтобы не мигало полу-прозрачным
+      const top = el.getBoundingClientRect().top;
+      if (top < vh + 100) {
+        requestAnimationFrame(() => el.classList.add('is-visible'));
+      } else {
+        observer.observe(el);
+      }
     });
   }
 
