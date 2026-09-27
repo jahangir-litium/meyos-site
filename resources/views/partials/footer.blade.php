@@ -1,11 +1,15 @@
 @php
     $settings = $settings ?? [];
     $cur = app()->getLocale();
-    $tagline = match($cur) {
-        'uz' => 'Oʻzbekiston mebelsozlari assotsiatsiyasi. Mebel biznesining IT va strategik hamkori.',
-        'en' => 'Uzbekistan Furniture Association. IT and strategic partner for the furniture business.',
-        default => 'Ассоциация мебельщиков Узбекистана. IT и стратегический партнёр мебельного бизнеса.',
-    };
+    $tagline = \App\Support\Cms::text('footer.tagline', match($cur) {
+        'uz' => 'Oʻzbekiston mebelsozlari assotsiatsiyasi.',
+        'en' => 'Uzbekistan Furniture Association.',
+        default => 'Ассоциация мебельщиков Узбекистана.',
+    });
+    $copyright = str_replace('{year}', (string) date('Y'), \App\Support\Cms::text(
+        'footer.copyright',
+        '© ' . date('Y') . ' MEYOS'
+    ));
     $sections   = match($cur) { 'uz' => 'Boʻlimlar', 'en' => 'Sections', default => 'Разделы' };
     $activities = match($cur) { 'uz' => 'Faolliklar', 'en' => 'Activities', default => 'Активности' };
     $contacts   = match($cur) { 'uz' => 'Aloqa', 'en' => 'Contacts', default => 'Контакты' };
@@ -50,7 +54,7 @@
     </div>
   </div>
   <div class="footer__bottom">
-    <span>© {{ date('Y') }} MEYOS · Ассоциация мебельщиков Узбекистана</span>
-    <span>@switch($cur) @case('uz') Maxfiylik siyosati @break @case('en') Privacy Policy @break @default Политика конфиденциальности @endswitch</span>
+    <span>{{ $copyright }}</span>
+    <span>@cms('footer.privacy_label', 'Политика конфиденциальности')</span>
   </div>
 </footer>

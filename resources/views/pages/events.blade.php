@@ -16,8 +16,8 @@
 <section class="hero" style="padding:5rem 1.5rem;">
   <div class="hero__inner" style="grid-template-columns:1fr;">
     <div style="max-width:50rem;">
-      <span class="tag tag-on-dark"><span class="tag-dot"></span>@switch($cur) @case('uz') Tadbirlar @break @case('en') Events @break @default Афиша MEYOS @endswitch</span>
-      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;">@switch($cur) @case('uz') Forumlar, koʻrgazmalar, uchrashuvlar @break @case('en') Forums, exhibitions, meetings @break @default Форумы, выставки и деловые встречи @endswitch</h1>
+      <span class="tag tag-on-dark"><span class="tag-dot"></span>@cms('events.hero_tag', 'Мероприятия')</span>
+      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;">@cms('events.hero_h1', 'Форумы, выставки и деловые встречи')</h1>
     </div>
   </div>
 </section>

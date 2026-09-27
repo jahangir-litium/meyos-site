@@ -68,7 +68,11 @@
         <label>Email <input type="email" name="email" required value="{{ old('email') }}"></label>
         <label>@switch($cur) @case('uz') Telefon @break @case('en') Phone @break @default Телефон @endswitch <input type="tel" name="phone" value="{{ old('phone') }}"></label>
         <label>@switch($cur) @case('uz') Mavzu @break @case('en') Topic @break @default Тема обращения @endswitch
-          <select name="topic"><option>Вступление в ассоциацию</option><option>Льготы и преференции</option><option>Программа EduJob</option><option>Мероприятия</option><option>Партнёрство / медиа</option><option>Другое</option></select>
+          <select name="topic">
+            @foreach(\App\Support\Cms::options('form.contact_topics') as $val => $label)
+              <option value="{{ $val }}">{{ $label }}</option>
+            @endforeach
+          </select>
         </label>
         <label>@switch($cur) @case('uz') Xabar @break @case('en') Message @break @default Сообщение @endswitch <textarea name="message" rows="4" required>{{ old('message') }}</textarea></label>
         <button type="submit" class="btn btn-primary btn-lg mt-4">@switch($cur) @case('uz') Yuborish @break @case('en') Send @break @default Отправить @endswitch</button>

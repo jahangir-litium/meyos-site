@@ -51,7 +51,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Rezidentlik imtiyozlari @break @case('en') Residency advantages @break @default Преимущества резидентства @endswitch</span>
-      <h2>@switch($cur) @case('uz') MEYOSga aʼzo boʻlishning sabablari @break @case('en') Five reasons to join MEYOS @break @default Пять измеримых причин вступить в MEYOS @endswitch</h2>
+      <h2>@cms('home.h2_benefits', 'Преимущества членства')</h2>
     </div>
     <div class="grid grid-3">
       @foreach ($benefits as $benefit)
@@ -70,7 +70,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Soha toʻsiqlari @break @case('en') Industry barriers @break @default Барьеры отрасли @endswitch</span>
-      <h2>@switch($cur) @case('uz') Muammolar va yechimlar @break @case('en') Problems and solutions @break @default Проблемы мебельного бизнеса и их решения @endswitch</h2>
+      <h2>@cms('home.h2_problems', 'Проблемы отрасли и наши решения')</h2>
     </div>
     <div class="ps-grid">
       <div class="ps-col ps-col--pain">
@@ -99,7 +99,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Sanoat oʻsishi · keyslar @break @case('en') Industrial growth · cases @break @default Индустриальный рост · кейсы @endswitch</span>
-      <h2>@switch($cur) @case('uz') MEYOS rezidentlari biznesni qanday rivojlantirmoqda @break @case('en') How MEYOS residents grow business @break @default Как резиденты MEYOS развивают свой бизнес @endswitch</h2>
+      <h2>@cms('home.h2_cases', 'Кейсы наших резидентов')</h2>
     </div>
     <div style="display:grid; gap:1.5rem;">
       @foreach ($cases as $case)
@@ -131,7 +131,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Assotsiatsiya dasturlari @break @case('en') Programs @break @default Программы ассоциации @endswitch</span>
-      <h2>@switch($cur) @case('uz') MEYOS ishga tushirayotgan loyihalar @break @case('en') Projects launched by MEYOS @break @default Проекты, которые запускает MEYOS @endswitch</h2>
+      <h2>@cms('home.h2_programs', 'Программы ассоциации')</h2>
     </div>
     <div class="bento">
       @foreach ($programs as $program)
@@ -153,15 +153,15 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Moliyaviy imtiyozlar @break @case('en') Financial advantages @break @default Финансовые преференции @endswitch</span>
-      <h2>@switch($cur) @case('uz') Soliq va bojxona imtiyozlari @break @case('en') Tax and customs benefits @break @default Налоговые и таможенные льготы резидента @endswitch</h2>
+      <h2>@cms('home.h2_taxes', 'Налоговые льготы резидента')</h2>
     </div>
     <div style="overflow-x:auto;">
       <table class="tax-table">
         <thead><tr>
-          <th>@switch($cur) @case('uz') Parametr @break @case('en') Parameter @break @default Параметр @endswitch</th>
-          <th>@switch($cur) @case('uz') Standart @break @case('en') Standard @break @default Стандартная ставка @endswitch</th>
-          <th>@switch($cur) @case('uz') MEYOS rezident @break @case('en') For resident @break @default Для резидента MEYOS @endswitch</th>
-          <th>@switch($cur) @case('uz') Tejash @break @case('en') Savings @break @default Экономия @endswitch</th>
+          <th>@cms('home.tax_th_param', 'Параметр')</th>
+          <th>@cms('home.tax_th_standard', 'Стандартная ставка')</th>
+          <th>@cms('home.tax_th_resident', 'Для резидента MEYOS')</th>
+          <th>@cms('home.tax_th_saving', 'Экономия')</th>
         </tr></thead>
         <tbody>
           @foreach ($taxRows as $row)
@@ -185,7 +185,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Rezident yoʻli @break @case('en') Resident path @break @default Путь резидента @endswitch</span>
-      <h2>@switch($cur) @case('uz') 4 qadamda aʼzo boʻlish @break @case('en') Join in 4 steps @break @default Как вступить в ассоциацию за 4 шага @endswitch</h2>
+      <h2>@cms('home.h2_join_steps', 'Как стать резидентом')</h2>
     </div>
     <div class="steps">
       @foreach ($steps as $step)
@@ -205,7 +205,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Hamkorlar @break @case('en') Partners @break @default Партнёры @endswitch</span>
-      <h2>@switch($cur) @case('uz') Biz hamkorlik qiladigan kompaniyalar @break @case('en') Companies we work with @break @default Компании и институты, с которыми мы работаем @endswitch</h2>
+      <h2>@cms('home.h2_partners', 'Наши партнёры и резиденты')</h2>
     </div>
     <div class="partner-logos-grid">
       @foreach ($partners as $partner)
@@ -232,7 +232,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Yaqinlashayotgan tadbirlar @break @case('en') Upcoming events @break @default Ближайшие мероприятия @endswitch</span>
-      <h2>@switch($cur) @case('uz') Forumlar va koʻrgazmalar @break @case('en') Forums and exhibitions @break @default Форумы, выставки и деловые встречи @endswitch</h2>
+      <h2>@cms('home.h2_events', 'Ближайшие мероприятия')</h2>
     </div>
     <div class="grid grid-3">
       @foreach ($events as $event)
@@ -257,7 +257,7 @@
   <div class="container">
     <div class="section-head">
       <span class="tag">@switch($cur) @case('uz') Assotsiatsiya yangiliklari @break @case('en') Association news @break @default Новости ассоциации @endswitch</span>
-      <h2>@switch($cur) @case('uz') Soʻnggi voqealar @break @case('en') Latest events @break @default Последние события MEYOS @endswitch</h2>
+      <h2>@cms('home.h2_news', 'Новости отрасли')</h2>
     </div>
     <div class="grid grid-3">
       @foreach ($news as $newsItem)
@@ -310,7 +310,7 @@
   <div class="container" style="max-width:880px;">
     <div class="section-head">
       <span class="tag">FAQ</span>
-      <h2>@switch($cur) @case('uz') Koʻp beriladigan savollar @break @case('en') Frequently asked questions @break @default Часто задаваемые вопросы @endswitch</h2>
+      <h2>@cms('home.h2_faq', 'Часто задаваемые вопросы')</h2>
     </div>
     <div>
       @foreach ($faqs as $i => $faq)
@@ -328,7 +328,7 @@
 <section id="join" class="section-alt">
   <div class="container">
     <div class="cta-bar">
-      <h2>@switch($cur) @case('uz') Mebel biznesidasiz — oʻrningiz MEYOSda @break @case('en') If you\'re in furniture business — your place is in MEYOS @break @default Если вы в мебельном бизнесе — ваше место в MEYOS @endswitch</h2>
+      <h2>@cms('cta.home_h2', 'Если вы в мебельном бизнесе — ваше место в MEYOS')</h2>
       <p>@switch($cur) @case('uz') Ariza qoldiring, menejer bir ish kuni ichida bogʻlanadi @break @case('en') Leave a request, a manager will contact you @break @default Оставьте заявку, и менеджер свяжется с вами в течение рабочего дня @endswitch</p>
       <a href="#join-form" class="btn btn-white btn-lg">@switch($cur) @case('uz') Ariza qoldirish @break @case('en') Leave a request @break @default Оставить заявку @endswitch</a>
     </div>
@@ -344,11 +344,9 @@
         <label>@switch($cur) @case('uz') Telefon @break @case('en') Phone @break @default Телефон @endswitch <input type="tel" name="phone" required value="{{ old('phone') }}" placeholder="+998 __ ___ __ __" /></label>
         <label style="grid-column:1/-1;">@switch($cur) @case('uz') Biznes toifasi @break @case('en') Business category @break @default Категория бизнеса @endswitch
           <select name="category">
-            <option>Производство мебели</option>
-            <option>Дизайн-студия</option>
-            <option>Поставщик материалов и фурнитуры</option>
-            <option>Логистика и розница</option>
-            <option>Другое</option>
+            @foreach(\App\Support\Cms::options('form.categories') as $val => $label)
+              <option value="{{ $val }}">{{ $label }}</option>
+            @endforeach
           </select>
         </label>
         <label style="grid-column:1/-1;">@switch($cur) @case('uz') Izoh @break @case('en') Comment @break @default Комментарий @endswitch <textarea name="message" rows="3">{{ old('message') }}</textarea></label>

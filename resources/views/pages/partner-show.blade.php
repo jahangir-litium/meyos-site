@@ -239,15 +239,9 @@
 
     {{-- ============ CTA внизу ============ --}}
     <section class="partner-cta">
-      <h2 style="margin:0 0 .5rem; font-size:1.4rem;">
-        @switch($cur) @case('uz') MEYOS aʼzosi boʻling @break @case('en') Become a MEYOS member @break @default Хотите стать резидентом MEYOS? @endswitch
-      </h2>
-      <p style="margin:0 0 1.25rem; color:rgb(var(--on-surface-mut));">
-        @switch($cur) @case('uz') Toʻgʻri kompaniyalar allaqachon shu yerda @break @case('en') The right companies are already here @break @default Правильные компании уже здесь @endswitch
-      </p>
-      <a href="{{ route('residency') }}#join" class="btn btn-primary btn-lg">
-        @switch($cur) @case('uz') Ariza qoldirish @break @case('en') Apply @break @default Оставить заявку @endswitch
-      </a>
+      <h2 style="margin:0 0 .5rem; font-size:1.4rem;">@cms('cta.partner_h2', 'Хотите стать резидентом MEYOS?')</h2>
+      <p style="margin:0 0 1.25rem; color:rgb(var(--on-surface-mut));">@cms('cta.home_lead', 'Оставьте заявку, менеджер свяжется в течение рабочего дня.')</p>
+      <a href="{{ route('residency') }}#join" class="btn btn-primary btn-lg">@cms('cta.home_button', 'Оставить заявку')</a>
     </section>
 
   </div>

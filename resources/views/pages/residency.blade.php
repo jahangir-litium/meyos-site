@@ -98,10 +98,18 @@
         <label>Email <input type="email" name="email" required value="{{ old('email') }}" /></label>
         <label>@switch($cur) @case('uz') Telefon @break @case('en') Phone @break @default Телефон @endswitch <input type="tel" name="phone" required value="{{ old('phone') }}" /></label>
         <label style="grid-column:1/-1;">@switch($cur) @case('uz') Toifa @break @case('en') Category @break @default Категория @endswitch
-          <select name="category"><option>Производство мебели</option><option>Дизайн-студия</option><option>Поставщик материалов</option><option>Логистика и розница</option><option>Другое</option></select>
+          <select name="category">
+            @foreach(\App\Support\Cms::options('form.categories') as $val => $label)
+              <option value="{{ $val }}">{{ $label }}</option>
+            @endforeach
+          </select>
         </label>
         <label style="grid-column:1/-1;">@switch($cur) @case('uz') Ishlab chiqarish hajmi @break @case('en') Production volume @break @default Объём производства @endswitch
-          <select name="volume"><option>До 5 000 изделий</option><option>5 000 – 20 000 изделий</option><option>20 000 – 100 000 изделий</option><option>Более 100 000 изделий</option></select>
+          <select name="volume">
+            @foreach(\App\Support\Cms::options('form.volumes') as $val => $label)
+              <option value="{{ $val }}">{{ $label }}</option>
+            @endforeach
+          </select>
         </label>
         <label style="grid-column:1/-1;">@switch($cur) @case('uz') Izoh @break @case('en') Comment @break @default Комментарий @endswitch <textarea name="message" rows="3">{{ old('message') }}</textarea></label>
       </div>

@@ -16,8 +16,8 @@
 <section class="hero" style="padding:5rem 1.5rem;">
   <div class="hero__inner" style="grid-template-columns:1fr;">
     <div style="max-width:50rem;">
-      <span class="tag tag-on-dark"><span class="tag-dot"></span>@switch($cur) @case('uz') Yangiliklar @break @case('en') News @break @default Новости @endswitch</span>
-      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;">@switch($cur) @case('uz') Mebel industriyasidagi voqealar @break @case('en') Furniture industry news @break @default Что происходит в мебельной индустрии Узбекистана @endswitch</h1>
+      <span class="tag tag-on-dark"><span class="tag-dot"></span>@cms('news.hero_tag', 'Новости')</span>
+      <h1 style="font-size:clamp(2rem, 5vw, 3.75rem); margin:1.5rem 0 1.5rem;">@cms('news.hero_h1', 'Что происходит в мебельной индустрии Узбекистана')</h1>
     </div>
   </div>
 </section>

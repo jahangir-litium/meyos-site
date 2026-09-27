@@ -11,22 +11,18 @@
     <button type="button" class="fab-modal__close" id="fab-modal-close" aria-label="Закрыть">
       <span class="material-symbols-outlined">close</span>
     </button>
-    <h3 id="fab-modal-title" style="margin:0 0 .5rem; font-size:1.25rem;">
-      @switch($cur) @case('uz') Savolingizni yozing @break @case('en') Ask a question @break @default Задайте вопрос @endswitch
-    </h3>
-    <p class="text-mut" style="font-size:.9rem; margin:0 0 1.25rem;">
-      @switch($cur) @case('uz') Biz ish kuni davomida javob beramiz. @break @case('en') We reply within one business day. @break @default Ответим в течение рабочего дня. @endswitch
-    </p>
+    <h3 id="fab-modal-title" style="margin:0 0 .5rem; font-size:1.25rem;">@cms('fab.title', 'Задайте вопрос')</h3>
+    <p class="text-mut" style="font-size:.9rem; margin:0 0 1.25rem;">@cms('fab.subtitle', 'Ответим в течение рабочего дня.')</p>
 
     <form action="{{ route('submit.contact') }}" method="POST" class="form" style="display:grid; gap:.75rem;">
       @csrf
       @include('partials.honeypot')
-      <input type="text"  name="name"    required placeholder="@switch($cur) @case('uz') Ismingiz @break @case('en') Your name @break @default Ваше имя @endswitch" />
+      <input type="text"  name="name"    required placeholder="@cms('fab.placeholder_name', 'Ваше имя')" />
       <input type="email" name="email"   required placeholder="Email" />
-      <input type="tel"   name="phone"            placeholder="@switch($cur) @case('uz') Telefon @break @case('en') Phone @break @default Телефон @endswitch" />
+      <input type="tel"   name="phone"            placeholder="@cms('fab.placeholder_phone', 'Телефон')" />
       <input type="hidden" name="topic"  value="fab-ask" />
-      <textarea name="message" required rows="3" placeholder="@switch($cur) @case('uz') Savolingiz @break @case('en') Your question @break @default Ваш вопрос @endswitch"></textarea>
-      <button type="submit" class="btn btn-primary">@switch($cur) @case('uz') Yuborish @break @case('en') Send @break @default Отправить @endswitch</button>
+      <textarea name="message" required rows="3" placeholder="@cms('fab.placeholder_message', 'Ваш вопрос')"></textarea>
+      <button type="submit" class="btn btn-primary">@cms('fab.submit', 'Отправить')</button>
     </form>
   </div>
 </div>

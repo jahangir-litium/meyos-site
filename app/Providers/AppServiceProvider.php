@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Observers\PageCacheObserver;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -58,5 +59,11 @@ class AppServiceProvider extends ServiceProvider
                 $model::observe(PageCacheObserver::class);
             }
         }
+
+        // @cms('key', 'fallback') — короткая директива для текстов из Setting,
+        // с учётом текущей локали. Возвращает escaped HTML.
+        Blade::directive('cms', function (string $expression) {
+            return "<?php echo e(\\App\\Support\\Cms::text($expression)); ?>";
+        });
     }
 }
