@@ -225,13 +225,13 @@
 
     {{-- ============ Похожие партнёры ============ --}}
     @if($related->count())
-      <section class="partner-section">
+      <section class="partner-section partner-related">
         <h2 style="font-size:1.5rem; margin:0 0 1.25rem;">
           @switch($cur) @case('uz') Shuningdek qarang @break @case('en') Related partners @break @default Похожие партнёры @endswitch
         </h2>
-        <div class="grid grid-3">
+        <div class="partner-related__grid">
           @foreach($related as $rp)
-            <x-partner-card :partner="$rp" :compact="true" />
+            <x-partner-card :partner="$rp" />
           @endforeach
         </div>
       </section>

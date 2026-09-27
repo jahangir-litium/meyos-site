@@ -2590,3 +2590,35 @@ main:focus { outline: none; }
 @media (min-width: 640px) {
   .partners-toolbar { margin-top: 1rem; }
 }
+
+/* ============================================================
+   PARTNER-SHOW polish: отступы + похожие партнёры
+   ============================================================ */
+
+/* Похожие партнёры — свой grid чтоб не растягивал карточки */
+.partner-related__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px)  { .partner-related__grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+@media (min-width: 1024px) { .partner-related__grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; } }
+
+/* Карточка в блоке похожих — компактнее по высоте, но с описанием */
+.partner-related .partner-card { min-height: auto; padding: 1.25rem; }
+.partner-related .partner-card__logo { height: 88px; margin-bottom: .85rem; }
+.partner-related .partner-card__title { font-size: 1rem; margin: .45rem 0 .3rem; }
+.partner-related .partner-card__desc {
+  font-size: .82rem;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+}
+.partner-related .partner-card__footer { margin-top: .75rem; padding-top: .6rem; }
+
+/* Уменьшенные отступы страницы-профиля */
+.partner-hero { margin-bottom: 1rem !important; }
+.partner-stats { margin-bottom: 1.5rem !important; }
+.partner-section { margin-bottom: 1.75rem !important; }
+.partner-section > h2 { margin: 0 0 .85rem !important; }
+.partner-cta { padding: 1.5rem 1.25rem !important; margin-top: .75rem !important; }
+.partner-cta h2 { font-size: 1.25rem !important; }
