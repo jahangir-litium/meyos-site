@@ -37,6 +37,7 @@ class PageController extends Controller
     {
         $data = $this->safeRemember($this->key('home'), fn () => [
             'page'      => Page::where('slug', 'home')->first(),
+            'activePoll' => \App\Models\Poll::active()->latest()->first(),
             'benefits'  => Benefit::published()->ordered()->get(),
             'painSols'  => PainSolutionRow::published()->ordered()->get(),
             'cases'     => BusinessCase::published()->ordered()->get(),

@@ -276,6 +276,15 @@
 </section>
 @endif
 
+<!-- АКТИВНЫЙ ОПРОС -->
+@if (!empty($activePoll))
+<section>
+  <div class="container" style="max-width:720px;">
+    <x-poll :poll="$activePoll" />
+  </div>
+</section>
+@endif
+
 <!-- FAQ -->
 @if ($faqs->count())
 @push('head')

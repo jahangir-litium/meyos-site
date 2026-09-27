@@ -54,3 +54,6 @@ Route::middleware('throttle:3,60')->group(function () {
     Route::post('/submit/event/{slug?}',  [SubmissionController::class, 'eventRegister'])->name('submit.event');
     Route::post('/submit/contact',        [SubmissionController::class, 'contact'])->name('submit.contact');
 });
+
+/* ============ Голосования (Poll) ============ */
+Route::middleware('throttle:10,60')->post('/polls/{poll:slug}/vote', [\App\Http\Controllers\PollController::class, 'vote'])->name('polls.vote');
