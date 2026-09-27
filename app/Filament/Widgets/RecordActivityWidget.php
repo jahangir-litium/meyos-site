@@ -33,7 +33,7 @@ class RecordActivityWidget extends BaseWidget
 
     public function getTableHeading(): ?string
     {
-        return '🕐 История изменений';
+        return 'История изменений';
     }
 
     public function table(Table $table): Table
@@ -61,11 +61,18 @@ class RecordActivityWidget extends BaseWidget
                         default => 'gray',
                     })
                     ->formatStateUsing(fn ($state) => match ($state) {
-                        'created' => '➕ Создано',
-                        'updated' => '✏️ Изменено',
-                        'deleted' => '🗑 Удалено',
-                        'restored' => '↩ Восстановлено',
+                        'created' => 'Создано',
+                        'updated' => 'Изменено',
+                        'deleted' => 'Удалено',
+                        'restored' => 'Восстановлено',
                         default => $state,
+                    })
+                    ->icon(fn ($state) => match ($state) {
+                        'created' => 'heroicon-o-plus-circle',
+                        'updated' => 'heroicon-o-pencil-square',
+                        'deleted' => 'heroicon-o-trash',
+                        'restored' => 'heroicon-o-arrow-uturn-left',
+                        default => null,
                     }),
                 Tables\Columns\TextColumn::make('causer.name')
                     ->label('Кто')
@@ -84,7 +91,7 @@ class RecordActivityWidget extends BaseWidget
                                 $oldVal = $data['old'][$field] ?? null;
                                 $newStr = is_scalar($newVal) ? mb_strimwidth((string) $newVal, 0, 40, '…') : '[объект]';
                                 $oldStr = is_scalar($oldVal) ? mb_strimwidth((string) $oldVal, 0, 40, '…') : '[объект]';
-                                $changes[] = "**$field:** $oldStr → $newStr";
+                                $changes[] = "$field: $oldStr → $newStr";
                             }
                         }
                         return implode(', ', array_slice($changes, 0, 3)) . (count($changes) > 3 ? ' … (+' . (count($changes) - 3) . ')' : '');

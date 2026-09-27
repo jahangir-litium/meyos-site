@@ -15,7 +15,7 @@
 @section('content')
 <section style="padding:6rem 1.5rem; min-height:60vh; display:flex; align-items:center; justify-content:center;">
   <div class="container" style="max-width:640px; text-align:center;">
-    <div style="font-size:clamp(4rem, 12vw, 7rem); line-height:1; margin-bottom:1rem;">🛠️</div>
+    <div style="font-family:var(--font-display,var(--font-head,inherit)); font-size:clamp(4rem, 12vw, 7rem); line-height:1; margin-bottom:1rem; color:rgb(var(--primary)); font-weight:900; letter-spacing:-.05em;">503</div>
     <h1 style="font-size:clamp(1.5rem, 4vw, 2.25rem); margin:0 0 1rem;">{{ $labels['title'] }}</h1>
     <p class="lead" style="margin:0 0 2rem;">{{ $labels['lead'] }}</p>
     <a href="{{ url()->current() }}" class="btn btn-primary btn-lg">

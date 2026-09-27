@@ -13,7 +13,7 @@
 
 <div class="poll" data-poll-slug="{{ $poll->slug }}" data-poll-total="{{ $total }}">
   <div class="poll__head">
-    <span class="poll__icon">📊</span>
+    <span class="poll__icon material-symbols-outlined" aria-hidden="true">how_to_vote</span>
     <div>
       <div class="poll__meta">@switch($cur) @case('uz') Soʻrovnoma @break @case('en') Poll @break @default Опрос @endswitch · <strong data-poll-total-txt>{{ $total }}</strong> @switch($cur) @case('uz') ovoz @break @case('en') votes @break @default голосов @endswitch</div>
       <div class="poll__question">{{ $question }}</div>
@@ -71,7 +71,7 @@
 <style>
 .poll { background: rgb(var(--surface)); border: 1px solid rgb(var(--outline)); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
 .poll__head { display: flex; gap: .75rem; margin-bottom: 1.25rem; align-items: flex-start; }
-.poll__icon { font-size: 1.75rem; line-height: 1; }
+.poll__icon { font-size: 1.75rem; line-height: 1; color: rgb(var(--primary)); }
 .poll__meta { font-size: .75rem; color: rgb(var(--on-surface-mut)); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .35rem; }
 .poll__question { font-size: 1.15rem; font-weight: 700; color: rgb(var(--on-surface)); line-height: 1.3; }
 .poll__options { display: grid; gap: .5rem; margin-bottom: 1rem; }

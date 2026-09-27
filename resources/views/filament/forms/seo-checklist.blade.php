@@ -14,7 +14,7 @@
      style="padding:1rem 1.25rem; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
 
   <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:.75rem;">
-    <strong style="font-size:.95rem;">🔍 SEO-проверка</strong>
+    <strong style="font-size:.95rem;">SEO-проверка</strong>
     <div>
       <span class="seo-score" style="font-size:1.5rem; font-weight:800; color:#6b7280;">—</span>
       <span style="font-size:.75rem; color:#6b7280;"> / 100</span>
@@ -23,27 +23,27 @@
 
   <ul class="seo-checks" style="list-style:none; padding:0; margin:0; display:grid; gap:.35rem; font-size:.85rem;">
     <li data-check="title-length">
-      <span class="check-icon" style="color:#6b7280;">◯</span>
+      <span class="check-icon" aria-hidden="true"></span>
       <span class="check-label">Title 50-60 символов</span>
       <span class="check-value" style="color:#6b7280; font-size:.75rem;"></span>
     </li>
     <li data-check="desc-length">
-      <span class="check-icon" style="color:#6b7280;">◯</span>
+      <span class="check-icon" aria-hidden="true"></span>
       <span class="check-label">Description 140-160 символов</span>
       <span class="check-value" style="color:#6b7280; font-size:.75rem;"></span>
     </li>
     <li data-check="title-present">
-      <span class="check-icon" style="color:#6b7280;">◯</span>
+      <span class="check-icon" aria-hidden="true"></span>
       <span class="check-label">Заголовок заполнен</span>
     </li>
     <li data-check="desc-present">
-      <span class="check-icon" style="color:#6b7280;">◯</span>
+      <span class="check-icon" aria-hidden="true"></span>
       <span class="check-label">Описание заполнено</span>
     </li>
     <li data-check="title-unique">
-      <span class="check-icon" style="color:#6b7280;">◯</span>
+      <span class="check-icon" aria-hidden="true"></span>
       <span class="check-label">Title отличается от заголовка</span>
-      <span class="check-value" style="color:#6b7280; font-size:.75rem;">(SEO-title не должен дублировать h1)</span>
+      <span class="check-value" style="color:#6b7280; font-size:.75rem;">SEO-title не дублирует h1</span>
     </li>
   </ul>
 
@@ -53,10 +53,16 @@
 </div>
 
 <style>
-.seo-checklist li { display: grid; grid-template-columns: 1.5rem 1fr auto; align-items: center; gap: .5rem; }
-.seo-checklist li.ok .check-icon { color: #10b981; }
-.seo-checklist li.warn .check-icon { color: #f59e0b; }
-.seo-checklist li.fail .check-icon { color: #ef4444; }
+.seo-checklist li { display: grid; grid-template-columns: 1.25rem 1fr auto; align-items: center; gap: .5rem; }
+.seo-checklist .check-icon {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #d1d5db;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.seo-checklist li.ok .check-icon { background: #10b981; }
+.seo-checklist li.warn .check-icon { background: #f59e0b; }
+.seo-checklist li.fail .check-icon { background: #ef4444; }
 </style>
 
 <script>
@@ -91,45 +97,41 @@
       const tl = title.length;
       const tItem = container.querySelector('[data-check="title-length"]');
       const tValue = tItem.querySelector('.check-value');
-      const tIcon = tItem.querySelector('.check-icon');
       tValue.textContent = tl + ' симв.';
       tItem.classList.remove('ok', 'warn', 'fail');
-      if (tl >= 50 && tl <= 60) { tItem.classList.add('ok'); tIcon.textContent = '✓'; score++; }
-      else if (tl >= 30 && tl <= 70) { tItem.classList.add('warn'); tIcon.textContent = '⚠'; score += 0.5; }
-      else { tItem.classList.add('fail'); tIcon.textContent = '✕'; }
+      if (tl >= 50 && tl <= 60) { tItem.classList.add('ok'); score++; }
+      else if (tl >= 30 && tl <= 70) { tItem.classList.add('warn'); score += 0.5; }
+      else { tItem.classList.add('fail'); }
 
       // desc length 140-160
       const dl = desc.length;
       const dItem = container.querySelector('[data-check="desc-length"]');
       const dValue = dItem.querySelector('.check-value');
-      const dIcon = dItem.querySelector('.check-icon');
       dValue.textContent = dl + ' симв.';
       dItem.classList.remove('ok', 'warn', 'fail');
-      if (dl >= 140 && dl <= 160) { dItem.classList.add('ok'); dIcon.textContent = '✓'; score++; }
-      else if (dl >= 100 && dl <= 200) { dItem.classList.add('warn'); dIcon.textContent = '⚠'; score += 0.5; }
-      else { dItem.classList.add('fail'); dIcon.textContent = '✕'; }
+      if (dl >= 140 && dl <= 160) { dItem.classList.add('ok'); score++; }
+      else if (dl >= 100 && dl <= 200) { dItem.classList.add('warn'); score += 0.5; }
+      else { dItem.classList.add('fail'); }
 
       // title present
       const tPresent = container.querySelector('[data-check="title-present"]');
       tPresent.classList.remove('ok', 'fail');
-      if (title.trim().length > 0) { tPresent.classList.add('ok'); tPresent.querySelector('.check-icon').textContent = '✓'; score++; }
-      else { tPresent.classList.add('fail'); tPresent.querySelector('.check-icon').textContent = '✕'; }
+      if (title.trim().length > 0) { tPresent.classList.add('ok'); score++; }
+      else { tPresent.classList.add('fail'); }
 
       // desc present
       const dPresent = container.querySelector('[data-check="desc-present"]');
       dPresent.classList.remove('ok', 'fail');
-      if (desc.trim().length > 0) { dPresent.classList.add('ok'); dPresent.querySelector('.check-icon').textContent = '✓'; score++; }
-      else { dPresent.classList.add('fail'); dPresent.querySelector('.check-icon').textContent = '✕'; }
+      if (desc.trim().length > 0) { dPresent.classList.add('ok'); score++; }
+      else { dPresent.classList.add('fail'); }
 
       // title unique from h1
       const tUnique = container.querySelector('[data-check="title-unique"]');
       tUnique.classList.remove('ok', 'warn', 'fail');
       if (title && fallbackTitle && title.trim() !== fallbackTitle.trim()) {
-        tUnique.classList.add('ok'); tUnique.querySelector('.check-icon').textContent = '✓'; score++;
-      } else if (!title) {
-        tUnique.classList.add('warn'); tUnique.querySelector('.check-icon').textContent = '⚠';
+        tUnique.classList.add('ok'); score++;
       } else {
-        tUnique.classList.add('warn'); tUnique.querySelector('.check-icon').textContent = '⚠';
+        tUnique.classList.add('warn');
       }
 
       // score bar

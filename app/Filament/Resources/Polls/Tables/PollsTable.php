@@ -22,7 +22,8 @@ class PollsTable
                     ->formatStateUsing(fn ($state) => is_array($state) ? ($state['ru'] ?? '—') : $state)
                     ->limit(60),
                 TextColumn::make('total_votes')
-                    ->label('👥 Голосов')
+                    ->label('Голосов')
+                    ->icon('heroicon-o-user-group')
                     ->sortable()
                     ->numeric()
                     ->alignRight(),

@@ -31,7 +31,7 @@
     {{-- Бейджи в правом верхнем углу лого --}}
     <div class="partner-card__badges">
       @if($isPopular)
-        <span class="partner-card__badge partner-card__badge--hot" title="Один из самых просматриваемых">🔥</span>
+        <span class="partner-card__badge partner-card__badge--hot" title="Один из самых просматриваемых">Топ</span>
       @endif
     </div>
   </div>

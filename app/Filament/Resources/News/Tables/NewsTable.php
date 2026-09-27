@@ -43,9 +43,10 @@ class NewsTable
                     ->sortable()
                     ->description(fn (News $r) =>
                         $r->is_published && $r->published_at && $r->published_at->isFuture()
-                            ? '⏰ Запланирована'
+                            ? 'Запланирована'
                             : null
                     )
+                    ->icon(fn (News $r) => $r->is_published && $r->published_at?->isFuture() ? 'heroicon-o-clock' : null)
                     ->color(fn (News $r) => $r->is_published && $r->published_at?->isFuture() ? 'warning' : null),
                 IconColumn::make('is_featured')->label('Главная')->boolean(),
                 IconColumn::make('is_published')->label('Опубл.')->boolean(),

@@ -31,12 +31,13 @@ class PartnersTable
                 TextColumn::make('category')->label('Категория')->badge()->formatStateUsing(fn ($s) => Partner::allCategories()[$s] ?? $s),
                 TextColumn::make('region')->label('Регион')->formatStateUsing(fn ($s) => $s ? (Partner::REGIONS[$s] ?? $s) : '—')->toggleable(),
                 TextColumn::make('views_count_total')
-                    ->label('👁 Всего')
+                    ->label('Просмотров')
+                    ->icon('heroicon-o-eye')
                     ->sortable()
                     ->numeric()
                     ->alignRight(),
                 TextColumn::make('views_count_30d')
-                    ->label('👁 30д')
+                    ->label('за 30д')
                     ->sortable()
                     ->numeric()
                     ->alignRight()

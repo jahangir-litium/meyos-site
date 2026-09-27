@@ -28,16 +28,16 @@
               <div style="font-size:.85rem; font-weight:{{ $cell['isToday'] ? '700' : '500' }}; color:{{ $cell['isToday'] ? '#92400e' : '#374151' }};">{{ $cell['day'] }}</div>
               @foreach($cell['news'] as $n)
                 <a href="{{ route('filament.admin.resources.news.edit', $n) }}"
-                   style="display:block; background:#dbeafe; color:#1e40af; padding:.15rem .35rem; border-radius:3px; font-size:.7rem; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"
-                   title="{{ $n->getTranslation('title','ru',false) }}{{ $n->is_published ? '' : ' [Черновик]' }}">
-                  📰 {{ mb_strimwidth($n->getTranslation('title','ru',false), 0, 20, '…') }}
+                   style="display:block; background:#dbeafe; color:#1e40af; padding:.15rem .35rem; border-radius:3px; font-size:.7rem; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:3px solid #3b82f6;"
+                   title="Новость: {{ $n->getTranslation('title','ru',false) }}{{ $n->is_published ? '' : ' [Черновик]' }}">
+                  {{ mb_strimwidth($n->getTranslation('title','ru',false), 0, 22, '…') }}
                 </a>
               @endforeach
               @foreach($cell['events'] as $e)
                 <a href="{{ route('filament.admin.resources.events.edit', $e) }}"
-                   style="display:block; background:#fef3c7; color:#92400e; padding:.15rem .35rem; border-radius:3px; font-size:.7rem; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"
-                   title="{{ $e->getTranslation('title','ru',false) }}">
-                  📅 {{ mb_strimwidth($e->getTranslation('title','ru',false), 0, 20, '…') }}
+                   style="display:block; background:#fef3c7; color:#92400e; padding:.15rem .35rem; border-radius:3px; font-size:.7rem; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:3px solid #f59e0b;"
+                   title="Мероприятие: {{ $e->getTranslation('title','ru',false) }}">
+                  {{ mb_strimwidth($e->getTranslation('title','ru',false), 0, 22, '…') }}
                 </a>
               @endforeach
             </div>
