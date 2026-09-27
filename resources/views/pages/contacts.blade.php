@@ -76,15 +76,30 @@
     </div>
 
     {{-- ============ Карта офиса (Яндекс.Карты) ============ --}}
-    @if(!empty($settings['address']))
+    @php
+        $lat = \App\Models\Setting::get('office_lat');
+        $lng = \App\Models\Setting::get('office_lng');
+        $zoom = (int) (\App\Models\Setting::get('office_zoom', 16) ?: 16);
+        $lang = $cur === 'ru' ? 'ru_RU' : ($cur === 'uz' ? 'uz_UZ' : 'en_US');
+        // Если заданы координаты — используем точную метку. Иначе — поиск по адресу
+        if ($lat && $lng) {
+            // pm2rdm = метка "pin marker 2 red medium"
+            $mapSrc = "https://yandex.ru/map-widget/v1/?ll={$lng},{$lat}&z={$zoom}&pt={$lng},{$lat},pm2rdm&lang={$lang}";
+        } elseif (!empty($settings['address'])) {
+            $mapSrc = "https://yandex.ru/map-widget/v1/?text=" . urlencode($settings['address']) . "&z={$zoom}&lang={$lang}";
+        } else {
+            $mapSrc = null;
+        }
+    @endphp
+
+    @if($mapSrc)
     <div style="margin-top:3rem;">
       <h3 style="font-size:1.3rem; margin:0 0 1rem;">
         @switch($cur) @case('uz') Xaritada @break @case('en') On the map @break @default На карте @endswitch
       </h3>
       <div class="map-embed">
-        {{-- Яндекс.Карты — универсальный embed по адресу (без API-ключа) --}}
         <iframe
-          src="https://yandex.ru/map-widget/v1/?text={{ urlencode($settings['address']) }}&z=15&lang={{ $cur === 'ru' ? 'ru_RU' : ($cur === 'uz' ? 'uz_UZ' : 'en_US') }}"
+          src="{{ $mapSrc }}"
           width="100%" height="400"
           frameborder="0" allowfullscreen
           style="border-radius: var(--radius-lg); border: 1px solid rgb(var(--outline)); display: block;"
@@ -92,10 +107,12 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+        @if(!empty($settings['address']))
         <p style="margin-top:.75rem; font-size:.85rem; color:rgb(var(--on-surface-mut));">
           <span class="material-symbols-outlined" style="vertical-align:-4px; font-size:1.1rem;">location_on</span>
           {{ $settings['address'] }}
         </p>
+        @endif
       </div>
     </div>
     @endif

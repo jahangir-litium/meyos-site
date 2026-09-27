@@ -47,6 +47,9 @@ class SiteSettings extends Page implements HasForms
             'residency_email' => Setting::get('residency_email'),
             'address'         => Setting::get('address'),
             'hours'           => Setting::get('hours'),
+            'office_lat'      => Setting::get('office_lat'),
+            'office_lng'      => Setting::get('office_lng'),
+            'office_zoom'     => Setting::get('office_zoom', 16),
             'entity_name'     => Setting::get('entity_name'),
             'requisites'      => Setting::get('requisites'),
             'telegram_url'    => Setting::get('telegram_url'),
@@ -138,11 +141,39 @@ class SiteSettings extends Page implements HasForms
                                             ->label('Адрес офиса')
                                             ->rows(2)
                                             ->placeholder('Ташкент, ул. ...')
-                                            ->helperText('Опционально'),
+                                            ->helperText('Отображается на странице «Контакты» и в футере'),
                                         TextInput::make('hours')
                                             ->label('Часы работы')
                                             ->placeholder('Пн–Пт, 09:00 – 18:00')
                                             ->helperText('Опционально'),
+                                    ])
+                                    ->columns(2),
+
+                                Section::make('Метка на карте')
+                                    ->description('Координаты офиса для точного отображения метки на карте /contacts. Если не заполнено — Яндекс сам ищет по адресу выше (может быть неточно).')
+                                    ->schema([
+                                        TextInput::make('office_lat')
+                                            ->label('Широта (latitude)')
+                                            ->placeholder('41.311081')
+                                            ->helperText('Число с точкой, например 41.311081'),
+                                        TextInput::make('office_lng')
+                                            ->label('Долгота (longitude)')
+                                            ->placeholder('69.240562')
+                                            ->helperText('Число с точкой, например 69.240562'),
+                                        TextInput::make('office_zoom')
+                                            ->label('Зум карты')
+                                            ->numeric()
+                                            ->minValue(10)
+                                            ->maxValue(19)
+                                            ->default(16)
+                                            ->helperText('От 10 (весь город) до 19 (крыша здания)'),
+                                        \Filament\Schemas\Components\View::make('filament.forms.map-coordinates-helper')->columnSpanFull(),
+                                    ])
+                                    ->columns(3),
+
+                                Section::make('Социальные сети')
+                                    ->description('Отображаются в футере и на страницах-профилях.')
+                                    ->schema([
                                         TextInput::make('telegram_url')
                                             ->label('Telegram (публичный)')
                                             ->maxLength(255)
