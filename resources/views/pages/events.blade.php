@@ -53,22 +53,22 @@
     </div>
     <div style="display:grid; gap:1rem;">
       @foreach ($upcoming as $event)
-        <div style="display:grid; gap:1.5rem; padding:2rem; background:rgb(var(--surface)); border:1px solid rgb(var(--outline)); border-radius:var(--radius-lg); grid-template-columns:140px 1fr auto; align-items:center;">
-          <div style="text-align:center; padding:1.25rem; background:rgb(var(--primary-soft)); border-radius:var(--radius-md);">
-            <div style="font-family:var(--font-head); font-size:2.5rem; font-weight:800; color:rgb(var(--primary-dark)); line-height:1;">{{ $event->event_date->format('d') }}</div>
-            <div style="font-size:.75rem; color:rgb(var(--on-surface-mut)); letter-spacing:.15em; text-transform:uppercase; margin-top:.35rem;">{{ $event->event_date->format('M') }}</div>
-            <div style="font-size:.75rem; color:rgb(var(--on-surface-mut));">{{ $event->event_date->format('Y') }}</div>
+        <div class="event-card">
+          <div class="event-card__date">
+            <div class="event-card__day">{{ $event->event_date->format('d') }}</div>
+            <div class="event-card__month">{{ $event->event_date->format('M') }}</div>
+            <div class="event-card__year">{{ $event->event_date->format('Y') }}</div>
           </div>
-          <div>
+          <div class="event-card__body">
             <span class="chip">{{ \App\Models\Event::allCategories()[$event->category] ?? '' }}</span>
-            <h3 style="font-size:1.2rem; margin:.5rem 0 .25rem;">{{ $tr($event, 'title') }}</h3>
-            <p class="text-mut" style="margin:0; font-size:.9rem; line-height:1.5;">{{ $tr($event, 'preview') }}</p>
-            <div style="display:flex; gap:1rem; flex-wrap:wrap; font-size:.85rem; color:rgb(var(--on-surface-mut)); margin-top:.75rem;">
+            <h3 class="event-card__title">{{ $tr($event, 'title') }}</h3>
+            <p class="event-card__preview">{{ $tr($event, 'preview') }}</p>
+            <div class="event-card__meta">
               <span>{{ $event->event_date->format('d.m.Y') }}</span>
               <span>{{ $tr($event, 'location') }}</span>
             </div>
           </div>
-          <a href="{{ route('events.show', $event->slug) }}" class="btn btn-primary">@switch($cur) @case('uz') Ariza @break @case('en') Apply @break @default Подать заявку @endswitch</a>
+          <a href="{{ route('events.show', $event->slug) }}" class="btn btn-primary event-card__cta">@switch($cur) @case('uz') Ariza @break @case('en') Apply @break @default Подать заявку @endswitch</a>
         </div>
       @endforeach
     </div>

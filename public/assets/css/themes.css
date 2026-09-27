@@ -2212,3 +2212,186 @@ main:focus { outline: none; }
   white-space: nowrap;
   border: 0;
 }
+
+
+/* ============================================================
+   MOBILE-FIXES — раунд 2 (адаптивность, UX)
+   ============================================================ */
+
+@media (max-width: 639px) {
+  /* Крошки без padding-x — прижимаются к краю. Даём боковой отступ. */
+  .breadcrumbs { padding: 0 1rem; margin-bottom: 1rem; }
+
+  /* Container с хлебными крошками, стоящий вне section (наш паттерн
+     "<div class=container style=padding-top:1.25rem;>" перед hero)
+     тоже прижимается. Даём padding-x всегда, если container — не в hero. */
+  .container:not(.hero__inner):not(:has(.hero)) {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* ============ tax-table: карточный layout ============
+     На десктопе — table с 4 колонками. На мобиле table не помещается
+     и 2 важные колонки клипаются (Резидент, Экономия). Переверстаем как
+     список карточек: каждая строка — карточка с 4 полями. */
+  .tax-table { display: block; background: transparent !important; }
+  .tax-table thead { display: none; }
+  .tax-table tbody { display: block; }
+  .tax-table tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .35rem .75rem;
+    padding: 1rem 1.15rem;
+    margin-bottom: .75rem;
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--outline));
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgb(0 0 0 / .03);
+  }
+  .tax-table td { display: block; border: 0; padding: 0; font-size: .9rem; }
+  .tax-table td:first-child {
+    grid-column: 1 / -1;
+    font-weight: 700;
+    font-size: 1rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgb(var(--outline));
+    margin-bottom: .35rem;
+    color: rgb(var(--on-surface));
+  }
+  .tax-table td:nth-child(2)::before {
+    content: "Стандарт: ";
+    color: rgb(var(--on-surface-mut));
+    font-size: .8rem;
+  }
+  .tax-table td:nth-child(3)::before {
+    content: "Резидент: ";
+    color: rgb(var(--primary));
+    font-weight: 600;
+    font-size: .8rem;
+  }
+  .tax-table td:nth-child(4)::before {
+    content: "Экономия: ";
+    color: rgb(var(--on-surface-mut));
+    font-size: .8rem;
+  }
+  .tax-table td .big {
+    color: rgb(var(--primary));
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  /* Оболочка таблицы больше не нужна scroll */
+  .tax-table + * { margin-top: 1rem; }
+
+  /* ============ Соцсети партнёра: touch-target 44px ============ */
+  .partner-social { width: 44px; height: 44px; }
+  .partner-social .material-symbols-outlined { font-size: 1.35rem; }
+
+  /* ============ Chip filter — крупнее touch-target ============ */
+  .partners-toolbar__row .filter-chip { min-height: 44px; padding-top: .6rem; padding-bottom: .6rem; }
+
+  /* Sticky-CTA партнёра снизу — оставить место для FAB */
+  .partner-mobile-cta a { min-height: 44px; }
+
+  /* ============ Language switcher в шапке — увеличить ============ */
+  .header .lang a { min-height: 32px; display: inline-flex; align-items: center; }
+}
+
+/* ============ Планшет 640-899px ============ */
+@media (min-width: 640px) and (max-width: 899px) {
+  .breadcrumbs { padding: 0 1.5rem; }
+}
+
+/* ============================================================
+   MOBILE-FIX: chips/tags не должны ломаться посимвольно
+   ============================================================ */
+@media (max-width: 639px) {
+  .chip, .tag, .filter-chip {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    white-space: nowrap;
+  }
+  /* Если chip слишком длинный — эллипсис вместо разрыва посимвольно */
+  .chip { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* ============================================================
+   EVENT CARD — адаптивная карточка события
+   ============================================================ */
+.event-card {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--outline));
+  border-radius: var(--radius-lg);
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+}
+.event-card__date {
+  text-align: center;
+  padding: 1.25rem;
+  background: rgb(var(--primary-soft));
+  border-radius: var(--radius-md);
+}
+.event-card__day {
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgb(var(--primary-dark));
+  line-height: 1;
+}
+.event-card__month {
+  font-size: .75rem;
+  color: rgb(var(--on-surface-mut));
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-top: .35rem;
+}
+.event-card__year {
+  font-size: .75rem;
+  color: rgb(var(--on-surface-mut));
+}
+.event-card__title { font-size: 1.2rem; margin: .5rem 0 .25rem; }
+.event-card__preview {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: rgb(var(--on-surface-mut));
+}
+.event-card__meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: .85rem;
+  color: rgb(var(--on-surface-mut));
+  margin-top: .75rem;
+}
+
+/* Мобильная переверстка: стек-layout */
+@media (max-width: 720px) {
+  .event-card {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .event-card__date {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: start;
+    align-items: baseline;
+    gap: .5rem;
+    text-align: left;
+    padding: .5rem .85rem;
+    width: fit-content;
+  }
+  .event-card__day { font-size: 1.5rem; }
+  .event-card__month, .event-card__year { margin-top: 0; }
+  .event-card__cta {
+    justify-self: stretch;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
