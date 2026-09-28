@@ -1123,6 +1123,74 @@ section { padding: 5rem 1.5rem; }
 .tax-table tr:last-child td { border-bottom: none; }
 .tax-table .big { font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: rgb(var(--primary)); }
 
+/* ============ tax-table: card-режим для мобильных и планшетов ============
+   На <900px 4 колонки не помещаются, значения сжимаются в 30px и налезают
+   друг на друга. Переворачиваем таблицу в стек карточек: параметр —
+   заголовок, три остальные ячейки — метка (data-label) + значение справа.
+   Метки берутся из data-label, поэтому автоматически на нужном языке. */
+@media (max-width: 899px) {
+  .tax-table {
+    display: block;
+    background: transparent !important;
+    border: 0;
+    width: 100%;
+  }
+  .tax-table thead { display: none; }
+  .tax-table tbody { display: block; }
+  .tax-table tr {
+    display: block;
+    padding: 1rem 1.15rem;
+    margin-bottom: .75rem;
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--outline));
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgb(0 0 0 / .03);
+  }
+  .tax-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: .35rem 0;
+    border: 0;
+    font-size: .9rem;
+    line-height: 1.4;
+  }
+  /* Первая ячейка (параметр) — заголовок карточки, на всю ширину */
+  .tax-table td:first-child {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0 0 .5rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid rgb(var(--outline));
+    color: rgb(var(--on-surface));
+  }
+  .tax-table td:first-child::before { content: none; }
+  /* Метка перед значением: берётся из data-label (уже переведена в blade) */
+  .tax-table td::before {
+    content: attr(data-label) ":";
+    color: rgb(var(--on-surface-mut));
+    font-size: .82rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    max-width: 45%;
+    line-height: 1.35;
+  }
+  /* Само значение — справа, обрезаем длинное аккуратно */
+  .tax-table td > * {
+    text-align: right;
+  }
+  .tax-table td .big {
+    color: rgb(var(--primary));
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-head);
+  }
+  /* Убираем overflow-x wrapper — теперь нет чего скроллить */
+  .tax-table + * { margin-top: 1rem; }
+}
+
 /* Utility */
 .text-mut { color: rgb(var(--on-surface-mut)); }
 .text-primary { color: rgb(var(--primary)); }
@@ -2219,57 +2287,9 @@ main:focus { outline: none; }
     padding-right: 1rem !important;
   }
 
-  /* ============ tax-table: карточный layout ============
-     На десктопе — table с 4 колонками. На мобиле table не помещается
-     и 2 важные колонки клипаются (Резидент, Экономия). Переверстаем как
-     список карточек: каждая строка — карточка с 4 полями. */
-  .tax-table { display: block; background: transparent !important; }
-  .tax-table thead { display: none; }
-  .tax-table tbody { display: block; }
-  .tax-table tr {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: .35rem .75rem;
-    padding: 1rem 1.15rem;
-    margin-bottom: .75rem;
-    background: rgb(var(--surface));
-    border: 1px solid rgb(var(--outline));
-    border-radius: var(--radius-md);
-    box-shadow: 0 2px 8px rgb(0 0 0 / .03);
-  }
-  .tax-table td { display: block; border: 0; padding: 0; font-size: .9rem; }
-  .tax-table td:first-child {
-    grid-column: 1 / -1;
-    font-weight: 700;
-    font-size: 1rem;
-    padding-bottom: .35rem;
-    border-bottom: 1px solid rgb(var(--outline));
-    margin-bottom: .35rem;
-    color: rgb(var(--on-surface));
-  }
-  .tax-table td:nth-child(2)::before {
-    content: "Стандарт: ";
-    color: rgb(var(--on-surface-mut));
-    font-size: .8rem;
-  }
-  .tax-table td:nth-child(3)::before {
-    content: "Резидент: ";
-    color: rgb(var(--primary));
-    font-weight: 600;
-    font-size: .8rem;
-  }
-  .tax-table td:nth-child(4)::before {
-    content: "Экономия: ";
-    color: rgb(var(--on-surface-mut));
-    font-size: .8rem;
-  }
-  .tax-table td .big {
-    color: rgb(var(--primary));
-    font-weight: 700;
-    font-size: 1rem;
-  }
-  /* Оболочка таблицы больше не нужна scroll */
-  .tax-table + * { margin-top: 1rem; }
+  /* tax-table card-mode вынесен в отдельный media-блок ниже (см. @media
+     (max-width: 899px)), чтобы срабатывать и на планшетах — иначе
+     4 колонки на 640-899px клиппались и текст «слипался». */
 
   /* ============ Соцсети партнёра: touch-target 44px ============ */
   .partner-social { width: 44px; height: 44px; }

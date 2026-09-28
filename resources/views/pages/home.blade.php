@@ -155,21 +155,27 @@
       <span class="tag">@switch($cur) @case('uz') Moliyaviy imtiyozlar @break @case('en') Financial advantages @break @default Финансовые преференции @endswitch</span>
       <h2>@cms('home.h2_taxes', 'Налоговые льготы резидента')</h2>
     </div>
+    @php
+        $thParam    = \App\Support\Cms::text('home.tax_th_param', 'Параметр');
+        $thStandard = \App\Support\Cms::text('home.tax_th_standard', 'Стандартная ставка');
+        $thResident = \App\Support\Cms::text('home.tax_th_resident', 'Для резидента MEYOS');
+        $thSaving   = \App\Support\Cms::text('home.tax_th_saving', 'Экономия');
+    @endphp
     <div style="overflow-x:auto;">
       <table class="tax-table">
         <thead><tr>
-          <th>@cms('home.tax_th_param', 'Параметр')</th>
-          <th>@cms('home.tax_th_standard', 'Стандартная ставка')</th>
-          <th>@cms('home.tax_th_resident', 'Для резидента MEYOS')</th>
-          <th>@cms('home.tax_th_saving', 'Экономия')</th>
+          <th>{{ $thParam }}</th>
+          <th>{{ $thStandard }}</th>
+          <th>{{ $thResident }}</th>
+          <th>{{ $thSaving }}</th>
         </tr></thead>
         <tbody>
           @foreach ($taxRows as $row)
             <tr>
-              <td>{{ $tr($row, 'parameter') }}</td>
-              <td>{{ $tr($row, 'standard_rate') }}</td>
-              <td><span class="big">{{ $tr($row, 'resident_rate') }}</span></td>
-              <td class="text-primary" style="font-weight:700;">{{ $tr($row, 'savings') }}</td>
+              <td data-label="{{ $thParam }}">{{ $tr($row, 'parameter') }}</td>
+              <td data-label="{{ $thStandard }}">{{ $tr($row, 'standard_rate') }}</td>
+              <td data-label="{{ $thResident }}"><span class="big">{{ $tr($row, 'resident_rate') }}</span></td>
+              <td data-label="{{ $thSaving }}" class="text-primary" style="font-weight:700;">{{ $tr($row, 'savings') }}</td>
             </tr>
           @endforeach
         </tbody>
