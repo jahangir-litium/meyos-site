@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\Setting;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -246,11 +247,92 @@ class CmsTexts extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('export_json')
+                ->label('Экспорт JSON')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->color('gray')
+                ->action(function () {
+                    $payload = [
+                        'meta' => [
+                            'kind'        => 'cms_texts',
+                            'strategy'    => 'upsert',
+                            'count'       => count($this->allKeys()),
+                            'exported_at' => now()->toIso8601String(),
+                            'app'         => config('app.name'),
+                        ],
+                        'data' => collect($this->allKeys())
+                            ->mapWithKeys(fn ($k) => [$k => Setting::get($k)])
+                            ->all(),
+                    ];
+                    $filename = 'cms-texts-' . now()->format('Y-m-d-His') . '.json';
+                    return response()->streamDownload(
+                        fn () => print json_encode(
+                            $payload,
+                            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+                        ),
+                        $filename,
+                        ['Content-Type' => 'application/json; charset=UTF-8']
+                    );
+                }),
+
+            Action::make('import_json')
+                ->label('Импорт JSON')
+                ->icon('heroicon-o-arrow-up-tray')
+                ->color('gray')
+                ->modalHeading('Загрузить JSON с текстами сайта')
+                ->modalDescription('Значения из файла перезапишут текущие. Импортируются только ключи, которые есть в структуре страницы — прочие настройки не тронутся.')
+                ->form([
+                    FileUpload::make('file')
+                        ->label('JSON-файл')
+                        ->acceptedFileTypes(['application/json'])
+                        ->required()
+                        ->storeFiles(false),
+                ])
+                ->action(function (array $data) {
+                    /** @var \Illuminate\Http\UploadedFile $file */
+                    $file    = $data['file'];
+                    $payload = json_decode(file_get_contents($file->getRealPath()), true);
+                    if (!is_array($payload) || !isset($payload['data']) || !is_array($payload['data'])) {
+                        Notification::make()->title('Неверный формат')
+                            ->body('Файл не является валидным JSON или нет ключа "data".')
+                            ->danger()->send();
+                        return;
+                    }
+                    $allowed = array_flip($this->allKeys());
+                    $updated = 0;
+                    $skipped = 0;
+                    foreach ($payload['data'] as $key => $value) {
+                        if (!isset($allowed[$key])) { $skipped++; continue; }
+                        $group = explode('.', $key, 2)[0];
+                        Setting::put($key, $value, $group);
+                        $updated++;
+                    }
+                    $this->form->fill($this->loadData());
+                    Notification::make()
+                        ->title('Импорт завершён')
+                        ->body("Обновлено {$updated} ключей" . ($skipped > 0 ? ", пропущено {$skipped} посторонних" : ''))
+                        ->success()->send();
+                }),
+
             Action::make('save')
                 ->label('Сохранить все тексты')
                 ->icon('heroicon-o-check')
                 ->color('primary')
                 ->action('save'),
         ];
+    }
+
+    /** Плоский список всех ключей, которые управляются этой страницей. */
+    private function allKeys(): array
+    {
+        $keys = [];
+        foreach (self::FIELDS as $sections) {
+            foreach ($sections as $fields) {
+                foreach (array_keys($fields) as $k) {
+                    $keys[] = $k;
+                }
+            }
+        }
+        return $keys;
     }
 }
