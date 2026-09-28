@@ -2014,19 +2014,9 @@ section { padding: 5rem 1.5rem; }
    PARTNERS INDEX — фильтры, счётчики, empty-state, sticky
    ============================================================ */
 .partners-toolbar {
-  position: sticky;
-  top: 4rem;
-  z-index: 20;
+  /* Убрана position:sticky по просьбе клиента — тулбар прокручивается вместе со страницей */
   padding: 1rem 0;
-  background: rgb(var(--surface) / .92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .2s, box-shadow .2s;
   margin-bottom: 1.5rem;
-}
-.partners-toolbar.is-stuck {
-  border-color: rgb(var(--outline));
-  box-shadow: 0 4px 12px rgb(0 0 0 / .06);
 }
 .partners-toolbar__row {
   display: flex;
@@ -2080,7 +2070,6 @@ section { padding: 5rem 1.5rem; }
 .partners-grid.is-filtering .partner-card { transition: opacity .2s; opacity: .35; }
 
 @media (max-width: 720px) {
-  .partners-toolbar { top: 3.75rem; }
   .partners-toolbar__row { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: .25rem; }
   .partners-toolbar__row::-webkit-scrollbar { display: none; }
   .filter-chip { white-space: nowrap; flex-shrink: 0; }
