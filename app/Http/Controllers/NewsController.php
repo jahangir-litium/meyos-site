@@ -52,7 +52,9 @@ class NewsController extends Controller
             'news'       => $newsList,
             'category'   => $category,
             'q'          => $q,
-            'categories' => News::CATEGORIES,
+            // allCategories() — берёт из БД (Category type=news) с переводами
+            // текущей локали; fallback на константу если БД пустая.
+            'categories' => News::allCategories(),
             'settings'   => $this->settings(),
         ]);
     }
