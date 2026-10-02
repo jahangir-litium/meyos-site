@@ -140,7 +140,7 @@
     @endif
 
     <div style="font-size:1.05rem; line-height:1.7;">
-      {!! $tr($news, 'content') !!}
+      {!! \App\Support\SafeHtml::clean($tr($news, 'content')) !!}
     </div>
 
     {{-- ============ Галерея-слайдер после текста ============ --}}

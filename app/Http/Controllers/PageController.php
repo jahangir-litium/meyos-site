@@ -53,6 +53,11 @@ class PageController extends Controller
             'faqs'      => Faq::published()->forPageSlug('home')->ordered()->get(),
         ]);
 
+        // Toggle «включить SAVDEX» (вне кэша — чтобы изменение в админке применилось сразу)
+        if (!(bool) \App\Models\Setting::get('savdex_enabled', true)) {
+            $data['listings'] = collect();
+        }
+
         return view('pages.home', $data + ['settings' => $this->settings(withLiveStats: true)]);
     }
 

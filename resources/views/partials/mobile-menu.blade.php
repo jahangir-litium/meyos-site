@@ -1,4 +1,7 @@
-@php $cur = app()->getLocale(); @endphp
+@php
+    $cur = app()->getLocale();
+    $savdexEnabled = (bool) \App\Models\Setting::get('savdex_enabled', true);
+@endphp
 <div class="mobile-menu" data-mobile-menu id="mobile-menu" role="dialog" aria-modal="true" aria-label="@switch($cur) @case('uz') Navigatsiya @break @case('en') Navigation @break @default Навигация @endswitch">
   <div class="mobile-menu__head">
     <a href="{{ route('home') }}" class="logo"><span class="logo__mark">M</span>MEYOS</a>
@@ -9,7 +12,9 @@
   <a href="{{ route('legislation') }}" class="mobile-menu__sublink">— @switch($cur) @case('uz') Qonunchilik @break @case('en') Legislation @break @default Законодательство @endswitch</a>
   <a href="{{ route('residency') }}">@switch($cur) @case('uz') Rezidentlik @break @case('en') Residency @break @default Резидентство @endswitch</a>
   <a href="{{ route('programs') }}">@switch($cur) @case('uz') Dasturlar @break @case('en') Programs @break @default Программы @endswitch</a>
-  <a href="{{ route('listings') }}" class="mobile-menu__sublink">— @switch($cur) @case('uz') Eʼlonlar @break @case('en') Listings @break @default Объявления @endswitch</a>
+  @if ($savdexEnabled)
+    <a href="{{ route('listings') }}" class="mobile-menu__sublink">— @switch($cur) @case('uz') Eʼlonlar @break @case('en') Listings @break @default Объявления @endswitch</a>
+  @endif
   <a href="{{ route('partners') }}">@switch($cur) @case('uz') Hamkorlar @break @case('en') Partners @break @default Партнёры @endswitch</a>
   <a href="{{ route('events') }}">@switch($cur) @case('uz') Tadbirlar @break @case('en') Events @break @default Мероприятия @endswitch</a>
   <a href="{{ route('news') }}">@switch($cur) @case('uz') Yangiliklar @break @case('en') News @break @default Новости @endswitch</a>

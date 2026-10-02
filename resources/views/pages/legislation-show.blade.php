@@ -19,11 +19,60 @@
     ];
 
     $seoTitle = $tr($act, 'seo_title') ?: $title . ' — MEYOS';
-    $seoDesc  = $tr($act, 'seo_description') ?: Str::limit(strip_tags($summary ?? $title), 200);
+    // SEO description: сначала seo_description, потом summary; если ни того ни того —
+    // используем заголовок + «- официальный текст на MEYOS» (чтобы не было голого title).
+    $seoFallback = $summary ?: ($title . ' — ' . match($cur) {
+        'uz' => 'rasmiy matn va manba',
+        'en' => 'official text and source',
+        default => 'официальный текст и источник',
+    });
+    $seoDesc = $tr($act, 'seo_description') ?: Str::limit(strip_tags($seoFallback), 200);
+    $ogImage = \App\Models\Setting::logoUrl();
 @endphp
 
 @section('title', $seoTitle)
 @section('description', $seoDesc)
+@section('og_type', 'article')
+@if($ogImage)@section('og_image', $ogImage)@endif
+
+@push('head')
+@php
+    $__legalSchema = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'Legislation',
+        'name'           => $title,
+        'legislationIdentifier' => $act->act_number,
+        'legislationDate' => $act->act_date?->toDateString(),
+        'legislationType' => $categories[$act->category] ?? null,
+        'legislationLegalForce' => $act->status === 'active' ? 'InForce' : 'NotInForce',
+        'description'    => $seoDesc,
+        'inLanguage'     => $cur,
+        'url'            => url()->current(),
+        'publisher' => [
+            '@type' => 'Organization',
+            'name'  => \App\Models\Setting::get('site_name', 'MEYOS'),
+        ],
+    ];
+    if ($act->source_url) {
+        $__legalSchema['sameAs'] = [$act->source_url];
+    }
+    $__crumbs = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type'=>'ListItem','position'=>1,'name'=>$labels['home'],'item'=>url('/')],
+            ['@type'=>'ListItem','position'=>2,'name'=>$labels['crumb'],'item'=>route('legislation')],
+            ['@type'=>'ListItem','position'=>3,'name'=>$act->act_number ?: $title,'item'=>url()->current()],
+        ],
+    ];
+@endphp
+<script type="application/ld+json">
+{!! json_encode(array_filter($__legalSchema), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+<script type="application/ld+json">
+{!! json_encode($__crumbs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
 
 @section('content')
 
@@ -68,7 +117,7 @@
 
     @if($content)
       <article class="prose legal-content">
-        {!! $content !!}
+        {!! \App\Support\SafeHtml::clean($content) !!}
       </article>
     @endif
 

@@ -180,7 +180,7 @@
         <h2 style="font-size:1.5rem; margin:0 0 1rem;">
           @switch($cur) @case('uz') Kompaniya haqida @break @case('en') About the company @break @default О компании @endswitch
         </h2>
-        <div class="prose">{!! $about !!}</div>
+        <div class="prose">{!! \App\Support\SafeHtml::clean($about) !!}</div>
       </section>
     @endif
 

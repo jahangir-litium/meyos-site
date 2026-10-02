@@ -2,6 +2,16 @@
     // Пункт с children рендерится как dropdown. Активен когда любой из потомков активен.
     $cur = app()->getLocale();
     $cms = fn (string $key, string $fallback) => \App\Support\Cms::text($key, $fallback);
+    $savdexEnabled = (bool) \App\Models\Setting::get('savdex_enabled', true);
+
+    // children «Программы»: если SAVDEX выключен — пункт «Объявления» убираем;
+    // когда остался 1 пункт — делаем ссылку плоской (без dropdown).
+    $programsChildren = [
+        ['label' => $cms('nav.projects_child', 'Проекты'),    'route' => 'programs'],
+    ];
+    if ($savdexEnabled) {
+        $programsChildren[] = ['label' => $cms('nav.listings_child', 'Объявления'), 'route' => 'listings'];
+    }
 
     $nav = [
         [
@@ -13,14 +23,13 @@
             ],
         ],
         ['route' => 'residency', 'label' => $cms('nav.residency', 'Резидентство')],
-        [
-            'label'    => $cms('nav.programs', 'Программы'),
-            'route'    => 'programs',
-            'children' => [
-                ['label' => $cms('nav.projects_child', 'Проекты'),    'route' => 'programs'],
-                ['label' => $cms('nav.listings_child', 'Объявления'), 'route' => 'listings'],
-            ],
-        ],
+        count($programsChildren) > 1
+            ? [
+                'label'    => $cms('nav.programs', 'Программы'),
+                'route'    => 'programs',
+                'children' => $programsChildren,
+            ]
+            : ['route' => 'programs', 'label' => $cms('nav.programs', 'Программы')],
         ['route' => 'partners',  'label' => $cms('nav.partners',  'Партнёры')],
         ['route' => 'events',    'label' => $cms('nav.events',    'Мероприятия')],
         ['route' => 'news',      'label' => $cms('nav.news',      'Новости')],

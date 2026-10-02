@@ -8,6 +8,20 @@
     $counts = $acts->groupBy('category')->map->count();
     $totalCount = $acts->count();
 
+    // ===== SEO =====
+    $seoTitle = \App\Support\Cms::text('legislation.seo_title', match($cur) {
+        'uz' => 'Mebel sanoati qonunchiligi — MEYOS',
+        'en' => 'Furniture industry legislation of Uzbekistan — MEYOS',
+        default => 'Законодательство мебельной индустрии Узбекистана — MEYOS',
+    });
+    $seoDesc = \App\Support\Cms::text('legislation.seo_description', match($cur) {
+        'uz' => 'PQ-193, PQ-5155 va boshqa postanovleniyalar: matn, PDF va rasmiy manba.',
+        'en' => 'Collected decrees PP-193, PP-5155 and more — text, PDF and official source.',
+        default => 'Собрание постановлений ПП-193, ПП-5155 и других нормативных актов: текст, PDF и официальный источник.',
+    });
+@endphp
+
+@php
     $labels = [
         'home'      => \App\Support\Cms::text('legislation.crumb_home',  ['ru' => 'Главная', 'uz' => 'Bosh sahifa', 'en' => 'Home'][$cur]),
         'crumb'     => \App\Support\Cms::text('legislation.crumb_this',  ['ru' => 'Законодательство', 'uz' => 'Qonunchilik', 'en' => 'Legislation'][$cur]),
@@ -20,6 +34,9 @@
         'of'        => \App\Support\Cms::text('legislation.of',          ['ru' => 'из', 'uz' => 'jami', 'en' => 'of'][$cur]),
     ];
 @endphp
+
+@section('title', $seoTitle)
+@section('description', $seoDesc)
 
 @section('content')
 

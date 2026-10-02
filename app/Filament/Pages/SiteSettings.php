@@ -58,6 +58,8 @@ class SiteSettings extends Page implements HasForms
             'tg_enabled'      => (bool) Setting::get('tg_enabled', false),
             'tg_bot_token'    => Setting::get('tg_bot_token'),
             'tg_chat_id'      => Setting::get('tg_chat_id'),
+            // Модули
+            'savdex_enabled'  => (bool) Setting::get('savdex_enabled', true),
             'yandex_metrika_id'        => Setting::get('yandex_metrika_id'),
             'google_analytics_id'      => Setting::get('google_analytics_id'),
             'yandex_verification'      => Setting::get('yandex_verification'),
@@ -303,6 +305,19 @@ class SiteSettings extends Page implements HasForms
                                     ->description('Выпадающий список тем на странице «Контакты».')
                                     ->schema([
                                         $this->optionsRepeater('form_contact_topics'),
+                                    ]),
+                            ]),
+
+                        Tab::make('Модули сайта')
+                            ->icon('heroicon-o-squares-2x2')
+                            ->schema([
+                                Section::make('Объявления SAVDEX')
+                                    ->description('Раздел с парсингом мебельных объявлений с savdex.uz. При выключении: пропадает блок «Актуальный спрос» на главной, страница /listings отдаёт 404, пункт «Объявления» исчезает из меню «Программы» (десктоп и мобилка).')
+                                    ->schema([
+                                        Toggle::make('savdex_enabled')
+                                            ->label('Включить раздел «Объявления SAVDEX»')
+                                            ->default(true)
+                                            ->helperText('Если выключено — на фронте раздел не показывается, но данные в админке сохраняются и парсер по расписанию можно оставить (или остановить вручную в cron).'),
                                     ]),
                             ]),
 

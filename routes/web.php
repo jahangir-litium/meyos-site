@@ -14,6 +14,7 @@ Route::get('/sitemap-news.xml',     [SitemapController::class, 'news']);
 Route::get('/sitemap-events.xml',   [SitemapController::class, 'events']);
 Route::get('/sitemap-programs.xml', [SitemapController::class, 'programs']);
 Route::get('/sitemap-partners.xml', [SitemapController::class, 'partners']);
+Route::get('/sitemap-legislation.xml', [SitemapController::class, 'legislation']);
 
 /* llms.txt — стандарт для AI-краулеров (ChatGPT, Claude, Perplexity) */
 Route::get('/llms.txt', function () {

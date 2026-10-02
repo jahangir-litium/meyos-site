@@ -10,6 +10,9 @@ class ListingsController extends Controller
 {
     public function index(Request $request)
     {
+        // Раздел может быть выключен в админке → Настройки → Модули сайта
+        abort_unless((bool) Setting::get('savdex_enabled', true), 404);
+
         // Клиентская фильтрация: отдаём все актуальные объявления (их пара сотен),
         // параметры URL (type, q) читает JS из window.location.search для deep-link.
         $items = SavdexListing::visible()

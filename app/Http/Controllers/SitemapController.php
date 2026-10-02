@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\LegalAct;
 use App\Models\News;
 use App\Models\Partner;
 use App\Models\Program;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
 class SitemapController extends Controller
@@ -19,11 +21,12 @@ class SitemapController extends Controller
         $xml = Cache::remember('sitemap.xml', 3600, function () {
             $now = now()->toIso8601String();
             $maps = [
-                ['loc' => url('/sitemap-pages.xml'),    'lastmod' => $now],
-                ['loc' => url('/sitemap-news.xml'),     'lastmod' => $now],
-                ['loc' => url('/sitemap-events.xml'),   'lastmod' => $now],
-                ['loc' => url('/sitemap-programs.xml'), 'lastmod' => $now],
-                ['loc' => url('/sitemap-partners.xml'), 'lastmod' => $now],
+                ['loc' => url('/sitemap-pages.xml'),       'lastmod' => $now],
+                ['loc' => url('/sitemap-news.xml'),        'lastmod' => $now],
+                ['loc' => url('/sitemap-events.xml'),      'lastmod' => $now],
+                ['loc' => url('/sitemap-programs.xml'),    'lastmod' => $now],
+                ['loc' => url('/sitemap-partners.xml'),    'lastmod' => $now],
+                ['loc' => url('/sitemap-legislation.xml'), 'lastmod' => $now],
             ];
 
             $xml  = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -46,7 +49,12 @@ class SitemapController extends Controller
     {
         $xml = Cache::remember('sitemap-pages.xml', 3600, function () {
             $urls = [];
-            foreach (['/', '/about', '/residency', '/programs', '/partners', '/contacts', '/news', '/events'] as $path) {
+            $paths = ['/', '/about', '/residency', '/programs', '/partners', '/contacts', '/news', '/events', '/legislation'];
+            // /listings показываем в sitemap только если раздел включён в админке
+            if ((bool) Setting::get('savdex_enabled', true)) {
+                $paths[] = '/listings';
+            }
+            foreach ($paths as $path) {
                 $absolute = url($path);
                 $urls[] = [
                     'loc'     => $absolute,
@@ -60,6 +68,29 @@ class SitemapController extends Controller
                     ],
                 ];
             }
+            return $this->buildUrlset($urls);
+        });
+        return $this->xmlResponse($xml);
+    }
+
+    /** Законодательные акты — список страниц /legislation/{slug}. */
+    public function legislation()
+    {
+        $xml = Cache::remember('sitemap-legislation.xml', 3600, function () {
+            $urls = [];
+            LegalAct::published()->orderByDesc('act_date')->get()->each(function ($a) use (&$urls) {
+                $urls[] = [
+                    'loc'     => route('legislation.show', $a->slug),
+                    'lastmod' => $a->updated_at?->toIso8601String() ?: $a->act_date?->toIso8601String(),
+                    'change'  => 'monthly',
+                    'prio'    => '0.6',
+                    'alt'     => [
+                        'ru' => route('legislation.show', $a->slug).'?lang=ru',
+                        'uz' => route('legislation.show', $a->slug).'?lang=uz',
+                        'en' => route('legislation.show', $a->slug).'?lang=en',
+                    ],
+                ];
+            });
             return $this->buildUrlset($urls);
         });
         return $this->xmlResponse($xml);

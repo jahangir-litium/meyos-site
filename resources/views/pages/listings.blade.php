@@ -5,6 +5,20 @@
     $counts = $items->groupBy('listing_type')->map->count();
     $totalCount = $items->count();
 
+    // ===== SEO =====
+    $seoTitle = \App\Support\Cms::text('listings.seo_title', match($cur) {
+        'uz' => 'Mebel sanoati eʼlonlari — MEYOS',
+        'en' => 'Furniture industry listings — MEYOS',
+        default => 'Актуальные объявления по мебели (SAVDEX) — MEYOS',
+    });
+    $seoDesc = \App\Support\Cms::text('listings.seo_description', match($cur) {
+        'uz' => 'B2B platforma savdex.uz dan mebel kategoriyasining soʻrov, taklif va tenderlari — har kuni yangilanadi.',
+        'en' => 'Furniture category requests, offers and tenders from the B2B platform savdex.uz — refreshed daily.',
+        default => 'Запросы, предложения и тендеры мебельной категории с B2B-платформы savdex.uz — обновляется ежедневно.',
+    });
+@endphp
+
+@php
     $labels = [
         'crumb'   => \App\Support\Cms::text('listings.crumb',   'Объявления'),
         'tag'     => \App\Support\Cms::text('listings.hero_tag', 'Актуальный спрос'),
@@ -20,6 +34,9 @@
         'of'      => \App\Support\Cms::text('listings.of',       'из'),
     ];
 @endphp
+
+@section('title', $seoTitle)
+@section('description', $seoDesc)
 
 @section('content')
 
