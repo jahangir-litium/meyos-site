@@ -129,12 +129,13 @@ return [
     */
 
     'temporary_file_upload' => [
-        // ВАЖНО: в Laravel 11+ default local-disk пишет в storage/app/private, поэтому
-        // без явного указания директории Livewire не находит свою tmp-папку → upload зависает.
-        // Используем local-диск с явной директорией.
-        'disk' => env('LIVEWIRE_TEMPORARY_FILE_UPLOAD_DISK', 'local'),
+        // Отдельный disk 'livewire-tmp' (см. config/filesystems.php) с чистым путём
+        // storage/app/livewire-tmp. На Windows с mixed-slash (storage\app/private\...)
+        // Livewire периодически падал в stream_get_meta_data(false) при загрузке
+        // через ImageEditor — отдельный disk убирает проблему.
+        'disk' => env('LIVEWIRE_TEMPORARY_FILE_UPLOAD_DISK', 'livewire-tmp'),
         'rules' => ['required', 'file', 'max:20480'], // до 20MB (синхронно с FilePond maxSize)
-        'directory' => 'livewire-tmp',
+        'directory' => null,
         'middleware' => 'throttle:60,1',
         'preview_mimes' => [
             'png', 'gif', 'bmp', 'svg', 'wav', 'mp4',

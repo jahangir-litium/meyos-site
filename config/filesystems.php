@@ -51,6 +51,18 @@ return [
             'report' => false,
         ],
 
+        // ВАЖНО: отдельный disk для временных файлов Livewire.
+        // В Laravel 11+ default 'local' → storage/app/private, из-за чего путь
+        // получается mixed-slash (storage\app/private\livewire-tmp\...) и на Windows
+        // Livewire периодически падает в stream_get_meta_data(false). Этот disk
+        // смотрит сразу в storage/app/livewire-tmp (без вложенности), пути чище.
+        'livewire-tmp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/livewire-tmp'),
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
