@@ -72,20 +72,20 @@ class PartnerForm
                     ->helperText('Максимум 6 фото, до 5 МБ каждое'),
             ])->collapsible()->collapsed(),
 
-            Section::make('Видео (YouTube / Instagram)')
+            Section::make('Видео (YouTube)')
                 ->description('Вставка видео о компании. Отобразится на странице партнёра после описания.')
                 ->schema([
                     TextInput::make('video_url')
-                        ->label('Ссылка на видео')
-                        ->placeholder('https://www.youtube.com/watch?v=... или https://www.instagram.com/reel/...')
+                        ->label('Ссылка на YouTube')
+                        ->placeholder('https://www.youtube.com/watch?v=... или https://youtu.be/...')
                         ->maxLength(500)
                         ->url()
                         ->nullable()
-                        ->helperText('Поддерживается YouTube (watch, youtu.be, shorts) и Instagram (p/reel/tv). Публичная ссылка.')
+                        ->helperText('Поддерживаются форматы: youtube.com/watch?v=…, youtu.be/…, /embed/…, /shorts/…')
                         ->rules([
                             fn () => function (string $attribute, $value, \Closure $fail) {
                                 if ($value && !\App\Support\VideoEmbed::isValid($value)) {
-                                    $fail('Ссылка не распознана как YouTube или Instagram. Используйте стандартный URL из адресной строки.');
+                                    $fail('Ссылка не распознана как YouTube. Используйте стандартный URL из адресной строки.');
                                 }
                             },
                         ]),
