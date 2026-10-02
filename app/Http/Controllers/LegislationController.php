@@ -10,41 +10,18 @@ class LegislationController extends Controller
 {
     public function index(Request $request)
     {
-        $category = $request->query('category');
-        $status   = $request->query('status');
-        $q        = trim((string) $request->query('q', ''));
-
-        $query = LegalAct::published()->orderBy('sort')->orderByDesc('act_date');
-
-        if ($category && array_key_exists($category, LegalAct::CATEGORIES)) {
-            $query->where('category', $category);
-        }
-        if ($status && array_key_exists($status, LegalAct::STATUSES)) {
-            $query->where('status', $status);
-        }
-        if ($q !== '') {
-            $words = array_filter(
-                preg_split('/\s+/u', mb_strtolower($q)),
-                fn ($w) => mb_strlen(trim($w, " .,!?;:\"'()[]{}")) >= 2
-            );
-            foreach ($words as $word) {
-                $like = '%' . str_replace(['%', '_'], ['\%', '\_'], $word) . '%';
-                $query->where(function ($w) use ($like) {
-                    $w->whereRaw('LOWER(act_number) LIKE ?', [$like])
-                      ->orWhereRaw('LOWER(title) LIKE ?', [$like])
-                      ->orWhereRaw('LOWER(summary) LIKE ?', [$like])
-                      ->orWhereRaw('LOWER(content) LIKE ?', [$like]);
-                });
-            }
-        }
-
-        $acts = $query->paginate(12)->withQueryString();
+        // Клиентская фильтрация: отдаём все опубликованные акты (их обычно десятки, не тысячи).
+        // Параметры URL (category, status, q) читает JS на фронте для deep-link.
+        $acts = LegalAct::published()
+            ->orderBy('sort')
+            ->orderByDesc('act_date')
+            ->get();
 
         return view('pages.legislation', [
             'acts'       => $acts,
-            'category'   => $category,
-            'status'     => $status,
-            'q'          => $q,
+            'category'   => $request->query('category'),
+            'status'     => $request->query('status'),
+            'q'          => trim((string) $request->query('q', '')),
             'categories' => LegalAct::allCategories(),
             'statuses'   => LegalAct::allStatuses(),
             'settings'   => $this->settings(),

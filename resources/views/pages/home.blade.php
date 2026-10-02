@@ -384,6 +384,7 @@
 
     <form id="join-form" action="{{ route('submit.membership') }}" method="POST" class="form mt-8" style="margin-top:3rem;">
       @csrf
+      @include('partials.honeypot')
       <h3 style="margin:0 0 .5rem; font-size:1.4rem;">@switch($cur) @case('uz') Aʼzolik uchun ariza @break @case('en') Membership application @break @default Заявка на вступление в ассоциацию @endswitch</h3>
       <p class="text-mut" style="margin:0 0 1rem; font-size:.95rem;">@switch($cur) @case('uz') Maydonlarni toʻldiring @break @case('en') Fill in the fields @break @default Заполните поля @endswitch</p>
       <div style="display:grid; gap:1rem; grid-template-columns:1fr 1fr;">

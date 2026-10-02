@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\SavdexListings\Pages;
 
 use App\Filament\Resources\SavdexListings\SavdexListingResource;
-use App\Models\SavdexListing;
+use App\Jobs\FetchSavdexListingsJob;
 use App\Services\SavdexParser;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
@@ -21,14 +21,12 @@ class ListSavdexListings extends ListRecords
                 ->icon('heroicon-o-arrow-path')
                 ->color('primary')
                 ->requiresConfirmation()
-                ->modalDescription('Пойдём на savdex.uz, перечитаем мебельные объявления. Может занять до 60 секунд.')
+                ->modalDescription('Запустим фоновую задачу: пойдём на savdex.uz и обновим мебельные объявления. Админка не блокируется, результат появится через 1–2 минуты — обновите страницу.')
                 ->action(function () {
-                    $parser = app(SavdexParser::class);
-                    $stats  = $parser->sync();
-                    $pruned = $parser->pruneExpired(60);
+                    FetchSavdexListingsJob::dispatch();
                     Notification::make()
-                        ->title('Обновление завершено')
-                        ->body("Найдено: {$stats['found_in_sitemap']} · загружено: {$stats['fetched']} · создано: {$stats['created']} · обновлено: {$stats['updated']} · удалено устаревших: {$pruned}")
+                        ->title('Задача запущена')
+                        ->body('Парсер работает в фоне. Обновите страницу через 1–2 минуты, чтобы увидеть новые объявления.')
                         ->success()->send();
                 }),
             Action::make('archive_old')

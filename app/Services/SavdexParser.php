@@ -44,14 +44,13 @@ class SavdexParser
         $urls = $this->collectFurnitureUrls();
         $stats['found_in_sitemap'] = count($urls);
 
-        foreach ($urls as $url) {
+        foreach ($urls as $i => $url) {
             try {
                 $data = $this->fetchListing($url);
                 if (!$data) { $stats['skipped']++; continue; }
 
                 $existing = SavdexListing::where('external_id', $data['external_id'])->first();
                 if ($existing) {
-                    // Не затираем ручные флаги админа
                     unset($data['is_hidden'], $data['is_featured']);
                     $existing->update($data);
                     $stats['updated']++;
@@ -63,6 +62,11 @@ class SavdexParser
             } catch (\Throwable $e) {
                 Log::warning('SavdexParser error', ['url' => $url, 'err' => $e->getMessage()]);
                 $stats['errors']++;
+            }
+
+            // 300ms + джиттер между запросами, чтобы не долбить SAVDEX и не словить WAF
+            if ($i < count($urls) - 1) {
+                usleep(300_000 + random_int(0, 200_000));
             }
         }
 
@@ -222,6 +226,7 @@ class SavdexParser
     {
         try {
             $r = Http::timeout(15)
+                ->retry(2, 500, throw: false)
                 ->withHeaders([
                     'User-Agent' => 'Mozilla/5.0 (compatible; MEYOS-SiteBot/1.0; +https://meyos.uz)',
                     'Accept'     => 'text/html,application/xhtml+xml,application/xml',

@@ -7,7 +7,6 @@ use App\Models\Event;
 use App\Models\EventRegistration;
 use App\Models\MembershipApplication;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Lang;
 
 class SubmissionController extends Controller
 {

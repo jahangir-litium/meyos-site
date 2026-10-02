@@ -47,6 +47,7 @@ class LegalActForm
                     TextInput::make('source_url')
                         ->label('Ссылка на источник')
                         ->url()
+                        ->rules(['nullable', 'url', 'starts_with:https://,http://'])
                         ->placeholder('https://lex.uz/ru/docs/...')
                         ->maxLength(500)
                         ->helperText('Официальный источник: lex.uz, nrm.uz, norma.uz'),

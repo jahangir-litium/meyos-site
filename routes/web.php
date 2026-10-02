@@ -52,13 +52,18 @@ Route::get('/listings',             [\App\Http\Controllers\ListingsController::c
 Route::get('/events',          [EventsController::class, 'index'])->name('events');
 Route::get('/events/{slug}',   [EventsController::class, 'show'])->name('events.show');
 
-/* ============ Формы ============ */
-/* throttle:3,60 — максимум 3 отправки в час на IP (спам-защита). */
-Route::middleware('throttle:3,60')->group(function () {
-    Route::post('/submit/membership',     [SubmissionController::class, 'membership'])->name('submit.membership');
-    Route::post('/submit/event/{slug?}',  [SubmissionController::class, 'eventRegister'])->name('submit.event');
-    Route::post('/submit/contact',        [SubmissionController::class, 'contact'])->name('submit.contact');
-});
+/* ============ Формы ============
+ * throttle:N,60 — N отправок в час на IP, отдельный счётчик для каждой формы
+ * (пользователь, отправивший membership, может задать вопрос через fab-ask).
+ */
+Route::middleware('throttle:3,60')
+    ->post('/submit/membership', [SubmissionController::class, 'membership'])->name('submit.membership');
+
+Route::middleware('throttle:3,60')
+    ->post('/submit/event/{slug?}', [SubmissionController::class, 'eventRegister'])->name('submit.event');
+
+Route::middleware('throttle:5,60')
+    ->post('/submit/contact', [SubmissionController::class, 'contact'])->name('submit.contact');
 
 /* ============ Голосования (Poll) ============ */
 Route::middleware('throttle:10,60')->post('/polls/{poll:slug}/vote', [\App\Http\Controllers\PollController::class, 'vote'])->name('polls.vote');
