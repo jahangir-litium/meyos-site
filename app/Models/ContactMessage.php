@@ -10,7 +10,9 @@ class ContactMessage extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'company', 'email', 'phone', 'topic', 'message', 'status'];
+    protected $fillable = ['name', 'company', 'email', 'phone', 'topic', 'message', 'status', 'is_spam'];
+    protected $casts = ['is_spam' => 'boolean'];
+    public function scopeNotSpam($q) { return $q->where('is_spam', false); }
 
     public const STATUSES = [
         'new'       => 'Новое',
@@ -21,6 +23,7 @@ class ContactMessage extends Model
     protected static function booted(): void
     {
         static::created(function (self $m) {
+            if ($m->is_spam) return;
             TelegramNotifier::send(TelegramNotifier::buildApplicationMessage(
                 '✉️ Сообщение из контактов',
                 [

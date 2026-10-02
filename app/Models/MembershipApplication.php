@@ -13,8 +13,12 @@ class MembershipApplication extends Model
     protected $fillable = [
         'status', 'company', 'name', 'email', 'phone',
         'category', 'volume', 'message', 'source_page',
-        'utm_source', 'utm_medium', 'utm_campaign',
+        'utm_source', 'utm_medium', 'utm_campaign', 'is_spam',
     ];
+
+    protected $casts = ['is_spam' => 'boolean'];
+
+    public function scopeNotSpam($q) { return $q->where('is_spam', false); }
 
     public const STATUSES = [
         'new'         => 'Новая',
@@ -26,6 +30,7 @@ class MembershipApplication extends Model
     protected static function booted(): void
     {
         static::created(function (self $m) {
+            if ($m->is_spam) return;
             TelegramNotifier::send(TelegramNotifier::buildApplicationMessage(
                 '🆕 Заявка на резидентство',
                 [

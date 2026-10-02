@@ -12,8 +12,10 @@ class EventRegistration extends Model
 
     protected $fillable = [
         'event_id', 'event_name', 'company', 'name', 'email', 'phone',
-        'attendees_count', 'status',
+        'attendees_count', 'status', 'is_spam',
     ];
+    protected $casts = ['is_spam' => 'boolean'];
+    public function scopeNotSpam($q) { return $q->where('is_spam', false); }
 
     public const STATUSES = [
         'new'       => 'Новая',
@@ -27,6 +29,7 @@ class EventRegistration extends Model
     protected static function booted(): void
     {
         static::created(function (self $m) {
+            if ($m->is_spam) return;
             TelegramNotifier::send(TelegramNotifier::buildApplicationMessage(
                 '🎫 Регистрация на мероприятие',
                 [

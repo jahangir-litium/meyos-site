@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqsHomeSeeder::class);
         $this->call(LegalActsSeeder::class);
         $this->call(CmsTextsSeeder::class);
+        $this->call(MissingTranslationsSeeder::class);
     }
 }

@@ -11,9 +11,11 @@ use Illuminate\Http\Request;
 class SubmissionController extends Controller
 {
     /**
-     * Проверка на бота:
+     * Проверка на бота — 3 уровня:
      *  1) Honeypot — поле `website` должно быть пустым (люди не видят, боты заполняют)
      *  2) Time-trap — форма отправляется не быстрее 3 сек после загрузки
+     *  3) Паттерн-анализ данных (SEO-ботнет, обходящий honeypot через headless-браузер):
+     *     company="google", имя "..._abcd", транслитерация, цифры-телефон, ссылки в message
      * При срабатывании — тихо редиректим с фейковым success (бот не должен понять что попался).
      */
     private function looksLikeBot(Request $request): bool
@@ -30,6 +32,10 @@ class SubmissionController extends Controller
             if ($ageSec < 3 || $ageSec > 21600) {
                 return true;
             }
+        }
+        // 3) Паттерн-анализ данных (SEO-ботнет)
+        if (\App\Support\SpamDetector::looksLikeSpam($request->all())) {
+            return true;
         }
         return false;
     }

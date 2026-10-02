@@ -16,6 +16,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -44,6 +45,17 @@ class ContactMessagesTable
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')->options(ContactMessage::STATUSES),
+                TernaryFilter::make('is_spam')
+                    ->label('Спам')
+                    ->placeholder('Не спам')
+                    ->trueLabel('Только спам')
+                    ->falseLabel('Не спам')
+                    ->default(false)
+                    ->queries(
+                        true:  fn ($q) => $q->where('is_spam', true),
+                        false: fn ($q) => $q->where('is_spam', false),
+                        blank: fn ($q) => $q,
+                    ),
                 TrashedFilter::make()->label('Корзина'),
             ])
             ->headerActions([
