@@ -5,13 +5,14 @@
         ['route' => 'programs',  'label' => 'Программы'],
         ['route' => 'partners',  'label' => 'Партнёры'],
         ['route' => 'events',    'label' => 'Мероприятия'],
-        ['route' => 'news',      'label' => 'Новости'],
-        ['route' => 'contacts',  'label' => 'Контакты'],
+        ['route' => 'news',        'label' => 'Новости'],
+        ['route' => 'legislation',  'label' => 'Законодательство'],
+        ['route' => 'contacts',     'label' => 'Контакты'],
     ];
     $navLabels = [
-        'ru' => ['О компании','Резидентство','Программы','Партнёры','Мероприятия','Новости','Контакты'],
-        'uz' => ['Kompaniya','Rezidentlik','Dasturlar','Hamkorlar','Tadbirlar','Yangiliklar','Kontaktlar'],
-        'en' => ['About','Residency','Programs','Partners','Events','News','Contacts'],
+        'ru' => ['О компании','Резидентство','Программы','Партнёры','Мероприятия','Новости','Законодательство','Контакты'],
+        'uz' => ['Kompaniya','Rezidentlik','Dasturlar','Hamkorlar','Tadbirlar','Yangiliklar','Qonunchilik','Kontaktlar'],
+        'en' => ['About','Residency','Programs','Partners','Events','News','Legislation','Contacts'],
     ];
     $cur = app()->getLocale();
 @endphp
