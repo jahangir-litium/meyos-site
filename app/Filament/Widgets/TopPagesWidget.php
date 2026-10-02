@@ -20,6 +20,9 @@ class TopPagesWidget extends BaseWidget
 
     public function table(Table $table): Table
     {
+        // GROUP BY + SELECT с aggregates ломает Filament pagination (count-query
+        // не переопределяется, лезет в несуществующий `*`). Решение: отдаём
+        // top-10 без pagination, limit(10) на уровне БД.
         return $table
             ->query(
                 PageView::query()
@@ -28,15 +31,15 @@ class TopPagesWidget extends BaseWidget
                     ->selectRaw('MIN(id) as id, path, COUNT(*) as views, COUNT(DISTINCT ip_hash) as unique_visitors, MAX(created_at) as last_visit')
                     ->groupBy('path')
                     ->orderByDesc('views')
+                    ->limit(10)
             )
             ->columns([
                 Tables\Columns\TextColumn::make('path')->label('Страница'),
-                Tables\Columns\TextColumn::make('views')->label('Просмотры')->sortable(),
-                Tables\Columns\TextColumn::make('unique_visitors')->label('Уник. посетителей')->sortable(),
-                Tables\Columns\TextColumn::make('last_visit')->label('Последний визит')->dateTime('d.m.Y H:i')->sortable(),
+                Tables\Columns\TextColumn::make('views')->label('Просмотры'),
+                Tables\Columns\TextColumn::make('unique_visitors')->label('Уник. посетителей'),
+                Tables\Columns\TextColumn::make('last_visit')->label('Последний визит')->dateTime('d.m.Y H:i'),
             ])
-            ->paginated([10])
-            ->defaultPaginationPageOption(10);
+            ->paginated(false);
     }
 
     /** Используем path как уникальный ключ строки (GROUP BY делает id null). */

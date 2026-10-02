@@ -10,50 +10,24 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $category = $request->query('category');
-        $q        = trim((string) $request->query('q', ''));
-
+        // Клиентская фильтрация: показываем все опубликованные новости (их несколько десятков).
+        // Параметры URL (category, q) читает JS из window.location.search для deep-link.
+        // Если новостей станет >200 — заменить на серверную пагинацию с AJAX-свапом.
         $query = News::published()->orderByDesc('published_at');
 
-        if ($category && array_key_exists($category, News::CATEGORIES)) {
-            $query->where('category', $category);
-        }
-
-        // Поиск: case-insensitive через LOWER() (SQLite не умеет UTF-8 LIKE),
-        // по каждому слову отдельно (все слова должны быть найдены хотя бы в одном поле)
-        if ($q !== '') {
-            // Разбиваем на слова, чистим пунктуацию, минимум 2 символа
-            $words = array_filter(
-                preg_split('/\s+/u', mb_strtolower($q)),
-                fn ($w) => mb_strlen(trim($w, " .,!?;:\"'()[]{}")) >= 2
-            );
-            $words = array_map(fn ($w) => trim($w, " .,!?;:\"'()[]{}"), $words);
-
-            foreach ($words as $word) {
-                $like = '%' . str_replace(['%', '_'], ['\%', '\_'], $word) . '%';
-                $query->where(function ($w) use ($like) {
-                    $w->whereRaw('LOWER(title) LIKE ?', [$like])
-                      ->orWhereRaw('LOWER(preview) LIKE ?', [$like])
-                      ->orWhereRaw('LOWER(content) LIKE ?', [$like]);
-                });
-            }
-        }
-
-        $featured = $q === '' && !$category
-            ? (clone $query)->featured()->first()
-            : null;
+        // Featured — только когда нет никаких query-параметров (чистый вход)
+        $hasQuery = $request->filled('category') || $request->filled('q');
+        $featured = !$hasQuery ? (clone $query)->featured()->first() : null;
 
         $newsList = $query->when($featured, fn ($x) => $x->whereKeyNot($featured->id))
-            ->paginate(9)
-            ->withQueryString();
+            ->limit(300)
+            ->get();
 
         return view('pages.news', [
             'featured'   => $featured,
             'news'       => $newsList,
-            'category'   => $category,
-            'q'          => $q,
-            // allCategories() — берёт из БД (Category type=news) с переводами
-            // текущей локали; fallback на константу если БД пустая.
+            'category'   => $request->query('category'),
+            'q'          => trim((string) $request->query('q', '')),
             'categories' => News::allCategories(),
             'settings'   => $this->settings(),
         ]);

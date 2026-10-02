@@ -10,29 +10,19 @@ class ListingsController extends Controller
 {
     public function index(Request $request)
     {
-        $type = $request->query('type');
-        $q    = trim((string) $request->query('q', ''));
-
-        $query = SavdexListing::visible()->fresh()->orderByDesc('published_at')->orderByDesc('fetched_at');
-
-        if ($type && array_key_exists($type, SavdexListing::TYPES)) {
-            $query->where('listing_type', $type);
-        }
-        if ($q !== '') {
-            $like = '%' . mb_strtolower($q) . '%';
-            $query->where(function ($w) use ($like) {
-                $w->whereRaw('LOWER(title) LIKE ?', [$like])
-                  ->orWhereRaw('LOWER(summary) LIKE ?', [$like])
-                  ->orWhereRaw('LOWER(city) LIKE ?', [$like]);
-            });
-        }
-
-        $items = $query->paginate(12)->withQueryString();
+        // Клиентская фильтрация: отдаём все актуальные объявления (их пара сотен),
+        // параметры URL (type, q) читает JS из window.location.search для deep-link.
+        $items = SavdexListing::visible()
+            ->fresh()
+            ->orderByDesc('published_at')
+            ->orderByDesc('fetched_at')
+            ->limit(300)
+            ->get();
 
         return view('pages.listings', [
             'items'    => $items,
-            'type'     => $type,
-            'q'        => $q,
+            'type'     => $request->query('type'),
+            'q'        => trim((string) $request->query('q', '')),
             'types'    => SavdexListing::allTypes(),
             'settings' => $this->settings(),
         ]);

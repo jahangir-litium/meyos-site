@@ -33,11 +33,22 @@ class ResidencyConversionWidget extends BaseWidget
             ->count('ip_hash');
 
         // ============ Шаг 2: заявки за период ============
-        $applications = MembershipApplication::where('created_at', '>=', $since)->count();
+        // Учитываем только заявки, пришедшие СО страницы /residency или #join
+        // (у membership-формы на /residency source_page = /residency, у join-формы
+        // на главной — /). Иначе конверсия некорректна: заявки с главной / контактов
+        // не относятся к потоку /residency.
+        $applications = MembershipApplication::where('created_at', '>=', $since)
+            ->where(function ($q) {
+                $q->where('source_page', 'like', '%/residency%')
+                  ->orWhere('source_page', 'like', '%#join%');
+            })
+            ->count();
 
         // ============ Конверсия ============
+        // Защита: конверсия не может превышать 100%. Если у нас есть заявки без
+        // привязки к источнику (старые/тестовые) — не искажаем метрику.
         $rate = $residencyVisitors > 0
-            ? round($applications / $residencyVisitors * 100, 2)
+            ? min(100, round($applications / $residencyVisitors * 100, 2))
             : 0;
 
         // ============ Топ-UTM источник за период ============
@@ -53,7 +64,12 @@ class ResidencyConversionWidget extends BaseWidget
 
         // ============ Воронка по дням ============
         $chart = collect(range(29, 0))->map(function ($d) {
-            return MembershipApplication::whereDate('created_at', now()->subDays($d)->toDateString())->count();
+            return MembershipApplication::whereDate('created_at', now()->subDays($d)->toDateString())
+                ->where(function ($q) {
+                    $q->where('source_page', 'like', '%/residency%')
+                      ->orWhere('source_page', 'like', '%#join%');
+                })
+                ->count();
         })->all();
 
         return [
