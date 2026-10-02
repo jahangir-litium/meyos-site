@@ -29,10 +29,11 @@ class LegalActForm
                         ->placeholder('27.05.2025'),
                     Select::make('category')
                         ->label('Категория')
-                        ->options(LegalAct::CATEGORIES)
+                        ->options(LegalAct::allCategories('ru'))
                         ->required()
                         ->native(false)
-                        ->default('other'),
+                        ->default('other')
+                        ->helperText('Список редактируется в разделе «Настройки → Категории» (тип «Законодательство»)'),
                     Select::make('status')
                         ->label('Статус')
                         ->options(LegalAct::STATUSES)

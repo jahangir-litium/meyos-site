@@ -230,6 +230,73 @@ class CmsTextsSeeder extends Seeder
             'news.search_placeholder' => ['group' => 'listings', 'value' => [
                 'ru' => 'Поиск по новостям…', 'uz' => 'Yangiliklar boʻyicha qidiruv…', 'en' => 'Search news…',
             ]],
+            'news.crumb'      => ['group' => 'listings', 'value' => ['ru' => 'Новости', 'uz' => 'Yangiliklar', 'en' => 'News']],
+            'news.filter_all' => ['group' => 'listings', 'value' => ['ru' => 'Все', 'uz' => 'Barchasi', 'en' => 'All']],
+            'news.empty'      => ['group' => 'listings', 'value' => [
+                'ru' => 'По этим фильтрам ничего не найдено',
+                'uz' => 'Bu filtrlarga mos hech narsa yoʻq',
+                'en' => 'Nothing matches these filters',
+            ]],
+            'news.reset'      => ['group' => 'listings', 'value' => ['ru' => 'Сбросить фильтры', 'uz' => 'Filtrlarni tozalash', 'en' => 'Reset filters']],
+            'news.shown'      => ['group' => 'listings', 'value' => ['ru' => 'Показано', 'uz' => 'Koʻrsatildi', 'en' => 'Showing']],
+            'news.of'         => ['group' => 'listings', 'value' => ['ru' => 'из', 'uz' => 'jami', 'en' => 'of']],
+
+            // === /listings — доп. ключи ======================================
+            'listings.reset' => ['group' => 'listings', 'value' => ['ru' => 'Сбросить фильтры', 'uz' => 'Filtrlarni tozalash', 'en' => 'Reset filters']],
+            'listings.shown' => ['group' => 'listings', 'value' => ['ru' => 'Показано', 'uz' => 'Koʻrsatildi', 'en' => 'Showing']],
+            'listings.of'    => ['group' => 'listings', 'value' => ['ru' => 'из', 'uz' => 'jami', 'en' => 'of']],
+            'listings.seo_title' => ['group' => 'listings', 'value' => [
+                'ru' => 'Актуальные объявления по мебели (SAVDEX) — MEYOS',
+                'uz' => 'Mebel sanoati eʼlonlari — MEYOS',
+                'en' => 'Furniture industry listings — MEYOS',
+            ]],
+            'listings.seo_description' => ['group' => 'listings', 'value' => [
+                'ru' => 'Запросы, предложения и тендеры мебельной категории с B2B-платформы savdex.uz — обновляется ежедневно.',
+                'uz' => 'B2B platforma savdex.uz dan mebel kategoriyasining soʻrov, taklif va tenderlari — har kuni yangilanadi.',
+                'en' => 'Furniture category requests, offers and tenders from the B2B platform savdex.uz — refreshed daily.',
+            ]],
+
+            // === /legislation — всё, что осталось вшитым в views ==============
+            'legislation.tag' => ['group' => 'legislation', 'value' => [
+                'ru' => 'Нормативная база', 'uz' => 'Normativ baza', 'en' => 'Regulatory base',
+            ]],
+            'legislation.h1' => ['group' => 'legislation', 'value' => [
+                'ru' => 'Законодательство мебельной индустрии Узбекистана',
+                'uz' => 'Mebel sanoati qonunchiligi',
+                'en' => 'Furniture industry legislation',
+            ]],
+            'legislation.lead' => ['group' => 'legislation', 'value' => [
+                'ru' => 'Собрание постановлений и законопроектов: ПП-193, ПП-5155, ПП-2973 и другие — текст, PDF, источник.',
+                'uz' => 'Postanovleniyalar va qonun loyihalari toʻplami: PQ-193, PQ-5155, PQ-2973 va boshqalar — matn, PDF va manba.',
+                'en' => 'Collected decrees and draft bills: PP-193, PP-5155, PP-2973 and more — text, PDF, source.',
+            ]],
+            'legislation.crumb_home' => ['group' => 'legislation', 'value' => ['ru' => 'Главная', 'uz' => 'Bosh sahifa', 'en' => 'Home']],
+            'legislation.crumb_this' => ['group' => 'legislation', 'value' => ['ru' => 'Законодательство', 'uz' => 'Qonunchilik', 'en' => 'Legislation']],
+            'legislation.chip_all'   => ['group' => 'legislation', 'value' => ['ru' => 'Все', 'uz' => 'Barchasi', 'en' => 'All']],
+            'legislation.search_ph'  => ['group' => 'legislation', 'value' => [
+                'ru' => 'Поиск по номеру и тексту…',
+                'uz' => 'Raqam va matn boʻyicha qidirish…',
+                'en' => 'Search by number or text…',
+            ]],
+            'legislation.empty' => ['group' => 'legislation', 'value' => [
+                'ru' => 'По этим фильтрам ничего не найдено',
+                'uz' => 'Bu filtrlarga mos hech narsa yoʻq',
+                'en' => 'Nothing matches these filters',
+            ]],
+            'legislation.open'  => ['group' => 'legislation', 'value' => ['ru' => 'Открыть', 'uz' => 'Ochish', 'en' => 'Open']],
+            'legislation.reset' => ['group' => 'legislation', 'value' => ['ru' => 'Сбросить фильтры', 'uz' => 'Filtrlarni tozalash', 'en' => 'Reset filters']],
+            'legislation.shown' => ['group' => 'legislation', 'value' => ['ru' => 'Показано', 'uz' => 'Koʻrsatildi', 'en' => 'Showing']],
+            'legislation.of'    => ['group' => 'legislation', 'value' => ['ru' => 'из', 'uz' => 'jami', 'en' => 'of']],
+            'legislation.seo_title' => ['group' => 'legislation', 'value' => [
+                'ru' => 'Законодательство мебельной индустрии Узбекистана — MEYOS',
+                'uz' => 'Mebel sanoati qonunchiligi — MEYOS',
+                'en' => 'Furniture industry legislation of Uzbekistan — MEYOS',
+            ]],
+            'legislation.seo_description' => ['group' => 'legislation', 'value' => [
+                'ru' => 'Собрание постановлений ПП-193, ПП-5155 и других нормативных актов: текст, PDF и официальный источник.',
+                'uz' => 'PQ-193, PQ-5155 va boshqa postanovleniyalar: matn, PDF va rasmiy manba.',
+                'en' => 'Collected decrees PP-193, PP-5155 and more — text, PDF and official source.',
+            ]],
             'events.hero_tag' => ['group' => 'listings', 'value' => ['ru' => 'Мероприятия', 'uz' => 'Tadbirlar', 'en' => 'Events']],
             'events.hero_h1'  => ['group' => 'listings', 'value' => [
                 'ru' => 'Форумы, выставки и деловые встречи',

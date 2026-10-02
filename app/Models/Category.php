@@ -16,14 +16,16 @@ class Category extends Model
 {
     use HasTranslations, HasSorting, SoftDeletes;
 
-    public const TYPE_NEWS     = 'news';
-    public const TYPE_PARTNERS = 'partners';
-    public const TYPE_EVENTS   = 'events';
+    public const TYPE_NEWS        = 'news';
+    public const TYPE_PARTNERS    = 'partners';
+    public const TYPE_EVENTS      = 'events';
+    public const TYPE_LEGISLATION = 'legislation';
 
     public const TYPES = [
-        self::TYPE_NEWS     => 'Новости',
-        self::TYPE_PARTNERS => 'Партнёры',
-        self::TYPE_EVENTS   => 'Мероприятия',
+        self::TYPE_NEWS        => 'Новости',
+        self::TYPE_PARTNERS    => 'Партнёры',
+        self::TYPE_EVENTS      => 'Мероприятия',
+        self::TYPE_LEGISLATION => 'Законодательство',
     ];
 
     protected $fillable = ['type', 'slug', 'name', 'sort', 'is_published'];
@@ -55,7 +57,7 @@ class Category extends Model
 
     public static function flushCache(): void
     {
-        foreach (['news', 'partners', 'events'] as $type) {
+        foreach (array_keys(self::TYPES) as $type) {
             foreach (['ru', 'uz', 'en'] as $locale) {
                 Cache::forget("categories:$type:$locale");
             }

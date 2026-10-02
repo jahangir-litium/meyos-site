@@ -26,6 +26,15 @@ class CategoriesSeeder extends Seeder
                 ['slug' => 'gov',          'ru' => 'Государственный', 'uz' => 'Davlat',           'en' => 'Government'],
                 ['slug' => 'finance',      'ru' => 'Финансы',         'uz' => 'Moliya',           'en' => 'Finance'],
             ],
+            Category::TYPE_LEGISLATION => [
+                ['slug' => 'tariffs',       'ru' => 'Пошлины и импорт',    'uz' => 'Bojxona va import',       'en' => 'Tariffs and imports'],
+                ['slug' => 'taxes',         'ru' => 'Налоги и льготы',     'uz' => 'Soliqlar va imtiyozlar',   'en' => 'Taxes and benefits'],
+                ['slug' => 'certification', 'ru' => 'Сертификация',        'uz' => 'Sertifikatsiya',           'en' => 'Certification'],
+                ['slug' => 'export',        'ru' => 'Экспорт',             'uz' => 'Eksport',                  'en' => 'Exports'],
+                ['slug' => 'hr',            'ru' => 'Кадры и обучение',    'uz' => 'Kadrlar va taʼlim',        'en' => 'Workforce and training'],
+                ['slug' => 'clusters',      'ru' => 'Мебельные кластеры',  'uz' => 'Mebel klasterlari',        'en' => 'Furniture clusters'],
+                ['slug' => 'other',         'ru' => 'Другое',              'uz' => 'Boshqa',                   'en' => 'Other'],
+            ],
             Category::TYPE_EVENTS => [
                 ['slug' => 'exhibition',         'ru' => 'Выставка',          'uz' => 'Koʻrgazma',     'en' => 'Exhibition'],
                 ['slug' => 'forum',              'ru' => 'Форум',             'uz' => 'Forum',         'en' => 'Forum'],

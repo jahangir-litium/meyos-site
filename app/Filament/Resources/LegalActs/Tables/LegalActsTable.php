@@ -31,7 +31,7 @@ class LegalActsTable
                 TextColumn::make('category')
                     ->label('Категория')
                     ->badge()
-                    ->formatStateUsing(fn ($state) => LegalAct::CATEGORIES[$state] ?? $state),
+                    ->formatStateUsing(fn ($state) => LegalAct::allCategories('ru')[$state] ?? $state),
                 TextColumn::make('status')
                     ->label('Статус')
                     ->badge()
@@ -59,7 +59,7 @@ class LegalActsTable
             ->defaultSort('sort', 'asc')
             ->reorderable('sort')
             ->filters([
-                SelectFilter::make('category')->label('Категория')->options(LegalAct::CATEGORIES),
+                SelectFilter::make('category')->label('Категория')->options(LegalAct::allCategories('ru')),
                 SelectFilter::make('status')->label('Статус')->options(LegalAct::STATUSES),
                 TernaryFilter::make('is_published')->label('Опубликовано'),
                 TernaryFilter::make('is_featured')->label('На главной'),

@@ -29,7 +29,11 @@ class LegalAct extends Model
         'is_featured'   => 'boolean',
     ];
 
-    /** Регулируемые области — для фильтра на фронте и в админке. */
+    /**
+     * Fallback-категории для случая, когда в БД нет записей type='legislation'
+     * (свежая установка до запуска CategoriesSeeder, или сломанный кэш).
+     * Админ может редактировать категории через /admin/categories.
+     */
     public const CATEGORIES = [
         'tariffs'       => 'Пошлины и импорт',
         'taxes'         => 'Налоги и льготы',
@@ -46,10 +50,23 @@ class LegalAct extends Model
         'repealed' => 'Утратил силу',
     ];
 
+    /**
+     * Карта категорий для текущей/указанной локали.
+     * Сначала пробуем прочитать из таблицы categories (type='legislation'),
+     * которую админ редактирует через /admin/categories.
+     * Если категорий в БД нет — fallback на self::CATEGORIES (RU + встроенные переводы).
+     */
     public static function allCategories(?string $locale = null): array
     {
         $locale = $locale ?: app()->getLocale();
-        $map = [
+
+        $fromDb = Category::map(Category::TYPE_LEGISLATION, $locale);
+        if (!empty($fromDb)) {
+            return $fromDb;
+        }
+
+        // Fallback (встроенные переводы на случай, если categories ещё не засеяны)
+        $fallback = [
             'ru' => self::CATEGORIES,
             'uz' => [
                 'tariffs'       => 'Bojxona va import',
@@ -70,7 +87,7 @@ class LegalAct extends Model
                 'other'         => 'Other',
             ],
         ];
-        return $map[$locale] ?? $map['ru'];
+        return $fallback[$locale] ?? $fallback['ru'];
     }
 
     public static function allStatuses(?string $locale = null): array
