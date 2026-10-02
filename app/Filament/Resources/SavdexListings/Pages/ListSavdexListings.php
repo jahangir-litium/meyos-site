@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SavdexListings\Pages;
 
+use App\Filament\Concerns\HasJsonBackup;
 use App\Filament\Resources\SavdexListings\SavdexListingResource;
 use App\Services\SavdexParser;
 use Filament\Actions\Action;
@@ -11,11 +12,22 @@ use Symfony\Component\Process\Process;
 
 class ListSavdexListings extends ListRecords
 {
+    use HasJsonBackup;
+
     protected static string $resource = SavdexListingResource::class;
+
+    /** У SavdexListing уникальный маркер — external_id (ID объявления на savdex.uz),
+     *  а не slug. При import JSON существующие записи матчатся по нему → upsert.
+     *  Парсер потом тоже матчит по external_id → дубликатов не будет. */
+    protected function backupUniqueKey(): string
+    {
+        return 'external_id';
+    }
 
     protected function getHeaderActions(): array
     {
         return [
+            ...$this->getBackupActions(),
             Action::make('refresh')
                 ->label('Обновить сейчас')
                 ->icon('heroicon-o-arrow-path')
