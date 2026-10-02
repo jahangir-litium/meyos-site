@@ -3,48 +3,51 @@
 namespace App\Filament\Widgets;
 
 use App\Models\PageView;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Widgets\TableWidget as BaseWidget;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Widgets\Widget;
+use Illuminate\Support\Facades\DB;
 
-class TopPagesWidget extends BaseWidget
+/**
+ * «Топ страниц за 7 дней» — простой виджет с собственным Blade-шаблоном.
+ *
+ * Раньше был TableWidget с GROUP BY, но Filament lazy-mount + MySQL
+ * (ONLY_FULL_GROUP_BY) давали 500 на проде. Сейчас:
+ *  - lazy-mount отключён ($isLazy=false)
+ *  - данные подготовлены коллекцией в getViewData(), минуя Filament pagination/count
+ *  - Blade рендерит простую HTML-таблицу
+ */
+class TopPagesWidget extends Widget
 {
     protected static ?int $sort = 3;
     protected int|string|array $columnSpan = 'full';
+    protected static bool $isLazy = false;
 
-    public function getTableHeading(): ?string
-    {
-        return 'Топ страниц за 7 дней';
-    }
+    protected string $view = 'filament.widgets.top-pages';
 
-    public function table(Table $table): Table
+    protected function getViewData(): array
     {
-        // GROUP BY + SELECT с aggregates ломает Filament pagination (count-query
-        // не переопределяется, лезет в несуществующий `*`). Решение: отдаём
-        // top-10 без pagination, limit(10) на уровне БД.
-        return $table
-            ->query(
-                PageView::query()
-                    ->notBot()
-                    ->where('created_at', '>=', now()->subDays(7))
-                    ->selectRaw('MIN(id) as id, path, COUNT(*) as views, COUNT(DISTINCT ip_hash) as unique_visitors, MAX(created_at) as last_visit')
-                    ->groupBy('path')
-                    ->orderByDesc('views')
-                    ->limit(10)
-            )
-            ->columns([
-                Tables\Columns\TextColumn::make('path')->label('Страница'),
-                Tables\Columns\TextColumn::make('views')->label('Просмотры'),
-                Tables\Columns\TextColumn::make('unique_visitors')->label('Уник. посетителей'),
-                Tables\Columns\TextColumn::make('last_visit')->label('Последний визит')->dateTime('d.m.Y H:i'),
+        // Собираем топ-10 просмотров за 7 дней. Запрос без агрегатных трюков,
+        // которые ломаются в MySQL ONLY_FULL_GROUP_BY на некоторых хостингах.
+        $rows = PageView::query()
+            ->notBot()
+            ->where('created_at', '>=', now()->subDays(7))
+            ->groupBy('path')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(10)
+            ->get([
+                'path',
+                DB::raw('COUNT(*) as views'),
+                DB::raw('COUNT(DISTINCT ip_hash) as unique_visitors'),
+                DB::raw('MAX(created_at) as last_visit'),
             ])
-            ->paginated(false);
-    }
+            ->map(fn ($r) => (object) [
+                'path'             => $r->path,
+                'views'            => (int) $r->views,
+                'unique_visitors'  => (int) $r->unique_visitors,
+                'last_visit'       => $r->last_visit ? \Carbon\Carbon::parse($r->last_visit) : null,
+            ]);
 
-    /** Используем path как уникальный ключ строки (GROUP BY делает id null). */
-    public function getTableRecordKey($record): string
-    {
-        return (string) ($record->path ?? $record->getKey() ?? uniqid());
+        return [
+            'rows' => $rows,
+        ];
     }
 }
