@@ -18,22 +18,23 @@
       <h1>{{ $heroH1 }}</h1>
       <p class="lead">{{ $heroLead }}</p>
       <div class="hero__actions">
-        <a href="{{ route('residency') }}#join" class="btn btn-white btn-lg">@switch($cur) @case('uz') Rezident boʻlish @break @case('en') Become a Resident @break @default Стать резидентом @endswitch</a>
-        <a href="#benefits" class="btn btn-outline-white btn-lg">@switch($cur) @case('uz') Imtiyozlarni koʻrish @break @case('en') Explore Benefits @break @default Узнать преимущества @endswitch</a>
+        <a href="{{ route('residency') }}#join" class="btn btn-white btn-lg">@cms('hero.cta_primary', 'Стать резидентом')</a>
+        <a href="#benefits" class="btn btn-outline-white btn-lg">@cms('hero.cta_secondary', 'Узнать преимущества')</a>
       </div>
       <div class="hero__stats">
+        @php
+          $statLabels = [
+            'companies' => \App\Support\Cms::text('hero.stat_companies', 'Компаний-резидентов'),
+            'growth'    => \App\Support\Cms::text('hero.stat_growth',    'Средний рост выручки'),
+            'countries' => \App\Support\Cms::text('hero.stat_countries', 'Стран экспорта'),
+            'years'     => \App\Support\Cms::text('hero.stat_years',     'Лет на рынке'),
+          ];
+        @endphp
         @foreach (($settings['stats'] ?? []) as $key => $value)
-            <div>
-              <div class="hero__stat-num" data-counter data-value="{{ $value }}">{{ $value }}</div>
-              <div class="hero__stat-lbl">
-                @switch($key)
-                  @case('companies') @switch($cur) @case('uz') Rezident kompaniyalar @break @case('en') Resident companies @break @default Компаний-резидентов @endswitch @break
-                  @case('growth') @switch($cur) @case('uz') Daromad oʻsishi @break @case('en') Revenue growth @break @default Средний рост выручки @endswitch @break
-                  @case('countries') @switch($cur) @case('uz') Eksport mamlakatlari @break @case('en') Export countries @break @default Стран экспорта @endswitch @break
-                  @case('years') @switch($cur) @case('uz') Bozorda yil @break @case('en') Years on market @break @default Лет на рынке @endswitch @break
-                @endswitch
-              </div>
-            </div>
+          <div>
+            <div class="hero__stat-num" data-counter data-value="{{ $value }}">{{ $value }}</div>
+            <div class="hero__stat-lbl">{{ $statLabels[$key] ?? $key }}</div>
+          </div>
         @endforeach
       </div>
     </div>
@@ -50,7 +51,7 @@
 <section id="benefits" class="section-alt">
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Rezidentlik imtiyozlari @break @case('en') Residency advantages @break @default Преимущества резидентства @endswitch</span>
+      <span class="tag">@cms('home.tag_benefits', 'Преимущества резидентства')</span>
       <h2>@cms('home.h2_benefits', 'Преимущества членства')</h2>
     </div>
     <div class="grid grid-3">
@@ -69,7 +70,7 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Soha toʻsiqlari @break @case('en') Industry barriers @break @default Барьеры отрасли @endswitch</span>
+      <span class="tag">@cms('home.tag_problems', 'Барьеры отрасли')</span>
       <h2>@cms('home.h2_problems', 'Проблемы отрасли и наши решения')</h2>
     </div>
     <div class="ps-grid">
@@ -98,7 +99,7 @@
 <section class="section-alt">
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Sanoat oʻsishi · keyslar @break @case('en') Industrial growth · cases @break @default Индустриальный рост · кейсы @endswitch</span>
+      <span class="tag">@cms('home.tag_cases', 'Индустриальный рост · кейсы')</span>
       <h2>@cms('home.h2_cases', 'Кейсы наших резидентов')</h2>
     </div>
     <div style="display:grid; gap:1.5rem;">
@@ -130,7 +131,7 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Assotsiatsiya dasturlari @break @case('en') Programs @break @default Программы ассоциации @endswitch</span>
+      <span class="tag">@cms('home.tag_programs', 'Программы ассоциации')</span>
       <h2>@cms('home.h2_programs', 'Программы ассоциации')</h2>
     </div>
     <div class="bento">
@@ -152,7 +153,7 @@
 <section class="section-deep">
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Moliyaviy imtiyozlar @break @case('en') Financial advantages @break @default Финансовые преференции @endswitch</span>
+      <span class="tag">@cms('home.tag_taxes', 'Финансовые преференции')</span>
       <h2>@cms('home.h2_taxes', 'Налоговые льготы резидента')</h2>
     </div>
     @php
@@ -190,7 +191,7 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Rezident yoʻli @break @case('en') Resident path @break @default Путь резидента @endswitch</span>
+      <span class="tag">@cms('home.tag_join_steps', 'Путь резидента')</span>
       <h2>@cms('home.h2_join_steps', 'Как стать резидентом')</h2>
     </div>
     <div class="steps">
@@ -210,7 +211,7 @@
 <section class="section-alt">
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Hamkorlar @break @case('en') Partners @break @default Партнёры @endswitch</span>
+      <span class="tag">@cms('home.tag_partners', 'Партнёры')</span>
       <h2>@cms('home.h2_partners', 'Наши партнёры и резиденты')</h2>
     </div>
     <div class="partner-logos-grid">
@@ -226,7 +227,7 @@
       @endforeach
     </div>
     <div style="text-align:center; margin-top:2rem;">
-      <a href="{{ route('partners') }}" class="btn btn-ghost">@switch($cur) @case('uz') Barchasini koʻrish @break @case('en') View all @break @default Смотреть всех партнёров @endswitch</a>
+      <a href="{{ route('partners') }}" class="btn btn-ghost">@cms('home.btn_all_partners', 'Смотреть всех партнёров')</a>
     </div>
   </div>
 </section>
@@ -237,7 +238,7 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Yaqinlashayotgan tadbirlar @break @case('en') Upcoming events @break @default Ближайшие мероприятия @endswitch</span>
+      <span class="tag">@cms('home.tag_events', 'Ближайшие мероприятия')</span>
       <h2>@cms('home.h2_events', 'Ближайшие мероприятия')</h2>
     </div>
     <div class="grid grid-3">
@@ -251,7 +252,7 @@
       @endforeach
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
-      <a href="{{ route('events') }}" class="btn btn-ghost">@switch($cur) @case('uz') Barcha tadbirlar @break @case('en') All events @break @default Все мероприятия @endswitch</a>
+      <a href="{{ route('events') }}" class="btn btn-ghost">@cms('home.btn_all_events', 'Все мероприятия')</a>
     </div>
   </div>
 </section>
@@ -304,7 +305,7 @@
 <section class="section-alt">
   <div class="container">
     <div class="section-head">
-      <span class="tag">@switch($cur) @case('uz') Assotsiatsiya yangiliklari @break @case('en') Association news @break @default Новости ассоциации @endswitch</span>
+      <span class="tag">@cms('home.tag_news', 'Новости ассоциации')</span>
       <h2>@cms('home.h2_news', 'Новости отрасли')</h2>
     </div>
     <div class="grid grid-3">
@@ -313,12 +314,12 @@
           <span class="chip">{{ \App\Models\News::allCategories()[$newsItem->category] ?? $newsItem->category }}</span>
           <h3 class="mt-4" style="font-size:1.15rem;">{{ $tr($newsItem, 'title') }}</h3>
           <p class="text-mut mt-3" style="font-size:.9rem; line-height:1.55;">{{ $tr($newsItem, 'preview') }}</p>
-          <a data-card-footer href="{{ route('news.show', $newsItem->slug) }}" class="text-primary" style="display:inline-block; margin-top:1.25rem; font-weight:700; text-decoration:none; align-self:flex-start;">@switch($cur) @case('uz') Oʻqish → @break @case('en') Read → @break @default Читать → @endswitch</a>
+          <a data-card-footer href="{{ route('news.show', $newsItem->slug) }}" class="text-primary" style="display:inline-block; margin-top:1.25rem; font-weight:700; text-decoration:none; align-self:flex-start;">@cms('home.btn_read_more', 'Читать →')</a>
         </article>
       @endforeach
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
-      <a href="{{ route('news') }}" class="btn btn-ghost">@switch($cur) @case('uz') Barcha yangiliklar @break @case('en') All news @break @default Все новости @endswitch</a>
+      <a href="{{ route('news') }}" class="btn btn-ghost">@cms('home.btn_all_news', 'Все новости')</a>
     </div>
   </div>
 </section>

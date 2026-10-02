@@ -1,30 +1,30 @@
 @php
     // Пункт с children рендерится как dropdown. Активен когда любой из потомков активен.
     $cur = app()->getLocale();
-    $t = fn (string $ru, string $uz, string $en) => [$ru, $uz, $en][['ru'=>0,'uz'=>1,'en'=>2][$cur] ?? 0];
+    $cms = fn (string $key, string $fallback) => \App\Support\Cms::text($key, $fallback);
 
     $nav = [
         [
-            'label'    => $t('О компании', 'Kompaniya haqida', 'About'),
+            'label'    => $cms('nav.about', 'О компании'),
             'route'    => 'about',
             'children' => [
-                ['label' => $t('История ассоциации', 'Uyushma tarixi', 'History'),       'route' => 'about'],
-                ['label' => $t('Законодательство',    'Qonunchilik',     'Legislation'), 'route' => 'legislation'],
+                ['label' => $cms('nav.history_child',     'История ассоциации'), 'route' => 'about'],
+                ['label' => $cms('nav.legislation_child', 'Законодательство'),   'route' => 'legislation'],
             ],
         ],
-        ['route' => 'residency', 'label' => $t('Резидентство', 'Rezidentlik', 'Residency')],
+        ['route' => 'residency', 'label' => $cms('nav.residency', 'Резидентство')],
         [
-            'label'    => $t('Программы', 'Dasturlar', 'Programs'),
+            'label'    => $cms('nav.programs', 'Программы'),
             'route'    => 'programs',
             'children' => [
-                ['label' => $t('Проекты',    'Loyihalar',  'Projects'),  'route' => 'programs'],
-                ['label' => $t('Объявления', 'Eʼlonlar',    'Listings'),  'route' => 'listings'],
+                ['label' => $cms('nav.projects_child', 'Проекты'),    'route' => 'programs'],
+                ['label' => $cms('nav.listings_child', 'Объявления'), 'route' => 'listings'],
             ],
         ],
-        ['route' => 'partners',  'label' => $t('Партнёры',     'Hamkorlar',     'Partners')],
-        ['route' => 'events',    'label' => $t('Мероприятия',  'Tadbirlar',     'Events')],
-        ['route' => 'news',      'label' => $t('Новости',      'Yangiliklar',   'News')],
-        ['route' => 'contacts',  'label' => $t('Контакты',     'Kontaktlar',    'Contacts')],
+        ['route' => 'partners',  'label' => $cms('nav.partners',  'Партнёры')],
+        ['route' => 'events',    'label' => $cms('nav.events',    'Мероприятия')],
+        ['route' => 'news',      'label' => $cms('nav.news',      'Новости')],
+        ['route' => 'contacts',  'label' => $cms('nav.contacts',  'Контакты')],
     ];
 @endphp
 
@@ -73,9 +73,7 @@
         <a href="?lang=uz" hreflang="uz" lang="uz" aria-label="Oʻzbekcha" @if($cur === 'uz') aria-current="true" @endif class="{{ $cur === 'uz' ? 'is-active' : '' }}" style="text-decoration:none; padding:.35rem .7rem; font-size:.65rem; font-weight:800; letter-spacing:.1em; border-radius:9999px; color:{{ $cur === 'uz' ? '#fff' : 'rgb(var(--on-surface-mut))' }}; background:{{ $cur === 'uz' ? 'rgb(var(--primary))' : 'transparent' }};">UZ</a>
         <a href="?lang=en" hreflang="en" lang="en" aria-label="English" @if($cur === 'en') aria-current="true" @endif class="{{ $cur === 'en' ? 'is-active' : '' }}" style="text-decoration:none; padding:.35rem .7rem; font-size:.65rem; font-weight:800; letter-spacing:.1em; border-radius:9999px; color:{{ $cur === 'en' ? '#fff' : 'rgb(var(--on-surface-mut))' }}; background:{{ $cur === 'en' ? 'rgb(var(--primary))' : 'transparent' }};">EN</a>
       </div>
-      <a href="{{ route('residency') }}#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;">
-        @switch($cur) @case('uz') Aʼzo boʻlish @break @case('en') Join @break @default Вступить @endswitch
-      </a>
+      <a href="{{ route('residency') }}#join" class="btn btn-primary" style="padding:.7rem 1.4rem; font-size:.85rem;">@cms('nav.join_cta', 'Вступить')</a>
       <button class="burger" data-burger type="button"
               aria-label="@switch($cur) @case('uz') Menyuni ochish @break @case('en') Open menu @break @default Открыть меню @endswitch"
               aria-controls="mobile-menu"

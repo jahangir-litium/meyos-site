@@ -18,7 +18,45 @@ class CmsTextsSeeder extends Seeder
     public function run(): void
     {
         $defaults = [
-            // === HERO fallback (используется когда Page.hero_* пусто) ==========
+            // === НАВИГАЦИЯ (header + mobile) =================================
+            'nav.about'        => ['group' => 'nav', 'value' => ['ru' => 'О компании',    'uz' => 'Kompaniya haqida', 'en' => 'About']],
+            'nav.residency'    => ['group' => 'nav', 'value' => ['ru' => 'Резидентство',  'uz' => 'Rezidentlik',       'en' => 'Residency']],
+            'nav.programs'     => ['group' => 'nav', 'value' => ['ru' => 'Программы',     'uz' => 'Dasturlar',         'en' => 'Programs']],
+            'nav.partners'     => ['group' => 'nav', 'value' => ['ru' => 'Партнёры',      'uz' => 'Hamkorlar',         'en' => 'Partners']],
+            'nav.events'       => ['group' => 'nav', 'value' => ['ru' => 'Мероприятия',   'uz' => 'Tadbirlar',         'en' => 'Events']],
+            'nav.news'         => ['group' => 'nav', 'value' => ['ru' => 'Новости',       'uz' => 'Yangiliklar',       'en' => 'News']],
+            'nav.contacts'     => ['group' => 'nav', 'value' => ['ru' => 'Контакты',      'uz' => 'Kontaktlar',        'en' => 'Contacts']],
+            'nav.history_child'     => ['group' => 'nav', 'value' => ['ru' => 'История ассоциации','uz' => 'Uyushma tarixi',    'en' => 'History']],
+            'nav.legislation_child' => ['group' => 'nav', 'value' => ['ru' => 'Законодательство', 'uz' => 'Qonunchilik',       'en' => 'Legislation']],
+            'nav.projects_child'    => ['group' => 'nav', 'value' => ['ru' => 'Проекты',           'uz' => 'Loyihalar',          'en' => 'Projects']],
+            'nav.listings_child'    => ['group' => 'nav', 'value' => ['ru' => 'Объявления',        'uz' => 'Eʼlonlar',           'en' => 'Listings']],
+            'nav.join_cta'          => ['group' => 'nav', 'value' => ['ru' => 'Вступить',          'uz' => 'Aʼzo boʻlish',      'en' => 'Join']],
+
+            // === FOOTER колонки ==============================================
+            'footer.col_sections'   => ['group' => 'footer', 'value' => ['ru' => 'Разделы',    'uz' => 'Boʻlimlar',  'en' => 'Sections']],
+            'footer.col_activities' => ['group' => 'footer', 'value' => ['ru' => 'Активности', 'uz' => 'Faolliklar', 'en' => 'Activities']],
+            'footer.col_contacts'   => ['group' => 'footer', 'value' => ['ru' => 'Контакты',   'uz' => 'Aloqa',       'en' => 'Contacts']],
+
+            // === HERO главной — кнопки и статистика ===========================
+            'hero.cta_primary'   => ['group' => 'hero', 'value' => ['ru' => 'Стать резидентом',    'uz' => 'Rezident boʻlish',       'en' => 'Become a resident']],
+            'hero.cta_secondary' => ['group' => 'hero', 'value' => ['ru' => 'Узнать преимущества', 'uz' => 'Afzalliklarni bilish',   'en' => 'See the benefits']],
+            'hero.stat_companies' => ['group' => 'hero', 'value' => ['ru' => 'компаний-резидентов', 'uz' => 'rezident kompaniya',   'en' => 'resident companies']],
+            'hero.stat_growth'    => ['group' => 'hero', 'value' => ['ru' => 'средний рост выручки','uz' => 'oʻrtacha daromad oʻsishi','en' => 'average revenue growth']],
+            'hero.stat_countries' => ['group' => 'hero', 'value' => ['ru' => 'стран экспорта',       'uz' => 'eksport mamlakati',    'en' => 'export countries']],
+            'hero.stat_years'     => ['group' => 'hero', 'value' => ['ru' => 'лет на рынке',         'uz' => 'yil bozorda',           'en' => 'years on market']],
+
+            // === TAGS над H2 на главной ======================================
+            'home.tag_benefits'   => ['group' => 'home', 'value' => ['ru' => 'Преимущества резидентства', 'uz' => 'Rezidentlik imtiyozlari', 'en' => 'Residency advantages']],
+            'home.tag_problems'   => ['group' => 'home', 'value' => ['ru' => 'Барьеры отрасли',       'uz' => 'Soha toʻsiqlari',        'en' => 'Industry barriers']],
+            'home.tag_cases'      => ['group' => 'home', 'value' => ['ru' => 'Индустриальный рост · кейсы', 'uz' => 'Sanoat oʻsishi · keyslar', 'en' => 'Industrial growth · cases']],
+            'home.tag_programs'   => ['group' => 'home', 'value' => ['ru' => 'Программы ассоциации', 'uz' => 'Assotsiatsiya dasturlari', 'en' => 'Programs']],
+            'home.tag_taxes'      => ['group' => 'home', 'value' => ['ru' => 'Финансовые преференции','uz' => 'Moliyaviy imtiyozlar',   'en' => 'Financial advantages']],
+            'home.tag_join_steps' => ['group' => 'home', 'value' => ['ru' => 'Путь резидента',        'uz' => 'Rezident yoʻli',          'en' => 'Resident path']],
+            'home.tag_partners'   => ['group' => 'home', 'value' => ['ru' => 'Партнёры',              'uz' => 'Hamkorlar',               'en' => 'Partners']],
+            'home.tag_events'     => ['group' => 'home', 'value' => ['ru' => 'Ближайшие мероприятия','uz' => 'Yaqinlashayotgan tadbirlar','en' => 'Upcoming events']],
+            'home.tag_news'       => ['group' => 'home', 'value' => ['ru' => 'Новости ассоциации',   'uz' => 'Uyushma yangiliklari',   'en' => 'Association news']],
+
+            // === Hero FALLBACK ================================================
             'hero.default_tag'  => ['group' => 'hero', 'value' => ['ru' => 'MEYOS', 'uz' => 'MEYOS', 'en' => 'MEYOS']],
             'hero.default_h1'   => ['group' => 'hero', 'value' => [
                 'ru' => 'Ассоциация мебельщиков Узбекистана',
@@ -130,6 +168,13 @@ class CmsTextsSeeder extends Seeder
             ]],
 
             // === NEWS / EVENTS listing hero ===================================
+            // === Кнопки «Все X» на главной ====================================
+            'home.btn_all_partners' => ['group' => 'home', 'value' => ['ru' => 'Смотреть всех партнёров', 'uz' => 'Barcha hamkorlarni koʻrish', 'en' => 'See all partners']],
+            'home.btn_all_events'   => ['group' => 'home', 'value' => ['ru' => 'Все мероприятия',          'uz' => 'Barcha tadbirlar',          'en' => 'All events']],
+            'home.btn_all_news'     => ['group' => 'home', 'value' => ['ru' => 'Все новости',              'uz' => 'Barcha yangiliklar',        'en' => 'All news']],
+            'home.btn_read_more'    => ['group' => 'home', 'value' => ['ru' => 'Читать →',                 'uz' => 'Oʻqish →',                   'en' => 'Read →']],
+            'home.btn_register'     => ['group' => 'home', 'value' => ['ru' => 'Зарегистрироваться',      'uz' => 'Roʻyxatdan oʻtish',          'en' => 'Register']],
+
             // Блок «Объявления SAVDEX» на главной
             'home.h2_listings' => ['group' => 'home', 'value' => [
                 'ru' => 'Актуальный спрос с рынка',

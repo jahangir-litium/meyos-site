@@ -10,9 +10,9 @@
         'footer.copyright',
         '© ' . date('Y') . ' MEYOS'
     ));
-    $sections   = match($cur) { 'uz' => 'Boʻlimlar', 'en' => 'Sections', default => 'Разделы' };
-    $activities = match($cur) { 'uz' => 'Faolliklar', 'en' => 'Activities', default => 'Активности' };
-    $contacts   = match($cur) { 'uz' => 'Aloqa', 'en' => 'Contacts', default => 'Контакты' };
+    $sections   = \App\Support\Cms::text('footer.col_sections',   'Разделы');
+    $activities = \App\Support\Cms::text('footer.col_activities', 'Активности');
+    $contacts   = \App\Support\Cms::text('footer.col_contacts',   'Контакты');
 @endphp
 <footer class="footer">
   <div class="footer__grid">
