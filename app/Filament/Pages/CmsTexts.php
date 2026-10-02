@@ -102,6 +102,22 @@ class CmsTexts extends Page implements HasForms
                 'events.hero_tag' => ['label' => 'Тег над H1'],
                 'events.hero_h1'  => ['label' => 'H1 заголовок', 'rows' => 2],
             ],
+            'Страница «Объявления SAVDEX» (/listings)' => [
+                'listings.crumb'              => ['label' => 'Хлебная крошка'],
+                'listings.hero_tag'           => ['label' => 'Тег над H1'],
+                'listings.hero_h1'            => ['label' => 'H1 заголовок', 'rows' => 2],
+                'listings.hero_lead'          => ['label' => 'Подзаголовок', 'rows' => 3],
+                'listings.filter_all'         => ['label' => 'Чип «Все»'],
+                'listings.search_placeholder' => ['label' => 'Placeholder поиска'],
+                'listings.empty'              => ['label' => 'Текст когда объявлений нет'],
+                'listings.btn_open'           => ['label' => 'Кнопка «Открыть на SAVDEX»'],
+                'listings.source_label'       => ['label' => 'Подпись об источнике внизу'],
+            ],
+            'Блок «Объявления SAVDEX» на главной' => [
+                'home.h2_listings' => ['label' => 'Заголовок H2 блока'],
+                'home.listings_tag' => ['label' => 'Тег над H2'],
+                'home.listings_cta' => ['label' => 'Кнопка «Все объявления»'],
+            ],
         ],
 
         'Плавашка «Задайте вопрос»' => [

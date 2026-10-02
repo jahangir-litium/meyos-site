@@ -47,6 +47,9 @@ class PageController extends Controller
             'partners'  => Partner::published()->onHome()->ordered()->take(12)->get(),
             'events'    => Event::published()->upcoming()->ordered()->take(3)->get(),
             'news'      => News::published()->orderByDesc('published_at')->take(3)->get(),
+            'listings'  => \App\Models\SavdexListing::visible()->fresh()
+                ->orderByDesc('is_featured')->orderByDesc('published_at')
+                ->take(3)->get(),
             'faqs'      => Faq::published()->forPageSlug('home')->ordered()->get(),
         ]);
 

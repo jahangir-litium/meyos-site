@@ -257,6 +257,48 @@
 </section>
 @endif
 
+<!-- ОБЪЯВЛЕНИЯ SAVDEX -->
+@if (!empty($listings) && $listings->count())
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">@cms('home.listings_tag', 'Объявления')</span>
+      <h2>@cms('home.h2_listings', 'Актуальный спрос с рынка')</h2>
+    </div>
+    @php $typesMap = \App\Models\SavdexListing::allTypes(); @endphp
+    <div class="grid grid-3 listings-grid">
+      @foreach ($listings as $listing)
+        <a href="{{ $listing->source_url }}" target="_blank" rel="noopener" class="listing-card">
+          <div class="listing-card__media">
+            @if ($listing->image_url)
+              <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+            @else
+              <span class="listing-card__placeholder material-symbols-outlined">chair</span>
+            @endif
+            <span class="listing-card__type listing-card__type--{{ $listing->listing_type }}">{{ $typesMap[$listing->listing_type] ?? $listing->listing_type }}</span>
+          </div>
+          <div class="listing-card__body">
+            <h3 class="listing-card__title">{{ $listing->title }}</h3>
+            @if($listing->summary)<p class="listing-card__summary">{{ Str::limit($listing->summary, 110) }}</p>@endif
+            <div class="listing-card__meta">
+              @if($listing->price)<span class="listing-card__price">{{ $listing->price }}</span>@endif
+              @if($listing->city)<span class="listing-card__city"><span class="material-symbols-outlined">location_on</span>{{ $listing->city }}</span>@endif
+            </div>
+            <div class="listing-card__footer">
+              <span class="listing-card__cta">@cms('listings.btn_open', 'Открыть на SAVDEX') <span class="material-symbols-outlined">open_in_new</span></span>
+              @if($listing->published_at)<span class="listing-card__date">{{ $listing->published_at->format('d.m.Y') }}</span>@endif
+            </div>
+          </div>
+        </a>
+      @endforeach
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="{{ route('listings') }}" class="btn btn-ghost">@cms('home.listings_cta', 'Все объявления')</a>
+    </div>
+  </div>
+</section>
+@endif
+
 <!-- НОВОСТИ -->
 @if ($news->count())
 <section class="section-alt">

@@ -586,15 +586,117 @@ img { image-rendering: -webkit-optimize-contrast; }
   font-weight: 800;
 }
 .nav { display: none; gap: 1.75rem; align-items: center; }
-.nav a {
+.nav > a, .nav .nav-item__trigger {
   font-family: var(--font-head);
   font-size: .85rem;
   font-weight: 600;
   color: rgb(var(--on-surface-mut));
   text-decoration: none;
   transition: color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .15rem;
 }
-.nav a:hover, .nav a.is-active { color: rgb(var(--primary)); }
+.nav > a:hover, .nav > a.is-active,
+.nav-item__trigger:hover, .nav-item.is-active > .nav-item__trigger { color: rgb(var(--primary)); }
+
+/* Dropdown подменю в nav */
+.nav-item { position: relative; }
+.nav-item__chevron { font-size: 1.05rem; transition: transform .2s ease; margin-left: -.1rem; }
+.nav-item--dropdown:hover .nav-item__chevron,
+.nav-item--dropdown:focus-within .nav-item__chevron { transform: rotate(180deg); }
+
+.nav-item__menu {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(.3rem);
+  min-width: 220px;
+  padding: .5rem;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--outline));
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 32px rgb(0 0 0 / .08);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 60;
+}
+.nav-item--dropdown:hover .nav-item__menu,
+.nav-item--dropdown:focus-within .nav-item__menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-item__menu::before {
+  /* невидимый hover-мост чтоб курсор между триггером и меню не терял hover */
+  content: ''; position: absolute; top: -.6rem; left: 0; right: 0; height: .6rem;
+}
+.nav-item__menu a {
+  display: block;
+  padding: .6rem .85rem;
+  font-family: var(--font-head);
+  font-size: .85rem;
+  font-weight: 600;
+  color: rgb(var(--on-surface-mut));
+  text-decoration: none;
+  border-radius: var(--radius-sm, 6px);
+  transition: background .15s, color .15s;
+}
+.nav-item__menu a:hover,
+.nav-item__menu a.is-active {
+  background: rgb(var(--surface-deep));
+  color: rgb(var(--primary));
+}
+
+/* Мобильный sub-link — визуальный отступ */
+.mobile-menu__sublink {
+  padding-left: 1.75rem !important;
+  color: rgb(var(--on-surface-mut)) !important;
+  font-size: .95rem !important;
+}
+
+/* ============ LISTINGS cards — используются на /listings и на главной ============ */
+.listings-grid { gap: 1.5rem; }
+.listing-card {
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--outline));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.listing-card:hover { border-color: rgb(var(--primary)); transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgb(0 0 0 / .06); }
+.listing-card__media {
+  position: relative; aspect-ratio: 16/9;
+  background: linear-gradient(135deg, rgb(var(--surface-deep)) 0%, rgb(var(--surface)) 100%);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.listing-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.listing-card__placeholder { font-size: 3rem; color: rgb(var(--on-surface-mut)); opacity: .4; }
+.listing-card__type {
+  position: absolute; top: .75rem; left: .75rem;
+  padding: .25rem .65rem; border-radius: var(--radius-pill);
+  font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  color: #fff;
+}
+.listing-card__type--demand { background: #c67a00; }
+.listing-card__type--offer  { background: #2a7c3b; }
+.listing-card__type--tender { background: #2563a8; }
+.listing-card__body { padding: 1.15rem 1.25rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+.listing-card__title { font-size: 1rem; line-height: 1.35; margin: 0 0 .5rem; font-weight: 700; }
+.listing-card__summary { font-size: .85rem; line-height: 1.5; color: rgb(var(--on-surface-mut));
+  margin: 0 0 .75rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; }
+.listing-card__meta { display: flex; flex-wrap: wrap; gap: .5rem .9rem; margin: 0 0 .85rem; font-size: .82rem; }
+.listing-card__price { font-weight: 700; color: rgb(var(--primary)); }
+.listing-card__city { display: inline-flex; align-items: center; gap: .25rem; color: rgb(var(--on-surface-mut)); }
+.listing-card__city .material-symbols-outlined { font-size: .95rem; }
+.listing-card__footer { display: flex; justify-content: space-between; align-items: center;
+  padding-top: .75rem; border-top: 1px solid rgb(var(--outline) / .5); margin-top: auto; }
+.listing-card__cta { display: inline-flex; align-items: center; gap: .3rem;
+  color: rgb(var(--primary)); font-weight: 600; font-size: .85rem; }
+.listing-card__cta .material-symbols-outlined { font-size: .95rem; }
+.listing-card__date { color: rgb(var(--on-surface-mut)); font-size: .78rem; font-variant-numeric: tabular-nums; }
 .lang {
   display: none;
   gap: .15rem;

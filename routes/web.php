@@ -46,6 +46,8 @@ Route::get('/news/{slug}',   [NewsController::class, 'show'])->name('news.show')
 Route::get('/legislation',          [\App\Http\Controllers\LegislationController::class, 'index'])->name('legislation');
 Route::get('/legislation/{slug}',   [\App\Http\Controllers\LegislationController::class, 'show'])->name('legislation.show');
 
+Route::get('/listings',             [\App\Http\Controllers\ListingsController::class, 'index'])->name('listings');
+
 /* ============ Мероприятия ============ */
 Route::get('/events',          [EventsController::class, 'index'])->name('events');
 Route::get('/events/{slug}',   [EventsController::class, 'show'])->name('events.show');

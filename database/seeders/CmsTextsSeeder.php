@@ -130,6 +130,52 @@ class CmsTextsSeeder extends Seeder
             ]],
 
             // === NEWS / EVENTS listing hero ===================================
+            // Блок «Объявления SAVDEX» на главной
+            'home.h2_listings' => ['group' => 'home', 'value' => [
+                'ru' => 'Актуальный спрос с рынка',
+                'uz' => 'Bozordan dolzarb talab',
+                'en' => 'Live demand from the market',
+            ]],
+            'home.listings_tag' => ['group' => 'home', 'value' => [
+                'ru' => 'Объявления', 'uz' => 'Eʼlonlar', 'en' => 'Listings',
+            ]],
+            'home.listings_cta' => ['group' => 'home', 'value' => [
+                'ru' => 'Все объявления', 'uz' => 'Barcha eʼlonlar', 'en' => 'All listings',
+            ]],
+
+            // Страница /listings
+            'listings.crumb' => ['group' => 'listings', 'value' => [
+                'ru' => 'Объявления', 'uz' => 'Eʼlonlar', 'en' => 'Listings',
+            ]],
+            'listings.hero_tag' => ['group' => 'listings', 'value' => [
+                'ru' => 'Актуальный спрос', 'uz' => 'Dolzarb talab', 'en' => 'Live demand',
+            ]],
+            'listings.hero_h1' => ['group' => 'listings', 'value' => [
+                'ru' => 'Объявления по мебели — SAVDEX',
+                'uz' => 'Mebel boʻyicha eʼlonlar — SAVDEX',
+                'en' => 'Furniture listings — SAVDEX',
+            ]],
+            'listings.hero_lead' => ['group' => 'listings', 'value' => [
+                'ru' => 'Собрано с B2B-платформы savdex.uz: запросы, предложения и тендеры мебельной категории. Обновляется ежедневно.',
+                'uz' => 'B2B platforma savdex.uz dan toʻplandi: mebel toifasining soʻrovlari, takliflari va tenderlari. Har kuni yangilanadi.',
+                'en' => 'Aggregated from the B2B platform savdex.uz: furniture-category requests, offers and tenders. Updated daily.',
+            ]],
+            'listings.filter_all' => ['group' => 'listings', 'value' => ['ru' => 'Все', 'uz' => 'Barchasi', 'en' => 'All']],
+            'listings.search_placeholder' => ['group' => 'listings', 'value' => [
+                'ru' => 'Поиск по заголовку, городу…', 'uz' => 'Sarlavha, shahar boʻyicha qidirish…', 'en' => 'Search by title or city…',
+            ]],
+            'listings.empty' => ['group' => 'listings', 'value' => [
+                'ru' => 'Пока нет подходящих объявлений', 'uz' => 'Hozircha mos eʼlonlar yoʻq', 'en' => 'No matching listings yet',
+            ]],
+            'listings.btn_open' => ['group' => 'listings', 'value' => [
+                'ru' => 'Открыть на SAVDEX', 'uz' => 'SAVDEX da ochish', 'en' => 'Open on SAVDEX',
+            ]],
+            'listings.source_label' => ['group' => 'listings', 'value' => [
+                'ru' => 'Источник: savdex.uz · обновлено',
+                'uz' => 'Manba: savdex.uz · yangilangan',
+                'en' => 'Source: savdex.uz · updated',
+            ]],
+
             'news.hero_tag' => ['group' => 'listings', 'value' => ['ru' => 'Новости', 'uz' => 'Yangiliklar', 'en' => 'News']],
             'news.hero_h1'  => ['group' => 'listings', 'value' => [
                 'ru' => 'Что происходит в мебельной индустрии Узбекистана',

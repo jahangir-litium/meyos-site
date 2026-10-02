@@ -1,20 +1,31 @@
 @php
-    $nav = [
-        ['route' => 'about',     'label' => 'О компании'],
-        ['route' => 'residency', 'label' => 'Резидентство'],
-        ['route' => 'programs',  'label' => 'Программы'],
-        ['route' => 'partners',  'label' => 'Партнёры'],
-        ['route' => 'events',    'label' => 'Мероприятия'],
-        ['route' => 'news',        'label' => 'Новости'],
-        ['route' => 'legislation',  'label' => 'Законодательство'],
-        ['route' => 'contacts',     'label' => 'Контакты'],
-    ];
-    $navLabels = [
-        'ru' => ['О компании','Резидентство','Программы','Партнёры','Мероприятия','Новости','Законодательство','Контакты'],
-        'uz' => ['Kompaniya','Rezidentlik','Dasturlar','Hamkorlar','Tadbirlar','Yangiliklar','Qonunchilik','Kontaktlar'],
-        'en' => ['About','Residency','Programs','Partners','Events','News','Legislation','Contacts'],
-    ];
+    // Пункт с children рендерится как dropdown. Активен когда любой из потомков активен.
     $cur = app()->getLocale();
+    $t = fn (string $ru, string $uz, string $en) => [$ru, $uz, $en][['ru'=>0,'uz'=>1,'en'=>2][$cur] ?? 0];
+
+    $nav = [
+        [
+            'label'    => $t('О компании', 'Kompaniya haqida', 'About'),
+            'route'    => 'about',
+            'children' => [
+                ['label' => $t('История ассоциации', 'Uyushma tarixi', 'History'),       'route' => 'about'],
+                ['label' => $t('Законодательство',    'Qonunchilik',     'Legislation'), 'route' => 'legislation'],
+            ],
+        ],
+        ['route' => 'residency', 'label' => $t('Резидентство', 'Rezidentlik', 'Residency')],
+        [
+            'label'    => $t('Программы', 'Dasturlar', 'Programs'),
+            'route'    => 'programs',
+            'children' => [
+                ['label' => $t('Проекты',    'Loyihalar',  'Projects'),  'route' => 'programs'],
+                ['label' => $t('Объявления', 'Eʼlonlar',    'Listings'),  'route' => 'listings'],
+            ],
+        ],
+        ['route' => 'partners',  'label' => $t('Партнёры',     'Hamkorlar',     'Partners')],
+        ['route' => 'events',    'label' => $t('Мероприятия',  'Tadbirlar',     'Events')],
+        ['route' => 'news',      'label' => $t('Новости',      'Yangiliklar',   'News')],
+        ['route' => 'contacts',  'label' => $t('Контакты',     'Kontaktlar',    'Contacts')],
+    ];
 @endphp
 
 <header class="header">
@@ -29,11 +40,30 @@
     </a>
 
     <nav class="nav" aria-label="@switch($cur) @case('uz') Asosiy navigatsiya @break @case('en') Main navigation @break @default Основная навигация @endswitch">
-      @foreach ($nav as $i => $item)
-        @php $isActive = request()->routeIs($item['route']); @endphp
-        <a href="{{ route($item['route']) }}"
-           class="{{ $isActive ? 'is-active' : '' }}"
-           @if($isActive) aria-current="page" @endif>{{ $navLabels[$cur][$i] ?? $item['label'] }}</a>
+      @foreach ($nav as $item)
+        @php
+          $hasChildren = !empty($item['children']);
+          $childRoutes = $hasChildren ? array_column($item['children'], 'route') : [$item['route']];
+          $isActive    = request()->routeIs(...$childRoutes);
+        @endphp
+        @if ($hasChildren)
+          <div class="nav-item nav-item--dropdown {{ $isActive ? 'is-active' : '' }}">
+            <a href="{{ route($item['route']) }}" class="nav-item__trigger" @if($isActive) aria-current="page" @endif>
+              {{ $item['label'] }}
+              <span class="material-symbols-outlined nav-item__chevron" aria-hidden="true">expand_more</span>
+            </a>
+            <div class="nav-item__menu" role="menu">
+              @foreach ($item['children'] as $child)
+                <a href="{{ route($child['route']) }}" role="menuitem"
+                   class="{{ request()->routeIs($child['route']) ? 'is-active' : '' }}">{{ $child['label'] }}</a>
+              @endforeach
+            </div>
+          </div>
+        @else
+          <a href="{{ route($item['route']) }}"
+             class="{{ $isActive ? 'is-active' : '' }}"
+             @if($isActive) aria-current="page" @endif>{{ $item['label'] }}</a>
+        @endif
       @endforeach
     </nav>
 
