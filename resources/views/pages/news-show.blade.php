@@ -143,6 +143,13 @@
       {!! \App\Support\SafeHtml::clean($tr($news, 'content')) !!}
     </div>
 
+    {{-- ============ Видео (YouTube / Instagram) ============ --}}
+    @if (!empty($news->video_url) && ($__embed = \App\Support\VideoEmbed::html($news->video_url)))
+      <div style="margin:2rem 0;">
+        {!! $__embed !!}
+      </div>
+    @endif
+
     {{-- ============ Галерея-слайдер после текста ============ --}}
     @if (!empty($gallery))
       <div class="gallery-slider" id="news-gallery">

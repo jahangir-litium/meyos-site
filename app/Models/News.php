@@ -22,8 +22,8 @@ class News extends Model implements HasMedia
         'title', 'preview', 'content', 'image_alt', 'cover_image', 'sort',
         // SEO per-record
         'seo_title', 'seo_description', 'seo_image',
-        // Галерея и CTA
-        'gallery_images', 'cta_text', 'cta_url', 'cta_event_id',
+        // Галерея, видео и CTA
+        'gallery_images', 'video_url', 'cta_text', 'cta_url', 'cta_event_id',
     ];
 
     public array $translatable = [

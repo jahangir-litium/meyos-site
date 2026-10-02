@@ -20,7 +20,7 @@ class Partner extends Model implements HasMedia
         'slug', 'category', 'region', 'founded_year',
         'name', 'description', 'about',
         'logo_text', 'logo_image', 'website_url',
-        'gallery_images', 'socials', 'contact_email', 'contact_phone',
+        'gallery_images', 'video_url', 'socials', 'contact_email', 'contact_phone',
         'seo_title', 'seo_description', 'seo_image',
         'registry_id', 'is_published', 'show_on_home', 'sort',
         'views_count_total', 'views_count_30d', 'last_viewed_at',

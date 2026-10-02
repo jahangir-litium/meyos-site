@@ -184,6 +184,16 @@
       </section>
     @endif
 
+    {{-- ============ Видео (YouTube / Instagram) ============ --}}
+    @if (!empty($partner->video_url) && ($__embed = \App\Support\VideoEmbed::html($partner->video_url)))
+      <section class="partner-section">
+        <h2 style="font-size:1.5rem; margin:0 0 1rem;">
+          @switch($cur) @case('uz') Video @break @case('en') Video @break @default Видео @endswitch
+        </h2>
+        {!! $__embed !!}
+      </section>
+    @endif
+
     {{-- ============ Галерея ============ --}}
     @if($gallery->count())
       <section class="partner-section">

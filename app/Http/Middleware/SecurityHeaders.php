@@ -38,12 +38,13 @@ class SecurityHeaders
         // В следующей итерации перейдём на nonce.
         $csp = implode('; ', [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://www.googletagmanager.com https://www.google-analytics.com",
+            "script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://www.googletagmanager.com https://www.google-analytics.com https://www.instagram.com https://*.cdninstagram.com",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "font-src 'self' data: https://fonts.gstatic.com",
             "img-src 'self' data: blob: https:",
             "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://www.google-analytics.com https://yandex.ru",
-            "frame-src 'self' https://mc.yandex.ru https://yandex.ru https://*.yandex.ru https://www.google.com",
+            // frame-src: разрешаем встраивать YouTube (nocookie-домен для приватности) и Instagram
+            "frame-src 'self' https://mc.yandex.ru https://yandex.ru https://*.yandex.ru https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com https://www.instagram.com",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
